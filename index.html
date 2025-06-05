@@ -1,1 +1,175 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric Savoie - iOS Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Eric Savoie</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#apps">Apps</a>
+                <a href="#upcoming">Coming Soon</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-line">iOS Developer.</span>
+                <span class="hero-line">Crafting experiences.</span>
+            </h1>
+            <p class="hero-subtitle">Building beautiful, intuitive apps for iPhone and iPad. Two innovative apps launching soon.</p>
+            <div class="hero-cta">
+                <a href="#apps" class="cta-button primary">View My Work</a>
+                <a href="#upcoming" class="cta-button secondary">Coming Soon</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-devices">
+                <div class="device iphone"></div>
+                <div class="device ipad"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apps Section -->
+    <section id="apps" class="apps-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Live on the App Store</h2>
+                <p>Apps currently available for download</p>
+            </div>
+            <div class="apps-grid" id="shipped-apps">
+                <!-- Apps will be dynamically added here -->
+                <div class="app-placeholder">
+                    <div class="app-icon-placeholder"></div>
+                    <h3>Your First App</h3>
+                    <p>Coming Soon</p>
+                    <div class="app-links">
+                        <a href="#" class="app-store-button disabled">App Store</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Apps Section -->
+    <section id="upcoming" class="upcoming-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>In Development</h2>
+                <p>Exciting new apps launching soon</p>
+            </div>
+            <div class="upcoming-grid">
+                <div class="upcoming-app">
+                    <div class="app-preview">
+                        <div class="app-icon-large"></div>
+                    </div>
+                    <div class="app-details">
+                        <h3>App One</h3>
+                        <p class="app-description">Revolutionary iOS app that will change how you interact with your daily tasks. Built with SwiftUI and featuring cutting-edge design.</p>
+                        <div class="app-features">
+                            <span class="feature-tag">SwiftUI</span>
+                            <span class="feature-tag">Core Data</span>
+                            <span class="feature-tag">WidgetKit</span>
+                        </div>
+                        <p class="launch-date">Expected Launch: Spring 2025</p>
+                    </div>
+                </div>
+                
+                <div class="upcoming-app">
+                    <div class="app-preview">
+                        <div class="app-icon-large"></div>
+                    </div>
+                    <div class="app-details">
+                        <h3>App Two</h3>
+                        <p class="app-description">Innovative productivity app designed for modern professionals. Seamlessly integrates with your workflow and adapts to your needs.</p>
+                        <div class="app-features">
+                            <span class="feature-tag">UIKit</span>
+                            <span class="feature-tag">CloudKit</span>
+                            <span class="feature-tag">AR</span>
+                        </div>
+                        <p class="launch-date">Expected Launch: Summer 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy" class="privacy-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Privacy First</h2>
+                <p>Your data, your control</p>
+            </div>
+            <div class="privacy-grid">
+                <div class="privacy-card">
+                    <div class="privacy-icon">🔒</div>
+                    <h3>Data Protection</h3>
+                    <p>All apps are built with privacy by design. Your personal data stays on your device.</p>
+                    <a href="privacy-policy.html" class="privacy-link">Read Privacy Policy</a>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-icon">🛡️</div>
+                    <h3>Secure by Default</h3>
+                    <p>End-to-end encryption and secure authentication protect your information.</p>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-icon">✋</div>
+                    <h3>No Tracking</h3>
+                    <p>We don't track, sell, or share your personal information. Ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Teaser -->
+    <section class="about-teaser">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Eric</h2>
+                <p>iOS developer passionate about creating beautiful, functional apps that make people's lives better.</p>
+                <a href="about.html" class="cta-button primary">Learn More About Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="mailto:contact@ericsavoie.com">Email</a>
+                    <a href="https://linkedin.com/in/ericsavoie">LinkedIn</a>
+                    <a href="https://github.com/EricSavoie119">GitHub</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eric Savoie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
