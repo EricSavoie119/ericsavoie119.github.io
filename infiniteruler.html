@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfiniteRuler - Digital Ruler App | Eric Savoie</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .app-detail-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        .app-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .app-hero .app-icon-large {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .app-hero .app-icon-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .app-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .app-hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        .app-store-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .launch-info {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--card-border);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .app-section {
+            margin: 50px 0;
+        }
+        .app-section h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--accent-blue);
+        }
+        .app-section h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+            color: var(--text-primary);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--card-border);
+            text-align: center;
+        }
+        .feature-card .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        .tech-specs {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin: 40px 0;
+        }
+        .tech-specs h3 {
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .spec-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .spec-item strong {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 12px 24px;
+            background: var(--accent-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: #0051d0;
+            transform: translateY(-2px);
+        }
+        .device-support {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--card-border);
+            margin: 30px 0;
+        }
+        .device-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .device-chip {
+            background: var(--accent-blue);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Eric Savoie</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#apps">Apps</a>
+                <a href="/#upcoming">Coming Soon</a>
+                <a href="/#privacy">Privacy</a>
+                <a href="/about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="app-detail-content">
+        <a href="/" class="back-button">← Back to Home</a>
+        
+        <div class="app-hero">
+            <div class="app-icon-large">
+                <img src="infiniteruler.png" alt="InfiniteRuler App Icon">
+            </div>
+            <h1>InfiniteRuler</h1>
+            <p class="subtitle">A straightforward measuring tool for your iPhone</p>
+            
+            <div class="app-store-buttons">
+                <a href="#" class="cta-button primary">Download on App Store</a>
+                <a href="privacy-policy.html" class="cta-button secondary">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="launch-info">
+            <strong>🚀 Launched:</strong> June 6, 2025<br>
+            <strong>📱 Platform:</strong> iPhone (iOS 15.0+)<br>
+            <strong>🛠 Built with:</strong> Swift & SwiftUI
+        </div>
+
+        <div class="app-section">
+            <h2>What InfiniteRuler Does</h2>
+            <p>InfiniteRuler turns your phone's screen into a ruler by converting pixels to real-world measurements. You can measure objects by holding your phone against them, with the ruler starting from 0 at the bottom of the screen.</p>
+            <p>It's not going to replace your tape measure, but it's handy when you need a quick measurement and don't have a ruler nearby.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📏</div>
+                <h4>Precise Measurements</h4>
+                <p>Centimeter measurements with millimeter precision using your device's pixel density</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h4>Infinite Scrolling</h4>
+                <p>Measure longer objects by scrolling to extend the ruler beyond your screen size</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h4>Smart Calibration</h4>
+                <p>Fine-tuning system allows for maximum accuracy on your specific device</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📵</div>
+                <h4>Works Offline</h4>
+                <p>No internet connection required - measure anytime, anywhere</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">↔️</div>
+                <h4>Flexible Alignment</h4>
+                <p>Left or right edge alignment options for comfortable use</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">♿</div>
+                <h4>Accessibility Ready</h4>
+                <p>Full accessibility support including larger text sizes</p>
+            </div>
+        </div>
+
+        <div class="app-section">
+            <h2>How It Works</h2>
+            <h3>Technical Approach</h3>
+            <p>The app uses your device's known pixel density (PPI - pixels per inch) to calculate accurate centimeter measurements. Each iPhone model has a specific screen resolution and physical size, so we can determine how many pixels equal one centimeter on that particular device.</p>
+            
+            <div class="tech-specs">
+                <h3>Under the Hood</h3>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <strong>Device Detection</strong>
+                        Identifies your iPhone model based on screen resolution
+                    </div>
+                    <div class="spec-item">
+                        <strong>Pixel Conversion</strong>
+                        Uses hardware specifications to map screen pixels to centimeters
+                    </div>
+                    <div class="spec-item">
+                        <strong>Infinite Scrolling</strong>
+                        Extends measurement capability beyond screen limitations
+                    </div>
+                    <div class="spec-item">
+                        <strong>Calibration System</strong>
+                        Allows fine-tuning for maximum accuracy
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="device-support">
+            <h3>📱 Supported Devices</h3>
+            <p>InfiniteRuler supports iPhone 11 and newer models for optimal accuracy:</p>
+            <div class="device-list">
+                <span class="device-chip">iPhone 11</span>
+                <span class="device-chip">iPhone 11 Pro</span>
+                <span class="device-chip">iPhone 11 Pro Max</span>
+                <span class="device-chip">iPhone 12 mini</span>
+                <span class="device-chip">iPhone 12</span>
+                <span class="device-chip">iPhone 12 Pro</span>
+                <span class="device-chip">iPhone 12 Pro Max</span>
+                <span class="device-chip">iPhone 13 mini</span>
+                <span class="device-chip">iPhone 13</span>
+                <span class="device-chip">iPhone 13 Pro</span>
+                <span class="device-chip">iPhone 13 Pro Max</span>
+                <span class="device-chip">iPhone 14</span>
+                <span class="device-chip">iPhone 14 Plus</span>
+                <span class="device-chip">iPhone 14 Pro</span>
+                <span class="device-chip">iPhone 14 Pro Max</span>
+                <span class="device-chip">iPhone 15</span>
+                <span class="device-chip">iPhone 15 Plus</span>
+                <span class="device-chip">iPhone 15 Pro</span>
+                <span class="device-chip">iPhone 15 Pro Max</span>
+            </div>
+        </div>
+
+        <div class="app-section">
+            <h2>Key Features</h2>
+            <ul>
+                <li><strong>Precise Measurements:</strong> Centimeter and millimeter accuracy</li>
+                <li><strong>Edge Alignment:</strong> Choose left or right edge starting points</li>
+                <li><strong>Offline Operation:</strong> No internet connection required</li>
+                <li><strong>Accessibility Support:</strong> Works with iOS accessibility features</li>
+                <li><strong>SwiftUI Interface:</strong> Modern, responsive design</li>
+                <li><strong>Infinite Scrolling:</strong> Measure objects longer than your screen</li>
+                <li><strong>Device Optimized:</strong> Calibrated for each iPhone model</li>
+            </ul>
+        </div>
+
+        <div class="app-store-buttons" style="margin-top: 50px;">
+            <a href="#" class="cta-button primary">Download InfiniteRuler</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="mailto:contact@ericsavoie.com">Email</a>
+                    <a href="https://linkedin.com/in/ericsavoie">LinkedIn</a>
+                    <a href="https://github.com/EricSavoie119">GitHub</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eric Savoie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
