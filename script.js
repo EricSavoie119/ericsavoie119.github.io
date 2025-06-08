@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initNavbarScroll();
     initSmoothScrolling();
-    initAppManager();
 });
 
 // Intersection Observer for scroll animations
@@ -23,14 +22,14 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Add fade-in-up class to elements that should animate
-    const animateElements = document.querySelectorAll('.section-header, .app-placeholder, .upcoming-app, .privacy-card');
+    const animateElements = document.querySelectorAll('.section-header, .app-placeholder, .app-card, .upcoming-app, .privacy-card');
     animateElements.forEach(el => {
         el.classList.add('fade-in-up');
         observer.observe(el);
     });
 
     // Stagger animations for grid items
-    const gridItems = document.querySelectorAll('.apps-grid .app-placeholder, .privacy-grid .privacy-card');
+    const gridItems = document.querySelectorAll('.apps-grid .app-placeholder, .apps-grid .app-card, .privacy-grid .privacy-card');
     gridItems.forEach((item, index) => {
         item.style.transitionDelay = `${index * 0.1}s`;
     });
