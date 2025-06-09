@@ -8,8 +8,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- PWA Theme Colors -->
+    <meta name="theme-color" content="#ff3c00">
+    <meta name="msapplication-TileColor" content="#431a00">
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered:', registration))
+            .catch(error => console.log('SW registration failed:', error));
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <!-- PWA Install Button (Hidden by default) -->
+    <button id="pwa-install-button" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: var(--color-primary); color: white; border: none; padding: 12px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 60, 0, 0.3);">
+      📱 Install App
+    </button>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -149,6 +171,58 @@
             </div>
         </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script type="module" src="/assets/js/config/config.js"></script>
+    <script type="module" src="/assets/js/config/apps.js"></script>
+    <script type="module" src="/assets/js/components/navbar.js"></script>
+    <script type="module" src="/assets/js/components/app-manager.js"></script>
+    <script type="module" src="/assets/js/components/analytics.js"></script>
+    <script type="module" src="/assets/js/utils/animations.js"></script>
+    <script type="module" src="/assets/js/utils/seo.js"></script>
+    <script type="module" src="/assets/js/utils/image-optimization.js"></script>
+    <script type="module" src="/assets/js/utils/performance.js"></script>
+
+    <script type="module">
+      import { AppManager } from '/assets/js/components/app-manager.js';
+      import { AnimationUtils } from '/assets/js/utils/animations.js';
+      import { SEOManager } from '/assets/js/utils/seo.js';
+      import { ImageOptimizer } from '/assets/js/utils/image-optimization.js';
+      import { performanceMonitor, pwaInstallManager } from '/assets/js/utils/performance.js';
+      import analytics from '/assets/js/components/analytics.js';
+
+      // Initialize SEO for homepage
+      const seoManager = new SEOManager();
+      seoManager.updatePageSEO({
+        title: 'Eric Savoie - App Developer & Creator',
+        description: 'Independent app developer creating productivity tools and meaningful software experiences. Explore InfiniteRuler, Mental Load, and more innovative apps.',
+        keywords: ['app developer', 'iOS apps', 'macOS apps', 'productivity tools', 'InfiniteRuler', 'Mental Load'],
+        ogImage: '/assets/images/hero/eric-savoie-og.jpg',
+        canonicalUrl: '/'
+      });
+
+      // Initialize components
+      document.addEventListener('DOMContentLoaded', () => {
+        new AppManager();
+        new AnimationUtils();
+        new ImageOptimizer();
+        
+        // Performance monitoring is auto-initialized
+        console.log('🚀 Performance monitoring active');
+        
+        // Track app card interactions
+        document.addEventListener('click', (e) => {
+          const appCard = e.target.closest('.app-card');
+          if (appCard) {
+            const appName = appCard.querySelector('h3')?.textContent || 'unknown';
+            analytics.trackEvent('click', 'app_card', {
+              app_name: appName,
+              card_position: Array.from(appCard.parentElement.children).indexOf(appCard)
+            });
+          }
+        });
+      });
+    </script>
 
     <script src="script.js"></script>
 </body>
