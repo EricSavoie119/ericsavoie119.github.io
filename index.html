@@ -5,6 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eric Savoie - iOS Developer</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Fallback CSS to prevent black screen -->
+    <style>
+      body {
+        background-color: #faf6f4 !important;
+        color: #431a00 !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      .hero {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem 0;
+      }
+      
+      .navbar {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+      }
+      
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .nav-link {
+        color: #431a00;
+        text-decoration: none;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      
+      .btn--primary {
+        background: #ff3c00;
+        color: white;
+      }
+      
+      .btn--secondary {
+        background: transparent;
+        color: #ff3c00;
+        border: 2px solid #ff3c00;
+      }
+      
+      .section {
+        padding: 4rem 0;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #431a00;
+      }
+      
+      .hero-title {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: #431a00;
+      }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -139,65 +232,44 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script type="module" src="/assets/js/config/config.js"></script>
-    <script type="module" src="/assets/js/config/apps.js"></script>
-    <script type="module" src="/assets/js/components/navbar.js"></script>
-    <script type="module" src="/assets/js/components/app-manager.js"></script>
-    <script type="module" src="/assets/js/components/analytics.js"></script>
-    <script type="module" src="/assets/js/utils/animations.js"></script>
-    <script type="module" src="/assets/js/utils/seo.js"></script>
-    <script type="module" src="/assets/js/utils/image-optimization.js"></script>
-    <script type="module" src="/assets/js/utils/performance.js"></script>
+    <!-- Module scripts temporarily removed for debugging -->
 
-    <script type="module">
-      import { AppManager } from '/assets/js/components/app-manager.js';
-      import { AnimationUtils } from '/assets/js/utils/animations.js';
-      import { SEOManager } from '/assets/js/utils/seo.js';
-      import { ImageOptimizer } from '/assets/js/utils/image-optimization.js';
-      import { performanceMonitor, pwaInstallManager } from '/assets/js/utils/performance.js';
-      import analytics from '/assets/js/components/analytics.js';
-
-      // Initialize SEO for homepage
-      const seoManager = new SEOManager();
-      seoManager.updatePageSEO({
-        title: 'Eric Savoie - App Developer & Creator',
-        description: 'Independent app developer creating productivity tools and meaningful software experiences. Explore InfiniteRuler, Mental Load, and more innovative apps.',
-        keywords: ['app developer', 'iOS apps', 'macOS apps', 'productivity tools', 'InfiniteRuler', 'Mental Load'],
-        ogImage: '/assets/images/hero/eric-savoie-og.jpg',
-        canonicalUrl: '/'
-      });
-
-      // Initialize components
+    <script>
+      // Simple JavaScript for basic functionality
       document.addEventListener('DOMContentLoaded', () => {
-        new AppManager();
-        new AnimationUtils();
-        new ImageOptimizer();
+        console.log('🚀 Basic site functionality loaded');
         
-        // Performance monitoring is auto-initialized
-        console.log('🚀 Performance monitoring active');
+        // Add some basic app cards for now
+        const shippedAppsContainer = document.getElementById('shipped-apps');
+        if (shippedAppsContainer) {
+          shippedAppsContainer.innerHTML = `
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <h3 style="color: #431a00; margin-bottom: 1rem;">InfiniteRuler</h3>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Digital measuring tool that turns your iPhone screen into a precise ruler using pixel density calculations.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="/apps/infiniteruler/" class="btn btn--primary">Learn More</a>
+                <a href="#" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+          `;
+        }
         
-        // Track app card interactions
-        document.addEventListener('click', (e) => {
-          const appCard = e.target.closest('.app-card');
-          if (appCard) {
-            const appName = appCard.querySelector('h3')?.textContent || 'unknown';
-            analytics.trackEvent('click', 'app_card', {
-              app_name: appName,
-              card_position: Array.from(appCard.parentElement.children).indexOf(appCard)
-            });
-          }
-        });
+        const upcomingAppsContainer = document.getElementById('upcoming-apps');
+        if (upcomingAppsContainer) {
+          upcomingAppsContainer.innerHTML = `
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <h3 style="color: #431a00; margin-bottom: 1rem;">Mental Load</h3>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">A thoughtful app to help you track and manage the invisible mental tasks that make daily life possible.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="/apps/mental-load/" class="btn btn--primary">Coming Soon</a>
+              </div>
+            </div>
+          `;
+        }
       });
     </script>
 
-    <!-- JavaScript -->
-    <script src="/assets/js/utils/performance.js"></script>
-    <script src="/assets/js/utils/seo.js"></script>
-    <script src="/assets/js/components/analytics.js"></script>
-    <script src="/assets/js/config/apps.js"></script>
-    <script src="/assets/js/components/app-manager.js"></script>
-    <script src="/script.js"></script>
+    <!-- Legacy JavaScript removed to prevent conflicts -->
     
     <!-- Service Worker Registration -->
     <script>
