@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eric Savoie - iOS Developer</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- <link rel="stylesheet" href="assets/css/main.css"> Temporarily disabled for debugging -->
     
     <!-- Fallback CSS to prevent black screen -->
     <style>
-      body {
+      html, body {
         background-color: #faf6f4 !important;
         color: #431a00 !important;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 100vh !important;
+        width: 100% !important;
+        overflow-x: hidden;
+      }
+      
+      * {
+        box-sizing: border-box;
       }
       
       .container {
@@ -121,6 +127,17 @@
       
       .section {
         padding: 4rem 0;
+        background-color: #faf6f4 !important;
+        width: 100%;
+        position: relative;
+      }
+      
+      .apps-section {
+        background-color: #ffffff !important;
+      }
+      
+      .upcoming-section {
+        background-color: #fef7f3 !important;
       }
       
       .text-center {
@@ -402,22 +419,10 @@
     <meta name="theme-color" content="#ff3c00">
     <meta name="msapplication-TileColor" content="#431a00">
     
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => console.log('SW registered:', registration))
-            .catch(error => console.log('SW registration failed:', error));
-        });
-      }
-    </script>
+    <!-- Service Worker temporarily disabled for debugging -->
   </head>
   <body>
-    <!-- PWA Install Button (Hidden by default) -->
-    <button id="pwa-install-button" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: var(--color-primary); color: white; border: none; padding: 12px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 60, 0, 0.3);">
-      📱 Install App
-    </button>
+    <!-- PWA Install Button temporarily removed for debugging -->
     <!-- Navigation -->
     <nav class="navbar" id="main-navbar">
         <div class="nav-container">
@@ -562,51 +567,6 @@
       });
     </script>
 
-    <!-- Legacy JavaScript removed to prevent conflicts -->
-    
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
-    </script>
-    
-    <!-- Initialize App Manager -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize AppManager
-            if (typeof AppManager !== 'undefined') {
-                // Render shipped apps
-                const shippedContainer = document.getElementById('shipped-apps');
-                if (shippedContainer) {
-                    AppManager.renderShippedApps(shippedContainer);
-                }
-                
-                // Render upcoming apps
-                const upcomingContainer = document.getElementById('upcoming-apps');
-                if (upcomingContainer) {
-                    AppManager.renderUpcomingApps(upcomingContainer);
-                }
-            }
-            
-            // Initialize analytics if available
-            if (typeof AnalyticsManager !== 'undefined') {
-                AnalyticsManager.init();
-            }
-            
-            // Initialize performance monitoring
-            if (typeof PerformanceMonitor !== 'undefined') {
-                PerformanceMonitor.init();
-            }
-        });
-    </script>
+    <!-- All complex JavaScript temporarily removed for debugging -->
 </body>
 </html>
