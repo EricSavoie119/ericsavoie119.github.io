@@ -8,50 +8,50 @@
      COLOR SYSTEM
      ============================================ */
   
-  /* Primary Blues (Apple-inspired) */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #007aff;  /* Primary */
-  --color-primary-600: #0051d0;
-  --color-primary-700: #0040a0;
-  --color-primary-800: #003370;
-  --color-primary-900: #002650;
+  /* Primary Orange-Red (Mental Load App Theme) */
+  --color-primary-50: #fef2f2;
+  --color-primary-100: #fee2e2;
+  --color-primary-200: #fecaca;
+  --color-primary-300: #fca5a5;
+  --color-primary-400: #f87171;
+  --color-primary-500: #ff3c00;  /* Heart Orange */
+  --color-primary-600: #dc2626;
+  --color-primary-700: #b91c1c;
+  --color-primary-800: #991b1b;
+  --color-primary-900: #431a00;  /* Structural Brown */
 
-  /* Secondary Greens */
-  --color-secondary-50: #f0fdf4;
-  --color-secondary-100: #dcfce7;
-  --color-secondary-200: #bbf7d0;
-  --color-secondary-300: #86efac;
-  --color-secondary-400: #4ade80;
-  --color-secondary-500: #30d158;  /* Secondary */
-  --color-secondary-600: #16a34a;
-  --color-secondary-700: #15803d;
-  --color-secondary-800: #166534;
-  --color-secondary-900: #14532d;
+  /* Secondary Warm Orange */
+  --color-secondary-50: #fff7ed;
+  --color-secondary-100: #ffedd5;
+  --color-secondary-200: #fed7aa;
+  --color-secondary-300: #fdba74;
+  --color-secondary-400: #fb923c;
+  --color-secondary-500: #e6915c;  /* Warm Orange */
+  --color-secondary-600: #ea580c;
+  --color-secondary-700: #c2410c;
+  --color-secondary-800: #9a3412;
+  --color-secondary-900: #431a00;
 
-  /* Accent Orange */
-  --color-accent-50: #fff7ed;
-  --color-accent-100: #ffedd5;
-  --color-accent-200: #fed7aa;
-  --color-accent-300: #fdba74;
-  --color-accent-400: #fb923c;
-  --color-accent-500: #ff9500;  /* Accent */
-  --color-accent-600: #ea580c;
-  --color-accent-700: #c2410c;
-  --color-accent-800: #9a3412;
-  --color-accent-900: #7c2d12;
+  /* Accent Peachy Pink */
+  --color-accent-50: #fef7f3;
+  --color-accent-100: #fef2ec;
+  --color-accent-200: #fde1d3;
+  --color-accent-300: #fcc9b9;
+  --color-accent-400: #ffa166;  /* Light Orange */
+  --color-accent-500: #ffb8a3;  /* Peachy Pink */
+  --color-accent-600: #f97316;
+  --color-accent-700: #ea580c;
+  --color-accent-800: #c2410c;
+  --color-accent-900: #9a3412;
 
-  /* Neutral Palette - Light Mode */
-  --color-background: #f5f5f7;      /* Light gray background */
-  --color-surface: #ffffff;         /* White cards/surfaces */
-  --color-surface-secondary: #f8f9fa;
-  --color-border: #e5e5e7;         /* Light borders */
-  --color-text-primary: #1d1d1f;   /* Dark text */
-  --color-text-secondary: #86868b; /* Gray text */
-  --color-text-tertiary: #c7c7cc;  /* Light gray text */
+  /* Neutral Palette - Light Mode (Mental Load Theme) */
+  --color-background: #faf6f4;      /* Background Tint (very light peachy) */
+  --color-surface: #ffffff;         /* Pure White */
+  --color-surface-secondary: #fef7f3;
+  --color-border: #f0e6e0;         /* Light peachy borders */
+  --color-text-primary: #431a00;   /* Structural Brown */
+  --color-text-secondary: #66330a; /* Secondary text (slightly lighter brown) */
+  --color-text-tertiary: #99664d;  /* Light brown text */
 
   /* Dark Mode Support */
   --color-background-dark: #000000;
