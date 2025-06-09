@@ -10,6 +10,8 @@
     <meta http-equiv="Expires" content="0">
     <title>Eric Savoie - iOS Developer - Debug Mode</title>
     <!-- Cache busting timestamp: 1737055000000 -->
+    <!-- Lottie Player for animations -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/lottie-player.js"></script>
     <!-- ALL EXTERNAL CSS DISABLED FOR DEBUGGING -->
     
     <!-- INLINE CSS ONLY TO PREVENT BLACK SCREEN -->
@@ -64,13 +66,34 @@
       }
       
       .hero {
-        min-height: 80vh;
+        min-height: 60vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 2rem 0;
+        padding: 2rem 0 0 0;
         margin-top: 80px; /* Account for fixed navbar */
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        background: transparent !important;
+        padding: 2rem;
+      }
+      
+      .lottie-gradient {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        height: 80%;
+        pointer-events: none;
+        opacity: 0.3;
+        z-index: 1;
+        transform: translate(-50%, -50%) scale(1.2);
       }
       
       .navbar {
@@ -199,6 +222,7 @@
         color: #431a00;
         font-weight: 700;
         line-height: 1.1;
+        opacity: 0.9;
       }
       
       .hero-subtitle {
@@ -208,6 +232,8 @@
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
+        font-weight: 500;
+        opacity: 0.8;
       }
       
       .hero-cta {
@@ -552,26 +578,31 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+        <!-- Hero Section -->
     <section id="home" class="hero" data-scroll-animate>
+        <!-- Lottie Gradient Behind Text -->
+        <lottie-player 
+            class="lottie-gradient"
+            src="/gradientswell.json" 
+            background="transparent" 
+            speed="0.8"
+            loop
+            autoplay
+            style="width: 100%; height: 100%;">
+        </lottie-player>
+        
         <div class="hero-content">
             <h1 class="hero-title" data-animate="slide-up">
-                <span class="hero-line">App Developer.</span>
-                <span class="hero-line">Crafting experiences.</span>
+                <span class="hero-line">Designed for Life</span>
             </h1>
             <p class="hero-subtitle" data-animate="slide-up" data-delay="200">
-                Independent developer creating productivity tools and meaningful software experiences. 
-                Building beautiful, intuitive apps that solve real problems.
+                Software that solves real problems.
             </p>
-
-        </div>
-        <div class="hero-visual" data-animate="fade-in" data-delay="600">
-            <div class="floating-devices">
-                <div class="device iphone" data-animate="float" data-delay="800"></div>
-                <div class="device ipad" data-animate="float" data-delay="1000"></div>
-            </div>
+            
         </div>
     </section>
+
+
 
     <!-- Apps Section -->
     <section id="apps" class="section apps-section">
@@ -638,6 +669,90 @@
       // Simple JavaScript for basic functionality
       document.addEventListener('DOMContentLoaded', () => {
         console.log('🚀 Basic site functionality loaded');
+        
+        // Lottie debugging
+        const lottiePlayer = document.querySelector('.lottie-gradient');
+        console.log('🎬 Lottie player element:', lottiePlayer);
+        
+        if (lottiePlayer) {
+          console.log('🎬 Lottie player found, src:', lottiePlayer.src);
+          console.log('🎬 Lottie player attributes:', {
+            src: lottiePlayer.getAttribute('src'),
+            background: lottiePlayer.getAttribute('background'),
+            speed: lottiePlayer.getAttribute('speed'),
+            loop: lottiePlayer.getAttribute('loop'),
+            autoplay: lottiePlayer.getAttribute('autoplay')
+          });
+          
+          // Test if we can fetch the JSON file
+          fetch('/gradientswell.json')
+            .then(response => {
+              console.log('🎬 JSON file response status:', response.status);
+              console.log('🎬 JSON file response headers:', response.headers);
+              return response.json();
+            })
+            .then(data => {
+              console.log('🎬 JSON file loaded successfully:', data);
+              console.log('🎬 Animation dimensions:', data.w, 'x', data.h);
+              console.log('🎬 Animation duration:', data.op, 'frames');
+            })
+            .catch(error => {
+              console.error('🚨 Error loading JSON file:', error);
+            });
+          
+          // Simple setup - just ensure the animation plays
+          lottiePlayer.addEventListener('ready', () => {
+            console.log('🎬 Lottie animation ready and playing');
+          });
+          
+          lottiePlayer.addEventListener('load', () => {
+            console.log('🎬 Lottie animation loaded');
+          });
+          
+          lottiePlayer.addEventListener('error', (e) => {
+            console.error('🚨 Lottie animation error:', e);
+          });
+        } else {
+          console.error('🚨 Lottie player element not found');
+        }
+        
+        // Debug Lottie Player
+        setTimeout(() => {
+          const lottiePlayer = document.querySelector('lottie-player');
+          console.log('🎭 Lottie player element:', lottiePlayer);
+          
+          if (lottiePlayer) {
+            console.log('🎭 Lottie player src:', lottiePlayer.src);
+            console.log('🎭 Lottie player loaded:', lottiePlayer.loaded);
+            
+            lottiePlayer.addEventListener('ready', () => {
+              console.log('✅ Lottie animation ready!');
+            });
+            
+            lottiePlayer.addEventListener('error', (e) => {
+              console.error('❌ Lottie animation error:', e);
+            });
+            
+            // Test if the JSON file exists
+            fetch('/gradientswell.json')
+              .then(response => {
+                console.log('📄 Lottie JSON response:', response.status);
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  throw new Error('JSON file not found');
+                }
+              })
+              .then(data => {
+                console.log('✅ Lottie JSON loaded successfully, first few keys:', Object.keys(data).slice(0, 5));
+              })
+              .catch(error => {
+                console.error('❌ Failed to load Lottie JSON:', error);
+              });
+          } else {
+            console.error('❌ Lottie player element not found');
+          }
+        }, 1000);
         
         // Force body visibility again and monitor for changes
         document.body.style.setProperty('background', '#faf6f4', 'important');
