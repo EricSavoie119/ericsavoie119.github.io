@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>InfiniteRuler - Digital Ruler App | Eric Savoie</title>
     
     <!-- SEO and Social Meta Tags -->
@@ -28,16 +33,106 @@
     <link rel="icon" type="image/x-icon" href="/assets/images/icons/favicon.ico">
     <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- CSS disabled for debugging -->
+    <!-- <link rel="stylesheet" href="/assets/css/main.css"> -->
+    <!-- <link rel="manifest" href="/manifest.json"> -->
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <!-- Emergency inline styles to force light mode -->
+    <style>
+      :root {
+        color-scheme: light !important;
+        --text-primary: #431a00 !important;
+        --text-secondary: #66330a !important;
+        --bg-primary: #faf6f4 !important;
+        --card-bg: #ffffff !important;
+        --card-border: rgba(255, 60, 0, 0.1) !important;
+        --accent-blue: #ff3c00 !important;
+        --accent-green: #ff9500 !important;
+        --border-radius: 1rem !important;
+      }
+      
+      html, body {
+        background: #faf6f4 !important;
+        background-color: #faf6f4 !important;
+        color: #431a00 !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 100vh !important;
+        width: 100% !important;
+        overflow-x: hidden;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color-scheme: light !important;
+      }
+      
+      *, *::before, *::after {
+        background-color: inherit !important;
+        color: inherit !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color-scheme: light !important;
+      }
+      
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: light !important;
+          --text-primary: #431a00 !important;
+          --text-secondary: #66330a !important;
+          --bg-primary: #faf6f4 !important;
+        }
+        
+        html, body {
+          background: #faf6f4 !important;
+          background-color: #faf6f4 !important;
+          color: #431a00 !important;
+        }
+      }
+      
+      .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 60, 0, 0.1);
+      }
+      
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #431a00;
+        text-decoration: none;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .nav-links a {
+        color: #431a00;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      
+      .nav-links a:hover {
+        color: #ff3c00;
+      }
+    </style>
     
     <!-- PWA Theme Colors -->
     <meta name="theme-color" content="#ff3c00">
@@ -94,10 +189,8 @@
         .app-hero h1 {
             font-size: 3rem;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #431a00;
+            font-weight: 700;
         }
         .app-hero .subtitle {
             font-size: 1.3rem;
@@ -154,16 +247,19 @@
             color: var(--text-primary);
         }
         .tech-specs {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
-            color: white;
+            background: #fef7f3;
+            color: #431a00;
             padding: 40px;
             border-radius: var(--border-radius);
             margin: 40px 0;
+            border: 1px solid #ff3c00;
+            box-shadow: 0 4px 20px rgba(255, 60, 0, 0.08);
         }
         .tech-specs h3 {
-            color: white;
+            color: #ff3c00;
             margin-bottom: 20px;
             text-align: center;
+            font-weight: 600;
         }
         .specs-grid {
             display: grid;
@@ -171,14 +267,17 @@
             gap: 20px;
         }
         .spec-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: white;
             padding: 20px;
             border-radius: 10px;
+            border: 1px solid rgba(255, 60, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         .spec-item strong {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
+            color: #ff3c00;
         }
         .back-button {
             display: inline-block;
@@ -214,9 +313,76 @@
             border-radius: 20px;
             font-size: 0.9rem;
         }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .cta-button.primary {
+            background: #ff3c00;
+            color: white;
+            border: 2px solid #ff3c00;
+        }
+        
+        .cta-button.primary:hover {
+            background: #e63600;
+            border-color: #e63600;
+            transform: translateY(-2px);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: #ff3c00;
+            border: 2px solid #ff3c00;
+        }
+        
+        .cta-button.secondary:hover {
+            background: #ff3c00;
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <script>
+      // Immediate visibility enforcement and dark mode override
+      document.documentElement.style.setProperty('background', '#faf6f4', 'important');
+      document.documentElement.style.setProperty('background-color', '#faf6f4', 'important');
+      document.documentElement.style.setProperty('color', '#431a00', 'important');
+      document.documentElement.style.setProperty('visibility', 'visible', 'important');
+      document.documentElement.style.setProperty('color-scheme', 'light', 'important');
+      
+      if (document.body) {
+        document.body.style.setProperty('background', '#faf6f4', 'important');
+        document.body.style.setProperty('background-color', '#faf6f4', 'important');
+        document.body.style.setProperty('color', '#431a00', 'important');
+        document.body.style.setProperty('visibility', 'visible', 'important');
+        document.body.style.setProperty('opacity', '1', 'important');
+        document.body.style.setProperty('color-scheme', 'light', 'important');
+      }
+      
+      // Override any dark mode styles immediately
+      const style = document.createElement('style');
+      style.textContent = `
+        html, body { 
+          background: #faf6f4 !important; 
+          color: #431a00 !important; 
+          color-scheme: light !important;
+        }
+        * { 
+          visibility: visible !important; 
+          opacity: 1 !important; 
+        }
+      `;
+      document.head.appendChild(style);
+      
+      console.log('🚨 InfiniteRuler page - Emergency visibility and light mode script executed');
+    </script>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -236,28 +402,14 @@
         
         <div class="app-hero">
             <div class="app-icon-large">
-                <img src="infiniteruler.png" alt="InfiniteRuler App Icon">
+                <img src="/assets/images/icons/infiniteruler.png" alt="InfiniteRuler App Icon">
             </div>
-            <h1>InfiniteRuler</h1>
-            <p class="subtitle">A straightforward measuring tool for your iPhone</p>
+            <h1>Infinite Ruler</h1>
+            <p class="subtitle">The perfect app for when you've forgotten your tape measurer in the shed</p>
             
-            <div class="app-store-buttons">
-                <a href="#" class="cta-button primary">Download on App Store</a>
-                <a href="privacy-policy.html" class="cta-button secondary">Privacy Policy</a>
-            </div>
         </div>
 
-        <div class="launch-info">
-            <strong>🚀 Launched:</strong> June 6, 2025<br>
-            <strong>📱 Platform:</strong> iPhone (iOS 15.0+)<br>
-            <strong>🛠 Built with:</strong> Swift & SwiftUI
-        </div>
 
-        <div class="app-section">
-            <h2>What InfiniteRuler Does</h2>
-            <p>InfiniteRuler turns your phone's screen into a ruler by converting pixels to real-world measurements. You can measure objects by holding your phone against them, with the ruler starting from 0 at the bottom of the screen.</p>
-            <p>It's not going to replace your tape measure, but it's handy when you need a quick measurement and don't have a ruler nearby.</p>
-        </div>
 
         <div class="feature-grid">
             <div class="feature-card">
@@ -292,12 +444,7 @@
             </div>
         </div>
 
-        <div class="app-section">
-            <h2>How It Works</h2>
-            <h3>Technical Approach</h3>
-            <p>The app uses your device's known pixel density (PPI - pixels per inch) to calculate accurate centimeter measurements. Each iPhone model has a specific screen resolution and physical size, so we can determine how many pixels equal one centimeter on that particular device.</p>
-            
-            <div class="tech-specs">
+        <div class="tech-specs">
                 <h3>Under the Hood</h3>
                 <div class="specs-grid">
                     <div class="spec-item">
@@ -320,47 +467,19 @@
             </div>
         </div>
 
-        <div class="device-support">
-            <h3>📱 Supported Devices</h3>
-            <p>InfiniteRuler supports iPhone 11 and newer models for optimal accuracy:</p>
-            <div class="device-list">
-                <span class="device-chip">iPhone 11</span>
-                <span class="device-chip">iPhone 11 Pro</span>
-                <span class="device-chip">iPhone 11 Pro Max</span>
-                <span class="device-chip">iPhone 12 mini</span>
-                <span class="device-chip">iPhone 12</span>
-                <span class="device-chip">iPhone 12 Pro</span>
-                <span class="device-chip">iPhone 12 Pro Max</span>
-                <span class="device-chip">iPhone 13 mini</span>
-                <span class="device-chip">iPhone 13</span>
-                <span class="device-chip">iPhone 13 Pro</span>
-                <span class="device-chip">iPhone 13 Pro Max</span>
-                <span class="device-chip">iPhone 14</span>
-                <span class="device-chip">iPhone 14 Plus</span>
-                <span class="device-chip">iPhone 14 Pro</span>
-                <span class="device-chip">iPhone 14 Pro Max</span>
-                <span class="device-chip">iPhone 15</span>
-                <span class="device-chip">iPhone 15 Plus</span>
-                <span class="device-chip">iPhone 15 Pro</span>
-                <span class="device-chip">iPhone 15 Pro Max</span>
-            </div>
+
+
+
+
+        <div class="launch-info">
+            <strong>🚀 Launched:</strong> June 9, 2025<br>
+            <strong>📱 Platform:</strong> iPhone (iOS 18.2+)<br>
+            <strong>💾 Size:</strong> 4 MB<br>
+            <strong>🛠 Built with:</strong> Swift & SwiftUI
         </div>
 
-        <div class="app-section">
-            <h2>Key Features</h2>
-            <ul>
-                <li><strong>Precise Measurements:</strong> Centimeter and millimeter accuracy</li>
-                <li><strong>Edge Alignment:</strong> Choose left or right edge starting points</li>
-                <li><strong>Offline Operation:</strong> No internet connection required</li>
-                <li><strong>Accessibility Support:</strong> Works with iOS accessibility features</li>
-                <li><strong>SwiftUI Interface:</strong> Modern, responsive design</li>
-                <li><strong>Infinite Scrolling:</strong> Measure objects longer than your screen</li>
-                <li><strong>Device Optimized:</strong> Calibrated for each iPhone model</li>
-            </ul>
-        </div>
-
-        <div class="app-store-buttons" style="margin-top: 50px;">
-            <a href="#" class="cta-button primary">Download InfiniteRuler</a>
+        <div class="app-store-buttons" style="margin-top: 30px;">
+            <a href="https://apps.apple.com/gb/app/infinite-ruler/id6746876762" class="cta-button primary">Download Infinite Ruler</a>
         </div>
     </div>
 
@@ -376,8 +495,8 @@
                 </div>
                 <div class="footer-section">
                     <h4>Legal</h4>
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
+                    <a href="/legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="/legal/terms.html">Terms of Service</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -386,6 +505,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
 </html> 

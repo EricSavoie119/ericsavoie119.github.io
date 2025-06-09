@@ -4,15 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Terms of Service - Eric Savoie Apps</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Emergency dark mode override */
+        :root {
+          color-scheme: light !important;
+          --text-primary: #431a00 !important;
+          --text-secondary: #66330a !important;
+          --secondary-bg: #faf6f4 !important;
+          --card-bg: #ffffff !important;
+          --card-border: rgba(255, 60, 0, 0.1) !important;
+          --accent-blue: #ff3c00 !important;
+          --border-radius: 1rem !important;
+        }
+        
+        html, body {
+          background: #faf6f4 !important;
+          background-color: #faf6f4 !important;
+          color: #431a00 !important;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          min-height: 100vh !important;
+          width: 100% !important;
+          overflow-x: hidden;
+          visibility: visible !important;
+          opacity: 1 !important;
+          color-scheme: light !important;
+        }
+        
+        *, *::before, *::after {
+          background-color: inherit !important;
+          color: inherit !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          color-scheme: light !important;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+          :root {
+            color-scheme: light !important;
+            --text-primary: #431a00 !important;
+            --text-secondary: #66330a !important;
+            --secondary-bg: #faf6f4 !important;
+          }
+          
+          html, body {
+            background: #faf6f4 !important;
+            background-color: #faf6f4 !important;
+            color: #431a00 !important;
+          }
+        }
+        
         /* Apple Monochrome Terms of Service Styling */
         body {
-            background: linear-gradient(135deg, var(--secondary-bg) 0%, #ffffff 100%);
+            background: linear-gradient(135deg, var(--secondary-bg) 0%, #ffffff 100%) !important;
             min-height: 100vh;
         }
         
@@ -407,6 +462,40 @@
     </style>
 </head>
 <body>
+    <script>
+      // Immediate visibility enforcement and dark mode override
+      document.documentElement.style.setProperty('background', '#faf6f4', 'important');
+      document.documentElement.style.setProperty('background-color', '#faf6f4', 'important');
+      document.documentElement.style.setProperty('color', '#431a00', 'important');
+      document.documentElement.style.setProperty('visibility', 'visible', 'important');
+      document.documentElement.style.setProperty('color-scheme', 'light', 'important');
+      
+      if (document.body) {
+        document.body.style.setProperty('background', '#faf6f4', 'important');
+        document.body.style.setProperty('background-color', '#faf6f4', 'important');
+        document.body.style.setProperty('color', '#431a00', 'important');
+        document.body.style.setProperty('visibility', 'visible', 'important');
+        document.body.style.setProperty('opacity', '1', 'important');
+        document.body.style.setProperty('color-scheme', 'light', 'important');
+      }
+      
+      // Override any dark mode styles immediately
+      const style = document.createElement('style');
+      style.textContent = `
+        html, body { 
+          background: #faf6f4 !important; 
+          color: #431a00 !important; 
+          color-scheme: light !important;
+        }
+        * { 
+          visibility: visible !important; 
+          opacity: 1 !important; 
+        }
+      `;
+      document.head.appendChild(style);
+      
+      console.log('🚨 Terms page - Emergency visibility and light mode script executed');
+    </script>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -648,6 +737,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
 </html> 

@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric Savoie - iOS Developer</title>
-    <!-- <link rel="stylesheet" href="assets/css/main.css"> Temporarily disabled for debugging -->
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Eric Savoie - iOS Developer - Debug Mode</title>
+    <!-- Cache busting timestamp: 1737055000000 -->
+    <!-- ALL EXTERNAL CSS DISABLED FOR DEBUGGING -->
     
-    <!-- Fallback CSS to prevent black screen -->
+    <!-- INLINE CSS ONLY TO PREVENT BLACK SCREEN -->
     <style>
+      :root {
+        color-scheme: light !important;
+      }
+      
       html, body {
+        background: #faf6f4 !important;
         background-color: #faf6f4 !important;
         color: #431a00 !important;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
@@ -17,6 +28,29 @@
         min-height: 100vh !important;
         width: 100% !important;
         overflow-x: hidden;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color-scheme: light !important;
+      }
+      
+      *, *::before, *::after {
+        background-color: inherit !important;
+        color: inherit !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color-scheme: light !important;
+      }
+      
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: light !important;
+        }
+        
+        html, body {
+          background: #faf6f4 !important;
+          background-color: #faf6f4 !important;
+          color: #431a00 !important;
+        }
       }
       
       * {
@@ -102,10 +136,12 @@
       .btn--primary {
         background: #ff3c00;
         color: white;
+        border: 2px solid #ff3c00;
       }
       
       .btn--primary:hover {
         background: #e63600;
+        border-color: #e63600;
         transform: translateY(-2px);
       }
       
@@ -229,16 +265,21 @@
       }
       
       /* Fallback for broken images */
-      .app-icon img[src*="icon.png"]:after {
-        content: "📱";
-        font-size: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
+      .app-icon img {
         background: linear-gradient(135deg, #ff3c00, #ffb8a3);
-        color: white;
+      }
+      
+      .app-icon img:not([src]) {
+        background-image: url('/assets/images/default-app-icon.svg');
+        background-size: cover;
+        background-position: center;
+      }
+      
+      .app-icon img[src=""],
+      .app-icon img[src="#"] {
+        background-image: url('/assets/images/default-app-icon.svg');
+        background-size: cover;
+        background-position: center;
       }
       
       .app-content h3 {
@@ -408,12 +449,13 @@
         }
       }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts temporarily disabled for debugging -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
     
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <!-- PWA Manifest temporarily disabled for debugging -->
+    <!-- <link rel="manifest" href="/manifest.json"> -->
     
     <!-- PWA Theme Colors -->
     <meta name="theme-color" content="#ff3c00">
@@ -422,6 +464,74 @@
     <!-- Service Worker temporarily disabled for debugging -->
   </head>
   <body>
+    <script>
+      // Immediate visibility enforcement and dark mode override
+      document.documentElement.style.setProperty('background', '#faf6f4', 'important');
+      document.documentElement.style.setProperty('background-color', '#faf6f4', 'important');
+      document.documentElement.style.setProperty('color', '#431a00', 'important');
+      document.documentElement.style.setProperty('visibility', 'visible', 'important');
+      document.documentElement.style.setProperty('color-scheme', 'light', 'important');
+      
+      if (document.body) {
+        document.body.style.setProperty('background', '#faf6f4', 'important');
+        document.body.style.setProperty('background-color', '#faf6f4', 'important');
+        document.body.style.setProperty('color', '#431a00', 'important');
+        document.body.style.setProperty('visibility', 'visible', 'important');
+        document.body.style.setProperty('opacity', '1', 'important');
+        document.body.style.setProperty('color-scheme', 'light', 'important');
+      }
+      
+      // Override any dark mode styles immediately
+      const style = document.createElement('style');
+      style.textContent = `
+        html, body { 
+          background: #faf6f4 !important; 
+          color: #431a00 !important; 
+          color-scheme: light !important;
+        }
+        * { 
+          visibility: visible !important; 
+          opacity: 1 !important; 
+        }
+      `;
+      document.head.appendChild(style);
+      
+      console.log('🚨 Emergency visibility and light mode script executed');
+      
+      // Unregister all service workers and clear cache
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+            console.log('🗑️ Unregistered service worker:', registration.scope);
+          }
+        });
+      }
+      
+              // Clear all caches aggressively
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            for (let name of names) {
+              caches.delete(name);
+              console.log('🗑️ Deleted cache:', name);
+            }
+            // Also try to clear specific cache names
+            const commonCacheNames = ['v1', 'assets', 'pages', 'api', 'runtime'];
+            commonCacheNames.forEach(name => {
+              caches.delete(name).then(() => console.log('🗑️ Cleared common cache:', name));
+            });
+          });
+        }
+        
+        // Clear localStorage and sessionStorage
+        try {
+          localStorage.clear();
+          sessionStorage.clear();
+          console.log('🗑️ Cleared local and session storage');
+        } catch(e) {
+          console.log('⚠️ Could not clear storage:', e);
+        }
+    </script>
     <!-- PWA Install Button temporarily removed for debugging -->
     <!-- Navigation -->
     <nav class="navbar" id="main-navbar">
@@ -432,8 +542,7 @@
             <div class="nav-links">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#apps" class="nav-link">Apps</a>
-                <a href="/apps/" class="nav-link">Browse All</a>
-                <a href="/privacy-policy.html" class="nav-link">Privacy</a>
+                <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span class="nav-toggle-line"></span>
@@ -454,14 +563,7 @@
                 Independent developer creating productivity tools and meaningful software experiences. 
                 Building beautiful, intuitive apps that solve real problems.
             </p>
-            <div class="hero-cta" data-animate="slide-up" data-delay="400">
-                <a href="#apps" class="btn btn--primary btn--large" data-track="hero-cta" data-action="view-apps">
-                    View My Apps
-                </a>
-                <a href="/apps/" class="btn btn--secondary btn--large" data-track="hero-cta" data-action="browse-all">
-                    Browse All
-                </a>
-            </div>
+
         </div>
         <div class="hero-visual" data-animate="fade-in" data-delay="600">
             <div class="floating-devices">
@@ -520,8 +622,8 @@
                 </div>
                 <div class="footer-section">
                     <h4>Legal</h4>
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
+                    <a href="/legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="/legal/terms.html">Terms of Service</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -537,16 +639,56 @@
       document.addEventListener('DOMContentLoaded', () => {
         console.log('🚀 Basic site functionality loaded');
         
+        // Force body visibility again and monitor for changes
+        document.body.style.setProperty('background', '#faf6f4', 'important');
+        document.body.style.setProperty('background-color', '#faf6f4', 'important');
+        document.body.style.setProperty('visibility', 'visible', 'important');
+        document.body.style.setProperty('opacity', '1', 'important');
+        document.body.style.setProperty('color-scheme', 'light', 'important');
+        console.log('🔧 Forced body visibility on DOMContentLoaded');
+        
+        // Monitor for disappearing elements
+        const observer = new MutationObserver(() => {
+          document.body.style.setProperty('background', '#faf6f4', 'important');
+          document.body.style.setProperty('visibility', 'visible', 'important');
+          document.body.style.setProperty('opacity', '1', 'important');
+        });
+        observer.observe(document.body, { 
+          attributes: true, 
+          attributeFilter: ['style', 'class'] 
+        });
+        
+        // Also set up an interval to ensure visibility
+        setInterval(() => {
+          document.body.style.setProperty('background', '#faf6f4', 'important');
+          document.body.style.setProperty('visibility', 'visible', 'important');
+          document.body.style.setProperty('opacity', '1', 'important');
+        }, 100);
+        
+        // Add fallback for broken images
+        document.addEventListener('error', function(e) {
+          if (e.target.tagName === 'IMG' && e.target.closest('.app-icon')) {
+            e.target.src = '/assets/images/default-app-icon.svg';
+            console.log('🔄 Using fallback icon for broken image');
+          }
+        }, true);
+        
         // Add some basic app cards for now
         const shippedAppsContainer = document.getElementById('shipped-apps');
         if (shippedAppsContainer) {
           shippedAppsContainer.innerHTML = `
             <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-              <h3 style="color: #431a00; margin-bottom: 1rem;">InfiniteRuler</h3>
-              <p style="color: #66330a; margin-bottom: 1.5rem;">Digital measuring tool that turns your iPhone screen into a precise ruler using pixel density calculations.</p>
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/icons/infiniteruler.png" alt="Infinite Ruler Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Infinite Ruler</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">The perfect measuring companion</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Perfect for when you've forgotten your tape measure and want to know how tall your coffee mug is! Turn your iPhone into an infinite ruler.</p>
               <div style="display: flex; gap: 1rem;">
-                <a href="/apps/infiniteruler/" class="btn btn--primary">Learn More</a>
-                <a href="#" class="btn btn--secondary">App Store</a>
+                <a href="/infiniteruler/" class="btn btn--primary">Learn More</a>
+                <a href="https://apps.apple.com/gb/app/infinite-ruler/id6746876762" class="btn btn--secondary">App Store</a>
               </div>
             </div>
           `;
@@ -556,10 +698,16 @@
         if (upcomingAppsContainer) {
           upcomingAppsContainer.innerHTML = `
             <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-              <h3 style="color: #431a00; margin-bottom: 1rem;">Mental Load</h3>
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/icons/mental-load.svg" alt="Mental Load Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Mental Load</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Fair household task distribution</span>
+                </div>
+              </div>
               <p style="color: #66330a; margin-bottom: 1.5rem;">A thoughtful app to help you track and manage the invisible mental tasks that make daily life possible.</p>
               <div style="display: flex; gap: 1rem;">
-                <a href="/apps/mental-load/" class="btn btn--primary">Coming Soon</a>
+                <a href="/mental-load/" class="btn btn--primary">Coming Soon</a>
               </div>
             </div>
           `;
