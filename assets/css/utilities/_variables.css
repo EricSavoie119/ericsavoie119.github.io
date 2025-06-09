@@ -1,0 +1,257 @@
+/*
+ * Design Tokens & CSS Variables
+ * Comprehensive design system variables for consistent styling
+ */
+
+:root {
+  /* ============================================
+     COLOR SYSTEM
+     ============================================ */
+  
+  /* Primary Blues (Apple-inspired) */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #007aff;  /* Primary */
+  --color-primary-600: #0051d0;
+  --color-primary-700: #0040a0;
+  --color-primary-800: #003370;
+  --color-primary-900: #002650;
+
+  /* Secondary Greens */
+  --color-secondary-50: #f0fdf4;
+  --color-secondary-100: #dcfce7;
+  --color-secondary-200: #bbf7d0;
+  --color-secondary-300: #86efac;
+  --color-secondary-400: #4ade80;
+  --color-secondary-500: #30d158;  /* Secondary */
+  --color-secondary-600: #16a34a;
+  --color-secondary-700: #15803d;
+  --color-secondary-800: #166534;
+  --color-secondary-900: #14532d;
+
+  /* Accent Orange */
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #ffedd5;
+  --color-accent-200: #fed7aa;
+  --color-accent-300: #fdba74;
+  --color-accent-400: #fb923c;
+  --color-accent-500: #ff9500;  /* Accent */
+  --color-accent-600: #ea580c;
+  --color-accent-700: #c2410c;
+  --color-accent-800: #9a3412;
+  --color-accent-900: #7c2d12;
+
+  /* Neutral Palette - Light Mode */
+  --color-background: #f5f5f7;      /* Light gray background */
+  --color-surface: #ffffff;         /* White cards/surfaces */
+  --color-surface-secondary: #f8f9fa;
+  --color-border: #e5e5e7;         /* Light borders */
+  --color-text-primary: #1d1d1f;   /* Dark text */
+  --color-text-secondary: #86868b; /* Gray text */
+  --color-text-tertiary: #c7c7cc;  /* Light gray text */
+
+  /* Dark Mode Support */
+  --color-background-dark: #000000;
+  --color-surface-dark: #1c1c1e;
+  --color-border-dark: #38383a;
+  --color-text-primary-dark: #ffffff;
+  --color-text-secondary-dark: #98989d;
+
+  /* Semantic Color Aliases */
+  --primary: var(--color-primary-500);
+  --secondary: var(--color-secondary-500);
+  --accent: var(--color-accent-500);
+  --background: var(--color-background);
+  --surface: var(--color-surface);
+  --text: var(--color-text-primary);
+  --text-muted: var(--color-text-secondary);
+  --border: var(--color-border);
+
+  /* ============================================
+     TYPOGRAPHY SYSTEM
+     ============================================ */
+  
+  /* Font Families */
+  --font-family-primary: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 
+                         'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-family-mono: 'SF Mono', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+  --font-size-6xl: 3.75rem;    /* 60px */
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.4;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.8;
+
+  /* Typography Aliases */
+  --text-xs: var(--font-size-xs);
+  --text-sm: var(--font-size-sm);
+  --text-base: var(--font-size-base);
+  --text-lg: var(--font-size-lg);
+  --text-xl: var(--font-size-xl);
+
+  /* ============================================
+     SPACING SYSTEM
+     ============================================ */
+  
+  /* Base: 0.25rem (4px) */
+  --space-0: 0;
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+  --space-4: 1rem;       /* 16px */
+  --space-5: 1.25rem;    /* 20px */
+  --space-6: 1.5rem;     /* 24px */
+  --space-8: 2rem;       /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+
+  /* Spacing Aliases */
+  --space-xs: var(--space-2);
+  --space-sm: var(--space-4);
+  --space-md: var(--space-6);
+  --space-lg: var(--space-8);
+  --space-xl: var(--space-12);
+
+  /* ============================================
+     BREAKPOINTS
+     ============================================ */
+  
+  --breakpoint-xs: 320px;   /* Small phones */
+  --breakpoint-sm: 640px;   /* Large phones */
+  --breakpoint-md: 768px;   /* Tablets */
+  --breakpoint-lg: 1024px;  /* Small laptops */
+  --breakpoint-xl: 1280px;  /* Desktop */
+  --breakpoint-2xl: 1536px; /* Large desktop */
+
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  
+  --radius-none: 0;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+
+  /* ============================================
+     ANIMATION & TRANSITIONS
+     ============================================ */
+  
+  /* Easing Functions */
+  --ease-linear: linear;
+  --ease-out: ease-out;
+  --ease-in: ease-in;
+  --ease-in-out: ease-in-out;
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+
+  /* ============================================
+     Z-INDEX SCALE
+     ============================================ */
+  
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-offcanvas: 1050;
+  --z-modal: 1060;
+  --z-popover: 1070;
+  --z-tooltip: 1080;
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+/* Automatic dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-background-dark);
+    --color-surface: var(--color-surface-dark);
+    --color-border: var(--color-border-dark);
+    --color-text-primary: var(--color-text-primary-dark);
+    --color-text-secondary: var(--color-text-secondary-dark);
+    
+    /* Update semantic aliases */
+    --background: var(--color-background-dark);
+    --surface: var(--color-surface-dark);
+    --border: var(--color-border-dark);
+    --text: var(--color-text-primary-dark);
+    --text-muted: var(--color-text-secondary-dark);
+  }
+}
+
+/* Manual dark mode toggle class */
+.dark {
+  --color-background: var(--color-background-dark);
+  --color-surface: var(--color-surface-dark);
+  --color-border: var(--color-border-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-secondary: var(--color-text-secondary-dark);
+  
+  /* Update semantic aliases */
+  --background: var(--color-background-dark);
+  --surface: var(--color-surface-dark);
+  --border: var(--color-border-dark);
+  --text: var(--color-text-primary-dark);
+  --text-muted: var(--color-text-secondary-dark);
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+  }
+} 

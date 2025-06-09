@@ -1,0 +1,230 @@
+/*
+ * Main CSS Entry Point
+ * Imports all CSS modules in the correct order
+ */
+
+/* ============================================
+   UTILITIES (Load First)
+   ============================================ */
+
+/* Design tokens and CSS variables */
+@import './utilities/_variables.css';
+
+/* CSS reset and normalize */
+@import './utilities/_reset.css';
+
+/* Layout utilities (grid, flexbox, spacing) */
+@import './utilities/_layout.css';
+
+/* ============================================
+   COMPONENTS (Load After Utilities)
+   ============================================ */
+
+/* Components will be imported here as we create them */
+@import './components/_buttons.css';
+/* @import './components/_cards.css'; */
+/* @import './components/_navbar.css'; */
+/* @import './components/_hero.css'; */
+/* @import './components/_footer.css'; */
+/* @import './components/_animations.css'; */
+
+/* ============================================
+   PAGES (Load Last)
+   ============================================ */
+
+/* Page-specific styles will be imported here */
+/* @import './pages/_home.css'; */
+/* @import './pages/_app-detail.css'; */
+/* @import './pages/_legal.css'; */
+
+/* ============================================
+   TYPOGRAPHY COMPONENTS
+   ============================================ */
+
+/* Typography scale implementation */
+.heading-1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+
+.heading-2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.heading-3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.heading-4 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  color: var(--text);
+}
+
+/* Body text styles */
+.body-large {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--text);
+}
+
+.body-base {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text);
+}
+
+.body-small {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--text);
+}
+
+/* Caption and helper text */
+.caption {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-tight);
+  color: var(--text-muted);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* ============================================
+   BASIC COMPONENT STYLES
+   ============================================ */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for better accessibility */
+:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-900);
+}
+
+/* Placeholder styles */
+::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 1;
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+
+/* Fade in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-out-cubic);
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--duration-slow) var(--ease-out-cubic);
+}
+
+.scale-in {
+  animation: scaleIn var(--duration-normal) var(--ease-out-cubic);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-out-cubic);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-scale {
+  transition: transform var(--duration-normal) var(--ease-out-cubic);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   TEMPORARY LEGACY SUPPORT
+   ============================================ */
+
+/* 
+ * These styles provide compatibility with existing HTML
+ * They will be removed once we migrate to the new component system
+ */
+
+/* Basic section spacing */
+section {
+  padding: var(--space-16) 0;
+}
+
+/* Basic button reset for existing buttons */
+button {
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Basic link styles */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+
+a:hover {
+  color: var(--color-primary-600);
+} 
