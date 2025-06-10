@@ -94,6 +94,26 @@
         opacity: 0.3;
         z-index: 1;
         transform: translate(-50%, -50%) scale(1.2);
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .lottie-gradient {
+          opacity: 0.2;
+          width: 70%;
+          height: 70%;
+          transform: translate(-50%, -50%) scale(1.0);
+        }
+      }
+      
+      /* Reduce motion for users who prefer it */
+      @media (prefers-reduced-motion: reduce) {
+        .lottie-gradient {
+          display: none;
+        }
       }
       
       .navbar {
@@ -585,9 +605,10 @@
             class="lottie-gradient"
             src="/gradientswell.json" 
             background="transparent" 
-            speed="0.8"
+            speed="0.6"
             loop
             autoplay
+            renderer="svg"
             style="width: 100%; height: 100%;">
         </lottie-player>
         
@@ -666,9 +687,13 @@
     <!-- Module scripts temporarily removed for debugging -->
 
     <script>
-      // Simple JavaScript for basic functionality
+              // Simple JavaScript for basic functionality
       document.addEventListener('DOMContentLoaded', () => {
         console.log('🚀 Basic site functionality loaded');
+        
+        // Mobile detection for performance optimization
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isLowPowerMode = window.navigator && window.navigator.hardwareConcurrency && window.navigator.hardwareConcurrency <= 2;
         
         // Lottie debugging
         const lottiePlayer = document.querySelector('.lottie-gradient');
@@ -699,6 +724,22 @@
             .catch(error => {
               console.error('🚨 Error loading JSON file:', error);
             });
+          
+          // Mobile performance optimizations
+          if (isMobile || isLowPowerMode) {
+            console.log('📱 Mobile device or low power detected - applying optimizations');
+            lottiePlayer.setAttribute('speed', '0.4'); // Slower animation
+            lottiePlayer.style.opacity = '0.15'; // More subtle on mobile
+            
+            // Pause animation when page is not visible (battery saving)
+            document.addEventListener('visibilitychange', () => {
+              if (document.hidden) {
+                lottiePlayer.pause();
+              } else {
+                lottiePlayer.play();
+              }
+            });
+          }
           
           // Simple setup - just ensure the animation plays
           lottiePlayer.addEventListener('ready', () => {
