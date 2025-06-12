@@ -459,6 +459,68 @@
                 transform: translateY(0);
             }
         }
+        
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 60, 0, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #431a00;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: #431a00;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: #ff3c00;
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -497,15 +559,23 @@
       console.log('🚨 Terms page - Emergency visibility and light mode script executed');
     </script>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="main-navbar">
         <div class="nav-container">
-            <div class="nav-logo">Eric Savoie</div>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/#apps">Apps</a>
-                <a href="/#upcoming">Coming Soon</a>
-                <a href="/#about">About</a>
+            <div class="nav-logo">
+                <a href="/" class="nav-logo-link">
+                    <img src="/assets/images/Eric.png" alt="ERIC" style="width: 32px; height: 32px;">
+                </a>
             </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#apps" class="nav-link">Apps</a>
+                <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+            </button>
         </div>
     </nav>
 

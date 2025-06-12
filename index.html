@@ -10,8 +10,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Eric Savoie - iOS Developer - Debug Mode</title>
     <!-- Cache busting timestamp: 1737055000000 -->
-    <!-- Lottie Player for animations -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/lottie-player.js"></script>
+    <!-- Lottie Player removed for better performance -->
     <!-- ALL EXTERNAL CSS DISABLED FOR DEBUGGING -->
     
     <!-- INLINE CSS ONLY TO PREVENT BLACK SCREEN -->
@@ -84,35 +83,51 @@
         padding: 2rem;
       }
       
-      .lottie-gradient {
+      /* Enhanced Gradient Breathing Effect - More Visible */
+      .hero::before {
+        content: '';
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 80%;
-        height: 80%;
-        pointer-events: none;
-        opacity: 0.3;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, 
+          rgba(255, 60, 0, 0.08) 0%, 
+          rgba(255, 184, 163, 0.12) 25%, 
+          rgba(67, 26, 0, 0.06) 50%, 
+          rgba(255, 120, 80, 0.10) 75%, 
+          rgba(255, 60, 0, 0.08) 100%);
+        background-size: 400% 400%;
+        animation: gradient-breathe 10s ease-in-out infinite;
         z-index: 1;
-        transform: translate(-50%, -50%) scale(1.2);
-        will-change: transform;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
+        opacity: 1;
       }
+      
+      @keyframes gradient-breathe {
+        0%, 100% { 
+          background-position: 0% 50%;
+          opacity: 0.7;
+        }
+        50% { 
+          background-position: 100% 50%;
+          opacity: 1;
+        }
+      }
+      
       
       /* Mobile optimizations */
       @media (max-width: 768px) {
-        .lottie-gradient {
-          opacity: 0.2;
-          width: 70%;
-          height: 70%;
-          transform: translate(-50%, -50%) scale(1.0);
+        .hero::before {
+          opacity: 0.5;
+          animation-duration: 16s;
         }
       }
       
       /* Reduce motion for users who prefer it */
       @media (prefers-reduced-motion: reduce) {
-        .lottie-gradient {
-          display: none;
+        .hero::before {
+          animation: none;
+          opacity: 0.4;
         }
       }
       
@@ -583,7 +598,9 @@
     <nav class="navbar" id="main-navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="/" class="nav-logo-link">Eric Savoie</a>
+                <a href="/" class="nav-logo-link">
+                    <img src="/assets/images/Eric.png" alt="ERIC" style="width: 32px; height: 32px;">
+                </a>
             </div>
             <div class="nav-links">
                 <a href="#home" class="nav-link">Home</a>
@@ -600,17 +617,7 @@
 
         <!-- Hero Section -->
     <section id="home" class="hero" data-scroll-animate>
-        <!-- Lottie Gradient Behind Text -->
-        <lottie-player 
-            class="lottie-gradient"
-            src="/gradientswell.json" 
-            background="transparent" 
-            speed="0.6"
-            loop
-            autoplay
-            renderer="svg"
-            style="width: 100%; height: 100%;">
-        </lottie-player>
+        <!-- Subtle Gradient Breathing Effect -->
         
         <div class="hero-content">
             <h1 class="hero-title" data-animate="slide-up">
@@ -651,13 +658,11 @@
         </div>
     </section>
 
-    <!-- About Teaser -->
-    <section class="section about-teaser">
+    <!-- ERIC Logo Section -->
+    <section class="section eric-logo-section">
         <div class="container">
-            <div class="about-content text-center">
-                <h2 class="section-title">About Eric</h2>
-                <p class="section-subtitle">Independent app developer passionate about creating beautiful, functional apps that solve real problems and make people's lives better.</p>
-                <a href="/about/" class="btn btn--primary btn--large">Learn More About Me</a>
+            <div class="eric-logo-content text-center">
+                <img src="/assets/images/Eric.png" alt="ERIC" style="width: 200px; height: 200px; margin: 2rem auto; display: block;">
             </div>
         </div>
     </section>
@@ -691,109 +696,8 @@
       document.addEventListener('DOMContentLoaded', () => {
         console.log('🚀 Basic site functionality loaded');
         
-        // Mobile detection for performance optimization
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        const isLowPowerMode = window.navigator && window.navigator.hardwareConcurrency && window.navigator.hardwareConcurrency <= 2;
-        
-        // Lottie debugging
-        const lottiePlayer = document.querySelector('.lottie-gradient');
-        console.log('🎬 Lottie player element:', lottiePlayer);
-        
-        if (lottiePlayer) {
-          console.log('🎬 Lottie player found, src:', lottiePlayer.src);
-          console.log('🎬 Lottie player attributes:', {
-            src: lottiePlayer.getAttribute('src'),
-            background: lottiePlayer.getAttribute('background'),
-            speed: lottiePlayer.getAttribute('speed'),
-            loop: lottiePlayer.getAttribute('loop'),
-            autoplay: lottiePlayer.getAttribute('autoplay')
-          });
-          
-          // Test if we can fetch the JSON file
-          fetch('/gradientswell.json')
-            .then(response => {
-              console.log('🎬 JSON file response status:', response.status);
-              console.log('🎬 JSON file response headers:', response.headers);
-              return response.json();
-            })
-            .then(data => {
-              console.log('🎬 JSON file loaded successfully:', data);
-              console.log('🎬 Animation dimensions:', data.w, 'x', data.h);
-              console.log('🎬 Animation duration:', data.op, 'frames');
-            })
-            .catch(error => {
-              console.error('🚨 Error loading JSON file:', error);
-            });
-          
-          // Mobile performance optimizations
-          if (isMobile || isLowPowerMode) {
-            console.log('📱 Mobile device or low power detected - applying optimizations');
-            lottiePlayer.setAttribute('speed', '0.4'); // Slower animation
-            lottiePlayer.style.opacity = '0.15'; // More subtle on mobile
-            
-            // Pause animation when page is not visible (battery saving)
-            document.addEventListener('visibilitychange', () => {
-              if (document.hidden) {
-                lottiePlayer.pause();
-              } else {
-                lottiePlayer.play();
-              }
-            });
-          }
-          
-          // Simple setup - just ensure the animation plays
-          lottiePlayer.addEventListener('ready', () => {
-            console.log('🎬 Lottie animation ready and playing');
-          });
-          
-          lottiePlayer.addEventListener('load', () => {
-            console.log('🎬 Lottie animation loaded');
-          });
-          
-          lottiePlayer.addEventListener('error', (e) => {
-            console.error('🚨 Lottie animation error:', e);
-          });
-        } else {
-          console.error('🚨 Lottie player element not found');
-        }
-        
-        // Debug Lottie Player
-        setTimeout(() => {
-          const lottiePlayer = document.querySelector('lottie-player');
-          console.log('🎭 Lottie player element:', lottiePlayer);
-          
-          if (lottiePlayer) {
-            console.log('🎭 Lottie player src:', lottiePlayer.src);
-            console.log('🎭 Lottie player loaded:', lottiePlayer.loaded);
-            
-            lottiePlayer.addEventListener('ready', () => {
-              console.log('✅ Lottie animation ready!');
-            });
-            
-            lottiePlayer.addEventListener('error', (e) => {
-              console.error('❌ Lottie animation error:', e);
-            });
-            
-            // Test if the JSON file exists
-            fetch('/gradientswell.json')
-              .then(response => {
-                console.log('📄 Lottie JSON response:', response.status);
-                if (response.ok) {
-                  return response.json();
-                } else {
-                  throw new Error('JSON file not found');
-                }
-              })
-              .then(data => {
-                console.log('✅ Lottie JSON loaded successfully, first few keys:', Object.keys(data).slice(0, 5));
-              })
-              .catch(error => {
-                console.error('❌ Failed to load Lottie JSON:', error);
-              });
-          } else {
-            console.error('❌ Lottie player element not found');
-          }
-        }, 1000);
+        // Beautiful CSS gradient background is now active - no complex animations needed!
+        console.log('🎨 Using beautiful CSS gradient background for optimal performance');
         
         // Force body visibility again and monitor for changes
         document.body.style.setProperty('background', '#faf6f4', 'important');
