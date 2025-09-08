@@ -733,11 +733,25 @@
           }
         }, true);
         
-        // Add some basic app cards for now
+        // Shipped apps: Swap order - Bread first, then Infinite
         const shippedAppsContainer = document.getElementById('shipped-apps');
         if (shippedAppsContainer) {
           shippedAppsContainer.innerHTML = `
             <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/icons/BreadEngineer.png" alt="Bread Engineer Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Bread Engineer</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">ML‑driven fermentation timer for perfect loaves</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">On‑device machine learning predicts peak fermentation for your dough—no more guesswork. Generous two‑month trial included.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/bread-engineer/id6738381066" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 2rem;">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/icons/infiniteruler.png" alt="Infinite Ruler Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
@@ -754,27 +768,21 @@
           `;
         }
         
+        // Upcoming: Add GridMetrics
         const upcomingAppsContainer = document.getElementById('upcoming-apps');
         if (upcomingAppsContainer) {
           upcomingAppsContainer.innerHTML = `
             <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                <img src="/assets/images/icons/BreadEngineer.png" alt="Bread Engineer Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <img src="/assets/images/icons/GridMetrics.png" alt="GridMetrics Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Bread Engineer</h3>
-                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Machine Learning Bread App for Perfect Loaves</span>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">GridMetrics</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Real-time electricity grid insights</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">Advanced bread-making companion powered by machine learning to help you create perfect loaves every time. Built with SwiftUI, Firebase, and intelligent recipe guidance.</p>
-              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
-                <span style="background: #fef2f2; color: #431a00; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 500; border: 1px solid #ff3c00;">CoreML</span>
-                <span style="background: #fef2f2; color: #431a00; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 500; border: 1px solid #ff3c00;">SwiftUI</span>
-                <span style="background: #fef2f2; color: #431a00; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 500; border: 1px solid #ff3c00;">Firebase</span>
-                <span style="background: #fef2f2; color: #431a00; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 500; border: 1px solid #ff3c00;">SwiftData</span>
-                <span style="background: #fef2f2; color: #431a00; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 500; border: 1px solid #ff3c00;">RevenueCat</span>
-              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Monitor electricity fuel mix and pricing in real-time across multiple regions with this powerful iOS app. Backend powered by AWS for reliable data processing.</p>
               <div style="display: flex; gap: 1rem;">
-                <a href="#" class="btn btn--primary">Coming Soon</a>
+                <a href="#" class="btn btn--secondary">Coming Soon</a>
               </div>
             </div>
           `;
