@@ -301,6 +301,8 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        min-height: 280px;
+        height: 100%;
       }
       
       .app-card:hover,
@@ -621,10 +623,10 @@
         
         <div class="hero-content">
             <h1 class="hero-title" data-animate="slide-up">
-                <span class="hero-line">Designed for Life</span>
+                <span class="hero-line">Eric Savoie</span>
             </h1>
             <p class="hero-subtitle" data-animate="slide-up" data-delay="200">
-                Software that solves real problems.
+                Building iOS apps one experiment at a time.
             </p>
             
         </div>
@@ -733,7 +735,7 @@
           }
         }, true);
         
-        // Shipped apps: Swap order - Bread first, then Infinite
+        // Shipped apps: cards styled like Bread Engineer, App Store links only
         const shippedAppsContainer = document.getElementById('shipped-apps');
         if (shippedAppsContainer) {
           shippedAppsContainer.innerHTML = `
@@ -750,39 +752,136 @@
                 <a href="https://apps.apple.com/gb/app/bread-engineer/id6738381066" class="btn btn--secondary">App Store</a>
               </div>
             </div>
+            
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/apps/BeLoved/appstore.png" alt="BeLoved Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">BeLoved</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Beautiful relationship tracker</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for BeLoved. We'll add custom copy here soon.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/beloved/id6752829410" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 2rem;">
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/apps/SuperGoodBudget/appstore.png" alt="SuperGoodBudget Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">SuperGoodBudget</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Budget smarter, spend better</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for SuperGoodBudget. We'll add custom copy here soon.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/supergoodbudget/id6752673311" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png" alt="Fast Simple Invoice Maker Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Fast Simple Invoice Maker</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Create professional invoices fast</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for Fast Simple Invoice Maker. We'll add custom copy here soon.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/apps/Flip%20Clock%20Flow/appstore.png" alt="Flip Clock Flow Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Flip Clock Flow</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Elegant flip clock + focus timer</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for Flip Clock Flow. We'll add custom copy here soon.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/flip-clock-flow/id6752408901" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/apps/GridMetrics/1024.png" alt="GridMetrics Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">GridMetrics</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Real‑time electricity grid insights</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for GridMetrics. We'll add custom copy here soon.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/gridmetrics/id6752292390" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/icons/infiniteruler.png" alt="Infinite Ruler Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
                   <h3 style="color: #431a00; margin-bottom: 0.5rem;">Infinite Ruler</h3>
-                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">The perfect measuring companion</span>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Measure anything with your phone</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1.5rem;">Perfect for when you've forgotten your tape measure and want to know how tall your coffee mug is! Turn your iPhone into an infinite ruler.</p>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for Infinite Ruler. We'll add custom copy here soon.</p>
               <div style="display: flex; gap: 1rem;">
-                <a href="/infiniteruler/" class="btn btn--primary">Learn More</a>
                 <a href="https://apps.apple.com/gb/app/infinite-ruler/id6746876762" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/apps/Water%3F/appstore.png" alt="Water? Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Water?</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Elegant hydration tracker</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for Water?. We'll add custom copy here soon.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/water/id6752577649" class="btn btn--secondary">App Store</a>
+              </div>
+            </div>
+
+            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <img src="/assets/images/apps/Tip%20Calculator%20Fast/appstore.png" alt="Tip Calculator Fast Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Tip Calculator Fast</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Split bills in seconds</span>
+                </div>
+              </div>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Placeholder description for Tip Calculator Fast. We'll add custom copy here soon.</p>
+              <div style="display: flex; gap: 1rem;">
+                <a href="https://apps.apple.com/gb/app/tip-calculator-fast/id6752381498" class="btn btn--secondary">App Store</a>
               </div>
             </div>
           `;
         }
         
-        // Upcoming: Add GridMetrics
+        // Upcoming: CuriosityAI (in TestFlight beta)
         const upcomingAppsContainer = document.getElementById('upcoming-apps');
         if (upcomingAppsContainer) {
           upcomingAppsContainer.innerHTML = `
             <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                <img src="/assets/images/icons/GridMetrics.png" alt="GridMetrics Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <img src="/assets/images/apps/CuriosityAI/appstore.png" alt="CuriosityAI Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">GridMetrics</h3>
-                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Real-time electricity grid insights</span>
+                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">CuriosityAI</h3>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Upcoming</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1.5rem;">Monitor electricity fuel mix and pricing in real-time across multiple regions with this powerful iOS app. Backend powered by AWS for reliable data processing.</p>
+              <p style="color: #66330a; margin-bottom: 1.5rem;">Currently in TestFlight beta. Sign-ups limited; public launch coming soon.</p>
               <div style="display: flex; gap: 1rem;">
-                <a href="#" class="btn btn--secondary">Coming Soon</a>
+                <a href="#" class="btn btn--secondary" aria-disabled="true">Coming Soon</a>
               </div>
             </div>
           `;
