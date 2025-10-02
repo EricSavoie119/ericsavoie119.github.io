@@ -20,9 +20,9 @@
       }
       
       html, body {
-        background: #faf6f4 !important;
-        background-color: #faf6f4 !important;
-        color: #431a00 !important;
+        background: #487eb0 !important; /* Overscroll/page background */
+        background-color: #487eb0 !important;
+        color: #f5f6fa !important;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -35,7 +35,7 @@
       }
       
       *, *::before, *::after {
-        background-color: inherit !important;
+        /* Don't override backgrounds globally or cards cannot change color */
         color: inherit !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -48,9 +48,9 @@
         }
         
         html, body {
-          background: #faf6f4 !important;
-          background-color: #faf6f4 !important;
-          color: #431a00 !important;
+          background: #487eb0 !important;
+          background-color: #487eb0 !important;
+          color: #f5f6fa !important;
         }
       }
       
@@ -70,10 +70,11 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 2rem 0 0 0;
-        margin-top: 80px; /* Account for fixed navbar */
+        padding: 5rem 0 0 0; /* create space for fixed navbar */
+        margin-top: 0; /* flush with top */
         position: relative;
         overflow: hidden;
+        background-color: #192a56 !important; /* Hero background */
       }
       
       .hero-content {
@@ -83,56 +84,15 @@
         padding: 2rem;
       }
       
-      /* Enhanced Gradient Breathing Effect - More Visible */
+      /* Enhanced Gradient Breathing Effect - Removed */
       .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, 
-          rgba(255, 60, 0, 0.08) 0%, 
-          rgba(255, 184, 163, 0.12) 25%, 
-          rgba(67, 26, 0, 0.06) 50%, 
-          rgba(255, 120, 80, 0.10) 75%, 
-          rgba(255, 60, 0, 0.08) 100%);
-        background-size: 400% 400%;
-        animation: gradient-breathe 10s ease-in-out infinite;
-        z-index: 1;
-        opacity: 1;
-      }
-      
-      @keyframes gradient-breathe {
-        0%, 100% { 
-          background-position: 0% 50%;
-          opacity: 0.7;
-        }
-        50% { 
-          background-position: 100% 50%;
-          opacity: 1;
-        }
+        display: none;
       }
       
       
-      /* Mobile optimizations */
-      @media (max-width: 768px) {
-        .hero::before {
-          opacity: 0.5;
-          animation-duration: 16s;
-        }
-      }
-      
-      /* Reduce motion for users who prefer it */
-      @media (prefers-reduced-motion: reduce) {
-        .hero::before {
-          animation: none;
-          opacity: 0.4;
-        }
-      }
       
       .navbar {
-        background: rgba(255, 255, 255, 0.95);
+        background: #7f8fa6 !important;
         backdrop-filter: blur(10px);
         position: fixed;
         top: 0;
@@ -140,7 +100,7 @@
         right: 0;
         z-index: 1000;
         padding: 1rem 0;
-        border-bottom: 1px solid rgba(255, 60, 0, 0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
       
       .nav-container {
@@ -155,7 +115,7 @@
       .nav-logo a {
         font-size: 1.5rem;
         font-weight: 700;
-        color: #431a00;
+        color: #f5f6fa !important;
         text-decoration: none;
       }
       
@@ -165,14 +125,14 @@
       }
       
       .nav-link {
-        color: #431a00;
+        color: #f5f6fa !important;
         text-decoration: none;
         font-weight: 500;
         transition: color 0.2s;
       }
       
       .nav-link:hover {
-        color: #ff3c00;
+        color: #ffffff;
       }
       
       .nav-toggle {
@@ -192,9 +152,9 @@
       }
       
       .btn--primary {
-        background: #ff3c00;
+        background: #00a8ff;
         color: white;
-        border: 2px solid #ff3c00;
+        border: 2px solid #00a8ff;
       }
       
       .btn--primary:hover {
@@ -205,13 +165,14 @@
       
       .btn--secondary {
         background: transparent;
-        color: #ff3c00;
-        border: 2px solid #ff3c00;
+        color: #f5f6fa;
+        border: 2px solid #00a8ff; /* outline */
       }
       
       .btn--secondary:hover {
-        background: #ff3c00;
-        color: white;
+        background: #00a8ff; /* highlight */
+        color: #ffffff;
+        border-color: #00a8ff;
       }
       
       .btn--large {
@@ -221,17 +182,17 @@
       
       .section {
         padding: 4rem 0;
-        background-color: #faf6f4 !important;
+        background-color: #273c75 !important;
         width: 100%;
         position: relative;
       }
       
       .apps-section {
-        background-color: #ffffff !important;
+        background-color: #273c75 !important;
       }
       
       .upcoming-section {
-        background-color: #fef7f3 !important;
+        background-color: #273c75 !important;
       }
       
       .text-center {
@@ -241,20 +202,20 @@
       .section-title {
         font-size: 2.5rem;
         margin-bottom: 1rem;
-        color: #431a00;
+        color: #f5f6fa;
         font-weight: 700;
       }
       
       .section-subtitle {
         font-size: 1.2rem;
-        color: #66330a;
+        color: #f5f6fa;
         margin-bottom: 2rem;
       }
       
       .hero-title {
         font-size: 3.5rem;
         margin-bottom: 1rem;
-        color: #431a00;
+        color: #f5f6fa;
         font-weight: 700;
         line-height: 1.1;
         opacity: 0.9;
@@ -262,7 +223,7 @@
       
       .hero-subtitle {
         font-size: 1.3rem;
-        color: #66330a;
+        color: #f5f6fa;
         margin-bottom: 2rem;
         max-width: 600px;
         margin-left: auto;
@@ -293,16 +254,39 @@
       }
       
       .app-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        background: #487eb0 !important;              /* Card background (lighter than page bg) */
+        color: #f5f6fa !important;                   /* Default foreground color inside cards */
+        padding: 2rem !important;
+        border-radius: 1rem !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25) !important;
         transition: transform 0.3s, box-shadow 0.3s;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
         min-height: 280px;
         height: 100%;
+      }
+      
+      .tech-panel {
+        background: rgba(255,255,255,0.08) !important;
+        border: 1px solid rgba(255,255,255,0.18) !important;
+        padding: 0.75rem !important;
+        border-radius: 0.5rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      .tech-panel p {
+        color: #f5f6fa !important;
+        font-size: 0.85rem !important;
+        margin: 0 0 0.5rem 0 !important;
+        font-weight: 600 !important;
+      }
+      
+      .tech-panel ul {
+        color: #ffffff !important;
+        font-size: 0.85rem !important;
+        margin: 0 !important;
+        padding-left: 1.25rem !important;
       }
       
       .app-card:hover,
@@ -324,7 +308,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        background: linear-gradient(135deg, #ff3c00, #ffb8a3);
+        background: linear-gradient(135deg, #00a8ff, #5abaff);
       }
       
       /* Fallback for broken images */
@@ -346,21 +330,21 @@
       }
       
       .app-content h3 {
-        color: #431a00;
+        color: #f5f6fa;
         margin-bottom: 0.5rem;
         font-size: 1.5rem;
         font-weight: 700;
       }
       
       .app-tagline {
-        color: #ff3c00 !important;
+        color: #00a8ff !important;
         font-weight: 600 !important;
         font-size: 0.9rem !important;
         margin-bottom: 0.5rem !important;
       }
       
       .app-description {
-        color: #66330a !important;
+        color: #f5f6fa !important;
         margin-bottom: 1rem !important;
         line-height: 1.6 !important;
       }
@@ -373,13 +357,13 @@
       }
       
       .feature-tag {
-        background: #fef2f2;
-        color: #431a00;
+        background: rgba(255,255,255,0.08);
+        color: #f5f6fa;
         padding: 0.25rem 0.75rem;
         border-radius: 1rem;
         font-size: 0.8rem;
         font-weight: 500;
-        border: 1px solid #ff3c00;
+        border: 1px solid #00a8ff;
       }
       
       .app-meta {
@@ -408,7 +392,7 @@
       }
       
       .app-pricing {
-        color: #ff3c00;
+        color: #00a8ff;
         font-weight: 600;
       }
       
@@ -455,8 +439,8 @@
       }
       
       .footer {
-        background: #431a00;
-        color: white;
+        background: #7f8fa6 !important;
+        color: #f5f6fa !important;
         padding: 3rem 0 1rem;
       }
       
@@ -473,7 +457,7 @@
       }
       
       .footer-section a {
-        color: white;
+        color: #f5f6fa !important;
         text-decoration: none;
         display: block;
         margin-bottom: 0.5rem;
@@ -529,16 +513,16 @@
   <body>
     <script>
       // Immediate visibility enforcement and dark mode override
-      document.documentElement.style.setProperty('background', '#faf6f4', 'important');
-      document.documentElement.style.setProperty('background-color', '#faf6f4', 'important');
-      document.documentElement.style.setProperty('color', '#431a00', 'important');
+      document.documentElement.style.setProperty('background', '#273c75', 'important');
+      document.documentElement.style.setProperty('background-color', '#273c75', 'important');
+      document.documentElement.style.setProperty('color', '#ffffff', 'important');
       document.documentElement.style.setProperty('visibility', 'visible', 'important');
       document.documentElement.style.setProperty('color-scheme', 'light', 'important');
       
       if (document.body) {
-        document.body.style.setProperty('background', '#faf6f4', 'important');
-        document.body.style.setProperty('background-color', '#faf6f4', 'important');
-        document.body.style.setProperty('color', '#431a00', 'important');
+        document.body.style.setProperty('background', '#273c75', 'important');
+        document.body.style.setProperty('background-color', '#273c75', 'important');
+        document.body.style.setProperty('color', '#ffffff', 'important');
         document.body.style.setProperty('visibility', 'visible', 'important');
         document.body.style.setProperty('opacity', '1', 'important');
         document.body.style.setProperty('color-scheme', 'light', 'important');
@@ -548,8 +532,8 @@
       const style = document.createElement('style');
       style.textContent = `
         html, body { 
-          background: #faf6f4 !important; 
-          color: #431a00 !important; 
+          background: #273c75 !important; 
+          color: #ffffff !important; 
           color-scheme: light !important;
         }
         * { 
@@ -708,8 +692,8 @@
         console.log('🎨 Using beautiful CSS gradient background for optimal performance');
         
         // Force body visibility again and monitor for changes
-        document.body.style.setProperty('background', '#faf6f4', 'important');
-        document.body.style.setProperty('background-color', '#faf6f4', 'important');
+        document.body.style.setProperty('background', '#273c75', 'important');
+        document.body.style.setProperty('background-color', '#273c75', 'important');
         document.body.style.setProperty('visibility', 'visible', 'important');
         document.body.style.setProperty('opacity', '1', 'important');
         document.body.style.setProperty('color-scheme', 'light', 'important');
@@ -717,7 +701,7 @@
         
         // Monitor for disappearing elements
         const observer = new MutationObserver(() => {
-          document.body.style.setProperty('background', '#faf6f4', 'important');
+          document.body.style.setProperty('background', '#273c75', 'important');
           document.body.style.setProperty('visibility', 'visible', 'important');
           document.body.style.setProperty('opacity', '1', 'important');
         });
@@ -728,7 +712,7 @@
         
         // Also set up an interval to ensure visibility
         setInterval(() => {
-          document.body.style.setProperty('background', '#faf6f4', 'important');
+          document.body.style.setProperty('background', '#273c75', 'important');
           document.body.style.setProperty('visibility', 'visible', 'important');
           document.body.style.setProperty('opacity', '1', 'important');
         }, 100);
@@ -745,19 +729,19 @@
         const shippedAppsContainer = document.getElementById('shipped-apps');
         if (shippedAppsContainer) {
           shippedAppsContainer.innerHTML = `
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/icons/BreadEngineer.png" alt="Bread Engineer Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Bread Engineer</h3>
+                  <h3>Bread Engineer</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">ML‑driven fermentation timer for perfect loaves</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">On‑device machine learning predicts peak fermentation for your dough—no more guesswork. Generous two‑month trial included.</p>
+              <p style="margin-bottom: 1rem;">On‑device machine learning predicts peak fermentation for your dough—no more guesswork. Generous two‑month trial included.</p>
               <div style="margin-top: auto;">
-                <div style="background: #fef7f3; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                  <p style="color: #ff3c00; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">New tech learned:</p>
-                  <ul style="color: #66330a; font-size: 0.85rem; margin: 0; padding-left: 1.25rem;">
+                <div class="tech-panel">
+                  <p>New tech learned:</p>
+                  <ul>
                     <li>CoreML</li>
                     <li>CloudKit</li>
                     <li>SwiftData</li>
@@ -775,19 +759,19 @@
               </div>
             </div>
             
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/GridMetrics/1024.png" alt="GridMetrics Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">GridMetrics</h3>
+                  <h3>GridMetrics</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Real‑time electricity grid insights</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">See the real time distribution of the UK grid generation mix.</p>
+              <p style="margin-bottom: 1rem;">See the real time distribution of the UK grid generation mix.</p>
               <div style="margin-top: auto;">
-                <div style="background: #fef7f3; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                  <p style="color: #ff3c00; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">New tech learned:</p>
-                  <ul style="color: #66330a; font-size: 0.85rem; margin: 0; padding-left: 1.25rem;">
+                <div class="tech-panel">
+                  <p>New tech learned:</p>
+                  <ul>
                     <li>AWS APIGateway</li>
                     <li>AWS Lambda</li>
                     <li>AWS S3</li>
@@ -801,19 +785,19 @@
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/BeLoved/appstore.png" alt="BeLoved Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">BeLoved</h3>
+                  <h3>BeLoved</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Beautiful relationship tracker</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">Track anniversaries, milestones, and special dates with notifications to never miss a moment.</p>
+              <p style="margin-bottom: 1rem;">Track anniversaries, milestones, and special dates with notifications to never miss a moment.</p>
               <div style="margin-top: auto;">
-                <div style="background: #fef7f3; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                  <p style="color: #ff3c00; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">New tech learned:</p>
-                  <ul style="color: #66330a; font-size: 0.85rem; margin: 0; padding-left: 1.25rem;">
+                <div class="tech-panel">
+                  <p>New tech learned:</p>
+                  <ul>
                     <li>WidgetKit</li>
                     <li>StoreKit Configuration files</li>
                   </ul>
@@ -824,19 +808,19 @@
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png" alt="Fast Simple Invoice Maker Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Fast Simple Invoice Maker</h3>
+                  <h3>Fast Simple Invoice Maker</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Create professional invoices fast</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">Invoice apps that create PDFs had log ins and lots of friction when creating PDFs is quite simple so I made a Fast Simple version.</p>
+              <p style="margin-bottom: 1rem;">Invoice apps that create PDFs had log ins and lots of friction when creating PDFs is quite simple so I made a Fast Simple version.</p>
               <div style="margin-top: auto;">
-                <div style="background: #fef7f3; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                  <p style="color: #ff3c00; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">New tech learned:</p>
-                  <ul style="color: #66330a; font-size: 0.85rem; margin: 0; padding-left: 1.25rem;">
+                <div class="tech-panel">
+                  <p>New tech learned:</p>
+                  <ul>
                     <li>PDFKit</li>
                   </ul>
                 </div>
@@ -846,19 +830,19 @@
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/icons/infiniteruler.png" alt="Infinite Ruler Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Infinite Ruler</h3>
+                  <h3>Infinite Ruler</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Measure anything with your phone</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">An app that uses known DPI values to turn your phone into an old school ruler. Limited use but kind of fun.</p>
+              <p style="margin-bottom: 1rem;">An app that uses known DPI values to turn your phone into an old school ruler. Limited use but kind of fun.</p>
               <div style="margin-top: auto;">
-                <div style="background: #fef7f3; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                  <p style="color: #ff3c00; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">New tech learned:</p>
-                  <ul style="color: #66330a; font-size: 0.85rem; margin: 0; padding-left: 1.25rem;">
+                <div class="tech-panel">
+                  <p>New tech learned:</p>
+                  <ul>
                     <li>Measurement framework</li>
                   </ul>
                 </div>
@@ -868,19 +852,19 @@
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/LoanCalculatorSmart/appstore.png" alt="Loan Calculator Smart Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Loan Calculator Smart</h3>
+                  <h3>Loan Calculator Smart</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Compare loans with interactive charts</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">A comprehensive loan comparison tool for iOS featuring multi-scenario analysis, interactive charts, breakeven calculations, and PDF report generation. Built with SwiftUI and modern iOS frameworks.</p>
+              <p style="margin-bottom: 1rem;">A comprehensive loan comparison tool for iOS featuring multi-scenario analysis, interactive charts, breakeven calculations, and PDF report generation. Built with SwiftUI and modern iOS frameworks.</p>
               <div style="margin-top: auto;">
-                <div style="background: #fef7f3; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                  <p style="color: #ff3c00; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">New tech learned:</p>
-                  <ul style="color: #66330a; font-size: 0.85rem; margin: 0; padding-left: 1.25rem;">
+                <div class="tech-panel">
+                  <p>New tech learned:</p>
+                  <ul>
                     <li>Swift Charts</li>
                   </ul>
                 </div>
@@ -890,57 +874,57 @@
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/SuperGoodBudget/appstore.png" alt="SuperGoodBudget Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">SuperGoodBudget</h3>
+                  <h3>SuperGoodBudget</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Budget smarter, spend better</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">Inspired by YNAB budgeting and tracking every dollar you spend helps to keep you on top of your finances.</p>
+              <p style="margin-bottom: 1rem;">Inspired by YNAB budgeting and tracking every dollar you spend helps to keep you on top of your finances.</p>
               <div style="display: flex; gap: 1rem; margin-top: auto;">
                 <a href="https://apps.apple.com/gb/app/supergoodbudget/id6752673311" class="btn btn--secondary">App Store</a>
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/Flip%20Clock%20Flow/appstore.png" alt="Flip Clock Flow Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Flip Clock Flow</h3>
+                  <h3>Flip Clock Flow</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Elegant flip clock + focus timer</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">A cool nostalgic clock built by referencing open source code.</p>
+              <p style="margin-bottom: 1rem;">A cool nostalgic clock built by referencing open source code.</p>
               <div style="display: flex; gap: 1rem; margin-top: auto;">
                 <a href="https://apps.apple.com/gb/app/flip-clock-flow/id6752408901" class="btn btn--secondary">App Store</a>
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/Water%3F/appstore.png" alt="Water? Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Water?</h3>
+                  <h3>Water?</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Elegant hydration tracker</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">Track the amount of water you're drinking during the day - interesting to see if you hit the water requirements every day.</p>
+              <p style="margin-bottom: 1rem;">Track the amount of water you're drinking during the day - interesting to see if you hit the water requirements every day.</p>
               <div style="display: flex; gap: 1rem; margin-top: auto;">
                 <a href="https://apps.apple.com/gb/app/water/id6752577649" class="btn btn--secondary">App Store</a>
               </div>
             </div>
 
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/Tip%20Calculator%20Fast/appstore.png" alt="Tip Calculator Fast Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">Tip Calculator Fast</h3>
+                  <h3>Tip Calculator Fast</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Split bills in seconds</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">Using a keyboard toolbar and auto focusing textfields to achieve the fastest tip calculator on the market.</p>
+              <p style="margin-bottom: 1rem;">Using a keyboard toolbar and auto focusing textfields to achieve the fastest tip calculator on the market.</p>
               <div style="display: flex; gap: 1rem; margin-top: auto;">
                 <a href="https://apps.apple.com/gb/app/tip-calculator-fast/id6752381498" class="btn btn--secondary">App Store</a>
               </div>
@@ -952,19 +936,19 @@
         const upcomingAppsContainer = document.getElementById('upcoming-apps');
         if (upcomingAppsContainer) {
           upcomingAppsContainer.innerHTML = `
-            <div class="app-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/CuriosityAI/appstore.png" alt="CuriosityAI Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
-                  <h3 style="color: #431a00; margin-bottom: 0.5rem;">CuriosityAI</h3>
+                  <h3>CuriosityAI</h3>
                   <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Upcoming</span>
                 </div>
               </div>
-              <p style="color: #66330a; margin-bottom: 1rem;">Currently in TestFlight beta. Sign-ups limited; public launch coming soon.</p>
+              <p style="margin-bottom: 1rem;">Currently in TestFlight beta. Sign-ups limited; public launch coming soon.</p>
               <div style="margin-top: auto;">
-                <div style="background: #fef7f3; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                  <p style="color: #ff3c00; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">New tech learned:</p>
-                  <ul style="color: #66330a; font-size: 0.85rem; margin: 0; padding-left: 1.25rem;">
+                <div class="tech-panel">
+                  <p>New tech learned:</p>
+                  <ul>
                     <li>Cognito Identity Pool</li>
                     <li>DynamoDB</li>
                     <li>SigV4</li>
