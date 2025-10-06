@@ -18,19 +18,19 @@
         /* Emergency dark mode override */
         :root {
           color-scheme: light !important;
-          --text-primary: #431a00 !important;
-          --text-secondary: #66330a !important;
-          --secondary-bg: #faf6f4 !important;
-          --card-bg: #ffffff !important;
-          --card-border: rgba(255, 60, 0, 0.1) !important;
-          --accent-blue: #ff3c00 !important;
+          --text-primary: #f5f6fa !important;
+          --text-secondary: #f5f6fa !important;
+          --secondary-bg: #273c75 !important;
+          --card-bg: #487eb0 !important;
+          --card-border: rgba(255, 255, 255, 0.15) !important;
+          --accent-blue: #00a8ff !important;
           --border-radius: 1rem !important;
         }
         
         html, body {
-          background: #faf6f4 !important;
-          background-color: #faf6f4 !important;
-          color: #431a00 !important;
+          background: #273c75 !important;
+          background-color: #273c75 !important;
+          color: #f5f6fa !important;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
           margin: 0 !important;
           padding: 0 !important;
@@ -53,21 +53,21 @@
         @media (prefers-color-scheme: dark) {
           :root {
             color-scheme: light !important;
-            --text-primary: #431a00 !important;
-            --text-secondary: #66330a !important;
-            --secondary-bg: #faf6f4 !important;
+            --text-primary: #f5f6fa !important;
+            --text-secondary: #f5f6fa !important;
+            --secondary-bg: #273c75 !important;
           }
           
           html, body {
-            background: #faf6f4 !important;
-            background-color: #faf6f4 !important;
-            color: #431a00 !important;
+            background: #273c75 !important;
+            background-color: #273c75 !important;
+            color: #f5f6fa !important;
           }
         }
         
         /* Apple Monochrome Privacy Policy Styling */
         body {
-            background: linear-gradient(135deg, var(--secondary-bg) 0%, #ffffff 100%) !important;
+            background: linear-gradient(135deg, #192a56 0%, #273c75 60%, #192a56 100%) !important;
             min-height: 100vh;
         }
         
@@ -96,7 +96,7 @@
             font-weight: 600;
             margin: 60px 0 30px 0;
             color: var(--accent-blue);
-            border-bottom: 2px solid rgba(0, 122, 255, 0.1);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.12);
             padding-bottom: 15px;
         }
         
@@ -158,7 +158,7 @@
             border: 1px solid var(--card-border);
             margin-bottom: 50px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
         .last-updated strong {
@@ -166,162 +166,7 @@
             font-size: 16px;
         }
         
-        .contact-info {
-            background: linear-gradient(135deg, 
-                rgba(29, 29, 31, 0.95) 0%, 
-                rgba(44, 44, 46, 0.95) 100%);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            color: white;
-            padding: 60px 50px;
-            border-radius: 24px;
-            margin: 80px 0 60px 0;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        .contact-info::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(
-                circle at 30% 20%, 
-                rgba(0, 122, 255, 0.15) 0%, 
-                transparent 50%
-            ), radial-gradient(
-                circle at 70% 80%, 
-                rgba(48, 209, 88, 0.1) 0%, 
-                transparent 50%
-            );
-            pointer-events: none;
-        }
-        
-        .contact-info h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: clamp(1.8rem, 4vw, 2.2rem);
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .contact-info h3::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 2px;
-            background: var(--accent-blue);
-            margin: 15px auto 0;
-            border-radius: 1px;
-        }
-        
-        .contact-info p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .contact-info .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 30px;
-            position: relative;
-            z-index: 1;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .contact-info .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            font-size: 17px;
-            padding: 0;
-            background: none;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-info .contact-item:hover {
-            transform: translateY(-2px);
-        }
-        
-        .contact-info .contact-icon {
-            width: 28px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            flex-shrink: 0;
-        }
-        
-        .contact-info .contact-text {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-            text-align: left;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .contact-info .contact-label {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 500;
-            min-width: 70px;
-        }
-        
-        .contact-info .contact-value {
-            font-size: 17px;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .contact-info a {
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .contact-info a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .contact-info .response-time {
-            margin-top: 40px;
-            font-style: italic;
-            opacity: 0.8;
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
-        }
+        /* Contact section removed as per request */
         
         .back-button {
             display: inline-flex;
@@ -386,14 +231,14 @@
         
         /* Enhanced sections with cards */
         .privacy-section {
-            background: rgba(255, 255, 255, 0.6);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: var(--border-radius);
             padding: 40px;
             margin: 40px 0;
             border: 1px solid var(--card-border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         }
         
         /* Highlight important text */
@@ -407,8 +252,8 @@
             display: block;
             margin-top: 40px;
             padding: 20px;
-            background: rgba(255, 165, 0, 0.1);
-            border-left: 4px solid var(--accent-orange);
+            background: rgba(0, 168, 255, 0.08);
+            border-left: 4px solid var(--accent-blue);
             border-radius: 0 8px 8px 0;
             font-size: 14px;
             line-height: 1.6;
@@ -430,9 +275,7 @@
                 margin: 25px 0;
             }
             
-            .contact-info {
-                padding: 30px 20px;
-            }
+            /* Contact section removed */
         }
         
         /* Smooth scroll animations */
@@ -456,7 +299,7 @@
         
         /* Navbar styles to match main site */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
+            background: #7f8fa6 !important;
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
@@ -464,7 +307,7 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 60, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .nav-container {
@@ -479,7 +322,7 @@
         .nav-logo a {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #431a00;
+            color: #f5f6fa !important;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -491,14 +334,14 @@
         }
         
         .nav-link {
-            color: #431a00;
+            color: #f5f6fa !important;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s;
         }
         
         .nav-link:hover {
-            color: #ff3c00;
+            color: #ffffff;
         }
         
         .nav-toggle {
@@ -513,8 +356,44 @@
         .nav-toggle-line {
             width: 25px;
             height: 3px;
-            background: #431a00;
+            background: #f5f6fa;
             transition: all 0.3s ease;
+        }
+
+        /* Container and footer styles to match main page */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .footer {
+            background: #7f8fa6 !important;
+            color: #f5f6fa !important;
+            padding: 3rem 0 1rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #ffb8a3;
+        }
+        .footer-section a {
+            color: #f5f6fa !important;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a:hover {
+            color: #ffb8a3;
+        }
+        .footer-bottom {
+            border-top: 1px solid #66330a;
+            padding-top: 1rem;
+            text-align: center;
         }
         
         @media (max-width: 768px) {
@@ -530,17 +409,17 @@
 </head>
 <body>
     <script>
-      // Immediate visibility enforcement and dark mode override
-      document.documentElement.style.setProperty('background', '#faf6f4', 'important');
-      document.documentElement.style.setProperty('background-color', '#faf6f4', 'important');
-      document.documentElement.style.setProperty('color', '#431a00', 'important');
+      // Immediate visibility enforcement and light mode override (blue theme)
+      document.documentElement.style.setProperty('background', '#273c75', 'important');
+      document.documentElement.style.setProperty('background-color', '#273c75', 'important');
+      document.documentElement.style.setProperty('color', '#ffffff', 'important');
       document.documentElement.style.setProperty('visibility', 'visible', 'important');
       document.documentElement.style.setProperty('color-scheme', 'light', 'important');
       
       if (document.body) {
-        document.body.style.setProperty('background', '#faf6f4', 'important');
-        document.body.style.setProperty('background-color', '#faf6f4', 'important');
-        document.body.style.setProperty('color', '#431a00', 'important');
+        document.body.style.setProperty('background', '#273c75', 'important');
+        document.body.style.setProperty('background-color', '#273c75', 'important');
+        document.body.style.setProperty('color', '#ffffff', 'important');
         document.body.style.setProperty('visibility', 'visible', 'important');
         document.body.style.setProperty('opacity', '1', 'important');
         document.body.style.setProperty('color-scheme', 'light', 'important');
@@ -550,8 +429,8 @@
       const style = document.createElement('style');
       style.textContent = `
         html, body { 
-          background: #faf6f4 !important; 
-          color: #431a00 !important; 
+          background: #273c75 !important; 
+          color: #ffffff !important; 
           color-scheme: light !important;
         }
         * { 
@@ -561,7 +440,7 @@
       `;
       document.head.appendChild(style);
       
-      console.log('🚨 Privacy Policy page - Emergency visibility and light mode script executed');
+      console.log('🎨 Privacy Policy page - Blue theme visibility script executed');
     </script>
     <!-- Navigation -->
     <nav class="navbar" id="main-navbar">
@@ -786,34 +665,6 @@
                 <li>Right to object to processing</li>
                 <li>Right to withdraw consent</li>
             </ul>
-        </div>
-
-        <div class="contact-info">
-            <h3>Contact Us</h3>
-            <p>If you have any questions about this Privacy Policy or wish to exercise your privacy rights, please contact us:</p>
-            
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="contact-icon">✉</div>
-                    <div class="contact-text">
-                        <span class="contact-label">Email:</span>
-                        <div class="contact-value">
-                            <a href="mailto:eric@savoie.app">eric@savoie.app</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">🌐</div>
-                    <div class="contact-text">
-                        <span class="contact-label">Website:</span>
-                        <div class="contact-value">
-                            <a href="https://ericsavoie119.github.io">ericsavoie119.github.io</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <p class="response-time">We will respond to your inquiry within 30 days.</p>
         </div>
 
         <small><strong>Note:</strong> This privacy policy is designed to comply with major privacy regulations including GDPR, CCPA, and Apple's App Store requirements. However, you should consult with a legal professional to ensure compliance with all applicable laws in your jurisdiction.</small>
