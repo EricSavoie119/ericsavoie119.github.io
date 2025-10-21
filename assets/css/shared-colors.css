@@ -1,0 +1,45 @@
+/* 
+ * Shared Color Palette
+ * Single source of truth for all site colors
+ * Use these CSS variables across all pages for consistency
+ */
+
+:root {
+  /* Primary Blues */
+  --color-bg-dark: #273c75;        /* Dark blue - main background, sections */
+  --color-bg-medium: #487eb0;      /* Medium blue - cards, overscroll */
+  --color-bg-light: #7f8fa6;       /* Gray-blue - navbar, footer */
+  
+  /* Accent Colors */
+  --color-accent-blue: #00a8ff;    /* Bright blue - buttons, links, accents */
+  --color-accent-light: #5abaff;   /* Light blue - gradients */
+  
+  /* Text Colors */
+  --color-text-primary: #f5f6fa;   /* Off-white - main text */
+  --color-text-white: #ffffff;     /* Pure white - emphasis text */
+  
+  /* Semantic Colors */
+  --color-primary: var(--color-accent-blue);
+  --color-background: var(--color-bg-dark);
+  --color-surface: var(--color-bg-medium);
+  --color-text: var(--color-text-primary);
+  
+  /* Component-specific */
+  --navbar-bg: var(--color-bg-light);
+  --footer-bg: var(--color-bg-light);
+  --card-bg: var(--color-bg-medium);
+  --section-bg: var(--color-bg-dark);
+  
+  /* Borders & Overlays */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --overlay-light: rgba(255, 255, 255, 0.08);
+  --overlay-medium: rgba(255, 255, 255, 0.12);
+}
+
+/* Apply colors to common elements */
+html,
+body {
+  background: var(--color-background) !important;
+  background-color: var(--color-background) !important;
+  color: var(--color-text) !important;
+}

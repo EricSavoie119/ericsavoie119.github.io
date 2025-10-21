@@ -28,6 +28,9 @@
 @import './components/_hero.css';
 @import './components/_footer.css';
 @import './components/_animations.css';
+@import './components/_blog-card.css';
+@import './components/_blog-post.css';
+@import './components/_blog-filters.css';
 
 /* ============================================
    PAGES (Load Last)
@@ -37,6 +40,7 @@
 /* @import './pages/_home.css'; */
 /* @import './pages/_app-detail.css'; */
 /* @import './pages/_legal.css'; */
+@import './pages/_blog-landing.css';
 
 /* ============================================
    TYPOGRAPHY COMPONENTS

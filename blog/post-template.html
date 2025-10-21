@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    
+    <!-- Meta tags will be dynamically updated by JavaScript -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="article:published_time" content="">
+    <meta property="article:author" content="Eric Savoie">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="">
+    
+    <title>Blog Post | Eric Savoie - iOS Developer</title>
+    
+    <!-- PWA Theme Colors -->
+    <meta name="theme-color" content="#487eb0">
+    <meta name="msapplication-TileColor" content="#431a00">
+    
+    <!-- Inline CSS for immediate rendering -->
+    <style>
+      :root {
+        color-scheme: light !important;
+      }
+      
+      html, body {
+        background: #487eb0 !important;
+        background-color: #487eb0 !important;
+        color: #f5f6fa !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 100vh !important;
+        width: 100% !important;
+        overflow-x: hidden;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color-scheme: light !important;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      .navbar {
+        background: #7f8fa6 !important;
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .nav-logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #f5f6fa !important;
+        text-decoration: none;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .nav-link {
+        color: #f5f6fa !important;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      
+      .nav-link:hover {
+        color: #ffffff;
+      }
+      
+      .nav-link.active {
+        color: #00a8ff !important;
+        font-weight: 600;
+      }
+      
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .blog-post-container {
+        padding: 6rem 0 4rem;
+        background-color: #273c75 !important;
+        min-height: 100vh;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
+      }
+      
+      .btn--secondary {
+        background: transparent;
+        color: #f5f6fa;
+        border: 2px solid #00a8ff;
+      }
+      
+      .btn--secondary:hover {
+        background: #00a8ff;
+        color: #ffffff;
+        border-color: #00a8ff;
+        transform: translateY(-2px);
+      }
+      
+      .footer {
+        background: #7f8fa6 !important;
+        color: #f5f6fa !important;
+        padding: 3rem 0 1rem;
+      }
+      
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .footer-section h4 {
+        margin-bottom: 1rem;
+        color: #ffb8a3;
+      }
+      
+      .footer-section a {
+        color: #f5f6fa !important;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      
+      .footer-section a:hover {
+        color: #ffb8a3;
+      }
+      
+      .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 1rem;
+        text-align: center;
+      }
+      
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        
+        .nav-toggle {
+          display: block;
+        }
+      }
+    </style>
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <script>
+      // Immediate visibility enforcement
+      document.documentElement.style.setProperty('background', '#273c75', 'important');
+      document.documentElement.style.setProperty('background-color', '#273c75', 'important');
+      document.documentElement.style.setProperty('color', '#ffffff', 'important');
+      document.documentElement.style.setProperty('visibility', 'visible', 'important');
+      document.documentElement.style.setProperty('color-scheme', 'light', 'important');
+      
+      if (document.body) {
+        document.body.style.setProperty('background', '#273c75', 'important');
+        document.body.style.setProperty('background-color', '#273c75', 'important');
+        document.body.style.setProperty('color', '#ffffff', 'important');
+        document.body.style.setProperty('visibility', 'visible', 'important');
+        document.body.style.setProperty('opacity', '1', 'important');
+        document.body.style.setProperty('color-scheme', 'light', 'important');
+      }
+    </script>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="main-navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="nav-logo-link">
+                    <img src="/assets/images/Eric.png" alt="ERIC" style="width: 32px; height: 32px;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#apps" class="nav-link">Apps</a>
+                <a href="/blog/" class="nav-link active">Blog</a>
+                <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Post Container -->
+    <div class="blog-post-container">
+        <div class="container">
+            <div id="blog-post-content">
+                <!-- Blog post content will be dynamically inserted here -->
+                <div style="text-align: center; padding: 3rem;">
+                    <p style="font-size: 1.2rem; color: #f5f6fa;">Loading post...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="mailto:eric@savoie.app">Email</a>
+                    <a href="https://www.linkedin.com/in/eric-savoie-2a713241/">LinkedIn</a>
+                    <a href="https://github.com/EricSavoie119">GitHub</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Music</h4>
+                    <a href="https://shakejudy.com" target="_blank">Shake Judy (Band)</a>
+                    <a href="https://www.instagram.com/shake.judy/" target="_blank">Instagram</a>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">Click through to the Insta to see a live show</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="/legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="/legal/terms.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eric Savoie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Blog JavaScript -->
+    <script type="module" src="/assets/js/utils/reading-time.js"></script>
+    <script type="module" src="/assets/js/components/blog-manager.js"></script>
+    
+    <script type="module">
+        // Initialize blog post rendering
+        import { BlogManager } from '/assets/js/components/blog-manager.js';
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 Blog post page loaded');
+            
+            // Force visibility
+            document.body.style.setProperty('background', '#273c75', 'important');
+            document.body.style.setProperty('visibility', 'visible', 'important');
+            document.body.style.setProperty('opacity', '1', 'important');
+            
+            // Get post slug from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+            
+            if (!slug) {
+                document.getElementById('blog-post-content').innerHTML = `
+                    <div class="blog-post-error" style="text-align: center; padding: 3rem;">
+                        <h1 style="color: #f5f6fa; margin-bottom: 1rem;">Post Not Found</h1>
+                        <p style="color: #f5f6fa; margin-bottom: 2rem;">No post slug provided in URL.</p>
+                        <a href="/blog" class="btn btn--secondary">← Back to Blog</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Initialize blog manager
+            const blogManager = new BlogManager({
+                postsDirectory: '/blog/posts/',
+                manifestPath: '/blog/posts-manifest.json'
+            });
+            
+            // Load posts and render the specific post
+            try {
+                await blogManager.loadPosts();
+                await blogManager.renderPost(slug, document.getElementById('blog-post-content'));
+            } catch (error) {
+                console.error('Error loading blog post:', error);
+                document.getElementById('blog-post-content').innerHTML = `
+                    <div class="blog-post-error" style="text-align: center; padding: 3rem;">
+                        <h1 style="color: #f5f6fa; margin-bottom: 1rem;">Error Loading Post</h1>
+                        <p style="color: #f5f6fa; margin-bottom: 2rem;">There was an error loading this blog post. Please try again later.</p>
+                        <a href="/blog" class="btn btn--secondary">← Back to Blog</a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

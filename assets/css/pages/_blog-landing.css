@@ -1,0 +1,378 @@
+/*
+ * Blog Landing Page
+ * Layout and styling for the main blog page
+ */
+
+/* ============================================
+   BLOG LANDING CONTAINER
+   ============================================ */
+
+.blog-landing {
+  padding: var(--space-16) 0;
+  min-height: 100vh;
+}
+
+/* ============================================
+   BLOG HERO SECTION
+   ============================================ */
+
+.blog-landing__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  padding: var(--space-8) var(--space-4);
+}
+
+.blog-landing__header .section-title {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text);
+  margin: 0 0 var(--space-4) 0;
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.025em;
+}
+
+.blog-landing__header .section-subtitle {
+  font-size: var(--font-size-xl);
+  color: var(--text-muted);
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   BLOG GRID LAYOUT
+   ============================================ */
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  margin: var(--space-8) 0;
+}
+
+/* Empty State */
+.blog-grid--empty {
+  grid-template-columns: 1fr;
+  text-align: center;
+  padding: var(--space-16) var(--space-4);
+}
+
+.blog-grid__empty-message {
+  font-size: var(--font-size-xl);
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.blog-grid__empty-icon {
+  font-size: var(--font-size-6xl);
+  margin-bottom: var(--space-4);
+  opacity: 0.5;
+}
+
+/* ============================================
+   PAGINATION SECTION
+   ============================================ */
+
+.blog-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-12);
+  padding: var(--space-8) 0;
+}
+
+.blog-pagination__button {
+  min-width: 200px;
+}
+
+/* Hide when no more posts */
+.blog-pagination--hidden {
+  display: none;
+}
+
+/* Loading State */
+.blog-pagination--loading .blog-pagination__button {
+  opacity: 0.6;
+  cursor: wait;
+  position: relative;
+}
+
+.blog-pagination--loading .blog-pagination__button::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-2);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   FILTER RESULTS INFO
+   ============================================ */
+
+.blog-results-info {
+  text-align: center;
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  background: var(--color-accent-50);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.blog-results-info__count {
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary);
+}
+
+.blog-results-info__tag {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Mobile (< 768px) - 1 Column */
+@media (max-width: 767px) {
+  .blog-landing {
+    padding: var(--space-12) 0;
+  }
+  
+  .blog-landing__header {
+    margin-bottom: var(--space-8);
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .blog-landing__header .section-title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .blog-landing__header .section-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin: var(--space-6) 0;
+  }
+  
+  .blog-pagination {
+    margin-top: var(--space-8);
+    padding: var(--space-6) 0;
+  }
+  
+  .blog-pagination__button {
+    min-width: 100%;
+  }
+}
+
+/* Tablet (768px - 1023px) - 2 Columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .blog-landing {
+    padding: var(--space-16) 0;
+  }
+  
+  .blog-landing__header .section-title {
+    font-size: var(--font-size-5xl);
+  }
+  
+  .blog-landing__header .section-subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* Desktop (>= 1024px) - 3 Columns */
+@media (min-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+/* Large Desktop (>= 1280px) - Maintain 3 columns with better spacing */
+@media (min-width: 1280px) {
+  .blog-grid {
+    gap: var(--space-10);
+  }
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+
+.blog-grid--loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.blog-grid--loading .blog-card {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Skeleton Loading Cards */
+.blog-card--skeleton {
+  pointer-events: none;
+}
+
+.blog-card--skeleton .blog-card__image {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-100) 0%,
+    var(--color-accent-200) 50%,
+    var(--color-accent-100) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.blog-card--skeleton .blog-card__title,
+.blog-card--skeleton .blog-card__excerpt,
+.blog-card--skeleton .blog-card__meta {
+  background: var(--color-accent-100);
+  color: transparent;
+  border-radius: var(--radius-sm);
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================
+   FADE-IN ANIMATIONS
+   ============================================ */
+
+.blog-card {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.blog-card:nth-child(1) { animation-delay: 0.1s; }
+.blog-card:nth-child(2) { animation-delay: 0.2s; }
+.blog-card:nth-child(3) { animation-delay: 0.3s; }
+.blog-card:nth-child(4) { animation-delay: 0.4s; }
+.blog-card:nth-child(5) { animation-delay: 0.5s; }
+.blog-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   DARK MODE ADJUSTMENTS
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .blog-results-info {
+    background: var(--color-accent-900);
+  }
+  
+  .blog-card--skeleton .blog-card__image {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent-900) 0%,
+      var(--color-accent-800) 50%,
+      var(--color-accent-900) 100%
+    );
+  }
+  
+  .blog-card--skeleton .blog-card__title,
+  .blog-card--skeleton .blog-card__excerpt,
+  .blog-card--skeleton .blog-card__meta {
+    background: var(--color-accent-900);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .blog-card {
+    animation: none;
+  }
+  
+  .blog-grid--loading .blog-card {
+    animation: none;
+  }
+  
+  .blog-card--skeleton .blog-card__image,
+  .blog-card--skeleton .blog-card__title,
+  .blog-card--skeleton .blog-card__excerpt,
+  .blog-card--skeleton .blog-card__meta {
+    animation: none;
+  }
+  
+  .blog-pagination--loading .blog-pagination__button::after {
+    animation: none;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.blog-card:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .blog-landing__header {
+    margin-bottom: var(--space-6);
+  }
+  
+  .blog-filters,
+  .blog-pagination {
+    display: none;
+  }
+  
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .blog-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

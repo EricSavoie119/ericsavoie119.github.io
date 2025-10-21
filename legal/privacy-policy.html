@@ -1,6 +1,7 @@
 <!-- Privacy Policy for Eric Savoie Apps -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,67 +11,76 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Privacy Policy - Eric Savoie Apps</title>
+
+    <!-- Shared Navbar CSS -->
+    <link rel="stylesheet" href="/assets/css/shared-navbar.css?v=4">
+
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* Emergency dark mode override */
         :root {
-          color-scheme: light !important;
-          --text-primary: #f5f6fa !important;
-          --text-secondary: #f5f6fa !important;
-          --secondary-bg: #273c75 !important;
-          --card-bg: #487eb0 !important;
-          --card-border: rgba(255, 255, 255, 0.15) !important;
-          --accent-blue: #00a8ff !important;
-          --border-radius: 1rem !important;
-        }
-        
-        html, body {
-          background: #273c75 !important;
-          background-color: #273c75 !important;
-          color: #f5f6fa !important;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-          margin: 0 !important;
-          padding: 0 !important;
-          min-height: 100vh !important;
-          width: 100% !important;
-          overflow-x: hidden;
-          visibility: visible !important;
-          opacity: 1 !important;
-          color-scheme: light !important;
-        }
-        
-        *, *::before, *::after {
-          background-color: inherit !important;
-          color: inherit !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-          color-scheme: light !important;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-          :root {
             color-scheme: light !important;
             --text-primary: #f5f6fa !important;
             --text-secondary: #f5f6fa !important;
             --secondary-bg: #273c75 !important;
-          }
-          
-          html, body {
+            --card-bg: #487eb0 !important;
+            --card-border: rgba(255, 255, 255, 0.15) !important;
+            --accent-blue: #00a8ff !important;
+            --border-radius: 1rem !important;
+        }
+
+        html,
+        body {
             background: #273c75 !important;
             background-color: #273c75 !important;
             color: #f5f6fa !important;
-          }
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            min-height: 100vh !important;
+            width: 100% !important;
+            overflow-x: hidden;
+            visibility: visible !important;
+            opacity: 1 !important;
+            color-scheme: light !important;
         }
-        
+
+        *,
+        *::before,
+        *::after {
+            background-color: inherit !important;
+            color: inherit !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            color-scheme: light !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: light !important;
+                --text-primary: #f5f6fa !important;
+                --text-secondary: #f5f6fa !important;
+                --secondary-bg: #273c75 !important;
+            }
+
+            html,
+            body {
+                background: #273c75 !important;
+                background-color: #273c75 !important;
+                color: #f5f6fa !important;
+            }
+        }
+
         /* Apple Monochrome Privacy Policy Styling */
         body {
             background: linear-gradient(135deg, #192a56 0%, #273c75 60%, #192a56 100%) !important;
             min-height: 100vh;
         }
-        
+
         .privacy-content {
             max-width: 900px;
             margin: 0 auto;
@@ -78,7 +88,7 @@
             color: var(--text-primary);
             line-height: 1.8;
         }
-        
+
         .privacy-content h1 {
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 700;
@@ -90,7 +100,7 @@
             background-clip: text;
             text-align: center;
         }
-        
+
         .privacy-content h2 {
             font-size: clamp(1.5rem, 4vw, 2.2rem);
             font-weight: 600;
@@ -99,35 +109,35 @@
             border-bottom: 2px solid rgba(255, 255, 255, 0.12);
             padding-bottom: 15px;
         }
-        
+
         .privacy-content h3 {
             font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: 600;
             margin: 40px 0 20px 0;
             color: var(--text-primary);
         }
-        
+
         .privacy-content p {
             font-size: 18px;
             margin-bottom: 20px;
             color: var(--text-secondary);
             text-align: justify;
         }
-        
+
         .privacy-content li {
             font-size: 17px;
             margin-bottom: 12px;
             color: var(--text-secondary);
             line-height: 1.6;
         }
-        
+
         .privacy-content ul {
             padding-left: 40px;
             margin-bottom: 30px;
             list-style-type: none;
             position: relative;
         }
-        
+
         .privacy-content li::before {
             content: '•';
             color: var(--accent-blue);
@@ -136,19 +146,19 @@
             left: 0;
             margin-top: -2px;
         }
-        
+
         .privacy-content a {
             color: var(--accent-blue);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         .privacy-content a:hover {
             color: #0051d0;
             text-decoration: underline;
         }
-        
+
         .last-updated {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
@@ -160,14 +170,14 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        
+
         .last-updated strong {
             color: var(--accent-blue);
             font-size: 16px;
         }
-        
+
         /* Contact section removed as per request */
-        
+
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -188,7 +198,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .back-button::before {
             content: '←';
             font-size: 20px;
@@ -196,7 +206,7 @@
             color: var(--accent-blue);
             transition: transform 0.3s ease;
         }
-        
+
         .back-button::after {
             content: '';
             position: absolute;
@@ -207,28 +217,28 @@
             background: linear-gradient(90deg, transparent, rgba(0, 122, 255, 0.1), transparent);
             transition: left 0.6s ease;
         }
-        
+
         .back-button:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-2px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border-color: var(--accent-blue);
         }
-        
+
         .back-button:hover::before {
             transform: translateX(-3px);
             color: var(--accent-blue);
         }
-        
+
         .back-button:hover::after {
             left: 100%;
         }
-        
+
         .back-button:active {
             transform: translateY(0);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         /* Enhanced sections with cards */
         .privacy-section {
             background: var(--card-bg);
@@ -240,13 +250,13 @@
             border: 1px solid var(--card-border);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         }
-        
+
         /* Highlight important text */
         .privacy-content strong {
             color: var(--text-primary);
             font-weight: 600;
         }
-        
+
         /* Legal disclaimer styling */
         .privacy-content small {
             display: block;
@@ -259,106 +269,56 @@
             line-height: 1.6;
             color: var(--text-secondary);
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .privacy-content {
                 padding: 100px 20px 40px;
             }
-            
+
             .privacy-content ul {
                 padding-left: 30px;
             }
-            
+
             .privacy-section {
                 padding: 25px;
                 margin: 25px 0;
             }
-            
+
             /* Contact section removed */
         }
-        
+
         /* Smooth scroll animations */
-        .privacy-content > * {
+        .privacy-content>* {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.6s ease forwards;
         }
-        
-        .privacy-content > *:nth-child(1) { animation-delay: 0.1s; }
-        .privacy-content > *:nth-child(2) { animation-delay: 0.2s; }
-        .privacy-content > *:nth-child(3) { animation-delay: 0.3s; }
-        .privacy-content > *:nth-child(4) { animation-delay: 0.4s; }
-        
+
+        .privacy-content>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .privacy-content>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .privacy-content>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .privacy-content>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
-        /* Navbar styles to match main site */
-        .navbar {
-            background: #7f8fa6 !important;
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo a {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #f5f6fa !important;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-link {
-            color: #f5f6fa !important;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .nav-link:hover {
-            color: #ffffff;
-        }
-        
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 4px;
-        }
-        
-        .nav-toggle-line {
-            width: 25px;
-            height: 3px;
-            background: #f5f6fa;
-            transition: all 0.3s ease;
-        }
+
+        /* Navbar styles now in shared-navbar.css */
 
         /* Container and footer styles to match main page */
         .container {
@@ -366,68 +326,65 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
+
         .footer {
             background: #7f8fa6 !important;
             color: #f5f6fa !important;
             padding: 3rem 0 1rem;
         }
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
+
         .footer-section h4 {
             margin-bottom: 1rem;
             color: #ffb8a3;
         }
+
         .footer-section a {
             color: #f5f6fa !important;
             text-decoration: none;
             display: block;
             margin-bottom: 0.5rem;
         }
+
         .footer-section a:hover {
             color: #ffb8a3;
         }
+
         .footer-bottom {
             border-top: 1px solid #66330a;
             padding-top: 1rem;
             text-align: center;
         }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-toggle {
-                display: flex;
-            }
-        }
     </style>
 </head>
+
 <body>
     <script>
-      // Immediate visibility enforcement and light mode override (blue theme)
-      document.documentElement.style.setProperty('background', '#273c75', 'important');
-      document.documentElement.style.setProperty('background-color', '#273c75', 'important');
-      document.documentElement.style.setProperty('color', '#ffffff', 'important');
-      document.documentElement.style.setProperty('visibility', 'visible', 'important');
-      document.documentElement.style.setProperty('color-scheme', 'light', 'important');
-      
-      if (document.body) {
-        document.body.style.setProperty('background', '#273c75', 'important');
-        document.body.style.setProperty('background-color', '#273c75', 'important');
-        document.body.style.setProperty('color', '#ffffff', 'important');
-        document.body.style.setProperty('visibility', 'visible', 'important');
-        document.body.style.setProperty('opacity', '1', 'important');
-        document.body.style.setProperty('color-scheme', 'light', 'important');
-      }
-      
-      // Override any dark mode styles immediately
-      const style = document.createElement('style');
-      style.textContent = `
+        // Immediate visibility enforcement and light mode override (blue theme)
+        document.documentElement.style.setProperty('background', '#273c75', 'important');
+        document.documentElement.style.setProperty('background-color', '#273c75', 'important');
+        document.documentElement.style.setProperty('color', '#ffffff', 'important');
+        document.documentElement.style.setProperty('visibility', 'visible', 'important');
+        document.documentElement.style.setProperty('color-scheme', 'light', 'important');
+
+        if (document.body) {
+            document.body.style.setProperty('background', '#273c75', 'important');
+            document.body.style.setProperty('background-color', '#273c75', 'important');
+            document.body.style.setProperty('color', '#ffffff', 'important');
+            document.body.style.setProperty('visibility', 'visible', 'important');
+            document.body.style.setProperty('opacity', '1', 'important');
+            document.body.style.setProperty('color-scheme', 'light', 'important');
+        }
+
+        // Override any dark mode styles immediately
+        const style = document.createElement('style');
+        style.textContent = `
         html, body { 
           background: #273c75 !important; 
           color: #ffffff !important; 
@@ -438,9 +395,9 @@
           opacity: 1 !important; 
         }
       `;
-      document.head.appendChild(style);
-      
-      console.log('🎨 Privacy Policy page - Blue theme visibility script executed');
+        document.head.appendChild(style);
+
+        console.log('🎨 Privacy Policy page - Blue theme visibility script executed');
     </script>
     <!-- Navigation -->
     <nav class="navbar" id="main-navbar">
@@ -453,6 +410,7 @@
             <div class="nav-links">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/#apps" class="nav-link">Apps</a>
+                <a href="/blog/" class="nav-link">Me</a>
                 <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
@@ -465,17 +423,20 @@
 
     <div class="privacy-content">
         <a href="/" class="back-button">Back to Home</a>
-        
+
         <h1>Privacy Policy</h1>
-        
+
         <div class="last-updated">
             <strong>Last Updated:</strong> January 5, 2025<br>
             <strong>Effective Date:</strong> January 5, 2025
         </div>
 
-        <p><strong>Eric Savoie</strong> ("we," "our," or "us") develops mobile applications for iOS devices. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile applications and related services (collectively, the "Services").</p>
+        <p><strong>Eric Savoie</strong> ("we," "our," or "us") develops mobile applications for iOS devices. This
+            Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our
+            mobile applications and related services (collectively, the "Services").</p>
 
-        <p>Please read this Privacy Policy carefully. By using our Services, you consent to the data practices described in this statement.</p>
+        <p>Please read this Privacy Policy carefully. By using our Services, you consent to the data practices described
+            in this statement.</p>
 
         <div class="privacy-section">
             <h2>1. Information We Collect</h2>
@@ -493,10 +454,14 @@
             <h3>1.2 Information Collected Automatically</h3>
             <p>When you use our Services, we may automatically collect certain information, including:</p>
             <ul>
-                <li><strong>Device Information:</strong> Device type, operating system version, unique device identifiers, mobile network information</li>
-                <li><strong>Usage Data:</strong> App features used, time spent in app, user interactions, crash reports</li>
-                <li><strong>Location Data:</strong> Precise or approximate location (only if you grant permission and the app requires location services)</li>
-                <li><strong>Camera and Photos:</strong> Access to camera and photo library (only with your explicit permission and for app functionality)</li>
+                <li><strong>Device Information:</strong> Device type, operating system version, unique device
+                    identifiers, mobile network information</li>
+                <li><strong>Usage Data:</strong> App features used, time spent in app, user interactions, crash reports
+                </li>
+                <li><strong>Location Data:</strong> Precise or approximate location (only if you grant permission and
+                    the app requires location services)</li>
+                <li><strong>Camera and Photos:</strong> Access to camera and photo library (only with your explicit
+                    permission and for app functionality)</li>
             </ul>
 
             <h3>1.3 Information from Third Parties</h3>
@@ -513,23 +478,32 @@
 
             <p>We use the information we collect for the following purposes:</p>
             <ul>
-                <li><strong>Provide and Maintain Services:</strong> To operate, maintain, and improve our apps and features</li>
-                <li><strong>Personalization:</strong> To customize your experience and provide personalized content and recommendations</li>
-                <li><strong>Communication:</strong> To respond to your inquiries, provide customer support, and send important notices</li>
-                <li><strong>Analytics and Improvement:</strong> To analyze usage patterns, identify bugs, and improve app performance</li>
-                <li><strong>Security:</strong> To detect, prevent, and address technical issues, fraud, and security vulnerabilities</li>
-                <li><strong>Legal Compliance:</strong> To comply with applicable laws, regulations, and legal processes</li>
-                <li><strong>Data Synchronization:</strong> To sync your data across your devices using iCloud or other Apple services</li>
+                <li><strong>Provide and Maintain Services:</strong> To operate, maintain, and improve our apps and
+                    features</li>
+                <li><strong>Personalization:</strong> To customize your experience and provide personalized content and
+                    recommendations</li>
+                <li><strong>Communication:</strong> To respond to your inquiries, provide customer support, and send
+                    important notices</li>
+                <li><strong>Analytics and Improvement:</strong> To analyze usage patterns, identify bugs, and improve
+                    app performance</li>
+                <li><strong>Security:</strong> To detect, prevent, and address technical issues, fraud, and security
+                    vulnerabilities</li>
+                <li><strong>Legal Compliance:</strong> To comply with applicable laws, regulations, and legal processes
+                </li>
+                <li><strong>Data Synchronization:</strong> To sync your data across your devices using iCloud or other
+                    Apple services</li>
             </ul>
         </div>
 
         <div class="privacy-section">
             <h2>3. Information Sharing and Disclosure</h2>
 
-            <p>We do not sell, trade, or otherwise transfer your personal information to third parties, except in the following circumstances:</p>
+            <p>We do not sell, trade, or otherwise transfer your personal information to third parties, except in the
+                following circumstances:</p>
 
             <h3>3.1 Service Providers</h3>
-            <p>We may share information with trusted third-party service providers who assist us in operating our apps, conducting business, or providing services to you, including:</p>
+            <p>We may share information with trusted third-party service providers who assist us in operating our apps,
+                conducting business, or providing services to you, including:</p>
             <ul>
                 <li>Cloud storage and data synchronization services (iCloud, CloudKit)</li>
                 <li>Analytics services (anonymized data only)</li>
@@ -538,7 +512,8 @@
             </ul>
 
             <h3>3.2 Legal Requirements</h3>
-            <p>We may disclose your information if required to do so by law or in good faith belief that such action is necessary to:</p>
+            <p>We may disclose your information if required to do so by law or in good faith belief that such action is
+                necessary to:</p>
             <ul>
                 <li>Comply with legal obligations or court orders</li>
                 <li>Protect and defend our rights or property</li>
@@ -547,7 +522,8 @@
             </ul>
 
             <h3>3.3 Business Transfers</h3>
-            <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</p>
+            <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of
+                that transaction.</p>
         </div>
 
         <div class="privacy-section">
@@ -605,12 +581,16 @@
 
         <div class="privacy-section">
             <h2>6. Children's Privacy</h2>
-            <p>Our Services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information promptly.</p>
+            <p>Our Services are not intended for children under the age of 13. We do not knowingly collect personal
+                information from children under 13. If we become aware that we have collected personal information from
+                a child under 13, we will take steps to delete such information promptly.</p>
         </div>
 
         <div class="privacy-section">
             <h2>7. International Data Transfers</h2>
-            <p>Your information may be transferred to and processed in countries other than your own. We ensure that such transfers comply with applicable data protection laws and implement appropriate safeguards to protect your information.</p>
+            <p>Your information may be transferred to and processed in countries other than your own. We ensure that
+                such transfers comply with applicable data protection laws and implement appropriate safeguards to
+                protect your information.</p>
         </div>
 
         <div class="privacy-section">
@@ -622,12 +602,15 @@
                 <li>Resolve disputes and enforce agreements</li>
                 <li>Improve our Services (using anonymized data)</li>
             </ul>
-            <p>When you delete our app or request deletion of your account, we will delete your personal information within 30 days, except where we are required to retain it for legal purposes.</p>
+            <p>When you delete our app or request deletion of your account, we will delete your personal information
+                within 30 days, except where we are required to retain it for legal purposes.</p>
         </div>
 
         <div class="privacy-section">
             <h2>9. Third-Party Services</h2>
-            <p>Our apps may contain links to or integrate with third-party services. This Privacy Policy does not apply to third-party services. We encourage you to review the privacy policies of any third-party services you choose to use.</p>
+            <p>Our apps may contain links to or integrate with third-party services. This Privacy Policy does not apply
+                to third-party services. We encourage you to review the privacy policies of any third-party services you
+                choose to use.</p>
         </div>
 
         <div class="privacy-section">
@@ -639,12 +622,14 @@
                 <li>Providing in-app notifications for significant changes</li>
                 <li>Sending email notifications (where applicable)</li>
             </ul>
-            <p>Your continued use of our Services after any changes constitutes your acceptance of the updated Privacy Policy.</p>
+            <p>Your continued use of our Services after any changes constitutes your acceptance of the updated Privacy
+                Policy.</p>
         </div>
 
         <div class="privacy-section">
             <h2>11. California Privacy Rights (CCPA)</h2>
-            <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA):</p>
+            <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act
+                (CCPA):</p>
             <ul>
                 <li>Right to know what personal information is collected, used, shared, or sold</li>
                 <li>Right to delete personal information</li>
@@ -655,7 +640,8 @@
 
         <div class="privacy-section">
             <h2>12. European Privacy Rights (GDPR)</h2>
-            <p>If you are in the European Economic Area (EEA), you have rights under the General Data Protection Regulation (GDPR), including:</p>
+            <p>If you are in the European Economic Area (EEA), you have rights under the General Data Protection
+                Regulation (GDPR), including:</p>
             <ul>
                 <li>Right of access to your personal data</li>
                 <li>Right to rectification of inaccurate data</li>
@@ -667,7 +653,9 @@
             </ul>
         </div>
 
-        <small><strong>Note:</strong> This privacy policy is designed to comply with major privacy regulations including GDPR, CCPA, and Apple's App Store requirements. However, you should consult with a legal professional to ensure compliance with all applicable laws in your jurisdiction.</small>
+        <small><strong>Note:</strong> This privacy policy is designed to comply with major privacy regulations including
+            GDPR, CCPA, and Apple's App Store requirements. However, you should consult with a legal professional to
+            ensure compliance with all applicable laws in your jurisdiction.</small>
     </div>
 
     <!-- Footer -->
@@ -693,5 +681,63 @@
     </footer>
 
     <!-- <script src="script.js"></script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set active navigation state for privacy page
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '/legal/privacy-policy.html') {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Debug navbar styles
+            const navbar = document.querySelector('.navbar');
+            const navContainer = document.querySelector('.nav-container');
+            const navLink = document.querySelector('.nav-link');
+            const navLogo = document.querySelector('.nav-logo');
+            const navLogoImg = document.querySelector('.nav-logo img');
+            if (navbar && navContainer && navLink) {
+                const navbarStyles = window.getComputedStyle(navbar);
+                const containerStyles = window.getComputedStyle(navContainer);
+                const linkStyles = window.getComputedStyle(navLink);
+                const logoStyles = navLogo ? window.getComputedStyle(navLogo) : null;
+                const logoImgStyles = navLogoImg ? window.getComputedStyle(navLogoImg) : null;
+
+                console.log('📊 PRIVACY Navbar Debug:');
+                console.log('  navbar padding:', navbarStyles.padding);
+                console.log('  navbar height:', navbarStyles.height);
+                console.log('  navbar box-sizing:', navbarStyles.boxSizing);
+                console.log('  navbar border-bottom:', navbarStyles.borderBottom);
+                console.log('  navbar font-family:', navbarStyles.fontFamily);
+                console.log('  nav-container padding:', containerStyles.padding);
+                console.log('  nav-container height:', containerStyles.height);
+                console.log('  nav-container box-sizing:', containerStyles.boxSizing);
+                console.log('  nav-container line-height:', containerStyles.lineHeight);
+                console.log('  nav-link font-size:', linkStyles.fontSize);
+                console.log('  nav-link font-weight:', linkStyles.fontWeight);
+                console.log('  nav-link font-family:', linkStyles.fontFamily);
+                console.log('  nav-link padding:', linkStyles.padding);
+                console.log('  nav-link line-height:', linkStyles.lineHeight);
+                console.log('  nav-link text-rendering:', linkStyles.textRendering);
+                if (logoStyles) {
+                    console.log('  nav-logo line-height:', logoStyles.lineHeight);
+                    console.log('  nav-logo height:', logoStyles.height);
+                    console.log('  nav-logo display:', logoStyles.display);
+                    console.log('  nav-logo align-items:', logoStyles.alignItems);
+                }
+                if (logoImgStyles) {
+                    console.log('  nav-logo img width:', logoImgStyles.width);
+                    console.log('  nav-logo img height:', logoImgStyles.height);
+                    console.log('  nav-logo img display:', logoImgStyles.display);
+                    console.log('  nav-logo img vertical-align:', logoImgStyles.verticalAlign);
+                    console.log('  nav-logo img margin:', logoImgStyles.margin);
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>

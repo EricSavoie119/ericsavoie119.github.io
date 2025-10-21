@@ -1,0 +1,226 @@
+# Implementation Plan
+
+- [x] 1. Set up blog directory structure and core files
+  - Create `/blog/` directory with `index.html` for the blog landing page
+  - Create `/blog/posts/` directory for markdown files
+  - Create `/blog/assets/post-images/` directory for blog images
+  - Create `posts-manifest.json` file to track all blog posts
+  - _Requirements: 4.3, 4.4_
+
+- [x] 2. Create blog CSS components
+  - [x] 2.1 Create `assets/css/components/_blog-card.css` with blog post card styling
+    - Implement card layout with image, title, excerpt, tags, and metadata
+    - Add hover effects consistent with existing app cards (lift and shadow)
+    - Include responsive styles for mobile, tablet, and desktop
+    - Style date badge overlay on featured image
+    - _Requirements: 1.1, 1.6, 5.1, 5.2, 6.2_
+  - [x] 2.2 Create `assets/css/components/_blog-post.css` for individual post pages
+    - Style post header with title, date, reading time, and tags
+    - Implement content typography (headings, paragraphs, lists, blockquotes)
+    - Style code blocks with syntax highlighting support
+    - Add image styling with captions and responsive sizing
+    - Set max-width of 800px for optimal readability
+    - Style post footer with navigation and related posts
+    - _Requirements: 2.2, 2.3, 2.4, 5.3, 6.3_
+  - [x] 2.3 Create `assets/css/components/_blog-filters.css` for tag filtering UI
+    - Style filter buttons with active/inactive states
+    - Add hover and focus states for accessibility
+    - Implement responsive layout for mobile
+    - _Requirements: 8.1, 8.2, 8.3_
+  - [x] 2.4 Create `assets/css/pages/_blog-landing.css` for blog landing page layout
+    - Style blog hero section with title and subtitle
+    - Implement blog grid layout (1/2/3 columns responsive)
+    - Style pagination/load more button
+    - _Requirements: 1.1, 1.2, 5.1, 5.2, 6.1_
+  - [x] 2.5 Import new CSS files in `assets/css/main.css`
+    - Add imports for all new blog CSS components
+    - _Requirements: 6.1_
+
+- [x] 3. Implement markdown parsing and blog manager
+  - [x] 3.1 Add markdown parsing dependencies
+    - Include marked.js library for markdown to HTML conversion
+    - Include highlight.js library for code syntax highlighting
+    - Configure marked.js with GitHub Flavored Markdown and syntax highlighting
+    - _Requirements: 2.3, 4.2_
+  - [x] 3.2 Create `assets/js/utils/reading-time.js` utility
+    - Implement function to calculate reading time based on word count
+    - Use average reading speed of 200 words per minute
+    - _Requirements: 2.5_
+  - [x] 3.3 Create `assets/js/components/blog-manager.js` core functionality
+    - Implement `BlogManager` class with post loading and rendering methods
+    - Create `loadPosts()` method to fetch and parse posts-manifest.json
+    - Create `parseFrontMatter()` method to extract YAML metadata from markdown
+    - Create `parseMarkdown()` method to convert markdown content to HTML
+    - Create `renderPostList()` method to display blog cards on landing page
+    - Create `renderPost()` method to display full blog post on detail page
+    - Implement sorting by date (newest first)
+    - _Requirements: 1.1, 1.2, 2.1, 2.2, 4.1, 4.2, 4.4_
+
+- [x] 4. Implement tag filtering functionality
+  - [x] 4.1 Create `assets/js/components/blog-filters.js` for filtering logic
+    - Implement `filterByTag()` method to filter posts by selected tag
+    - Create `renderFilters()` method to display available tags
+    - Add event listeners for filter button clicks
+    - Update URL with query parameter when filter is applied
+    - Implement "clear filter" functionality
+    - _Requirements: 8.1, 8.2, 8.3_
+  - [x] 4.2 Update blog-manager.js to support filtering
+    - Add `filteredPosts` property to track filtered results
+    - Implement filter state management
+    - Handle empty filter results with friendly message
+    - _Requirements: 8.3, 8.4_
+
+- [x] 5. Create blog landing page HTML
+  - [x] 5.1 Create `/blog/index.html` with complete structure
+    - Add HTML boilerplate with proper meta tags
+    - Include existing navbar component
+    - Create blog hero section with title and subtitle
+    - Add filter buttons container
+    - Create blog grid container for post cards
+    - Add pagination/load more section
+    - Include existing footer component
+    - Link all necessary CSS and JavaScript files
+    - _Requirements: 1.1, 1.2, 1.3, 3.1, 3.2, 3.3, 6.5_
+  - [x] 5.2 Add blog navigation link to main navbar
+    - Update navbar in `index.html` to include "Blog" link
+    - Ensure blog link is included in mobile navigation menu
+    - Add active state styling for blog navigation item
+    - _Requirements: 3.1, 3.2, 3.3_
+
+- [x] 6. Create blog post detail page template
+  - [x] 6.1 Create blog post HTML template structure
+    - Create template HTML file that will be used for rendering individual posts
+    - Include post header with title, date, reading time, and tags
+    - Add featured image section
+    - Create content container for rendered markdown
+    - Add post footer with back navigation and related posts section
+    - _Requirements: 2.1, 2.2, 2.5, 2.6, 2.7_
+  - [x] 6.2 Implement dynamic post rendering
+    - Update blog-manager.js to generate post pages dynamically
+    - Parse URL to determine which post to display
+    - Render post content with proper formatting
+    - Display related posts based on shared tags
+    - _Requirements: 2.1, 2.2, 2.6, 2.7_
+
+- [x] 7. Implement SEO and meta tags
+  - [x] 7.1 Add SEO meta tags to blog landing page
+    - Include title, description, and keywords meta tags
+    - Add Open Graph tags for social sharing
+    - Add Twitter Card tags
+    - Include canonical URL
+    - _Requirements: 7.1, 7.2_
+  - [x] 7.2 Implement dynamic meta tags for blog posts
+    - Generate meta tags based on post front matter
+    - Include article-specific Open Graph tags (published_time, author, tags)
+    - Add JSON-LD structured data for BlogPosting schema
+    - Set dynamic page title and description
+    - _Requirements: 7.1, 7.2_
+
+- [ ] 8. Implement performance optimizations
+  - [ ] 8.1 Add lazy loading for images
+    - Add `loading="lazy"` attribute to all blog images
+    - Implement intersection observer for progressive image loading
+    - _Requirements: 5.4, 7.3_
+  - [ ] 8.2 Optimize image assets
+    - Compress featured images to under 200KB
+    - Create responsive image sizes for different viewports
+    - Implement WebP format with JPEG fallback
+    - _Requirements: 7.5_
+  - [ ] 8.3 Implement code splitting
+    - Load markdown parser only on blog pages
+    - Defer loading of syntax highlighter until needed
+    - Use dynamic imports for blog-specific JavaScript
+    - _Requirements: 7.4_
+
+- [ ] 9. Add accessibility features
+  - [ ] 9.1 Implement semantic HTML structure
+    - Use `<article>` elements for blog posts
+    - Use `<time>` elements with datetime attributes for dates
+    - Ensure proper heading hierarchy (h1 → h2 → h3)
+    - Use `<nav>` for blog navigation elements
+    - _Requirements: 5.6, 7.2_
+  - [ ] 9.2 Add ARIA labels and attributes
+    - Add aria-label to navigation elements
+    - Implement aria-pressed for filter buttons
+    - Add role="group" to filter container
+    - Include descriptive alt text for all images
+    - _Requirements: 5.6_
+  - [ ] 9.3 Ensure keyboard navigation support
+    - Verify all interactive elements are keyboard accessible
+    - Add visible focus indicators
+    - Implement logical tab order
+    - Test with keyboard-only navigation
+    - _Requirements: 5.5_
+
+- [ ] 10. Create sample blog posts
+  - [ ] 10.1 Create first sample blog post markdown file
+    - Write markdown file with proper front matter (title, date, excerpt, tags, etc.)
+    - Include various markdown elements (headings, lists, code blocks, images, links)
+    - Add featured image
+    - Save in `/blog/posts/` directory
+    - _Requirements: 4.1, 4.2, 4.5, 4.6_
+  - [ ] 10.2 Create second sample blog post
+    - Write another markdown file with different tags
+    - Include code snippets to test syntax highlighting
+    - Add multiple images to test responsive image handling
+    - _Requirements: 4.1, 4.2, 4.5, 4.6_
+  - [ ] 10.3 Update posts-manifest.json
+    - Add entries for both sample posts
+    - Include all required metadata (slug, title, date, excerpt, tags, etc.)
+    - Ensure proper JSON formatting
+    - _Requirements: 4.4_
+
+- [ ] 11. Implement pagination functionality
+  - [ ] 11.1 Add pagination logic to blog-manager.js
+    - Implement `postsPerPage` property (default: 9)
+    - Create `loadMore()` method to load additional posts
+    - Track current page state
+    - Hide "Load More" button when all posts are displayed
+    - _Requirements: 1.4_
+  - [ ] 11.2 Add "Load More" button functionality
+    - Attach click event listener to load more button
+    - Smoothly append new posts to grid
+    - Update button state and text
+    - _Requirements: 1.4_
+
+- [ ] 12. Test and validate implementation
+  - [ ] 12.1 Test blog landing page functionality
+    - Verify posts load and display correctly
+    - Test tag filtering with multiple tags
+    - Verify pagination/load more works
+    - Test responsive layout at different breakpoints
+    - _Requirements: 1.1, 1.2, 1.4, 5.1, 5.2, 8.1, 8.2, 8.3_
+  - [ ] 12.2 Test individual blog post pages
+    - Verify markdown renders correctly with all elements
+    - Test code syntax highlighting
+    - Verify images load with lazy loading
+    - Test back navigation and related posts
+    - Verify reading time calculation is accurate
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7_
+  - [ ] 12.3 Test navigation integration
+    - Verify blog link appears in main navbar
+    - Test navigation between blog and main site
+    - Verify active state highlighting works
+    - Test mobile navigation menu
+    - _Requirements: 3.1, 3.2, 3.3_
+  - [ ] 12.4 Validate SEO implementation
+    - Check meta tags are present and correct
+    - Validate Open Graph tags with Facebook debugger
+    - Validate Twitter Card tags with Twitter validator
+    - Verify JSON-LD structured data with Google Rich Results Test
+    - Check canonical URLs are correct
+    - _Requirements: 7.1, 7.2_
+  - [ ] 12.5 Perform accessibility audit
+    - Run axe DevTools accessibility checker
+    - Test with keyboard navigation only
+    - Verify screen reader compatibility (VoiceOver)
+    - Check color contrast ratios
+    - Validate heading hierarchy
+    - _Requirements: 5.5, 5.6_
+  - [ ] 12.6 Run performance tests
+    - Run Lighthouse audit (target: 90+ performance score)
+    - Measure page load time (target: < 2s)
+    - Check Largest Contentful Paint (target: < 2.5s)
+    - Verify images are lazy loaded
+    - Test on slow 3G connection
+    - _Requirements: 7.3, 7.4_

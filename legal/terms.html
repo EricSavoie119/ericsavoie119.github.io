@@ -10,6 +10,10 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Terms of Service - Eric Savoie Apps</title>
+    
+    <!-- Shared Navbar CSS -->
+    <link rel="stylesheet" href="/assets/css/shared-navbar.css?v=4">
+    
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -460,67 +464,7 @@
             }
         }
         
-        /* Navbar Styles */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 60, 0, 0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo a {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #431a00;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-link {
-            color: #431a00;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .nav-link:hover {
-            color: #ff3c00;
-        }
-        
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-toggle {
-                display: block;
-            }
-        }
+        /* Navbar styles now in shared-navbar.css */
     </style>
 </head>
 <body>
@@ -569,6 +513,7 @@
             <div class="nav-links">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/#apps" class="nav-link">Apps</a>
+                <a href="/blog/" class="nav-link">Me</a>
                 <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
@@ -808,5 +753,16 @@
     </footer>
 
     <!-- <script src="script.js"></script> -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set active navigation state for terms page
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Terms page doesn't have a direct link, so we won't highlight any
+            });
+        });
+    </script>
 </body>
 </html> 
