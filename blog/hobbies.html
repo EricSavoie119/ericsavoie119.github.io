@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Hobbies | Eric Savoie</title>
+    
+    <!-- Shared Color Palette -->
+    <link rel="stylesheet" href="/assets/css/shared-colors.css">
+    
+    <!-- Shared Navbar CSS -->
+    <link rel="stylesheet" href="/assets/css/shared-navbar.css">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .content-section {
+            padding: 6rem 0 4rem;
+            background-color: var(--color-bg-dark);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            color: var(--color-text-white);
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+        }
+        
+        .page-subtitle {
+            font-size: 0.9rem;
+            color: var(--color-text-primary);
+            opacity: 0.7;
+            font-style: italic;
+        }
+        
+        .me-subnav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .me-subnav-link {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            border: 2px solid var(--color-bg-light);
+            background: var(--color-bg-medium);
+            transition: all 0.2s;
+        }
+        
+        .me-subnav-link:hover {
+            background: var(--color-bg-light);
+            border-color: var(--color-accent-blue);
+        }
+        
+        .me-subnav-link.active {
+            background: var(--color-accent-blue);
+            color: var(--color-text-white);
+            border-color: var(--color-accent-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <img src="/assets/images/Eric.png" alt="ERIC" style="width: 32px; height: 32px;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#apps" class="nav-link">Apps</a>
+                <a href="/blog/" class="nav-link active">Me</a>
+                <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Coming Soon</h1>
+                <p class="page-subtitle">All interviews are done by ChatGPT5</p>
+                
+                <!-- Sub-navigation -->
+                <nav class="me-subnav">
+                    <a href="/blog/career.html" class="me-subnav-link">Career</a>
+                    <a href="/blog/hobbies.html" class="me-subnav-link active">Hobbies</a>
+                    <a href="/blog/life.html" class="me-subnav-link">Life</a>
+                </nav>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

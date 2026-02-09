@@ -185,26 +185,33 @@ class BlogManager {
             month: 'short', 
             day: 'numeric' 
         });
+
+        const bottomTags = Array.isArray(post.tags) ? post.tags.slice(0, 2) : [];
+        const extraTagCount = Array.isArray(post.tags) ? Math.max(post.tags.length - 2, 0) : 0;
         
         // Create card HTML
         article.innerHTML = `
-            <div class="blog-card__image">
-                <img src="${post.featuredImage || '/assets/images/default-app-icon.svg'}" 
-                     alt="${post.title}" 
-                     loading="lazy"
-                     onerror="this.src='/assets/images/default-app-icon.svg'">
-                <div class="blog-card__date">${formattedDate}</div>
-            </div>
             <div class="blog-card__content">
-                ${post.tags && post.tags.length > 0 ? `
-                    <div class="blog-card__tags">
-                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                <div class="blog-card__header">
+                    <img class="blog-card__icon"
+                         src="${post.featuredImage || '/assets/images/default-app-icon.svg'}"
+                         alt="${post.title}"
+                         loading="lazy"
+                         onerror="this.src='/assets/images/default-app-icon.svg'">
+                    <div class="blog-card__heading">
+                        <h3 class="blog-card__title">${post.title}</h3>
+                        <div class="blog-card__date">${formattedDate}</div>
                     </div>
-                ` : ''}
-                <h3 class="blog-card__title">${post.title}</h3>
+                </div>
                 <p class="blog-card__excerpt">${post.excerpt}</p>
                 <div class="blog-card__meta">
                     <span class="blog-card__reading-time">${post.readingTime || 5} min read</span>
+                    ${bottomTags.length > 0 ? `
+                        <div class="blog-card__tags">
+                            ${bottomTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            ${extraTagCount > 0 ? `<span class="tag">+${extraTagCount}</span>` : ''}
+                        </div>
+                    ` : ''}
                 </div>
             </div>
         `;
@@ -212,7 +219,7 @@ class BlogManager {
         // Make card clickable
         article.style.cursor = 'pointer';
         article.addEventListener('click', () => {
-            window.location.href = `/blog/post-template.html?slug=${post.slug}`;
+            window.location.href = `/blog/${post.slug}/`;
         });
         
         return article;
@@ -376,7 +383,7 @@ class BlogManager {
         });
         
         return `
-            <a href="/blog/post-template.html?slug=${post.slug}" class="related-post-card">
+            <a href="/blog/${post.slug}/" class="related-post-card">
                 ${post.featuredImage ? `
                     <div class="related-post-card__image">
                         <img src="${post.featuredImage}" alt="${post.title}" loading="lazy">
@@ -398,9 +405,7 @@ class BlogManager {
         // Update page title
         document.title = `${post.title} | Eric Savoie Blog`;
         
-        // Get current URL
-        const currentUrl = window.location.href;
-        const canonicalUrl = `https://ericsavoie.com/blog/post-template.html?slug=${post.slug}`;
+        const canonicalUrl = `https://savoie.app/blog/${post.slug}/`;
         
         // Update or create meta tags
         this.setMetaTag('name', 'description', post.excerpt || '');
@@ -488,7 +493,7 @@ class BlogManager {
             "author": {
                 "@type": "Person",
                 "name": "Eric Savoie",
-                "url": "https://ericsavoie.com"
+                "url": "https://savoie.app"
             },
             "publisher": {
                 "@type": "Person",
@@ -496,7 +501,7 @@ class BlogManager {
             },
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": `https://ericsavoie.com/blog/post-template.html?slug=${post.slug}`
+                "@id": `https://savoie.app/blog/${post.slug}/`
             }
         };
         

@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Blog | Eric Savoie">
   <meta property="og:description" content="Thoughts on app development, lessons learned, and project updates">
-  <meta property="og:url" content="https://ericsavoie.com/blog/">
+  <meta property="og:url" content="https://savoie.app/blog/">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="Thoughts on app development, lessons learned, and project updates">
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://ericsavoie.com/blog/">
+  <link rel="canonical" href="https://savoie.app/blog/">
 
   <title>Blog | Eric Savoie - iOS Developer</title>
 
@@ -33,180 +33,10 @@
   <link rel="stylesheet" href="/assets/css/shared-colors.css">
 
   <!-- Inline CSS for immediate rendering -->
-  <style>
-    :root {
-      color-scheme: light !important;
-    }
-
-    html,
-    body {
-      background: var(--color-bg-medium) !important;
-      background-color: var(--color-bg-medium) !important;
-      color: var(--color-text-primary) !important;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      min-height: 100vh !important;
-      width: 100% !important;
-      overflow-x: hidden;
-      visibility: visible !important;
-      opacity: 1 !important;
-      color-scheme: light !important;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .blog-landing {
-      padding: 5rem 0 4rem;
-      background-color: var(--color-bg-dark) !important;
-      min-height: 100vh;
-    }
-
-    .blog-landing__header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--color-text-primary);
-      font-weight: 700;
-    }
-
-    .section-subtitle {
-      font-size: 1.2rem;
-      color: var(--color-text-primary);
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    .blog-filters {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-      background: transparent !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-    }
-
-    .blog-filter {
-      background: var(--color-bg-medium) !important;
-      color: var(--color-text-primary) !important;
-      padding: 0.5rem 1.5rem;
-      border-radius: 0.5rem;
-      border: 2px solid var(--color-bg-light) !important;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .blog-filter:hover {
-      background: var(--color-bg-light) !important;
-      border-color: var(--color-accent-blue) !important;
-    }
-
-    .blog-filter--active {
-      background: var(--color-accent-blue) !important;
-      color: var(--color-text-white) !important;
-      border-color: var(--color-accent-blue) !important;
-    }
-
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .blog-pagination {
-      text-align: center;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-      font-size: 1rem;
-    }
-
-    .btn--secondary {
-      background: transparent;
-      color: var(--color-text-primary);
-      border: 2px solid var(--color-accent-blue);
-    }
-
-    .btn--secondary:hover {
-      background: var(--color-accent-blue);
-      color: var(--color-text-white);
-      border-color: var(--color-accent-blue);
-      transform: translateY(-2px);
-    }
-
-    .footer {
-      background: var(--footer-bg) !important;
-      color: var(--color-text-primary) !important;
-      padding: 3rem 0 1rem;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-section h4 {
-      margin-bottom: 1rem;
-      color: #ffb8a3;
-    }
-
-    .footer-section a {
-      color: var(--color-text-primary) !important;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section a:hover {
-      color: #ffb8a3;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 1rem;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .blog-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/pages/blog-inline.css?v=1">
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=4">
 
   <!-- Shared Navbar CSS (loads last to override main.css) -->
   <link rel="stylesheet" href="/assets/css/shared-navbar.css">
@@ -239,140 +69,43 @@
   </script>
 
   <!-- Navigation -->
-  <nav class="navbar" id="main-navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="/" class="nav-logo-link">
-          <img src="/assets/images/Eric.png" alt="ERIC" style="width: 32px; height: 32px;">
-        </a>
-      </div>
-      <div class="nav-links">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/#apps" class="nav-link">Apps</a>
-        <a href="/blog/" class="nav-link">Me</a>
-        <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
-      </div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
-    </div>
-  </nav>
+  <div id="site-navbar"></div>
+
+  <script type="module">
+    import { renderNavbar } from '/assets/js/components/navbar.js?v=1';
+    renderNavbar('#site-navbar');
+  </script>
 
   <!-- Blog Landing Section -->
   <section class="blog-landing">
     <div class="container">
+      <header class="blog-landing__header"></header>
 
       <!-- Blog Posts Grid -->
       <div class="blog-grid" id="blog-posts">
         <!-- Blog cards will be dynamically inserted by blog-manager.js -->
       </div>
 
-
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>Connect</h4>
-          <a href="mailto:eric@savoie.app">Email</a>
-          <a href="https://www.linkedin.com/in/eric-savoie-2a713241/">LinkedIn</a>
-          <a href="https://github.com/EricSavoie119">GitHub</a>
-        </div>
-        <div class="footer-section">
-          <h4>Music</h4>
-          <a href="https://shakejudy.com" target="_blank">Shake Judy (Band)</a>
-          <a href="https://www.instagram.com/shake.judy/" target="_blank">Instagram</a>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">Click through to the Insta to see a live show
-          </p>
-        </div>
-        <div class="footer-section">
-          <h4>Legal</h4>
-          <a href="/legal/privacy-policy.html">Privacy Policy</a>
-          <a href="/legal/terms.html">Terms of Service</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Eric Savoie. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
+
+  <script type="module">
+    import { renderFooter } from '/assets/js/components/footer.js?v=2';
+    renderFooter('#site-footer');
+  </script>
 
   <!-- Blog JavaScript -->
   <script type="module" src="/assets/js/utils/reading-time.js?v=2"></script>
   <script type="module" src="/assets/js/components/blog-manager.js?v=2"></script>
-  <script type="module" src="/assets/js/components/blog-filters.js?v=2"></script>
 
   <script type="module">
     // Initialize blog functionality
     import { BlogManager } from '/assets/js/components/blog-manager.js?v=2';
-    import { BlogFilters } from '/assets/js/components/blog-filters.js?v=2';
 
     document.addEventListener('DOMContentLoaded', async () => {
-      console.log('🚀 Blog page loaded');
-
-      // Force visibility
-      document.body.style.setProperty('background', '#273c75', 'important');
-      document.body.style.setProperty('visibility', 'visible', 'important');
-      document.body.style.setProperty('opacity', '1', 'important');
-
-      // Debug navbar styles
-      const navbar = document.querySelector('.navbar');
-      const navContainer = document.querySelector('.nav-container');
-      const navLink = document.querySelector('.nav-link');
-      const navLogo = document.querySelector('.nav-logo');
-      const navLogoImg = document.querySelector('.nav-logo img');
-      if (navbar && navContainer && navLink) {
-        const navbarStyles = window.getComputedStyle(navbar);
-        const containerStyles = window.getComputedStyle(navContainer);
-        const linkStyles = window.getComputedStyle(navLink);
-        const logoStyles = navLogo ? window.getComputedStyle(navLogo) : null;
-        const logoImgStyles = navLogoImg ? window.getComputedStyle(navLogoImg) : null;
-
-        console.log('📊 BLOG Navbar Debug:');
-        console.log('  navbar padding:', navbarStyles.padding);
-        console.log('  navbar height:', navbarStyles.height);
-        console.log('  navbar box-sizing:', navbarStyles.boxSizing);
-        console.log('  navbar border-bottom:', navbarStyles.borderBottom);
-        console.log('  navbar font-family:', navbarStyles.fontFamily);
-        console.log('  nav-container padding:', containerStyles.padding);
-        console.log('  nav-container height:', containerStyles.height);
-        console.log('  nav-container box-sizing:', containerStyles.boxSizing);
-        console.log('  nav-container line-height:', containerStyles.lineHeight);
-        console.log('  nav-link font-size:', linkStyles.fontSize);
-        console.log('  nav-link font-weight:', linkStyles.fontWeight);
-        console.log('  nav-link font-family:', linkStyles.fontFamily);
-        console.log('  nav-link padding:', linkStyles.padding);
-        console.log('  nav-link line-height:', linkStyles.lineHeight);
-        console.log('  nav-link text-rendering:', linkStyles.textRendering);
-        if (logoStyles) {
-          console.log('  nav-logo line-height:', logoStyles.lineHeight);
-          console.log('  nav-logo height:', logoStyles.height);
-          console.log('  nav-logo display:', logoStyles.display);
-          console.log('  nav-logo align-items:', logoStyles.alignItems);
-        }
-        if (logoImgStyles) {
-          console.log('  nav-logo img width:', logoImgStyles.width);
-          console.log('  nav-logo img height:', logoImgStyles.height);
-          console.log('  nav-logo img display:', logoImgStyles.display);
-          console.log('  nav-logo img vertical-align:', logoImgStyles.verticalAlign);
-          console.log('  nav-logo img margin:', logoImgStyles.margin);
-        }
-      }
-
-      // Set active navigation state for blog page
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '/blog/') {
-          link.classList.add('active');
-        }
-      });
-
       // Initialize blog manager
       const blogManager = new BlogManager({
         postsDirectory: '/blog/posts/',
@@ -384,27 +117,8 @@
       try {
         await blogManager.loadPosts();
         blogManager.renderPostList(document.getElementById('blog-posts'));
-
-        // Initialize filters
-        const blogFilters = new BlogFilters(blogManager);
-        blogFilters.initialize(
-          document.getElementById('blog-filters'),
-          document.getElementById('blog-posts')
-        );
-
-        // Setup load more button
-        const loadMoreBtn = document.getElementById('load-more');
-        if (blogManager.posts.length > blogManager.postsPerPage) {
-          loadMoreBtn.style.display = 'inline-block';
-          loadMoreBtn.addEventListener('click', () => {
-            blogManager.loadMore();
-          });
-        }
       } catch (error) {
         console.error('Error loading blog posts:', error);
-        // Hide filters and load more button when there are no posts
-        document.getElementById('blog-filters').style.display = 'none';
-        document.getElementById('load-more').style.display = 'none';
         document.getElementById('blog-posts').innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem;">
                         <h2 style="font-size: 3rem; color: var(--color-text-white); font-weight: 700; margin: 0;">Coming Soon</h2>

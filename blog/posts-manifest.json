@@ -1,3 +1,40 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "slug": "why-i-built-fast-simple-invoice-maker",
+      "title": "Why I Built Fast Simple Invoice Maker",
+      "excerpt": "Most invoice tools made quick invoicing feel slow. This post breaks down the friction I saw and how I rebuilt the workflow around speed.",
+      "date": "2026-02-09",
+      "tags": ["Fast Simple Invoice Maker", "Product", "iOS", "Freelancers"],
+      "featuredImage": "/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png",
+      "readingTime": 4
+    },
+    {
+      "slug": "inside-the-pdf-engine",
+      "title": "Inside the PDF Engine: How Invoices and Receipts Are Rendered",
+      "excerpt": "A practical walkthrough of the SwiftUI to PDF pipeline, including vector rendering, fallback rendering, and why it matters for reliability.",
+      "date": "2026-02-08",
+      "tags": ["Fast Simple Invoice Maker", "SwiftUI", "PDF", "Engineering"],
+      "featuredImage": "/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png",
+      "readingTime": 5
+    },
+    {
+      "slug": "stripe-connect-payment-links",
+      "title": "Stripe Connect Payment Links: From Invoice to Payment Status",
+      "excerpt": "How online payments work today in Fast Simple Invoice Maker, from Stripe onboarding to payment link generation and paid status checks.",
+      "date": "2026-02-07",
+      "tags": ["Fast Simple Invoice Maker", "Stripe", "Payments", "Cloudflare Workers"],
+      "featuredImage": "/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png",
+      "readingTime": 6
+    },
+    {
+      "slug": "localization-currency-and-reminders",
+      "title": "Localization, Currency, and Due Date Reminders for Real Clients",
+      "excerpt": "How language, currency, and notification scheduling are implemented so freelancers can invoice in a way that matches their real workflows.",
+      "date": "2026-02-06",
+      "tags": ["Fast Simple Invoice Maker", "Localization", "Currency", "Notifications"],
+      "featuredImage": "/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png",
+      "readingTime": 5
+    }
+  ]
 }

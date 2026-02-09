@@ -6,10 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
   <meta name="supported-color-schemes" content="light">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Eric Savoie - iOS Developer - Debug Mode</title>
+  <meta name="description" content="Eric Savoie builds iOS apps across productivity, finance, AI, and utilities. Explore shipped App Store projects and engineering notes.">
+  <meta name="keywords" content="Eric Savoie, iOS developer, SwiftUI, App Store apps, Fast Simple Invoice Maker, indie developer">
+  <meta name="author" content="Eric Savoie">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Eric Savoie | iOS Developer & App Builder">
+  <meta property="og:description" content="Explore Eric Savoie's shipped iOS apps and product engineering work.">
+  <meta property="og:url" content="https://savoie.app/">
+  <meta property="og:image" content="https://savoie.app/assets/images/Eric.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Eric Savoie | iOS Developer & App Builder">
+  <meta name="twitter:description" content="Explore shipped iOS apps and product engineering work.">
+  <meta name="twitter:image" content="https://savoie.app/assets/images/Eric.png">
+  <link rel="canonical" href="https://savoie.app/">
+  <title>Eric Savoie | iOS Developer & App Builder</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eric Savoie",
+      "url": "https://savoie.app/",
+      "jobTitle": "iOS Developer",
+      "sameAs": [
+        "https://github.com/EricSavoie119",
+        "https://www.linkedin.com/in/eric-savoie-2a713241/"
+      ]
+    }
+  </script>
   <!-- Cache busting timestamp: 1737055000000 -->
   <!-- Lottie Player removed for better performance -->
   <!-- ALL EXTERNAL CSS DISABLED FOR DEBUGGING -->
@@ -18,440 +41,7 @@
   <link rel="stylesheet" href="/assets/css/shared-navbar.css">
 
   <!-- INLINE CSS ONLY TO PREVENT BLACK SCREEN -->
-  <style>
-    :root {
-      color-scheme: light !important;
-    }
-
-    html,
-    body {
-      background: #487eb0 !important;
-      /* Overscroll/page background */
-      background-color: #487eb0 !important;
-      color: #f5f6fa !important;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      min-height: 100vh !important;
-      width: 100% !important;
-      overflow-x: hidden;
-      visibility: visible !important;
-      opacity: 1 !important;
-      color-scheme: light !important;
-    }
-
-    *,
-    *::before,
-    *::after {
-      /* Don't override backgrounds globally or cards cannot change color */
-      color: inherit !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      color-scheme: light !important;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        color-scheme: light !important;
-      }
-
-      html,
-      body {
-        background: #487eb0 !important;
-        background-color: #487eb0 !important;
-        color: #f5f6fa !important;
-      }
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .hero {
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 5rem 0 0 0;
-      /* create space for fixed navbar */
-      margin-top: 0;
-      /* flush with top */
-      position: relative;
-      overflow: hidden;
-      background-color: #192a56 !important;
-      /* Hero background */
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      background: transparent !important;
-      padding: 2rem;
-    }
-
-    /* Enhanced Gradient Breathing Effect - Removed */
-    .hero::before {
-      display: none;
-    }
-
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-
-    .btn--primary {
-      background: #00a8ff;
-      color: white;
-      border: 2px solid #00a8ff;
-    }
-
-    .btn--primary:hover {
-      background: #e63600;
-      border-color: #e63600;
-      transform: translateY(-2px);
-    }
-
-    .btn--secondary {
-      background: transparent;
-      color: #f5f6fa;
-      border: 2px solid #00a8ff;
-      /* outline */
-    }
-
-    .btn--secondary:hover {
-      background: #00a8ff;
-      /* highlight */
-      color: #ffffff;
-      border-color: #00a8ff;
-    }
-
-    .btn--large {
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-    }
-
-    .section {
-      padding: 4rem 0;
-      background-color: #273c75 !important;
-      width: 100%;
-      position: relative;
-    }
-
-    .apps-section {
-      background-color: #273c75 !important;
-    }
-
-    .upcoming-section {
-      background-color: #273c75 !important;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #f5f6fa;
-      font-weight: 700;
-    }
-
-    .section-subtitle {
-      font-size: 1.2rem;
-      color: #f5f6fa;
-      margin-bottom: 2rem;
-    }
-
-    .hero-title {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      color: #f5f6fa;
-      font-weight: 700;
-      line-height: 1.1;
-      opacity: 0.9;
-    }
-
-    .hero-subtitle {
-      font-size: 1.3rem;
-      color: #f5f6fa;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .upcoming-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .app-card {
-      background: #487eb0 !important;
-      /* Card background (lighter than page bg) */
-      color: #f5f6fa !important;
-      /* Default foreground color inside cards */
-      padding: 2rem !important;
-      border-radius: 1rem !important;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      min-height: 280px;
-      height: 100%;
-    }
-
-    .tech-panel {
-      background: rgba(255, 255, 255, 0.08) !important;
-      border: 1px solid rgba(255, 255, 255, 0.18) !important;
-      padding: 0.75rem !important;
-      border-radius: 0.5rem !important;
-      margin-bottom: 1rem !important;
-    }
-
-    .tech-panel p {
-      color: #f5f6fa !important;
-      font-size: 0.85rem !important;
-      margin: 0 0 0.5rem 0 !important;
-      font-weight: 600 !important;
-    }
-
-    .tech-panel ul {
-      color: #ffffff !important;
-      font-size: 0.85rem !important;
-      margin: 0 !important;
-      padding-left: 1.25rem !important;
-    }
-
-    .app-card:hover,
-    .app-card.hover-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .app-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 1rem;
-    }
-
-    .app-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      background: linear-gradient(135deg, #00a8ff, #5abaff);
-    }
-
-    /* Fallback for broken images */
-    .app-icon img {
-      background: linear-gradient(135deg, #00a8ff, #5abaff);
-    }
-
-    .app-icon img:not([src]) {
-      background-image: url('/assets/images/default-app-icon.svg');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .app-icon img[src=""],
-    .app-icon img[src="#"] {
-      background-image: url('/assets/images/default-app-icon.svg');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .app-content h3 {
-      color: #f5f6fa;
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .app-tagline {
-      color: #00a8ff !important;
-      font-weight: 600 !important;
-      font-size: 0.9rem !important;
-      margin-bottom: 0.5rem !important;
-    }
-
-    .app-description {
-      color: #f5f6fa !important;
-      margin-bottom: 1rem !important;
-      line-height: 1.6 !important;
-    }
-
-    .app-features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .feature-tag {
-      background: rgba(255, 255, 255, 0.08);
-      color: #f5f6fa;
-      padding: 0.25rem 0.75rem;
-      border-radius: 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border: 1px solid #00a8ff;
-    }
-
-    .app-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .app-category {
-      background: #431a00;
-      color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 1rem;
-      font-size: 0.8rem;
-    }
-
-    .app-platforms {
-      display: flex;
-      gap: 0.25rem;
-    }
-
-    .platform-icon {
-      font-size: 1.2rem;
-    }
-
-    .app-pricing {
-      color: #00a8ff;
-      font-weight: 600;
-    }
-
-    .app-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: auto;
-    }
-
-    .app-store-btn img {
-      height: 40px;
-      width: auto;
-    }
-
-    .app-details-btn {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: #ff3c00;
-      border: 2px solid #ff3c00;
-    }
-
-    .btn-sm {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    /* Animation classes */
-    .fade-in-up {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-
-    .visible {
-      opacity: 1 !important;
-    }
-
-    .hover-lift {
-      transition: transform 0.3s ease;
-    }
-
-    .footer {
-      background: #7f8fa6 !important;
-      color: #f5f6fa !important;
-      padding: 3rem 0 1rem;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-section h4 {
-      margin-bottom: 1rem;
-      color: #ffb8a3;
-    }
-
-    .footer-section a {
-      color: #f5f6fa !important;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section a:hover {
-      color: #ffb8a3;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #66330a;
-      padding-top: 1rem;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .hero-cta {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/pages/home-inline.css?v=1">
   <!-- Google Fonts temporarily disabled for debugging -->
   <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -469,95 +59,17 @@
 
 <body>
   <script>
-    // Immediate visibility enforcement and dark mode override
-    document.documentElement.style.setProperty('background', '#273c75', 'important');
-    document.documentElement.style.setProperty('background-color', '#273c75', 'important');
-    document.documentElement.style.setProperty('color', '#ffffff', 'important');
-    document.documentElement.style.setProperty('visibility', 'visible', 'important');
+    // Keep explicit light-mode rendering without destructive cache/storage resets.
     document.documentElement.style.setProperty('color-scheme', 'light', 'important');
-
-    if (document.body) {
-      document.body.style.setProperty('background', '#273c75', 'important');
-      document.body.style.setProperty('background-color', '#273c75', 'important');
-      document.body.style.setProperty('color', '#ffffff', 'important');
-      document.body.style.setProperty('visibility', 'visible', 'important');
-      document.body.style.setProperty('opacity', '1', 'important');
-      document.body.style.setProperty('color-scheme', 'light', 'important');
-    }
-
-    // Override any dark mode styles immediately
-    const style = document.createElement('style');
-    style.textContent = `
-        html, body { 
-          background: #273c75 !important; 
-          color: #ffffff !important; 
-          color-scheme: light !important;
-        }
-        * { 
-          visibility: visible !important; 
-          opacity: 1 !important; 
-        }
-      `;
-    document.head.appendChild(style);
-
-    console.log('🚨 Emergency visibility and light mode script executed');
-
-    // Unregister all service workers and clear cache
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        for (let registration of registrations) {
-          registration.unregister();
-          console.log('🗑️ Unregistered service worker:', registration.scope);
-        }
-      });
-    }
-
-    // Clear all caches aggressively
-    if ('caches' in window) {
-      caches.keys().then(function (names) {
-        for (let name of names) {
-          caches.delete(name);
-          console.log('🗑️ Deleted cache:', name);
-        }
-        // Also try to clear specific cache names
-        const commonCacheNames = ['v1', 'assets', 'pages', 'api', 'runtime'];
-        commonCacheNames.forEach(name => {
-          caches.delete(name).then(() => console.log('🗑️ Cleared common cache:', name));
-        });
-      });
-    }
-
-    // Clear localStorage and sessionStorage
-    try {
-      localStorage.clear();
-      sessionStorage.clear();
-      console.log('🗑️ Cleared local and session storage');
-    } catch (e) {
-      console.log('⚠️ Could not clear storage:', e);
-    }
   </script>
   <!-- PWA Install Button temporarily removed for debugging -->
   <!-- Navigation -->
-  <nav class="navbar" id="main-navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="/" class="nav-logo-link">
-          <img src="/assets/images/Eric.png" alt="ERIC" style="width: 32px; height: 32px;">
-        </a>
-      </div>
-      <div class="nav-links">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#apps" class="nav-link">Apps</a>
-        <a href="/blog/" class="nav-link">Me</a>
-        <a href="/legal/privacy-policy.html" class="nav-link">Privacy</a>
-      </div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
-    </div>
-  </nav>
+  <div id="site-navbar"></div>
+
+  <script type="module">
+    import { renderNavbar } from '/assets/js/components/navbar.js?v=1';
+    renderNavbar('#site-navbar');
+  </script>
 
   <!-- Hero Section -->
   <section id="home" class="hero" data-scroll-animate>
@@ -613,142 +125,22 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>Connect</h4>
-          <a href="mailto:eric@savoie.app">Email</a>
-          <a href="https://www.linkedin.com/in/eric-savoie-2a713241/">LinkedIn</a>
-          <a href="https://github.com/EricSavoie119">GitHub</a>
-        </div>
-        <div class="footer-section">
-          <h4>Music</h4>
-          <a href="https://shakejudy.com" target="_blank">Shake Judy (Band)</a>
-          <a href="https://www.instagram.com/shake.judy/" target="_blank">Instagram</a>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">Click through to the Insta to see a live show
-          </p>
-        </div>
-        <div class="footer-section">
-          <h4>Legal</h4>
-          <a href="/legal/privacy-policy.html">Privacy Policy</a>
-          <a href="/legal/terms.html">Terms of Service</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Eric Savoie. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
+
+  <script type="module">
+    import { renderFooter } from '/assets/js/components/footer.js?v=2';
+    renderFooter('#site-footer');
+  </script>
 
   <!-- Module scripts temporarily removed for debugging -->
 
   <script>
     // Simple JavaScript for basic functionality
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('🚀 Basic site functionality loaded');
-
-      // Debug navbar styles
-      const navbar = document.querySelector('.navbar');
-      const navContainer = document.querySelector('.nav-container');
-      const navLink = document.querySelector('.nav-link');
-      const navLogo = document.querySelector('.nav-logo');
-      const navLogoImg = document.querySelector('.nav-logo img');
-      if (navbar && navContainer && navLink) {
-        const navbarStyles = window.getComputedStyle(navbar);
-        const containerStyles = window.getComputedStyle(navContainer);
-        const linkStyles = window.getComputedStyle(navLink);
-        const logoStyles = navLogo ? window.getComputedStyle(navLogo) : null;
-        const logoImgStyles = navLogoImg ? window.getComputedStyle(navLogoImg) : null;
-
-        console.log('📊 MAIN Navbar Debug:');
-        console.log('  navbar padding:', navbarStyles.padding);
-        console.log('  navbar height:', navbarStyles.height);
-        console.log('  navbar box-sizing:', navbarStyles.boxSizing);
-        console.log('  navbar border-bottom:', navbarStyles.borderBottom);
-        console.log('  navbar font-family:', navbarStyles.fontFamily);
-        console.log('  nav-container padding:', containerStyles.padding);
-        console.log('  nav-container height:', containerStyles.height);
-        console.log('  nav-container box-sizing:', containerStyles.boxSizing);
-        console.log('  nav-container line-height:', containerStyles.lineHeight);
-        console.log('  nav-link font-size:', linkStyles.fontSize);
-        console.log('  nav-link font-weight:', linkStyles.fontWeight);
-        console.log('  nav-link font-family:', linkStyles.fontFamily);
-        console.log('  nav-link padding:', linkStyles.padding);
-        console.log('  nav-link line-height:', linkStyles.lineHeight);
-        console.log('  nav-link text-rendering:', linkStyles.textRendering);
-        if (logoStyles) {
-          console.log('  nav-logo line-height:', logoStyles.lineHeight);
-          console.log('  nav-logo height:', logoStyles.height);
-          console.log('  nav-logo display:', logoStyles.display);
-          console.log('  nav-logo align-items:', logoStyles.alignItems);
-        }
-        if (logoImgStyles) {
-          console.log('  nav-logo img width:', logoImgStyles.width);
-          console.log('  nav-logo img height:', logoImgStyles.height);
-          console.log('  nav-logo img display:', logoImgStyles.display);
-          console.log('  nav-logo img vertical-align:', logoImgStyles.verticalAlign);
-          console.log('  nav-logo img margin:', logoImgStyles.margin);
-        }
-      }
-
-      // Set active navigation state based on current page
-      const currentPath = window.location.pathname;
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        // Check if we're on the home page
-        if (currentPath === '/' || currentPath === '/index.html') {
-          if (href === '#home' || href === '/') {
-            link.classList.add('active');
-          }
-        }
-        // Check if we're on a blog page
-        else if (currentPath.startsWith('/blog')) {
-          if (href === '/blog/' || href.startsWith('/blog')) {
-            link.classList.add('active');
-          }
-        }
-        // Check for other pages
-        else if (href && !href.startsWith('#') && currentPath.includes(href)) {
-          link.classList.add('active');
-        }
-      });
-
-      // Beautiful CSS gradient background is now active - no complex animations needed!
-      console.log('🎨 Using beautiful CSS gradient background for optimal performance');
-
-      // Force body visibility again and monitor for changes
-      document.body.style.setProperty('background', '#273c75', 'important');
-      document.body.style.setProperty('background-color', '#273c75', 'important');
-      document.body.style.setProperty('visibility', 'visible', 'important');
-      document.body.style.setProperty('opacity', '1', 'important');
-      document.body.style.setProperty('color-scheme', 'light', 'important');
-      console.log('🔧 Forced body visibility on DOMContentLoaded');
-
-      // Monitor for disappearing elements
-      const observer = new MutationObserver(() => {
-        document.body.style.setProperty('background', '#273c75', 'important');
-        document.body.style.setProperty('visibility', 'visible', 'important');
-        document.body.style.setProperty('opacity', '1', 'important');
-      });
-      observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
-
-      // Also set up an interval to ensure visibility
-      setInterval(() => {
-        document.body.style.setProperty('background', '#273c75', 'important');
-        document.body.style.setProperty('visibility', 'visible', 'important');
-        document.body.style.setProperty('opacity', '1', 'important');
-      }, 100);
-
       // Add fallback for broken images
       document.addEventListener('error', function (e) {
         if (e.target.tagName === 'IMG' && e.target.closest('.app-icon')) {
           e.target.src = '/assets/images/default-app-icon.svg';
-          console.log('🔄 Using fallback icon for broken image');
         }
       }, true);
 
@@ -882,8 +274,10 @@
                     <li>PDFKit</li>
                   </ul>
                 </div>
-                <div style="display: flex; gap: 1rem;">
+                <div class="fsim-links">
                   <a href="https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476" class="btn btn--secondary">App Store</a>
+                  <a href="/apps/fast-simple-invoice-maker/" class="btn btn--secondary">Features</a>
+                  <a href="/blog/why-i-built-fast-simple-invoice-maker/" class="btn btn--secondary btn--wide">Build Notes</a>
                 </div>
               </div>
             </div>
@@ -987,22 +381,16 @@
                 <a href="https://apps.apple.com/gb/app/tip-calculator-fast/id6752381498" class="btn btn--secondary">App Store</a>
               </div>
             </div>
-          `;
-      }
 
-      // Upcoming apps section
-      const upcomingAppsContainer = document.getElementById('upcoming-apps');
-      if (upcomingAppsContainer) {
-        upcomingAppsContainer.innerHTML = `
             <div class="app-card">
               <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <img src="/assets/images/apps/Swivo/appstore.png" alt="Swivo Icon" style="width: 80px; height: 80px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div>
                   <h3>Swivo</h3>
-                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">Waiting for App Store Review</span>
+                  <span style="color: #ff3c00; font-weight: 600; font-size: 0.9rem;">AI-generated social video feed</span>
                 </div>
               </div>
-              <p style="margin-bottom: 1rem;">Like TikTok for AI generation content. Currently in App Store review.</p>
+              <p style="margin-bottom: 1rem;">Like TikTok for AI generated content with cloud-powered video generation.</p>
               <div style="margin-top: auto;">
                 <div class="tech-panel">
                   <p>New tech learned:</p>
@@ -1014,20 +402,26 @@
                   </ul>
                 </div>
                 <div style="display: flex; gap: 1rem;">
-                  <a href="#" class="btn btn--secondary" aria-disabled="true">Coming Soon</a>
+                  <a href="https://apps.apple.com/gb/app/swivo/id6753713071" class="btn btn--secondary">App Store</a>
                 </div>
               </div>
             </div>
           `;
+      }
+
+      // Upcoming apps section
+      const upcomingAppsContainer = document.getElementById('upcoming-apps');
+      if (upcomingAppsContainer) {
+        upcomingAppsContainer.innerHTML = ``;
+        const upcomingSection = document.getElementById('upcoming');
+        if (upcomingSection) {
+          upcomingSection.style.display = 'none';
+        }
       }
     });
   </script>
 
   <!-- All complex JavaScript temporarily removed for debugging -->
 </body>
-
-</html>
-
-</html>
 
 </html>

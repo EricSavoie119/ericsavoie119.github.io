@@ -74,6 +74,14 @@ ericsavoie119.github.io/
 3. **Content Changes**: Use the AppManager system for app content
 4. **New Apps**: Add to `assets/js/config/apps.js` and create detail pages
 
+### Blog Build Helper
+
+When new blog posts are added to `blog/posts-manifest.json`, regenerate clean slug pages and sitemap blog entries:
+
+```bash
+node scripts/build-blog-pages.mjs
+```
+
 ## 🎨 Design System
 
 ### Color Scheme (Mental Load Theme)
