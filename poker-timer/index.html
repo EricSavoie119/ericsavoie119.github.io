@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poker Tournament Timer</title>
+  <style>
+    :root {
+      --bumble-yellow: #ffc629;
+      --bumble-black: #1d252c;
+      --lemon-yellow: #fdda64;
+      --soft-yellow: #fff7de;
+      --danger: #c24230;
+      --ok: #1f8b4d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+      color: var(--bumble-black);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 198, 41, 0.3), transparent 32%),
+        radial-gradient(circle at 85% 10%, rgba(253, 218, 100, 0.45), transparent 38%),
+        linear-gradient(160deg, #fffefa 0%, #fff7de 45%, #ffefbb 100%);
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+    }
+
+    .shell {
+      width: min(1120px, 100%);
+      border-radius: 24px;
+      border: 2px solid rgba(29, 37, 44, 0.15);
+      box-shadow: 0 18px 36px rgba(29, 37, 44, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(2px);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 1.1rem 1.4rem;
+      border-bottom: 2px solid rgba(29, 37, 44, 0.1);
+      background: linear-gradient(90deg, var(--bumble-yellow), var(--lemon-yellow));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .title {
+      margin: 0;
+      letter-spacing: 0.02em;
+      font-size: clamp(1.1rem, 1.7vw, 1.65rem);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: var(--bumble-black);
+      color: white;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      padding: 1.25rem;
+      grid-template-columns: 1.45fr 1fr;
+    }
+
+    .card {
+      background: white;
+      border: 2px solid rgba(29, 37, 44, 0.1);
+      border-radius: 18px;
+      padding: 1rem;
+      box-shadow: 0 8px 16px rgba(29, 37, 44, 0.06);
+    }
+
+    .timer {
+      display: grid;
+      gap: 0.9rem;
+      align-content: start;
+    }
+
+    .time {
+      font-size: clamp(2.4rem, 12vw, 6rem);
+      line-height: 1;
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--bumble-black);
+      text-align: center;
+      padding: 0.6rem;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #fff, var(--soft-yellow));
+      border: 2px solid rgba(29, 37, 44, 0.08);
+    }
+
+    .level-row {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stat {
+      border-radius: 14px;
+      padding: 0.8rem;
+      background: var(--soft-yellow);
+      border: 1px solid rgba(29, 37, 44, 0.12);
+    }
+
+    .label {
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      opacity: 0.75;
+      font-weight: 700;
+    }
+
+    .value {
+      margin: 0.35rem 0 0;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .controls {
+      display: grid;
+      gap: 0.65rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .inline-controls {
+      display: grid;
+      gap: 0.5rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 0.75rem 0.7rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+      min-height: 44px;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 12px rgba(29, 37, 44, 0.16);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .primary { background: var(--bumble-black); color: white; }
+    .yellow { background: var(--bumble-yellow); color: var(--bumble-black); }
+    .soft { background: var(--soft-yellow); color: var(--bumble-black); border: 1px solid rgba(29, 37, 44, 0.14); }
+
+    .config {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+
+    .field { display: grid; gap: 0.4rem; }
+
+    input {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(29, 37, 44, 0.22);
+      padding: 0.62rem 0.7rem;
+      font: inherit;
+      font-weight: 600;
+      background: #fff;
+      color: var(--bumble-black);
+    }
+
+    .levels {
+      max-height: 62vh;
+      overflow: auto;
+      display: grid;
+      gap: 0.6rem;
+      padding-right: 0.2rem;
+      margin-top: 0.7rem;
+    }
+
+    .level-item {
+      border: 1px solid rgba(29, 37, 44, 0.12);
+      border-radius: 12px;
+      padding: 0.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.65rem;
+      align-items: center;
+      background: #fff;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .level-item.current {
+      background: var(--soft-yellow);
+      border-color: rgba(29, 37, 44, 0.32);
+    }
+
+    .pill {
+      background: var(--bumble-black);
+      color: white;
+      padding: 0.24rem 0.48rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .blind-edit {
+      display: grid;
+      gap: 0.4rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .meta {
+      margin: 0;
+      font-size: 0.86rem;
+      opacity: 0.8;
+      font-weight: 600;
+    }
+
+    .danger {
+      color: var(--danger);
+      font-weight: 700;
+      min-height: 1.2rem;
+      margin: 0;
+    }
+
+    .danger.small {
+      min-height: 0;
+      font-size: 0.85rem;
+    }
+
+    .announcement {
+      margin: 0;
+      min-height: 1.5rem;
+      text-align: center;
+      font-weight: 800;
+      color: #cf5c36;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .announcement.live {
+      font-size: clamp(1rem, 2.2vw, 1.5rem);
+      min-height: 2rem;
+    }
+
+    .pulse {
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    .live {
+      display: none;
+      min-height: calc(100vh - 3rem);
+      width: min(1120px, 100%);
+      border-radius: 24px;
+      border: 2px solid rgba(29, 37, 44, 0.15);
+      background: linear-gradient(170deg, #fffef8 0%, #fff2c8 100%);
+      box-shadow: 0 20px 50px rgba(29, 37, 44, 0.2);
+      overflow: hidden;
+      padding: 1.4rem;
+      align-content: center;
+    }
+
+    .live-inner {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 2px solid rgba(29, 37, 44, 0.12);
+      display: grid;
+      gap: 1rem;
+      padding: 1.6rem;
+      height: 100%;
+      align-content: center;
+      text-align: center;
+    }
+
+    .live-title {
+      margin: 0;
+      font-size: clamp(1rem, 2vw, 1.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      opacity: 0.8;
+    }
+
+    .live-time {
+      margin: 0;
+      font-size: clamp(4rem, 24vw, 15rem);
+      line-height: 0.95;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--bumble-black);
+    }
+
+    .live-blinds {
+      margin: 0;
+      font-size: clamp(2rem, 10vw, 6rem);
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .blind-pair {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.18rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .blind-label {
+      font-size: 0.72em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(29, 37, 44, 0.72);
+    }
+
+    .blind-values {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      line-height: 1;
+    }
+
+    .sb-value {
+      color: #cf5c36;
+      font-weight: 800;
+    }
+
+    .bb-value {
+      color: #1f8b4d;
+      font-weight: 800;
+    }
+
+    .blind-sep {
+      color: rgba(29, 37, 44, 0.45);
+      font-weight: 700;
+    }
+
+    .live-level {
+      margin: 0;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 700;
+      opacity: 0.8;
+    }
+
+    .live-controls {
+      display: flex;
+      gap: 0.7rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+
+    .hidden { display: none !important; }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 198, 41, 0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(255, 198, 41, 0); }
+    }
+
+    @media (max-width: 920px) {
+      .grid { grid-template-columns: 1fr; }
+      .levels { max-height: none; }
+      .config { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .level-row { grid-template-columns: 1fr; }
+      .level-item { grid-template-columns: 1fr; }
+      .blind-edit { grid-template-columns: 1fr; }
+      body { padding: 0.85rem; }
+      .live { min-height: calc(100vh - 1.7rem); padding: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell" id="setupView" aria-live="polite">
+    <header class="header">
+      <h1 class="title">Office Poker Tournament Timer</h1>
+      <div class="header-right">
+        <span class="badge" id="statusBadge">Paused</span>
+        <button class="primary" id="liveModeBtn" type="button">Live Mode</button>
+      </div>
+    </header>
+
+    <section class="grid">
+      <article class="card timer">
+        <p class="time" id="timeDisplay">10:00</p>
+
+        <div class="level-row">
+          <section class="stat">
+            <p class="label">Current Level</p>
+            <p class="value" id="levelText">Level 1</p>
+          </section>
+          <section class="stat">
+            <p class="label">Current Blinds</p>
+            <p class="value" id="blindsText">25 / 50</p>
+          </section>
+          <section class="stat">
+            <p class="label">Next Blinds</p>
+            <p class="value" id="nextBlindsText">50 / 100</p>
+          </section>
+        </div>
+
+        <div class="controls">
+          <button class="primary" id="startPauseBtn" type="button">Start</button>
+          <button class="yellow" id="nextBtn" type="button">Next Level</button>
+          <button class="soft" id="prevBtn" type="button">Previous</button>
+          <button class="soft" id="resetBtn" type="button">Reset</button>
+        </div>
+
+        <div class="config">
+          <label class="field" for="minutesInput">
+            <span class="label">Minutes Per Level</span>
+            <input id="minutesInput" type="number" min="1" max="120" step="1" value="10" />
+          </label>
+          <button class="yellow" id="applyBtn" type="button">Apply Level Length</button>
+        </div>
+
+        <div class="inline-controls">
+          <button class="soft" id="testModeBtn" type="button">Test Mode: Off</button>
+        </div>
+
+        <p class="announcement" id="announcementText" aria-live="assertive"></p>
+        <p class="danger" id="errorText"></p>
+      </article>
+
+      <aside class="card">
+        <p class="label">Blind Structure (editable)</p>
+        <div class="inline-controls">
+          <button class="yellow" id="addLevelBtn" type="button">Add Level</button>
+          <button class="soft" id="trimLevelsBtn" type="button">Remove Last</button>
+        </div>
+        <p class="danger small" id="blindErrorText"></p>
+        <section class="levels" id="levelsContainer"></section>
+      </aside>
+    </section>
+  </main>
+
+  <section class="live" id="liveView" aria-live="polite">
+    <article class="live-inner">
+      <p class="live-title">Live Tournament Mode</p>
+      <p class="live-level" id="liveLevelText">Level 1</p>
+      <p class="live-time" id="liveTimeDisplay">10:00</p>
+      <p class="live-blinds" id="liveBlindsText">25 / 50</p>
+      <p class="announcement live" id="liveAnnouncementText" aria-live="assertive"></p>
+      <div class="live-controls">
+        <button class="primary" id="livePauseBtn" type="button">Start</button>
+        <button class="yellow" id="exitLiveBtn" type="button">Exit Live Mode</button>
+      </div>
+    </article>
+  </section>
+
+  <script>
+    const state = {
+      levelMinutes: 10,
+      levelSeconds: 600,
+      remainingSeconds: 600,
+      currentLevelIndex: 0,
+      isRunning: false,
+      timerId: null,
+      isLiveMode: false,
+      isTestMode: false,
+      announcementTimerId: null,
+      blindLevels: [
+        { sb: 10, bb: 20 },
+        { sb: 20, bb: 40 },
+        { sb: 30, bb: 60 },
+        { sb: 50, bb: 100 },
+        { sb: 100, bb: 200 },
+        { sb: 200, bb: 400 },
+        { sb: 300, bb: 600 },
+        { sb: 500, bb: 1000 },
+        { sb: 1000, bb: 2000 },
+        { sb: 2000, bb: 4000 },
+        { sb: 3000, bb: 6000 },
+        { sb: 5000, bb: 10000 }
+      ],
+      audioCtx: null
+    };
+
+    const els = {
+      setupView: document.getElementById("setupView"),
+      liveView: document.getElementById("liveView"),
+      timeDisplay: document.getElementById("timeDisplay"),
+      levelText: document.getElementById("levelText"),
+      blindsText: document.getElementById("blindsText"),
+      nextBlindsText: document.getElementById("nextBlindsText"),
+      statusBadge: document.getElementById("statusBadge"),
+      startPauseBtn: document.getElementById("startPauseBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      prevBtn: document.getElementById("prevBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      minutesInput: document.getElementById("minutesInput"),
+      applyBtn: document.getElementById("applyBtn"),
+      testModeBtn: document.getElementById("testModeBtn"),
+      announcementText: document.getElementById("announcementText"),
+      errorText: document.getElementById("errorText"),
+      blindErrorText: document.getElementById("blindErrorText"),
+      levelsContainer: document.getElementById("levelsContainer"),
+      addLevelBtn: document.getElementById("addLevelBtn"),
+      trimLevelsBtn: document.getElementById("trimLevelsBtn"),
+      liveModeBtn: document.getElementById("liveModeBtn"),
+      livePauseBtn: document.getElementById("livePauseBtn"),
+      exitLiveBtn: document.getElementById("exitLiveBtn"),
+      liveLevelText: document.getElementById("liveLevelText"),
+      liveTimeDisplay: document.getElementById("liveTimeDisplay"),
+      liveBlindsText: document.getElementById("liveBlindsText"),
+      liveAnnouncementText: document.getElementById("liveAnnouncementText")
+    };
+
+    function formatMoney(value) {
+      return new Intl.NumberFormat("en-US").format(value);
+    }
+
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function formatBlindMarkup(sb, bb, withPrefix = true) {
+      const prefix = withPrefix ? '<span class="blind-label">Blinds</span>' : "";
+      return `${prefix}<span class="blind-values"><span class="sb-value">${formatMoney(sb)}</span><span class="blind-sep">/</span><span class="bb-value">${formatMoney(bb)}</span></span>`;
+    }
+
+    function getCurrentLevel() {
+      return state.blindLevels[state.currentLevelIndex];
+    }
+
+    function getNextLevel() {
+      return state.blindLevels[state.currentLevelIndex + 1] || null;
+    }
+
+    function ensureAudioContext() {
+      if (!state.audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) {
+          state.audioCtx = new Ctx();
+        }
+      }
+      if (state.audioCtx && state.audioCtx.state === "suspended") {
+        state.audioCtx.resume().catch(() => {});
+      }
+    }
+
+    function playLevelUpSound() {
+      if (!state.audioCtx) {
+        return;
+      }
+
+      const now = state.audioCtx.currentTime;
+      [0, 0.15, 0.3].forEach((offset, i) => {
+        const osc = state.audioCtx.createOscillator();
+        const gain = state.audioCtx.createGain();
+        osc.type = "triangle";
+        osc.frequency.value = [740, 988, 1318][i];
+        gain.gain.setValueAtTime(0.0001, now + offset);
+        gain.gain.exponentialRampToValueAtTime(0.18, now + offset + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.14);
+        osc.connect(gain);
+        gain.connect(state.audioCtx.destination);
+        osc.start(now + offset);
+        osc.stop(now + offset + 0.16);
+      });
+    }
+
+    function speakAnnouncement(text) {
+      if (!("speechSynthesis" in window)) {
+        return;
+      }
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function announce(text, timeoutMs = 2200) {
+      els.announcementText.textContent = text;
+      els.liveAnnouncementText.textContent = text;
+      speakAnnouncement(text);
+
+      if (state.announcementTimerId) {
+        clearTimeout(state.announcementTimerId);
+      }
+
+      state.announcementTimerId = setTimeout(() => {
+        els.announcementText.textContent = "";
+        els.liveAnnouncementText.textContent = "";
+      }, timeoutMs);
+    }
+
+    function handleTimeAnnouncements() {
+      const t = state.remainingSeconds;
+      if (t === 60) {
+        announce("1 minute remaining");
+      } else if (t === 30) {
+        announce("30 seconds to go");
+      } else if (t <= 10 && t >= 1) {
+        announce(String(t), 900);
+      }
+    }
+
+    function renderLevels() {
+      els.levelsContainer.innerHTML = "";
+      state.blindLevels.forEach((level, index) => {
+        const wrapper = document.createElement("article");
+        wrapper.className = `level-item ${index === state.currentLevelIndex ? "current" : ""}`;
+
+        const levelTag = document.createElement("span");
+        levelTag.className = "pill";
+        levelTag.textContent = `L${index + 1}`;
+
+        const editWrap = document.createElement("div");
+        editWrap.className = "blind-edit";
+
+        const sbInput = document.createElement("input");
+        sbInput.type = "number";
+        sbInput.min = "1";
+        sbInput.step = "1";
+        sbInput.value = String(level.sb);
+        sbInput.setAttribute("aria-label", `Level ${index + 1} small blind`);
+
+        const bbInput = document.createElement("input");
+        bbInput.type = "number";
+        bbInput.min = "1";
+        bbInput.step = "1";
+        bbInput.value = String(level.bb);
+        bbInput.setAttribute("aria-label", `Level ${index + 1} big blind`);
+
+        sbInput.addEventListener("change", () => updateBlindValue(index, "sb", sbInput.value));
+        bbInput.addEventListener("change", () => updateBlindValue(index, "bb", bbInput.value));
+
+        editWrap.append(sbInput, bbInput);
+
+        const marker = document.createElement("span");
+        marker.className = "meta";
+        marker.textContent = index === state.currentLevelIndex ? "Now" : "";
+
+        wrapper.append(levelTag, editWrap, marker);
+        els.levelsContainer.appendChild(wrapper);
+      });
+    }
+
+    function renderViewMode() {
+      els.setupView.classList.toggle("hidden", state.isLiveMode);
+      els.liveView.style.display = state.isLiveMode ? "grid" : "none";
+    }
+
+    function render() {
+      const current = getCurrentLevel();
+      const next = getNextLevel();
+      const time = formatTime(state.remainingSeconds);
+      const blindsMarkup = formatBlindMarkup(current.sb, current.bb, true);
+
+      els.timeDisplay.textContent = time;
+      els.levelText.textContent = `Level ${state.currentLevelIndex + 1}`;
+      els.blindsText.innerHTML = `<span class="blind-pair">${blindsMarkup}</span>`;
+      els.nextBlindsText.innerHTML = next
+        ? `<span class="blind-pair">${formatBlindMarkup(next.sb, next.bb, true)}</span>`
+        : "Final Level";
+
+      els.liveLevelText.textContent = `Level ${state.currentLevelIndex + 1}`;
+      els.liveTimeDisplay.textContent = time;
+      els.liveBlindsText.innerHTML = `<span class="blind-pair">${blindsMarkup}</span>`;
+
+      els.statusBadge.textContent = state.isRunning ? "Running" : "Paused";
+      els.statusBadge.style.background = state.isRunning ? "var(--ok)" : "var(--bumble-black)";
+      els.startPauseBtn.textContent = state.isRunning ? "Pause" : "Start";
+      els.livePauseBtn.textContent = state.isRunning ? "Pause" : "Start";
+      els.testModeBtn.textContent = state.isTestMode ? "Test Mode: On (3s)" : "Test Mode: Off";
+
+      els.prevBtn.disabled = state.currentLevelIndex === 0;
+      els.nextBtn.disabled = state.currentLevelIndex === state.blindLevels.length - 1;
+      els.trimLevelsBtn.disabled = state.blindLevels.length <= 1;
+
+      const warningTime = state.remainingSeconds <= 30 && state.isRunning;
+      els.timeDisplay.classList.toggle("pulse", warningTime);
+      els.liveTimeDisplay.classList.toggle("pulse", warningTime);
+
+      renderLevels();
+      renderViewMode();
+    }
+
+    function stopTimer() {
+      if (state.timerId) {
+        clearInterval(state.timerId);
+        state.timerId = null;
+      }
+      state.isRunning = false;
+      render();
+    }
+
+    function advanceLevel() {
+      if (state.currentLevelIndex < state.blindLevels.length - 1) {
+        state.currentLevelIndex += 1;
+        state.remainingSeconds = state.levelSeconds;
+        playLevelUpSound();
+        announce("blinds have just gone up");
+      } else {
+        stopTimer();
+        state.remainingSeconds = 0;
+      }
+      render();
+    }
+
+    function startTimer() {
+      ensureAudioContext();
+      if (state.timerId) {
+        return;
+      }
+
+      state.isRunning = true;
+      state.timerId = setInterval(() => {
+        if (state.remainingSeconds > 0) {
+          state.remainingSeconds -= 1;
+          handleTimeAnnouncements();
+          render();
+          return;
+        }
+
+        advanceLevel();
+      }, 1000);
+
+      render();
+    }
+
+    function toggleTimer() {
+      if (state.isRunning) {
+        stopTimer();
+      } else {
+        startTimer();
+      }
+    }
+
+    function resetTimer() {
+      stopTimer();
+      state.currentLevelIndex = 0;
+      state.remainingSeconds = state.levelSeconds;
+      render();
+    }
+
+    function changeLevel(direction) {
+      const newIndex = state.currentLevelIndex + direction;
+      if (newIndex < 0 || newIndex >= state.blindLevels.length) {
+        return;
+      }
+
+      state.currentLevelIndex = newIndex;
+      state.remainingSeconds = state.levelSeconds;
+      playLevelUpSound();
+      if (direction > 0) {
+        announce("blinds have just gone up");
+      }
+      render();
+    }
+
+    function applyLevelMinutes() {
+      if (state.isTestMode) {
+        els.errorText.textContent = "Turn off Test Mode to apply minute-based level length.";
+        return;
+      }
+      const parsed = Number.parseInt(els.minutesInput.value, 10);
+      if (!Number.isFinite(parsed) || parsed < 1 || parsed > 120) {
+        els.errorText.textContent = "Enter a level length from 1 to 120 minutes.";
+        return;
+      }
+
+      els.errorText.textContent = "";
+      state.levelMinutes = parsed;
+      state.levelSeconds = parsed * 60;
+      state.remainingSeconds = state.levelSeconds;
+      stopTimer();
+      render();
+    }
+
+    function toggleTestMode() {
+      state.isTestMode = !state.isTestMode;
+      els.errorText.textContent = "";
+
+      if (state.isTestMode) {
+        state.levelSeconds = 3;
+      } else {
+        state.levelSeconds = state.levelMinutes * 60;
+      }
+
+      state.remainingSeconds = state.levelSeconds;
+      stopTimer();
+      render();
+    }
+
+    function updateBlindValue(index, key, rawValue) {
+      const value = Number.parseInt(rawValue, 10);
+      if (!Number.isFinite(value) || value <= 0) {
+        els.blindErrorText.textContent = "Blind values must be positive whole numbers.";
+        render();
+        return;
+      }
+
+      const level = state.blindLevels[index];
+      const nextLevel = { ...level, [key]: value };
+      if (nextLevel.bb < nextLevel.sb) {
+        els.blindErrorText.textContent = "Big blind cannot be smaller than small blind.";
+        render();
+        return;
+      }
+
+      els.blindErrorText.textContent = "";
+      state.blindLevels[index] = nextLevel;
+      render();
+    }
+
+    function addLevel() {
+      const last = state.blindLevels[state.blindLevels.length - 1] || { sb: 25, bb: 50 };
+      state.blindLevels.push({ sb: last.sb * 2, bb: last.bb * 2 });
+      render();
+    }
+
+    function trimLevel() {
+      if (state.blindLevels.length <= 1) {
+        return;
+      }
+      state.blindLevels.pop();
+      if (state.currentLevelIndex >= state.blindLevels.length) {
+        state.currentLevelIndex = state.blindLevels.length - 1;
+        state.remainingSeconds = state.levelSeconds;
+      }
+      render();
+    }
+
+    function enterLiveMode() {
+      state.isLiveMode = true;
+      ensureAudioContext();
+      render();
+    }
+
+    function exitLiveMode() {
+      state.isLiveMode = false;
+      render();
+    }
+
+    document.addEventListener("click", ensureAudioContext, { once: true });
+
+    els.startPauseBtn.addEventListener("click", toggleTimer);
+    els.livePauseBtn.addEventListener("click", toggleTimer);
+    els.nextBtn.addEventListener("click", () => changeLevel(1));
+    els.prevBtn.addEventListener("click", () => changeLevel(-1));
+    els.resetBtn.addEventListener("click", resetTimer);
+    els.applyBtn.addEventListener("click", applyLevelMinutes);
+    els.testModeBtn.addEventListener("click", toggleTestMode);
+    els.addLevelBtn.addEventListener("click", addLevel);
+    els.trimLevelsBtn.addEventListener("click", trimLevel);
+    els.liveModeBtn.addEventListener("click", enterLiveMode);
+    els.exitLiveBtn.addEventListener("click", exitLiveMode);
+
+    els.minutesInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        applyLevelMinutes();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
