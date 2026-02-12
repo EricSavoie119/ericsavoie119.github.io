@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Poker Tournament Timer</title>
+  <title>Poker Tournament Timer - Free Blinds Clock for Texas Hold'em</title>
+  <meta name="description" content="Free poker tournament timer with editable blinds, live mode, audible countdown, and automatic level increases. Built for Texas Hold'em office and home tournaments." />
+  <meta name="keywords" content="poker timer, poker tournament timer, blinds timer, texas hold'em clock, poker blinds clock, tournament clock" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://savoie.app/poker-timer/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Poker Tournament Timer - Free Blinds Clock" />
+  <meta property="og:description" content="Run your poker tournament with auto blind increases, live mode, countdown announcements, and editable level structure." />
+  <meta property="og:url" content="https://savoie.app/poker-timer/" />
+  <meta property="og:site_name" content="Savoie" />
+  <meta property="og:image" content="https://savoie.app/assets/images/default-app-icon.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Poker Tournament Timer - Free Blinds Clock" />
+  <meta name="twitter:description" content="Editable blind levels, live mode, and audible countdown for Texas Hold'em tournaments." />
+  <meta name="twitter:image" content="https://savoie.app/assets/images/default-app-icon.svg" />
   <style>
     :root {
       --bumble-yellow: #ffc629;
@@ -389,6 +403,44 @@
 
     .hidden { display: none !important; }
 
+    .seo-content {
+      width: min(1120px, 100%);
+      margin-top: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(29, 37, 44, 0.1);
+      border-radius: 20px;
+      padding: 1.2rem;
+    }
+
+    .seo-content h2,
+    .seo-content h3 {
+      margin: 0 0 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .seo-content p {
+      margin: 0 0 0.85rem;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .seo-content ul {
+      margin: 0 0 1rem;
+      padding-left: 1.1rem;
+    }
+
+    .seo-content li {
+      margin-bottom: 0.35rem;
+      font-weight: 500;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(29, 37, 44, 0.12);
+      padding-top: 0.7rem;
+      margin-top: 0.7rem;
+    }
+
     @keyframes pulse {
       0%, 100% { box-shadow: 0 0 0 0 rgba(255, 198, 41, 0.5); }
       50% { box-shadow: 0 0 0 12px rgba(255, 198, 41, 0); }
@@ -487,6 +539,86 @@
       </div>
     </article>
   </section>
+
+  <section class="seo-content" aria-label="Poker timer details and FAQ">
+    <h2>Free Poker Tournament Timer</h2>
+    <p>
+      This poker tournament timer is designed for Texas Hold'em events where blinds increase on a fixed schedule.
+      You can run office poker nights, home games, and team tournaments with automatic level transitions.
+    </p>
+    <h3>Features</h3>
+    <ul>
+      <li>Automatic blind level increases after each timer round.</li>
+      <li>Editable small blind and big blind values for each level.</li>
+      <li>Large live mode display for TVs and shared tournament screens.</li>
+      <li>Voice and on-screen announcements for 1 minute, 30 seconds, and 10 second countdown.</li>
+      <li>Level-up sound when blinds increase.</li>
+    </ul>
+
+    <h3>Poker Timer FAQ</h3>
+    <div class="faq-item">
+      <p><strong>How do I set custom blinds?</strong> Edit the values in the Blind Structure section and adjust each level before starting.</p>
+      <p><strong>Can I use this as a tournament clock?</strong> Yes. It is built specifically as a poker tournament clock with blind rounds.</p>
+      <p><strong>Does live mode include pause?</strong> Yes. Live mode supports start and pause controls.</p>
+      <p><strong>Does it announce blind changes?</strong> Yes. The timer announces countdown checkpoints and says when blinds have just gone up.</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Poker Tournament Timer",
+      "url": "https://savoie.app/poker-timer/",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web",
+      "description": "Free poker tournament timer with editable blind levels, live mode, and automatic blind increases.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Automatic level progression",
+        "Editable blind structure",
+        "Live mode with large display",
+        "Audible countdown announcements"
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I set custom blinds?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Edit the small blind and big blind fields in the Blind Structure section before starting the timer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this as a poker tournament clock?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The timer supports blind rounds, live mode, countdown announcements, and automatic level progression."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does live mode include pause?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Live mode includes a Start and Pause control for tournament management."
+          }
+        }
+      ]
+    }
+  </script>
 
   <script>
     const state = {
