@@ -33,8 +33,7 @@ export function renderNavbar(containerSelector = '#site-navbar') {
           <div class="nav-links">
             <a href="${homeHref}" class="nav-link ${isHome && !isApps ? 'active' : ''}">Home</a>
             <a href="${appsHref}" class="nav-link ${isApps ? 'active' : ''}">Apps</a>
-            <a href="/blog/" class="nav-link ${isBlog ? 'active' : ''}">Blog</a>
-            <a href="/legal/privacy-policy.html" class="nav-link ${isPrivacy ? 'active' : ''}">Privacy</a>
+<a href="/legal/privacy-policy.html" class="nav-link ${isPrivacy ? 'active' : ''}">Privacy</a>
           </div>
           <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
             <span class="nav-toggle-line"></span>
