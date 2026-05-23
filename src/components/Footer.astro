@@ -1,0 +1,31 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container">
+    <span>© {year} Eric Savoie</span>
+    <a href="/legal/privacy-policy.html">Privacy</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding: 2rem 0;
+    margin-top: 4rem;
+  }
+  .footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+  .footer a {
+    color: var(--color-text-secondary);
+    transition: color 150ms ease;
+  }
+  .footer a:hover {
+    color: var(--color-accent);
+  }
+</style>
