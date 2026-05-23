@@ -1,0 +1,51 @@
+---
+const path = Astro.url.pathname;
+const isPrivacy = path.includes('privacy-policy');
+---
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">Eric Savoie</a>
+    <div class="nav-links">
+      <a href="/#apps" class="nav-link">Apps</a>
+      <a href="/legal/privacy-policy.html" class:list={['nav-link', { active: isPrivacy }]}>Privacy</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-nav-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    color: var(--color-text-primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: -0.2px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-link {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    transition: color 150ms ease;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-accent);
+  }
+</style>
