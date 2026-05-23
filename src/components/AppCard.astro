@@ -1,0 +1,128 @@
+---
+import type { App } from '../data/apps';
+
+interface Props {
+  app: App;
+}
+const { app } = Astro.props;
+---
+<div class="app-card">
+  <div class="app-card-header">
+    <img src={app.image} alt={`${app.name} icon`} class="app-icon" width="52" height="52" />
+    <div>
+      <h3 class="app-name">{app.name}</h3>
+      <span class="app-category">{app.category}</span>
+    </div>
+  </div>
+  <div class="app-card-body">
+    <p class="app-description">{app.description}</p>
+    {app.tech.length > 0 && (
+      <div class="tech-tags">
+        {app.tech.map(t => <span class="tech-tag">{t}</span>)}
+      </div>
+    )}
+    <div class="app-links">
+      {app.links.appStore && (
+        <a href={app.links.appStore} class="btn-store" target="_blank" rel="noopener noreferrer">
+          App Store ↗
+        </a>
+      )}
+      {app.links.features && (
+        <a href={app.links.features} class="btn-features">Features</a>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .app-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-card);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-card-header {
+    background: var(--color-surface-raised);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .app-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  .app-name {
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .app-category {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .app-card-body {
+    padding: 14px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .app-description {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tech-tag {
+    background: var(--color-bg);
+    color: var(--color-accent);
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+  }
+
+  .app-links {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    padding-top: 4px;
+  }
+
+  .btn-store,
+  .btn-features {
+    background: transparent;
+    border: 1px solid var(--color-border-card);
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: border-color 150ms ease, color 150ms ease;
+    cursor: pointer;
+  }
+
+  .btn-store:hover,
+  .btn-features:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text-primary);
+  }
+</style>
