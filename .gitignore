@@ -11,3 +11,10 @@
 
 # Node (if ever used)
 node_modules/
+
+# Visual brainstorming sessions
+.superpowers/
+
+# Astro build output
+dist/
+.astro/
