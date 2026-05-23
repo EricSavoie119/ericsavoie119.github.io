@@ -1,6 +1,62 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import AppCard from '../components/AppCard.astro';
+import Footer from '../components/Footer.astro';
+import { apps } from '../data/apps';
 ---
-<html lang="en">
-  <head><title>Eric Savoie</title></head>
-  <body><h1>Hello</h1></body>
-</html>
+<Layout
+  title="Eric Savoie | iOS Developer & App Builder"
+  description="Eric Savoie builds iOS apps across productivity, finance, AI, and utilities. Explore shipped App Store projects."
+  canonicalUrl="https://savoie.app/"
+>
+  <Navbar />
+  <Hero />
+  <main>
+    <section id="apps" class="apps-section">
+      <div class="container">
+        <h2 class="section-title">Live on the App Store</h2>
+        <p class="section-subtitle">Apps currently available for download</p>
+        <div class="apps-grid">
+          {apps.map(app => <AppCard app={app} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .apps-section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .apps-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .apps-grid { grid-template-columns: 1fr; }
+  }
+</style>
