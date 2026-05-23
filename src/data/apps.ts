@@ -22,15 +22,15 @@ export const apps: App[] = [
   {
     name: 'Bread Engineer',
     image: '/assets/images/icons/BreadEngineer.png',
-    category: 'ML‑driven fermentation timer for perfect loaves',
-    description: 'On‑device machine learning predicts peak fermentation for your dough—no more guesswork. Generous two‑month trial included.',
-    tech: ['CoreML', 'CloudKit', 'SwiftData', 'Firebase Auth', 'Firebase Analytics', 'Tuist', 'Module architecture', 'Photo Compression', 'Fastlane'],
+    category: 'Equation-based fermentation timer',
+    description: 'Predicts peak fermentation for your dough using proven equations—no more guesswork. Generous two‑month trial included.',
+    tech: ['CloudKit', 'SwiftData', 'Firebase Auth', 'Firebase Analytics', 'Tuist', 'Module architecture', 'Photo Compression', 'Fastlane'],
     links: { appStore: 'https://apps.apple.com/gb/app/bread-engineer/id6738381066' },
   },
   {
     name: 'GridMetrics',
     image: '/assets/images/apps/GridMetrics/1024.png',
-    category: 'Real‑time electricity grid insights',
+    category: 'Real-time grid insights',
     description: 'See the real time distribution of the UK grid generation mix.',
     tech: ['AWS APIGateway', 'AWS Lambda', 'AWS S3', 'AWS EC2', 'AWS ECR'],
     links: { appStore: 'https://apps.apple.com/gb/app/gridmetrics/id6752292390' },
@@ -96,7 +96,7 @@ export const apps: App[] = [
   },
   {
     name: 'Water?',
-    image: '/assets/images/apps/Water%3F/appstore.png',
+    image: '/assets/images/apps/Water/appstore.png',
     category: 'Elegant hydration tracker',
     description: "Track the amount of water you're drinking during the day - interesting to see if you hit the water requirements every day.",
     tech: [],

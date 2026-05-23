@@ -32,6 +32,30 @@ import { apps } from '../data/apps';
     padding: 4rem 0;
   }
 
+  .origin-strip {
+    padding: 1.25rem 0;
+  }
+
+  .origin-line {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .flag {
+    width: 18px;
+    height: auto;
+    border-radius: 2px;
+  }
+
+  .sep {
+    color: var(--color-border);
+    margin: 0 0.15rem;
+  }
+
   .section-title {
     font-size: 1.75rem;
     font-weight: 700;
@@ -49,7 +73,9 @@ import { apps } from '../data/apps';
   .apps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    grid-auto-rows: auto 1fr;
+    column-gap: 1.25rem;
+    row-gap: 0;
   }
 
   @media (max-width: 900px) {

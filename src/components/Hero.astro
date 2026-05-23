@@ -2,46 +2,43 @@
 ---
 <section class="hero" id="home">
   <div class="container hero-inner">
-    <div class="hero-text">
-      <span class="hero-tag">iOS Developer</span>
-      <h1 class="hero-name">Eric Savoie</h1>
-      <p class="hero-tagline">Building iOS apps one experiment at a time.</p>
-    </div>
     <div class="hero-photo">
-      <img src="/assets/images/headshot.png" alt="Eric Savoie" width="120" height="120" />
+      <img src="/assets/images/headshot.jpg" alt="Eric Savoie" width="160" height="160" />
     </div>
+    <div class="hero-text">
+      <h1 class="hero-name">Eric Savoie</h1>
+      <p class="hero-tagline"><span class="slash">//</span> iOS Developer</p>
+    </div>
+  </div>
+  <div class="container origin-wrap">
+    <p class="origin-line">Dual citizen</p>
+    <p class="origin-line">
+      <img src="/assets/images/flag-canada.svg" alt="Canada" class="flag" />
+      Born in Canada
+      <span class="sep">·</span>
+      <img src="/assets/images/flag-uk.svg" alt="UK" class="flag" />
+      Living in London
+    </p>
   </div>
 </section>
 
 <style>
   .hero {
-    padding: 5rem 0 4rem;
+    padding: 5rem 0 0;
     border-bottom: 1px solid var(--color-border);
   }
 
   .hero-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
+    justify-content: flex-start;
+    gap: 2.5rem;
   }
 
   .hero-text {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-  }
-
-  .hero-tag {
-    display: inline-block;
-    background: var(--color-accent);
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: var(--radius-pill);
-    letter-spacing: 0.05em;
-    width: fit-content;
   }
 
   .hero-name {
@@ -56,26 +53,59 @@
     font-size: 1.1rem;
     color: var(--color-text-secondary);
     line-height: 1.5;
-    max-width: 420px;
   }
 
-.hero-photo img {
-    width: 120px;
-    height: 120px;
+  .slash {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .origin-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-left: calc(160px + 2.5rem + 1.5rem);
+    padding-bottom: 0.75rem;
+  }
+
+  .origin-line {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .flag {
+    height: 12px;
+    width: auto;
+  }
+
+  .sep {
+    color: var(--color-border);
+    margin: 0 0.15rem;
+  }
+
+
+  .hero-photo img {
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--color-surface-raised);
+    border: 3px solid var(--color-border);
     background: var(--color-surface-raised);
+    flex-shrink: 0;
   }
 
   @media (max-width: 600px) {
     .hero-inner {
-      flex-direction: column-reverse;
+      flex-direction: column;
       align-items: flex-start;
     }
     .hero-photo img {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
     }
   }
 </style>

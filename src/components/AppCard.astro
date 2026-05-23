@@ -40,8 +40,10 @@ const { app } = Astro.props;
     border: 1px solid var(--color-border-card);
     border-radius: var(--radius-card);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 2;
+    margin-bottom: 1.25rem;
   }
 
   .app-card-header {
@@ -70,6 +72,7 @@ const { app } = Astro.props;
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.75rem;
     font-weight: 500;
+    line-height: 1.5;
   }
 
   .app-card-body {
