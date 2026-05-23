@@ -6,16 +6,6 @@
       <span class="hero-tag">iOS Developer</span>
       <h1 class="hero-name">Eric Savoie</h1>
       <p class="hero-tagline">Building iOS apps one experiment at a time.</p>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-num">12</span>
-          <span class="stat-label">Apps shipped</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">6+</span>
-          <span class="stat-label">Tech stacks</span>
-        </div>
-      </div>
     </div>
     <div class="hero-photo">
       <img src="/assets/images/headshot.png" alt="Eric Savoie" width="120" height="120" />
@@ -44,8 +34,8 @@
 
   .hero-tag {
     display: inline-block;
-    background: var(--color-surface-raised);
-    color: var(--color-accent);
+    background: var(--color-accent);
+    color: #ffffff;
     font-size: 0.75rem;
     font-weight: 600;
     padding: 4px 10px;
@@ -69,36 +59,7 @@
     max-width: 420px;
   }
 
-  .hero-stats {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-
-  .stat {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    padding: 8px 14px;
-    text-align: center;
-  }
-
-  .stat-num {
-    display: block;
-    color: var(--color-accent);
-    font-size: 1.4rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .stat-label {
-    display: block;
-    color: var(--color-text-secondary);
-    font-size: 0.7rem;
-    margin-top: 2px;
-  }
-
-  .hero-photo img {
+.hero-photo img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
