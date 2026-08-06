@@ -1,0 +1,1818 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Follow SwiftUI from App.main() through UIApplicationMain and the scene lifecycle to the window that appears on screen.">
+  <title>Following SwiftUI from App.main() to UIWindow — Look Under the Hood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f9fb;
+      --surface: #ffffff;
+      --surface-subtle: #f1f2f5;
+      --ink: #22252a;
+      --muted: #5d646d;
+      --faint: #8a9098;
+      --border: #e2e5ea;
+      --accent: #c51b29;
+      --accent-soft: #fff1f2;
+      --code: #1f2227;
+      --code-ink: #f5f7fa;
+      --code-muted: #9da4ae;
+      --radius: 12px;
+      --content: 720px;
+      --wide: 940px;
+      --site: 1100px;
+      --font: "JetBrains Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .reading-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 200;
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      transition: width 80ms linear;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: rgba(34, 37, 42, 0.97);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      width: min(var(--site), calc(100% - 48px));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #aeb3b9;
+      font-size: 0.8rem;
+    }
+
+    .nav-links a {
+      transition: color 150ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: var(--accent);
+    }
+
+    .article-header {
+      border-bottom: 1px solid var(--border);
+      background:
+        linear-gradient(rgba(226,229,234,0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(226,229,234,0.45) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .article-header-shade {
+      background: linear-gradient(180deg, rgba(249,249,251,0.7), var(--bg));
+    }
+
+    .header-inner {
+      width: min(var(--site), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 60px;
+      color: var(--faint);
+      font-size: 0.72rem;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--accent);
+    }
+
+    .breadcrumbs .divider {
+      color: #c9cdd2;
+    }
+
+    .header-copy {
+      max-width: 900px;
+    }
+
+    .series-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .series-kicker::before {
+      content: "//";
+    }
+
+    .series-number {
+      padding: 2px 8px;
+      background: var(--accent-soft);
+      border: 1px solid #f4cbd0;
+      border-radius: 999px;
+      font-size: 0.66rem;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 22px;
+      color: var(--ink);
+      font-size: clamp(2.35rem, 6vw, 4.6rem);
+      font-weight: 800;
+      letter-spacing: -0.065em;
+      line-height: 1.02;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.65;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      color: var(--faint);
+      font-size: 0.72rem;
+    }
+
+    .meta-dot {
+      color: #c5c9ce;
+    }
+
+    .tag {
+      padding: 3px 9px;
+      color: var(--accent);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .build-map {
+      width: min(var(--site), calc(100% - 48px));
+      margin: -28px auto 72px;
+      position: relative;
+      z-index: 2;
+      padding: 20px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(34,37,42,0.05);
+    }
+
+    .build-map-label {
+      margin-bottom: 14px;
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: thin;
+    }
+
+    .flow-node {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--ink);
+      font-size: 0.73rem;
+      font-weight: 600;
+    }
+
+    .flow-node:first-child,
+    .flow-node:last-child {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: #f4cbd0;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    .article-shell {
+      display: grid;
+      grid-template-columns: minmax(0, var(--content)) 190px;
+      gap: 72px;
+      width: min(var(--site), calc(100% - 48px));
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .article-body {
+      min-width: 0;
+      color: #34383e;
+      font-size: 1rem;
+    }
+
+    .article-body > p,
+    .article-body > ul,
+    .article-body > ol,
+    .article-body > blockquote {
+      margin-bottom: 26px;
+    }
+
+    .article-body .lead {
+      color: var(--ink);
+      font-size: 1.12rem;
+      line-height: 1.8;
+    }
+
+    .article-body h2 {
+      margin: 64px 0 22px;
+      color: var(--ink);
+      font-size: clamp(1.45rem, 3vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.25;
+    }
+
+    .article-body h2::before {
+      content: "// ";
+      color: var(--accent);
+    }
+
+    .article-body h3 {
+      margin: 40px 0 16px;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .article-body strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .article-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      padding-left: 24px;
+    }
+
+    .article-body li {
+      margin-bottom: 10px;
+      padding-left: 3px;
+    }
+
+    .article-body li::marker {
+      color: var(--accent);
+    }
+
+    .inline-code {
+      padding: 2px 5px;
+      color: #9f1622;
+      background: var(--accent-soft);
+      border: 1px solid #f4d4d8;
+      border-radius: 4px;
+      font-size: 0.88em;
+      overflow-wrap: anywhere;
+    }
+
+    .callout {
+      margin: 34px 0;
+      padding: 20px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent);
+      font-size: 0.7rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .warning {
+      margin: 34px 0;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      color: var(--muted);
+      background: #fff8e8;
+      border: 1px solid #ebddb7;
+      border-radius: var(--radius);
+      font-size: 0.84rem;
+    }
+
+    .warning-mark {
+      color: #9d6b00;
+      font-weight: 800;
+    }
+
+    .warning strong {
+      color: #765100;
+    }
+
+    .evidence-grid {
+      width: 100%;
+      margin: 32px 0 42px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .evidence-card {
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .evidence-index {
+      display: block;
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 0.66rem;
+      font-weight: 700;
+    }
+
+    .evidence-title {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .evidence-copy {
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.6;
+    }
+
+    .finding {
+      width: 100%;
+      margin: 34px 0 42px;
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .finding-label {
+      padding: 20px;
+      color: #fff;
+      background: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .finding-copy {
+      padding: 20px 22px;
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .article-body .walkthrough {
+      margin: 32px 0 42px;
+      padding: 0;
+      list-style: none;
+      counter-reset: walkthrough;
+    }
+
+    .walkthrough > li {
+      position: relative;
+      margin: 0;
+      padding: 0 0 28px 54px;
+      counter-increment: walkthrough;
+    }
+
+    .walkthrough > li:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 34px;
+      bottom: 4px;
+      left: 17px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .walkthrough > li::before {
+      content: counter(walkthrough, decimal-leading-zero);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid #f4cbd0;
+      border-radius: 50%;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .walkthrough strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .walkthrough p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .code-block {
+      width: 100%;
+      margin: 32px 0 38px;
+      overflow: hidden;
+      background: var(--code);
+      border: 1px solid #30343a;
+      border-top: 3px solid var(--accent);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(34,37,42,0.1);
+    }
+
+    .code-toolbar {
+      min-height: 42px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #34383e;
+      color: var(--code-muted);
+      font-size: 0.68rem;
+    }
+
+    .code-language {
+      color: #f38e96;
+      font-weight: 700;
+    }
+
+    .copy-button {
+      padding: 5px 8px;
+      color: var(--code-muted);
+      background: transparent;
+      border: 1px solid #464b53;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .copy-button:hover {
+      color: #fff;
+      border-color: #767e89;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 20px 22px 24px;
+      color: var(--code-ink);
+      font-family: var(--font);
+      font-size: 0.78rem;
+      line-height: 1.7;
+      tab-size: 2;
+    }
+
+    .kw { color: #ff8a94; }
+    .type { color: #87d3ff; }
+    .str { color: #f5c37a; }
+    .prop { color: #c5a7ff; }
+    .comment { color: #737b86; }
+
+    .comparison {
+      width: 100%;
+      margin: 32px 0 42px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .comparison-header {
+      padding: 12px 16px;
+      color: #fff;
+      background: var(--ink);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .comparison table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+
+    .comparison th,
+    .comparison td {
+      padding: 13px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .comparison th {
+      color: var(--faint);
+      background: #fafafb;
+      font-size: 0.66rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .comparison td:first-child {
+      width: 34%;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .launch-chain {
+      margin: 32px 0 38px;
+      padding: 24px;
+      color: var(--code-ink);
+      background: var(--code);
+      border-radius: var(--radius);
+      font-size: 0.78rem;
+      line-height: 1.85;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .launch-chain .highlight {
+      color: #ff8a94;
+    }
+
+    .toc {
+      position: sticky;
+      top: 88px;
+      padding-top: 3px;
+    }
+
+    .toc-label {
+      margin-bottom: 16px;
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .toc-list {
+      list-style: none;
+      border-left: 1px solid var(--border);
+    }
+
+    .toc-list li {
+      margin-left: -1px;
+      border-left: 1px solid transparent;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 7px 0 7px 14px;
+      color: var(--faint);
+      font-size: 0.68rem;
+      line-height: 1.4;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .toc-list li:has(a:hover),
+    .toc-list li:has(a.active) {
+      border-left-color: var(--accent);
+    }
+
+    .toc-list a:hover,
+    .toc-list a.active {
+      color: var(--accent);
+    }
+
+    .series-footer {
+      width: min(var(--site), calc(100% - 48px));
+      margin: 80px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .next-label {
+      margin-bottom: 10px;
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .next-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 150ms ease, transform 150ms ease;
+    }
+
+    .next-card:hover {
+      border-color: #c9cdd3;
+      transform: translateY(-2px);
+    }
+
+    .next-kicker {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .next-title {
+      color: var(--ink);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .next-arrow {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .footer {
+      margin-top: 80px;
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      width: min(var(--site), calc(100% - 48px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer a:hover {
+      color: var(--accent);
+    }
+
+    .editor-panel {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 300;
+      max-width: min(560px, calc(100% - 36px));
+      padding: 9px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      background: rgba(34, 37, 42, 0.97);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      box-shadow: 0 14px 40px rgba(34,37,42,0.22);
+      backdrop-filter: blur(12px);
+    }
+
+    .editor-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .editor-button {
+      min-height: 32px;
+      padding: 6px 10px;
+      color: #d8dbe0;
+      background: transparent;
+      border: 1px solid #4b5058;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      cursor: pointer;
+      transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+    }
+
+    .editor-button:hover {
+      color: #fff;
+      border-color: #858b94;
+    }
+
+    .editor-button.primary {
+      color: #fff;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .editor-status {
+      max-width: 150px;
+      color: #aeb3b9;
+      font-size: 0.62rem;
+      line-height: 1.35;
+    }
+
+    .editor-panel [hidden] {
+      display: none !important;
+    }
+
+    body.is-editing [data-edit-region] {
+      outline: 2px dashed rgba(197, 27, 41, 0.45);
+      outline-offset: 8px;
+      border-radius: 4px;
+      caret-color: var(--accent);
+    }
+
+    body.is-editing [data-edit-region]:focus {
+      outline-style: solid;
+      outline-color: var(--accent);
+      background: rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 900px) {
+      .article-shell {
+        grid-template-columns: minmax(0, 1fr);
+        width: min(var(--content), calc(100% - 48px));
+      }
+
+      .toc {
+        display: none;
+      }
+
+      .code-block,
+      .comparison,
+      .evidence-grid,
+      .finding {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-inner,
+      .header-inner,
+      .build-map,
+      .article-shell,
+      .series-footer,
+      .footer-inner {
+        width: calc(100% - 32px);
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-links a:first-child {
+        display: none;
+      }
+
+      .header-inner {
+        padding-top: 20px;
+        padding-bottom: 54px;
+      }
+
+      .breadcrumbs {
+        margin-bottom: 42px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 12vw, 3.35rem);
+      }
+
+      .subtitle {
+        font-size: 0.96rem;
+      }
+
+      .article-body {
+        font-size: 0.93rem;
+      }
+
+      .article-body .lead {
+        font-size: 1.02rem;
+      }
+
+      .code-block,
+      .comparison,
+      .evidence-grid,
+      .finding {
+        width: 100%;
+      }
+
+      .evidence-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .finding {
+        grid-template-columns: 1fr;
+      }
+
+      .finding-label,
+      .finding-copy {
+        padding: 16px;
+      }
+
+      pre {
+        padding: 18px 16px 22px;
+        font-size: 0.72rem;
+      }
+
+      .comparison {
+        overflow-x: auto;
+      }
+
+      .comparison table {
+        min-width: 560px;
+      }
+
+      .next-card {
+        padding: 18px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .editor-panel {
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+        max-width: none;
+        flex-wrap: wrap;
+      }
+
+      .editor-status {
+        max-width: none;
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="editor-panel" data-editor-panel>
+    <button class="editor-button primary" type="button" data-edit-toggle>Edit page</button>
+    <div class="editor-actions" data-editor-actions hidden>
+      <button class="editor-button" type="button" data-edit-save>Save draft</button>
+      <button class="editor-button" type="button" data-edit-export>Export HTML</button>
+      <button class="editor-button" type="button" data-edit-reset>Reset</button>
+    </div>
+    <span class="editor-status" data-edit-status>Changes stay in this browser.</span>
+  </div>
+
+  <nav class="navbar" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="logo" href="#" aria-label="Eric Savoie home">ES</a>
+      <div class="nav-links">
+        <a href="#">Apps</a>
+        <a class="active" href="#">Writing</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-header-shade">
+      <div class="header-inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#">Writing</a>
+          <span class="divider">/</span>
+          <a href="#">Look Under the Hood</a>
+          <span class="divider">/</span>
+          <span>Part 2</span>
+        </nav>
+
+        <div class="header-copy">
+          <div class="series-kicker">
+            <span>Look Under the Hood</span>
+            <span class="series-number">02</span>
+          </div>
+          <h1 data-edit-region="title">Following SwiftUI from <code>App.main()</code> to <code>UIWindow</code></h1>
+          <p class="subtitle" data-edit-region="subtitle">Using LLDB to trace the launch path SwiftUI normally keeps out of sight.</p>
+          <div class="article-meta">
+            <span>9 min read</span>
+            <span class="meta-dot">·</span>
+            <span>July 2026</span>
+            <span class="meta-dot">·</span>
+            <span class="tag">SwiftUI</span>
+            <span class="tag">LLDB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="build-map" aria-labelledby="build-map-title">
+    <div class="build-map-label" id="build-map-title">The trail we're following</div>
+    <div class="flow" aria-label="SwiftUI launch investigation">
+      <span class="flow-node">@main App</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">App.main()</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">runApp()</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">UIApplicationMain</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">AppSceneDelegate</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">UIWindow</span>
+    </div>
+  </section>
+
+  <div class="article-shell">
+    <main class="article-body" data-edit-region="article">
+      <p class="lead">In Part 1 we rebuilt a SwiftUI “Hello, world!” in UIKit. We ended with a useful mental model—but also a loose end: does SwiftUI really travel through the same UIKit machinery?</p>
+
+      <p>There is only one satisfying way to answer that. We are going to stop the app while it launches, walk the stack, inspect the values being handed to UIKit, and follow the scene lifecycle until a window appears.</p>
+
+      <h2 id="question">How does .main() eventually cause UIKit to create a window?</h2>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · HelloWorldApp.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">SwiftUI</span>
+
+<span class="prop">@main</span>
+<span class="kw">struct</span> <span class="type">HelloWorldApp</span>: <span class="type">App</span> {
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">Scene</span> {
+        <span class="type">WindowGroup</span> {
+            <span class="type">Text</span>(<span class="str">"Hello, world!"</span>)
+        }
+    }
+}</code></pre>
+      </div>
+
+      <h2 id="breakpoint">Break at the UIKit boundary</h2>
+
+      <p>A line breakpoint pauses at a line of source code that we own. A <strong>symbolic breakpoint</strong> pauses when a function with a particular name is entered—even when we do not have that framework's source.</p>
+
+      <p><code class="inline-code">UIApplicationMain</code> is a useful first target because it is the public UIKit boundary we used explicitly in Part 1:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">lldb</span> · symbolic breakpoint</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="type">UIApplicationMain</span></code></pre>
+      </div>
+
+      <ol class="walkthrough">
+        <li>
+          <strong>Prepare a fresh launch</strong>
+          <p>Select the SwiftUI app's scheme and an iPhone simulator, then stop the app if it is already running. We need to catch the launch path from its beginning.</p>
+        </li>
+        <li>
+          <strong>Open the Breakpoint navigator</strong>
+          <p>Press <code class="inline-code">⌘8</code>, or choose the breakpoint-shaped icon in Xcode's Navigator area.</p>
+        </li>
+        <li>
+          <strong>Create a symbolic breakpoint</strong>
+          <p>Click the <code class="inline-code">+</code> button at the bottom of the navigator and choose <strong>Symbolic Breakpoint…</strong>.</p>
+        </li>
+        <li>
+          <strong>Enter the symbol</strong>
+          <p>Type <code class="inline-code">UIApplicationMain</code> in the <strong>Symbol</strong> field. Leave <strong>Module</strong> and <strong>Condition</strong> empty so the breakpoint can resolve regardless of where UIKit exposes the symbol.</p>
+        </li>
+        <li>
+          <strong>Keep the breakpoint paused</strong>
+          <p>Make sure the breakpoint is enabled and that <strong>Automatically continue after evaluating actions</strong> is off. Close the editor by clicking elsewhere.</p>
+        </li>
+        <li>
+          <strong>Run the app</strong>
+          <p>Press <code class="inline-code">⌘R</code>. Xcode should pause before the first SwiftUI screen appears. Seeing assembly rather than source is normal: we stopped inside a framework function.</p>
+        </li>
+        <li>
+          <strong>Open the debug console</strong>
+          <p>Press <code class="inline-code">⇧⌘Y</code> to show the Debug area. Click the console prompt and enter <code class="inline-code">bt</code>, short for “backtrace”.</p>
+        </li>
+        <li>
+          <strong>Read and save the stack</strong>
+          <p>The newest frame is at the top. Read upward from the bottom to follow launch toward <code class="inline-code">UIApplicationMain</code>, then copy the console output so we can compare it with the trail below.</p>
+        </li>
+      </ol>
+
+      <aside class="callout">
+        <strong>If the breakpoint does not stop</strong>
+        Check that its name is exactly <code class="inline-code">UIApplicationMain</code>, that the breakpoint is enabled, and that you performed a fresh launch rather than attaching to an app that was already running.
+      </aside>
+
+      <p>When the breakpoint hits, copy the stack trace. A representative result looks like this:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">lldb</span> · stopped stack</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="comment">#0</span>  <span class="type">UIApplicationMain</span>
+<span class="comment">#1</span>  closure in <span class="type">SwiftUI.KitRendererCommon</span>
+<span class="comment">#2</span>  <span class="type">SwiftUI.runApp</span>
+<span class="comment">#3</span>  static <span class="type">SwiftUI.App.main</span>()
+<span class="comment">#4</span>  static <span class="type">HelloWorldApp.$main</span>()
+<span class="comment">#5</span>  main
+<span class="comment">#6</span>  start</code></pre>
+      </div>
+
+      <p>Addresses and exact symbol spelling will differ. The order is what matters: our generated entry point calls SwiftUI's <code class="inline-code">App.main()</code>, SwiftUI moves through its renderer setup, and the path reaches <code class="inline-code">UIApplicationMain</code>.</p>
+
+      <div class="evidence-grid" aria-label="What the stack establishes">
+        <div class="evidence-card">
+          <span class="evidence-index">EVIDENCE 01</span>
+          <span class="evidence-title">@main enters SwiftUI</span>
+          <span class="evidence-copy">The compiler-generated <code>$main</code> frame leads into the static method supplied by <code>App</code>.</span>
+        </div>
+        <div class="evidence-card">
+          <span class="evidence-index">EVIDENCE 02</span>
+          <span class="evidence-title">SwiftUI enters UIKit</span>
+          <span class="evidence-copy"><code>UIApplicationMain</code> is on the live launch stack, not merely a conceptual comparison.</span>
+        </div>
+        <div class="evidence-card">
+          <span class="evidence-index">EVIDENCE 03</span>
+          <span class="evidence-title">The process does not return</span>
+          <span class="evidence-copy">The renderer hands off to the application event loop that keeps the app running.</span>
+        </div>
+      </div>
+
+      <h2 id="generated-main">Follow the generated $main</h2>
+
+      <p>The <code class="inline-code">$main</code> suffix tells us we are looking at compiler-generated code for the type marked with <code class="inline-code">@main</code>.</p>
+
+      <p>Step into that frame and two jobs become visible:</p>
+
+      <ol>
+        <li>Swift obtains the protocol conformance information for <code class="inline-code">HelloWorldApp: App</code>.</li>
+        <li>It calls the static <code class="inline-code">App.main()</code> implementation supplied by SwiftUI.</li>
+      </ol>
+
+      <p>That lines up with the language model from Part 1. The <code class="inline-code">@main</code> attribute does not itself know how to launch an iOS app. It identifies the type whose static <code class="inline-code">main()</code> should run; SwiftUI provides that method.</p>
+
+      <aside class="callout">
+        <strong>Keep the layers separate</strong>
+        <code class="inline-code">@main</code> is the Swift entry-point mechanism. <code class="inline-code">App.main()</code> is SwiftUI's launch implementation. <code class="inline-code">UIApplicationMain</code> is the UIKit boundary that starts the application.
+      </aside>
+
+      <h2 id="arguments">Inspect the handoff to UIKit</h2>
+
+      <p>Now stop again at <code class="inline-code">UIApplicationMain</code>. On an arm64 run, the first four function arguments are passed in registers <code class="inline-code">x0</code> through <code class="inline-code">x3</code>.</p>
+
+      <div class="comparison">
+        <div class="comparison-header">UIApplicationMain at the breakpoint</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Register</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>x0</td>
+              <td><code class="inline-code">argc</code> — the argument count</td>
+            </tr>
+            <tr>
+              <td>x1</td>
+              <td><code class="inline-code">argv</code> — the argument vector</td>
+            </tr>
+            <tr>
+              <td>x2</td>
+              <td>The principal application class name</td>
+            </tr>
+            <tr>
+              <td>x3</td>
+              <td>The application delegate class name</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Read all four at once:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">lldb</span> · registers</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code>register read x0 x1 x2 x3
+po (<span class="type">NSString</span> *)$x2
+po (<span class="type">NSString</span> *)$x3</code></pre>
+      </div>
+
+      <p>In the run captured for these notes, the final two values resolved to private SwiftUI types equivalent to:</p>
+
+      <div class="launch-chain"><span class="highlight">principal class</span>  → SwiftUI.SwiftUIApplication
+<span class="highlight">delegate class</span>   → SwiftUI.AppDelegate</div>
+
+      <p>This is the first real payoff. SwiftUI did not bypass UIKit's application launch. It supplied its own internal application and delegate types to UIKit.</p>
+
+      <aside class="warning">
+        <span class="warning-mark">!</span>
+        <span>If you run on a different architecture, the calling convention and registers differ. Treat the commands above as an arm64 example and verify the active architecture before interpreting raw registers.</span>
+      </aside>
+
+      <h2 id="missing-window">The missing window</h2>
+
+      <p>At this point I expected SwiftUI's app delegate to create a <code class="inline-code">UIWindow</code> inside <code class="inline-code">application(_:didFinishLaunchingWithOptions:)</code>.</p>
+
+      <p>It did not.</p>
+
+      <p>Looking up and disassembling that method showed launch-option handling and Objective-C bridging, but no obvious window creation, root view controller, or <code class="inline-code">makeKeyAndVisible()</code>.</p>
+
+      <div class="finding">
+        <div class="finding-label">Dead end?</div>
+        <div class="finding-copy">No. The missing window is evidence that we are looking in the wrong lifecycle callback.</div>
+      </div>
+
+      <p>The clue is another method on the same private delegate:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">lldb</span> · symbol lookup</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code>image lookup -rn <span class="str">"AppDelegate.*configurationForConnecting"</span> SwiftUI</code></pre>
+      </div>
+
+      <p><code class="inline-code">application(_:configurationForConnecting:options:)</code> is the handoff from the app lifecycle to the scene lifecycle. SwiftUI's public <code class="inline-code">WindowGroup</code> had been pointing us toward scenes from the beginning.</p>
+
+      <h2 id="addresses">A note about addresses and ASLR</h2>
+
+      <p>Symbol lookup may give you an offset inside the SwiftUI image rather than the runtime address you can disassemble directly. That is because Address Space Layout Randomization loads the framework at a different address between runs.</p>
+
+      <p>The useful workflow is:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">lldb</span> · resolve a private symbol</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="comment"># Find the symbol and its image-relative offset</span>
+image lookup -rn <span class="str">"AppDelegate.*configurationForConnecting"</span> SwiftUI
+
+<span class="comment"># Find where SwiftUI was loaded for this run</span>
+image list -o -f SwiftUI
+
+<span class="comment"># Disassemble the resolved runtime address</span>
+disassemble -a &lt;load-address + symbol-offset&gt;</code></pre>
+      </div>
+
+      <p>Do not copy an address from an article and expect it to work. Recalculate it for the process you are debugging. The arithmetic is disposable; the method is reusable.</p>
+
+      <h2 id="scene-trail">Follow the scene trail</h2>
+
+      <p>Searching the SwiftUI image for scene-related delegate symbols turns up an internal scene delegate and methods associated with connecting and hosting a scene.</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">lldb</span> · continue the search</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code>image lookup -rn <span class="str">"SwiftUI.AppSceneDelegate"</span>
+image lookup -rn <span class="str">"makeSceneHostWindow"</span> SwiftUI</code></pre>
+      </div>
+
+      <p>Following those symbols gives us the scene half of the launch path:</p>
+
+      <div class="launch-chain"><span class="highlight">SwiftUI.AppDelegate</span>
+  → application(_:configurationForConnecting:options:)
+    → <span class="highlight">SwiftUI.AppSceneDelegate</span>
+      → scene(_:willConnectTo:options:)
+        → makeSceneHostWindow(...)
+          → UIWindow</div>
+
+      <p>We can now explain why <code class="inline-code">didFinishLaunchingWithOptions</code> did not contain the window setup. The process-level delegate configures a scene; the scene delegate owns the UI instance and creates its window.</p>
+
+      <p>The host object that connects the SwiftUI hierarchy to that window is private implementation. Depending on the framework version, the symbols and internal types can move. The public architectural boundary is the durable conclusion: SwiftUI uses UIKit's scene and window infrastructure to present the interface.</p>
+
+      <h2 id="full-chain">The recovered launch chain</h2>
+
+      <p>Putting the evidence together, our observed path looks like this:</p>
+
+      <div class="launch-chain"><span class="highlight">@main HelloWorldApp</span>
+  → compiler-generated HelloWorldApp.$main()
+    → static SwiftUI.App.main()
+      → SwiftUI.runApp()
+        → SwiftUI.KitRendererCommon(...)
+          → UIApplicationMain(
+              argc,
+              argv,
+              "SwiftUI.SwiftUIApplication",
+              "SwiftUI.AppDelegate"
+            )
+            → AppDelegate.configurationForConnecting(...)
+              → AppSceneDelegate.scene(_:willConnectTo:)
+                → makeSceneHostWindow(...)
+                  → <span class="highlight">UIWindow appears</span></div>
+
+      <p>Compare that with the public SwiftUI code:</p>
+
+      <div class="launch-chain"><span class="highlight">@main App</span>
+  → WindowGroup
+    → Text(<span class="highlight">"Hello, world!"</span>)</div>
+
+      <p>SwiftUI is not removing the application lifecycle. It is compressing that lifecycle into a declarative model and managing the UIKit objects on our behalf.</p>
+
+      <h2 id="lesson">What was actually useful here?</h2>
+
+      <p>The private class names are interesting, but they are not the lesson. The useful part is the investigation pattern:</p>
+
+      <ol>
+        <li>Start with a narrow question.</li>
+        <li>Find a known public boundary such as <code class="inline-code">UIApplicationMain</code>.</li>
+        <li>Capture the stack before stepping blindly.</li>
+        <li>Classify each frame by layer: app, language, SwiftUI, UIKit.</li>
+        <li>Inspect arguments at the boundary.</li>
+        <li>Let missing evidence redirect the search.</li>
+        <li>Distinguish a supported architecture from a private implementation detail.</li>
+      </ol>
+
+      <aside class="callout">
+        <strong>The real under-the-hood skill</strong>
+        Do not memorise the internals you find. Learn how to find them again, and how to decide which conclusions are safe to carry back into production code.
+      </aside>
+
+      <p>In Part 3, we will move from launch to rendering and tackle a deceptively simple question: if a SwiftUI <code class="inline-code">View</code> is a value, what—if anything—is the <code class="inline-code">UIView</code>?</p>
+
+      <!-- Part 1 source retained below for prototype iteration
+      <p class="lead">I learned modern iOS development through SwiftUI. That makes UIKit feel slightly backwards: most explanations start with UIKit and use SwiftUI as the comparison, while I need the map to work in the other direction.</p>
+
+      <p>This series is that map.</p>
+
+      <p>We are going to rebuild familiar SwiftUI ideas in UIKit, then look underneath both frameworks to understand what the system is actually doing. The goal is not to prove that one is better. It is to become fluent enough in both that neither feels magical.</p>
+
+      <p>For our first step, we will take the smallest useful SwiftUI app—a “Hello, world!” label—and follow it all the way from the program entry point to pixels on screen.</p>
+
+      <h2 id="starting-point">The starting point</h2>
+
+      <p>Here is the SwiftUI version:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · HelloWorldApp.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">SwiftUI</span>
+
+<span class="prop">@main</span>
+<span class="kw">struct</span> <span class="type">HelloWorldApp</span>: <span class="type">App</span> {
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">Scene</span> {
+        <span class="type">WindowGroup</span> {
+            <span class="type">ContentView</span>()
+        }
+    }
+}
+
+<span class="kw">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">View</span> {
+        <span class="type">Text</span>(<span class="str">"Hello, world!"</span>)
+    }
+}</code></pre>
+      </div>
+
+      <p>By the end, we will have the same visible result using UIKit. SwiftUI gives us a compact description of the app. UIKit asks us to connect more of the machinery ourselves.</p>
+
+      <h2 id="main">What does @main actually do?</h2>
+
+      <p><code class="inline-code">@main</code> is a Swift language feature, not a SwiftUI feature. It marks one type as the program's entry point.</p>
+
+      <p>The marked type must provide a static <code class="inline-code">main()</code> method. We do not write that method on <code class="inline-code">HelloWorldApp</code>; the <code class="inline-code">App</code> protocol supplies it for us. Conceptually, Swift turns our app declaration into something like:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · conceptual equivalent</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="type">HelloWorldApp</span>.main()</code></pre>
+      </div>
+
+      <p>This is the first layer SwiftUI hides: our <code class="inline-code">App</code> conformer is not merely a container for <code class="inline-code">body</code>. It also participates in starting the process.</p>
+
+      <aside class="callout">
+        <strong>Mental map</strong>
+        SwiftUI's <code class="inline-code">@main</code> app type occupies the place where a UIKit app needs explicit launch code.
+      </aside>
+
+      <h2 id="start-uikit">Start UIKit explicitly</h2>
+
+      <p>For this exercise, create a UIKit app target without a storyboard and remove any generated <code class="inline-code">@main</code> attribute. An app may have only one entry point, so <code class="inline-code">main.swift</code> and an <code class="inline-code">@main</code> type cannot coexist in the same target.</p>
+
+      <p>Add a file named <code class="inline-code">main.swift</code>:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · main.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">UIKit</span>
+
+<span class="type">UIApplicationMain</span>(
+    <span class="type">CommandLine</span>.argc,
+    <span class="type">CommandLine</span>.unsafeArgv,
+    <span class="kw">nil</span>,
+    <span class="type">NSStringFromClass</span>(<span class="type">AppDelegate</span>.self)
+)</code></pre>
+      </div>
+
+      <p><code class="inline-code">UIApplicationMain</code> starts the UIKit application and its main event loop. Most app code never needs to care about the first two values. The important relationship is between the one application object and the delegate UIKit creates for it.</p>
+
+      <h2 id="app-delegate">Add the app delegate</h2>
+
+      <p>Create <code class="inline-code">AppDelegate.swift</code>:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · AppDelegate.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">UIKit</span>
+
+<span class="kw">final class</span> <span class="type">AppDelegate</span>: <span class="type">NSObject</span>, <span class="type">UIApplicationDelegate</span> {
+    <span class="kw">func</span> application(
+        _ application: <span class="type">UIApplication</span>,
+        didFinishLaunchingWithOptions launchOptions: [
+            <span class="type">UIApplication</span>.<span class="type">LaunchOptionsKey</span>: <span class="type">Any</span>
+        ]? = <span class="kw">nil</span>
+    ) -> <span class="type">Bool</span> {
+        <span class="kw">true</span>
+    }
+
+    <span class="kw">func</span> application(
+        _ application: <span class="type">UIApplication</span>,
+        configurationForConnecting session: <span class="type">UISceneSession</span>,
+        options: <span class="type">UIScene</span>.<span class="type">ConnectionOptions</span>
+    ) -> <span class="type">UISceneConfiguration</span> {
+        <span class="kw">let</span> configuration = <span class="type">UISceneConfiguration</span>(
+            name: <span class="str">"Default Configuration"</span>,
+            sessionRole: session.role
+        )
+        configuration.delegateClass = <span class="type">SceneDelegate</span>.self
+        <span class="kw">return</span> configuration
+    }
+}</code></pre>
+      </div>
+
+      <p>Why inherit from <code class="inline-code">NSObject</code>? <code class="inline-code">UIApplicationDelegate</code> inherits from <code class="inline-code">NSObjectProtocol</code>. Inheriting from <code class="inline-code">NSObject</code> gives our class the Objective-C runtime behaviour UIKit expects.</p>
+
+      <p>The two methods have different jobs:</p>
+
+      <ul>
+        <li><strong>didFinishLaunchingWithOptions</strong> finishes process-level setup.</li>
+        <li><strong>configurationForConnecting</strong> tells UIKit how to configure a new scene.</li>
+      </ul>
+
+      <p>In a scene-based app, the app delegate launches the process; a scene delegate builds each instance of the interface.</p>
+
+      <h2 id="scenes">Opt in to scenes</h2>
+
+      <p>Make sure the target's Info settings contain an <strong>Application Scene Manifest</strong> (<code class="inline-code">UIApplicationSceneManifest</code>).</p>
+
+      <ul>
+        <li>Set <strong>Enable Multiple Windows</strong> to <code class="inline-code">NO</code>.</li>
+        <li>Keep a window application session role.</li>
+        <li>We do not need to name the scene delegate in the manifest because the app delegate supplies <code class="inline-code">SceneDelegate.self</code> in code.</li>
+      </ul>
+
+      <aside class="callout">
+        <strong>Mental map</strong>
+        A SwiftUI <code class="inline-code">WindowGroup</code> is closer to UIKit's scene system than to a single <code class="inline-code">UIWindow</code> owned directly by the app delegate.
+      </aside>
+
+      <h2 id="scene-delegate">Build the scene</h2>
+
+      <p>Create <code class="inline-code">SceneDelegate.swift</code>:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · SceneDelegate.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">UIKit</span>
+
+<span class="kw">final class</span> <span class="type">SceneDelegate</span>: <span class="type">UIResponder</span>, <span class="type">UIWindowSceneDelegate</span> {
+    <span class="kw">var</span> window: <span class="type">UIWindow</span>?
+
+    <span class="kw">func</span> scene(
+        _ scene: <span class="type">UIScene</span>,
+        willConnectTo session: <span class="type">UISceneSession</span>,
+        options: <span class="type">UIScene</span>.<span class="type">ConnectionOptions</span>
+    ) {
+        <span class="kw">guard let</span> windowScene = scene <span class="kw">as?</span> <span class="type">UIWindowScene</span> <span class="kw">else</span> {
+            <span class="kw">return</span>
+        }
+
+        <span class="kw">let</span> rootViewController = <span class="type">UIViewController</span>()
+        rootViewController.view.backgroundColor = .systemBackground
+
+        <span class="kw">let</span> helloWorldLabel = <span class="type">UILabel</span>()
+        helloWorldLabel.text = <span class="str">"Hello, world!"</span>
+        helloWorldLabel.translatesAutoresizingMaskIntoConstraints = <span class="kw">false</span>
+        rootViewController.view.addSubview(helloWorldLabel)
+
+        <span class="type">NSLayoutConstraint</span>.activate([
+            helloWorldLabel.centerXAnchor.constraint(
+                equalTo: rootViewController.view.centerXAnchor
+            ),
+            helloWorldLabel.centerYAnchor.constraint(
+                equalTo: rootViewController.view.centerYAnchor
+            ),
+        ])
+
+        <span class="kw">let</span> window = <span class="type">UIWindow</span>(windowScene: windowScene)
+        window.rootViewController = rootViewController
+        self.window = window
+        window.makeKeyAndVisible()
+    }
+}</code></pre>
+      </div>
+
+      <p>There is more ceremony than <code class="inline-code">Text("Hello, world!")</code>, but every line has a clear responsibility:</p>
+
+      <ol>
+        <li>Confirm that UIKit gave us a <code class="inline-code">UIWindowScene</code>.</li>
+        <li>Create a root view controller.</li>
+        <li>Create and configure a label.</li>
+        <li>Add the label to the view hierarchy.</li>
+        <li>Constrain it to the centre.</li>
+        <li>Create a window for this scene.</li>
+        <li>Install the root view controller.</li>
+        <li>Retain the window and make it visible.</li>
+      </ol>
+
+      <h2 id="map">The SwiftUI-to-UIKit map</h2>
+
+      <div class="comparison">
+        <div class="comparison-header">Framework map</div>
+        <table>
+          <thead>
+            <tr>
+              <th>SwiftUI idea</th>
+              <th>UIKit counterpart in this example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@main</td>
+              <td><code class="inline-code">main.swift</code> as the program entry point</td>
+            </tr>
+            <tr>
+              <td>App</td>
+              <td>Launch behaviour split across <code class="inline-code">UIApplicationMain</code> and delegates</td>
+            </tr>
+            <tr>
+              <td>WindowGroup</td>
+              <td>A scene configuration and <code class="inline-code">UIWindowSceneDelegate</code></td>
+            </tr>
+            <tr>
+              <td>ContentView</td>
+              <td>The root <code class="inline-code">UIViewController</code> and its view hierarchy</td>
+            </tr>
+            <tr>
+              <td>Text</td>
+              <td><code class="inline-code">UILabel</code></td>
+            </tr>
+            <tr>
+              <td>Declarative centring</td>
+              <td>Auto Layout centre constraints</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>These are not perfect one-to-one equivalents. They are landmarks. As the series continues, we will refine the map instead of pretending the frameworks have identical architectures.</p>
+
+      <h2 id="hidden">What SwiftUI is hiding</h2>
+
+      <p>Our UIKit chain is now:</p>
+
+      <div class="launch-chain"><span class="highlight">main.swift</span>
+  → UIApplicationMain
+    → AppDelegate.configurationForConnecting
+      → SceneDelegate.scene(_:willConnectTo:options:)
+        → UIWindow(windowScene:)
+          → UIViewController
+            → <span class="highlight">UILabel</span></div>
+
+      <p>SwiftUI expresses the same broad responsibilities with:</p>
+
+      <div class="launch-chain"><span class="highlight">@main App</span>
+  → WindowGroup
+    → ContentView
+      → <span class="highlight">Text</span></div>
+
+      <p>The second version is shorter because SwiftUI owns the bridge between those declarations and UIKit's application, scene, and window infrastructure.</p>
+
+      <p>Exactly how that private bridge is implemented is not part of SwiftUI's public contract. We can observe it with a debugger, but we should label those observations as implementation details—not APIs we can depend on.</p>
+
+      <p>That is where we will go next.</p>
+      -->
+    </main>
+
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol class="toc-list">
+        <li><a href="#question">The question</a></li>
+        <li><a href="#breakpoint">UIKit boundary</a></li>
+        <li><a href="#generated-main">Generated $main</a></li>
+        <li><a href="#arguments">Inspect the handoff</a></li>
+        <li><a href="#missing-window">The missing window</a></li>
+        <li><a href="#addresses">Addresses and ASLR</a></li>
+        <li><a href="#scene-trail">Follow the scene</a></li>
+        <li><a href="#full-chain">Recovered chain</a></li>
+        <li><a href="#lesson">The real lesson</a></li>
+      </ol>
+    </aside>
+  </div>
+
+  <section class="series-footer">
+    <div class="next-label">Previous in Look Under the Hood</div>
+    <a class="next-card" href="../how-swiftui-calls-uikit/">
+      <span>
+        <span class="next-kicker">PART 01</span>
+        <span class="next-title">How does SwiftUI call UIKit?</span>
+      </span>
+      <span class="next-arrow" aria-hidden="true">←</span>
+    </a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 Eric Savoie</span>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Email</a>
+        <a href="#">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const editorStorageKey = `look-under-the-hood:draft:v2:${location.pathname}`;
+    const editorToggle = document.querySelector("[data-edit-toggle]");
+    const editorActions = document.querySelector("[data-editor-actions]");
+    const editorStatus = document.querySelector("[data-edit-status]");
+    const editorSave = document.querySelector("[data-edit-save]");
+    const editorExport = document.querySelector("[data-edit-export]");
+    const editorReset = document.querySelector("[data-edit-reset]");
+
+    try {
+      const savedDraft = JSON.parse(localStorage.getItem(editorStorageKey) || "null");
+      if (savedDraft?.regions) {
+        for (const [name, html] of Object.entries(savedDraft.regions)) {
+          const region = document.querySelector(`[data-edit-region="${name}"]`);
+          if (region && typeof html === "string") region.innerHTML = html;
+        }
+        editorStatus.textContent = "Local draft restored.";
+      }
+    } catch {
+      editorStatus.textContent = "Draft could not be restored.";
+    }
+
+    const editableRegions = [...document.querySelectorAll("[data-edit-region]")];
+    let editing = false;
+    let autosaveTimer;
+
+    function setEditorStatus(message) {
+      editorStatus.textContent = message;
+    }
+
+    function saveDraft(message = "Saved in this browser.") {
+      const regions = Object.fromEntries(
+        editableRegions.map(region => [region.dataset.editRegion, region.innerHTML])
+      );
+      localStorage.setItem(editorStorageKey, JSON.stringify({
+        savedAt: new Date().toISOString(),
+        regions,
+      }));
+      setEditorStatus(message);
+    }
+
+    function setEditing(nextEditing) {
+      editing = nextEditing;
+      document.body.classList.toggle("is-editing", editing);
+      editorToggle.textContent = editing ? "Done editing" : "Edit page";
+      editorActions.hidden = !editing;
+
+      for (const region of editableRegions) {
+        region.contentEditable = editing ? "true" : "false";
+        region.spellcheck = editing;
+      }
+
+      if (editing) {
+        setEditorStatus("Click the title or article to edit.");
+      } else {
+        saveDraft();
+      }
+    }
+
+    editorToggle.addEventListener("click", () => setEditing(!editing));
+    editorSave.addEventListener("click", () => saveDraft());
+
+    for (const region of editableRegions) {
+      region.addEventListener("input", () => {
+        setEditorStatus("Editing…");
+        window.clearTimeout(autosaveTimer);
+        autosaveTimer = window.setTimeout(
+          () => saveDraft("Autosaved locally."),
+          600
+        );
+      });
+    }
+
+    editorExport.addEventListener("click", () => {
+      saveDraft();
+      const clone = document.documentElement.cloneNode(true);
+      clone.querySelector("body")?.classList.remove("is-editing");
+      for (const region of clone.querySelectorAll("[data-edit-region]")) {
+        region.removeAttribute("contenteditable");
+        region.removeAttribute("spellcheck");
+      }
+      const clonedToggle = clone.querySelector("[data-edit-toggle]");
+      const clonedActions = clone.querySelector("[data-editor-actions]");
+      const clonedStatus = clone.querySelector("[data-edit-status]");
+      if (clonedToggle) clonedToggle.textContent = "Edit page";
+      if (clonedActions) clonedActions.hidden = true;
+      if (clonedStatus) clonedStatus.textContent = "Changes stay in this browser.";
+
+      const html = `<!doctype html>\n${clone.outerHTML}`;
+      const blob = new Blob([html], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const download = document.createElement("a");
+      const filename = document.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      download.href = url;
+      download.download = `${filename || "article-draft"}.html`;
+      download.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setEditorStatus("Edited HTML exported.");
+    });
+
+    editorReset.addEventListener("click", () => {
+      if (!window.confirm("Discard the browser draft and restore the original article?")) return;
+      localStorage.removeItem(editorStorageKey);
+      location.reload();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (editing && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        saveDraft();
+      }
+      if (editing && event.key === "Escape") {
+        setEditing(false);
+      }
+    });
+
+    const progress = document.querySelector(".reading-progress");
+    const headings = [...document.querySelectorAll(".article-body h2[id]")];
+    const tocLinks = [...document.querySelectorAll(".toc-list a")];
+
+    function updateReadingState() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const percentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progress.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
+
+      let currentId = headings[0]?.id;
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top <= 140) currentId = heading.id;
+      }
+
+      for (const link of tocLinks) {
+        link.classList.toggle("active", link.hash === `#${currentId}`);
+      }
+    }
+
+    document.addEventListener("scroll", updateReadingState, { passive: true });
+    window.addEventListener("resize", updateReadingState);
+    updateReadingState();
+
+    for (const button of document.querySelectorAll(".copy-button")) {
+      button.addEventListener("click", async () => {
+        const code = button.closest(".code-block").querySelector("code").innerText;
+        try {
+          await navigator.clipboard.writeText(code);
+          button.textContent = "Copied";
+          window.setTimeout(() => button.textContent = "Copy", 1400);
+        } catch {
+          button.textContent = "Select";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1597 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How SwiftUI calls into UIKit, rebuilt from a SwiftUI-first perspective.">
+  <title>How does SwiftUI call UIKit? — Look Under the Hood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f9fb;
+      --surface: #ffffff;
+      --surface-subtle: #f1f2f5;
+      --ink: #22252a;
+      --muted: #5d646d;
+      --faint: #8a9098;
+      --border: #e2e5ea;
+      --accent: #c51b29;
+      --accent-soft: #fff1f2;
+      --code: #1f2227;
+      --code-ink: #f5f7fa;
+      --code-muted: #9da4ae;
+      --radius: 12px;
+      --content: 720px;
+      --wide: 940px;
+      --site: 1100px;
+      --font: "JetBrains Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .reading-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 200;
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      transition: width 80ms linear;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: rgba(34, 37, 42, 0.97);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      width: min(var(--site), calc(100% - 48px));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #aeb3b9;
+      font-size: 0.8rem;
+    }
+
+    .nav-links a {
+      transition: color 150ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: var(--accent);
+    }
+
+    .article-header {
+      border-bottom: 1px solid var(--border);
+      background:
+        linear-gradient(rgba(226,229,234,0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(226,229,234,0.45) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .article-header-shade {
+      background: linear-gradient(180deg, rgba(249,249,251,0.7), var(--bg));
+    }
+
+    .header-inner {
+      width: min(var(--site), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 60px;
+      color: var(--faint);
+      font-size: 0.72rem;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--accent);
+    }
+
+    .breadcrumbs .divider {
+      color: #c9cdd2;
+    }
+
+    .header-copy {
+      max-width: 900px;
+    }
+
+    .series-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .series-kicker::before {
+      content: "//";
+    }
+
+    .series-number {
+      padding: 2px 8px;
+      background: var(--accent-soft);
+      border: 1px solid #f4cbd0;
+      border-radius: 999px;
+      font-size: 0.66rem;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 22px;
+      color: var(--ink);
+      font-size: clamp(2.35rem, 6vw, 4.6rem);
+      font-weight: 800;
+      letter-spacing: -0.065em;
+      line-height: 1.02;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.65;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      color: var(--faint);
+      font-size: 0.72rem;
+    }
+
+    .meta-dot {
+      color: #c5c9ce;
+    }
+
+    .tag {
+      padding: 3px 9px;
+      color: var(--accent);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .build-map {
+      width: min(var(--site), calc(100% - 48px));
+      margin: -28px auto 72px;
+      position: relative;
+      z-index: 2;
+      padding: 20px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(34,37,42,0.05);
+    }
+
+    .build-map-label {
+      margin-bottom: 14px;
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: thin;
+    }
+
+    .flow-node {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--ink);
+      font-size: 0.73rem;
+      font-weight: 600;
+    }
+
+    .flow-node:first-child,
+    .flow-node:last-child {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: #f4cbd0;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    .article-shell {
+      display: grid;
+      grid-template-columns: minmax(0, var(--content)) 190px;
+      gap: 72px;
+      width: min(var(--site), calc(100% - 48px));
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .article-body {
+      min-width: 0;
+      color: #34383e;
+      font-size: 1rem;
+    }
+
+    .article-body > p,
+    .article-body > ul,
+    .article-body > ol,
+    .article-body > blockquote {
+      margin-bottom: 26px;
+    }
+
+    .article-body .lead {
+      color: var(--ink);
+      font-size: 1.12rem;
+      line-height: 1.8;
+    }
+
+    .article-body h2 {
+      margin: 64px 0 22px;
+      color: var(--ink);
+      font-size: clamp(1.45rem, 3vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.25;
+    }
+
+    .article-body h2::before {
+      content: "// ";
+      color: var(--accent);
+    }
+
+    .article-body h3 {
+      margin: 40px 0 16px;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .article-body strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .article-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      padding-left: 24px;
+    }
+
+    .article-body li {
+      margin-bottom: 10px;
+      padding-left: 3px;
+    }
+
+    .article-body li::marker {
+      color: var(--accent);
+    }
+
+    .inline-code {
+      padding: 2px 5px;
+      color: #9f1622;
+      background: var(--accent-soft);
+      border: 1px solid #f4d4d8;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+
+    .callout {
+      margin: 34px 0;
+      padding: 20px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent);
+      font-size: 0.7rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .compiler-error {
+      margin: 28px 0 38px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid #f0c7cb;
+      border-radius: var(--radius);
+    }
+
+    .compiler-error strong {
+      display: block;
+      padding: 8px 14px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-bottom: 1px solid #f0c7cb;
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .compiler-error > code {
+      display: block;
+      overflow-x: auto;
+      padding: 16px 16px 8px;
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 0.86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .compiler-error p {
+      margin: 0;
+      padding: 0 16px 16px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .article-figure {
+      margin: 34px 0 42px;
+    }
+
+    .article-figure img {
+      display: block;
+      width: min(100%, 520px);
+      height: auto;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #25292c;
+    }
+
+    .article-figure figcaption {
+      margin-top: 12px;
+      color: var(--faint);
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    .article-figure-wide img {
+      width: 100%;
+      max-width: none;
+    }
+
+    .code-block {
+      width: 100%;
+      margin: 32px 0 38px;
+      overflow: hidden;
+      background: var(--code);
+      border: 1px solid #30343a;
+      border-top: 3px solid var(--accent);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(34,37,42,0.1);
+    }
+
+    .code-toolbar {
+      min-height: 42px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #34383e;
+      color: var(--code-muted);
+      font-size: 0.68rem;
+    }
+
+    .code-language {
+      color: #f38e96;
+      font-weight: 700;
+    }
+
+    .copy-button {
+      padding: 5px 8px;
+      color: var(--code-muted);
+      background: transparent;
+      border: 1px solid #464b53;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .copy-button:hover {
+      color: #fff;
+      border-color: #767e89;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 20px 22px 24px;
+      color: var(--code-ink);
+      font-family: var(--font);
+      font-size: 0.78rem;
+      line-height: 1.7;
+      tab-size: 2;
+    }
+
+    .kw { color: #ff8a94; }
+    .type { color: #87d3ff; }
+    .str { color: #f5c37a; }
+    .prop { color: #c5a7ff; }
+    .comment { color: #737b86; }
+
+    .comparison {
+      width: 100%;
+      margin: 32px 0 42px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .comparison-header {
+      padding: 12px 16px;
+      color: #fff;
+      background: var(--ink);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .comparison table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+
+    .comparison th,
+    .comparison td {
+      padding: 13px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .comparison th {
+      color: var(--faint);
+      background: #fafafb;
+      font-size: 0.66rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .comparison td:first-child {
+      width: 34%;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .run-result {
+      margin: 34px 0 44px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 230px;
+      gap: 32px;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(34,37,42,0.05);
+    }
+
+    .run-result-copy h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .run-result-copy p {
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .success-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 9px;
+      color: #266b45;
+      background: #edf9f2;
+      border: 1px solid #c9ead6;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 700;
+    }
+
+    .success-pill::before {
+      content: "●";
+      font-size: 0.55rem;
+    }
+
+    .simulator {
+      position: relative;
+      width: 210px;
+      height: 420px;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+      color: #111;
+      background: #f7f7f8;
+      border: 9px solid var(--ink);
+      border-radius: 38px;
+      box-shadow: 0 14px 30px rgba(34,37,42,0.16);
+    }
+
+    .simulator::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 72px;
+      height: 20px;
+      background: var(--ink);
+      border-radius: 999px;
+      transform: translateX(-50%);
+    }
+
+    .simulator-label {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 1rem;
+    }
+
+    .run-checklist {
+      margin: 28px 0 36px;
+      padding: 20px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .run-checklist-title {
+      margin-bottom: 14px;
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .run-checklist ul {
+      margin: 0;
+      padding-left: 22px;
+      font-size: 0.84rem;
+    }
+
+    .launch-chain {
+      margin: 32px 0 38px;
+      padding: 24px;
+      color: var(--code-ink);
+      background: var(--code);
+      border-radius: var(--radius);
+      font-size: 0.78rem;
+      line-height: 1.85;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .launch-chain .highlight {
+      color: #ff8a94;
+    }
+
+    .toc {
+      position: sticky;
+      top: 88px;
+      padding-top: 3px;
+    }
+
+    .toc-label {
+      margin-bottom: 16px;
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .toc-list {
+      list-style: none;
+      border-left: 1px solid var(--border);
+    }
+
+    .toc-list li {
+      margin-left: -1px;
+      border-left: 1px solid transparent;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 7px 0 7px 14px;
+      color: var(--faint);
+      font-size: 0.68rem;
+      line-height: 1.4;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .toc-list li:has(a:hover),
+    .toc-list li:has(a.active) {
+      border-left-color: var(--accent);
+    }
+
+    .toc-list a:hover,
+    .toc-list a.active {
+      color: var(--accent);
+    }
+
+    .series-footer {
+      width: min(var(--site), calc(100% - 48px));
+      margin: 80px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .next-label {
+      margin-bottom: 10px;
+      color: var(--faint);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .next-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 150ms ease, transform 150ms ease;
+    }
+
+    .next-card:hover {
+      border-color: #c9cdd3;
+      transform: translateY(-2px);
+    }
+
+    .next-kicker {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .next-title {
+      color: var(--ink);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .next-arrow {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .footer {
+      margin-top: 80px;
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      width: min(var(--site), calc(100% - 48px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer a:hover {
+      color: var(--accent);
+    }
+
+    .editor-panel {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 300;
+      max-width: min(560px, calc(100% - 36px));
+      padding: 9px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      background: rgba(34, 37, 42, 0.97);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      box-shadow: 0 14px 40px rgba(34,37,42,0.22);
+      backdrop-filter: blur(12px);
+    }
+
+    .editor-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .editor-button {
+      min-height: 32px;
+      padding: 6px 10px;
+      color: #d8dbe0;
+      background: transparent;
+      border: 1px solid #4b5058;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      cursor: pointer;
+      transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+    }
+
+    .editor-button:hover {
+      color: #fff;
+      border-color: #858b94;
+    }
+
+    .editor-button.primary {
+      color: #fff;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .editor-status {
+      max-width: 150px;
+      color: #aeb3b9;
+      font-size: 0.62rem;
+      line-height: 1.35;
+    }
+
+    .editor-panel [hidden] {
+      display: none !important;
+    }
+
+    body.is-editing [data-edit-region] {
+      outline: 2px dashed rgba(197, 27, 41, 0.45);
+      outline-offset: 8px;
+      border-radius: 4px;
+      caret-color: var(--accent);
+    }
+
+    body.is-editing [data-edit-region]:focus {
+      outline-style: solid;
+      outline-color: var(--accent);
+      background: rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 900px) {
+      .article-shell {
+        grid-template-columns: minmax(0, 1fr);
+        width: min(var(--content), calc(100% - 48px));
+      }
+
+      .toc {
+        display: none;
+      }
+
+      .code-block,
+      .comparison {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-inner,
+      .header-inner,
+      .build-map,
+      .article-shell,
+      .series-footer,
+      .footer-inner {
+        width: calc(100% - 32px);
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-links a:first-child {
+        display: none;
+      }
+
+      .header-inner {
+        padding-top: 20px;
+        padding-bottom: 54px;
+      }
+
+      .breadcrumbs {
+        margin-bottom: 42px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 12vw, 3.35rem);
+      }
+
+      .subtitle {
+        font-size: 0.96rem;
+      }
+
+      .article-body {
+        font-size: 0.93rem;
+      }
+
+      .article-body .lead {
+        font-size: 1.02rem;
+      }
+
+      .code-block,
+      .comparison {
+        width: 100%;
+      }
+
+      pre {
+        padding: 18px 16px 22px;
+        font-size: 0.72rem;
+      }
+
+      .comparison {
+        overflow-x: auto;
+      }
+
+      .run-result {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison table {
+        min-width: 560px;
+      }
+
+      .next-card {
+        padding: 18px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .editor-panel {
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+        max-width: none;
+        flex-wrap: wrap;
+      }
+
+      .editor-status {
+        max-width: none;
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="editor-panel" data-editor-panel>
+    <button class="editor-button primary" type="button" data-edit-toggle>Edit page</button>
+    <div class="editor-actions" data-editor-actions hidden>
+      <button class="editor-button" type="button" data-edit-save>Save draft</button>
+      <button class="editor-button" type="button" data-edit-export>Export HTML</button>
+      <button class="editor-button" type="button" data-edit-reset>Reset</button>
+    </div>
+    <span class="editor-status" data-edit-status>Changes stay in this browser.</span>
+  </div>
+
+  <nav class="navbar" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="logo" href="#" aria-label="Eric Savoie home">ES</a>
+      <div class="nav-links">
+        <a href="#">Apps</a>
+        <a class="active" href="#">Writing</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-header-shade">
+      <div class="header-inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#">Writing</a>
+          <span class="divider">/</span>
+          <a href="#">Look Under the Hood</a>
+          <span class="divider">/</span>
+          <span>Part 1</span>
+        </nav>
+
+        <div class="header-copy">
+          <div class="series-kicker">
+            <span>Look Under the Hood</span>
+            <span class="series-number">01</span>
+          </div>
+          <h1 data-edit-region="title">How does SwiftUI call UIKit?</h1>
+          <p class="subtitle" data-edit-region="subtitle">Rebuilding a SwiftUI app launch in UIKit.</p>
+          <div class="article-meta">
+            <span>12 min read</span>
+            <span class="meta-dot">·</span>
+            <span>July 2026</span>
+            <span class="meta-dot">·</span>
+            <span class="tag">SwiftUI</span>
+            <span class="tag">UIKit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="build-map" aria-labelledby="build-map-title">
+    <div class="build-map-label" id="build-map-title">What you'll build</div>
+    <div class="flow" aria-label="App launch flow">
+      <span class="flow-node">@main App</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">UIApplicationMain</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">AppDelegate</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">SceneDelegate</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">UIWindow</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Hello, world!</span>
+    </div>
+  </section>
+
+  <div class="article-shell">
+    <main class="article-body" data-edit-region="article">
+      <p class="lead">I learned modern iOS development through SwiftUI. That makes UIKit feel slightly backwards: most explanations start with UIKit and use SwiftUI as the comparison, while I need the map to work in the other direction.</p>
+
+      <p>The most fun way to do this looks to me like rebuilding familiar SwiftUI ideas in UIKit, then looking underneath both frameworks to understand what the system is actually doing.</p>
+
+      <p>For our first step, we will take the smallest useful SwiftUI app—a “Hello, world!” then try to figure out whats going on under the hood.</p>
+
+      <h2 id="starting-point">The starting point</h2>
+
+      <p>Here is the SwiftUI app:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · HelloWorldApp.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">SwiftUI</span>
+
+<span class="prop">@main</span>
+<span class="kw">struct</span> <span class="type">HelloWorldApp</span>: <span class="type">App</span> {
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">Scene</span> {
+        <span class="type">WindowGroup</span> {
+            <span class="type">ContentView</span>()
+        }
+    }
+}
+
+<span class="kw">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">View</span> {
+        <span class="type">Text</span>(<span class="str">"Hello, world!"</span>)
+    }
+}</code></pre>
+      </div>
+
+      <p>The goal here is to see what SwiftUI is abstracting away from, how and where it uses UIKit and then display the same view in both frameworks.</p>
+
+      <h2 id="run-swiftui">Run the SwiftUI baseline</h2>
+
+      <p>Before changing anything, run the SwiftUI version once. Select the app's scheme and an iPhone simulator, then press <code class="inline-code">⌘R</code>.</p>
+
+      <figure class="article-figure">
+        <img src="../assets/swiftui-hello-world.png" alt="An iPhone simulator showing Hello, world! centred on a white screen" width="662" height="1298">
+        <figcaption>The SwiftUI baseline running in the iPhone simulator.</figcaption>
+      </figure>
+
+      <h2 id="main">What does @main actually do?</h2>
+
+      <p><code class="inline-code">@main</code> is a Swift language feature, not a SwiftUI feature. It marks one type as the program's entry point.</p>
+
+      <p>The marked type must provide a static <code class="inline-code">main()</code> method. We do not write that method on <code class="inline-code">HelloWorldApp</code>; the <code class="inline-code">App</code> protocol supplies it for us. Conceptually, Swift turns our app declaration into something like:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · conceptual equivalent</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="type">HelloWorldApp</span>.main()</code></pre>
+      </div>
+
+      <p>This is the first layer SwiftUI hides: our <code class="inline-code">App</code> conformer is not merely a container for <code class="inline-code">body</code>. It also participates in starting the process.</p>
+
+      <p>You can read the swift evolution proposal here if you're curious: <a href="https://github.com/swiftlang/swift-evolution/blob/main/proposals/0281-main-attribute.md">SE-0281: <code class="inline-code">@main</code></a>.</p>
+
+      <h2 id="start-uikit">Recreating SwiftUI Hello World in UIKit</h2>
+
+      <p>For this exercise, stay in the same Xcode project. We are going to replace SwiftUI with UIKit.</p>
+
+      <p>Add a file named <code class="inline-code">main.swift</code>.</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · main.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">UIKit</span>
+
+<span class="type">UIApplicationMain</span>(
+    <span class="type">CommandLine</span>.argc,
+    <span class="type">CommandLine</span>.unsafeArgv,
+    <span class="kw">nil</span>,
+    <span class="type">NSStringFromClass</span>(<span class="type">AppDelegate</span>.self)
+)</code></pre>
+      </div>
+
+      <p><code class="inline-code">UIApplicationMain</code> starts the UIKit application and its main event loop. Most app code never needs to care about the first two values. The important relationship is between the one application object and the delegate UIKit creates for it.</p>
+
+      <div class="compiler-error">
+        <strong>First error</strong>
+        <code>Cannot find 'AppDelegate' in scope</code>
+        <p>That is expected: <code class="inline-code">main.swift</code> names an app delegate that we have not created yet. The compiler has shown us the next piece of the launch path.</p>
+      </div>
+
+      <h2 id="app-delegate">Add the app delegate</h2>
+
+      <p>Create <code class="inline-code">AppDelegate.swift</code>:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · AppDelegate.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">UIKit</span>
+
+<span class="kw">final class</span> <span class="type">AppDelegate</span>: <span class="type">NSObject</span>, <span class="type">UIApplicationDelegate</span> {
+    <span class="kw">func</span> application(
+        _ application: <span class="type">UIApplication</span>,
+        didFinishLaunchingWithOptions launchOptions: [
+            <span class="type">UIApplication</span>.<span class="type">LaunchOptionsKey</span>: <span class="type">Any</span>
+        ]? = <span class="kw">nil</span>
+    ) -> <span class="type">Bool</span> {
+        <span class="kw">true</span>
+    }
+
+    <span class="kw">func</span> application(
+        _ application: <span class="type">UIApplication</span>,
+        configurationForConnecting session: <span class="type">UISceneSession</span>,
+        options: <span class="type">UIScene</span>.<span class="type">ConnectionOptions</span>
+    ) -> <span class="type">UISceneConfiguration</span> {
+        <span class="kw">let</span> configuration = <span class="type">UISceneConfiguration</span>(
+            name: <span class="str">"Default Configuration"</span>,
+            sessionRole: session.role
+        )
+        configuration.delegateClass = <span class="type">SceneDelegate</span>.self
+        <span class="kw">return</span> configuration
+    }
+}</code></pre>
+      </div>
+
+      <p>Why inherit from <code class="inline-code">NSObject</code>? <code class="inline-code">UIApplicationDelegate</code> inherits from <code class="inline-code">NSObjectProtocol</code>. Inheriting from <code class="inline-code">NSObject</code> gives our class the Objective-C runtime behaviour UIKit expects.</p>
+
+      <p>The two methods have different jobs:</p>
+
+      <ul>
+        <li><strong>didFinishLaunchingWithOptions</strong> finishes process-level setup.</li>
+        <li><strong>configurationForConnecting</strong> tells UIKit how to configure a new scene.</li>
+      </ul>
+
+      <p>In a scene-based app, the app delegate launches the process; a scene delegate builds each instance of the interface.</p>
+
+      <div class="compiler-error">
+        <strong>Second error</strong>
+        <code>Cannot find 'SceneDelegate' in scope</code>
+        <p><code class="inline-code">AppDelegate</code> now exists, but it asks UIKit to use a scene delegate that does not exist yet. That gives us our next file.</p>
+      </div>
+
+      <h2 id="scene-delegate">Build the scene</h2>
+
+      <p>Create <code class="inline-code">SceneDelegate.swift</code>:</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · SceneDelegate.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="kw">import</span> <span class="type">UIKit</span>
+
+<span class="kw">final class</span> <span class="type">SceneDelegate</span>: <span class="type">UIResponder</span>, <span class="type">UIWindowSceneDelegate</span> {
+    <span class="kw">var</span> window: <span class="type">UIWindow</span>?
+
+    <span class="kw">func</span> scene(
+        _ scene: <span class="type">UIScene</span>,
+        willConnectTo session: <span class="type">UISceneSession</span>,
+        options: <span class="type">UIScene</span>.<span class="type">ConnectionOptions</span>
+    ) {
+        <span class="kw">guard let</span> windowScene = scene <span class="kw">as?</span> <span class="type">UIWindowScene</span> <span class="kw">else</span> {
+            <span class="kw">return</span>
+        }
+
+        <span class="kw">let</span> rootViewController = <span class="type">UIViewController</span>()
+        rootViewController.view.backgroundColor = .systemBackground
+
+        <span class="kw">let</span> helloWorldLabel = <span class="type">UILabel</span>()
+        helloWorldLabel.text = <span class="str">"Hello, world!"</span>
+        helloWorldLabel.translatesAutoresizingMaskIntoConstraints = <span class="kw">false</span>
+        rootViewController.view.addSubview(helloWorldLabel)
+
+        <span class="type">NSLayoutConstraint</span>.activate([
+            helloWorldLabel.centerXAnchor.constraint(
+                equalTo: rootViewController.view.centerXAnchor
+            ),
+            helloWorldLabel.centerYAnchor.constraint(
+                equalTo: rootViewController.view.centerYAnchor
+            ),
+        ])
+
+        <span class="kw">let</span> window = <span class="type">UIWindow</span>(windowScene: windowScene)
+        window.rootViewController = rootViewController
+        self.window = window
+        window.makeKeyAndVisible()
+    }
+}</code></pre>
+      </div>
+
+      <p>There is more ceremony than <code class="inline-code">Text("Hello, world!")</code>, but every line has a clear responsibility:</p>
+
+      <ol>
+        <li>Confirm that UIKit gave us a <code class="inline-code">UIWindowScene</code>.</li>
+        <li>Create a root view controller.</li>
+        <li>Create and configure a label.</li>
+        <li>Add the label to the view hierarchy.</li>
+        <li>Constrain it to the centre.</li>
+        <li>Create a window for this scene.</li>
+        <li>Install the root view controller.</li>
+        <li>Retain the window and make it visible.</li>
+      </ol>
+
+      <div class="compiler-error">
+        <strong>Third error</strong>
+        <code>'main' attribute cannot be used in a module that contains top-level code</code>
+        <p>Both delegate types are now in scope, so the compiler reaches the conflict between the top-level code in <code class="inline-code">main.swift</code> and SwiftUI's existing <code class="inline-code">@main</code> entry point.</p>
+      </div>
+
+      <h2 id="remove-main">Hand the entry point to UIKit</h2>
+
+      <p>An app may have only one entry point. Comment out the <code class="inline-code">@main</code> attribute on <code class="inline-code">HelloWorldApp</code>. The SwiftUI views and previews can stay in the project; <code class="inline-code">main.swift</code> now starts the app.</p>
+
+      <div class="code-block">
+        <div class="code-toolbar">
+          <span><span class="code-language">swift</span> · ContentView.swift</span>
+          <button class="copy-button" type="button">Copy</button>
+        </div>
+        <pre><code><span class="comment">// @main</span>
+<span class="kw">struct</span> <span class="type">HelloWorldApp</span>: <span class="type">App</span> {
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">Scene</span> {
+        <span class="type">WindowGroup</span> {
+            <span class="type">ContentView</span>()
+        }
+    }
+}</code></pre>
+      </div>
+
+      <h2 id="black-screen">Run it: a black screen</h2>
+
+      <p>Build and run again. The compiler errors are gone and the app launches, but instead of “Hello, world!” we get a black screen.</p>
+
+      <figure class="article-figure">
+        <img src="../assets/uikit-black-screen.png" alt="An iPhone simulator displaying a black screen after the UIKit app launches" width="798" height="1748">
+        <figcaption>The UIKit app launches, but no scene has connected its window yet.</figcaption>
+      </figure>
+
+      <p>We created a <code class="inline-code">SceneDelegate</code>, but the target has not opted in to UIKit's scene-based lifecycle. UIKit is therefore not asking that delegate to construct the window.</p>
+
+      <h2 id="scenes">Opt in to scenes</h2>
+
+      <p>Make sure the target's Info settings contain an <strong>Application Scene Manifest</strong> (<code class="inline-code">UIApplicationSceneManifest</code>).</p>
+
+      <figure class="article-figure article-figure-wide">
+        <img src="../assets/application-scene-manifest.png" alt="Xcode target Info settings showing the Application Scene Manifest and Enable Multiple Scenes set to NO" width="1494" height="120">
+        <figcaption>The Application Scene Manifest in the target's Info settings.</figcaption>
+      </figure>
+
+      <ul>
+        <li>Set <strong>Enable Multiple Windows</strong> to <code class="inline-code">NO</code>.</li>
+        <li>Keep a window application session role.</li>
+        <li>We do not need to name the scene delegate in the manifest because the app delegate supplies <code class="inline-code">SceneDelegate.self</code> in code.</li>
+      </ul>
+
+      <aside class="callout">
+        <strong>Mental map</strong>
+        A SwiftUI <code class="inline-code">WindowGroup</code> is closer to UIKit's scene system than to a single <code class="inline-code">UIWindow</code> owned directly by the app delegate.
+      </aside>
+
+      <h2 id="run-uikit">Build and run the UIKit version</h2>
+
+      <p>We now have all three pieces of the UIKit launch path: <code class="inline-code">main.swift</code>, <code class="inline-code">AppDelegate.swift</code>, and <code class="inline-code">SceneDelegate.swift</code>. Before pressing Run, check that Xcode is actually building those files into the same app target.</p>
+
+      <div class="run-checklist">
+        <div class="run-checklist-title">Target checklist</div>
+        <ul>
+          <li>The SwiftUI <code class="inline-code">@main</code> app declaration is commented out or removed from this target.</li>
+          <li><code class="inline-code">main.swift</code>, <code class="inline-code">AppDelegate.swift</code>, and <code class="inline-code">SceneDelegate.swift</code> all have the app target selected under Target Membership.</li>
+          <li>The target does not reference a main storyboard.</li>
+          <li>The target's Info settings contain an Application Scene Manifest.</li>
+          <li>The selected scheme belongs to the app target you just modified.</li>
+        </ul>
+      </div>
+
+      <p>Build with <code class="inline-code">⌘R</code>.</p>
+
+      <div class="run-result">
+        <div class="run-result-copy">
+          <span class="success-pill">RUN SUCCESSFUL</span>
+          <h3>UIKit is now drawing the same screen</h3>
+          <p>The window is visible, the root view controller owns the screen, and Auto Layout has centred the label. There is no SwiftUI view in this launch path.</p>
+          <p>What looked like one <code class="inline-code">Text</code> declaration is now a UIKit application, scene, window, view controller, label, and two active constraints.</p>
+        </div>
+        <div class="simulator" role="img" aria-label="An iPhone simulator showing Hello, world! in the centre">
+          <span class="simulator-label">Hello, world!</span>
+        </div>
+      </div>
+
+      <h2 id="map">The SwiftUI-to-UIKit map</h2>
+
+      <div class="comparison">
+        <div class="comparison-header">Framework map</div>
+        <table>
+          <thead>
+            <tr>
+              <th>SwiftUI idea</th>
+              <th>UIKit counterpart in this example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@main</td>
+              <td><code class="inline-code">main.swift</code> as the program entry point</td>
+            </tr>
+            <tr>
+              <td>App</td>
+              <td>Launch behaviour split across <code class="inline-code">UIApplicationMain</code> and delegates</td>
+            </tr>
+            <tr>
+              <td>WindowGroup</td>
+              <td>A scene configuration and <code class="inline-code">UIWindowSceneDelegate</code></td>
+            </tr>
+            <tr>
+              <td>ContentView</td>
+              <td>The root <code class="inline-code">UIViewController</code> and its view hierarchy</td>
+            </tr>
+            <tr>
+              <td>Text</td>
+              <td><code class="inline-code">UILabel</code></td>
+            </tr>
+            <tr>
+              <td>Declarative centring</td>
+              <td>Auto Layout centre constraints</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="hidden">What SwiftUI is hiding</h2>
+
+      <p>Our UIKit chain is now:</p>
+
+      <div class="launch-chain"><span class="highlight">main.swift</span>
+  → UIApplicationMain
+    → AppDelegate.configurationForConnecting
+      → SceneDelegate.scene(_:willConnectTo:options:)
+        → UIWindow(windowScene:)
+          → UIViewController
+            → <span class="highlight">UILabel</span></div>
+
+      <p>SwiftUI expresses the same broad responsibilities with:</p>
+
+      <div class="launch-chain"><span class="highlight">@main App</span>
+  → WindowGroup
+    → ContentView
+      → <span class="highlight">Text</span></div>
+
+      <p>The second version is shorter because SwiftUI owns the bridge between those declarations and UIKit's application, scene, and window infrastructure.</p>
+
+      <p>Exactly how that private bridge is implemented is not part of SwiftUI's public contract. We can observe it with a debugger.</p>
+
+      <p>That is where we will go next.</p>
+    </main>
+
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol class="toc-list">
+        <li><a href="#starting-point">The starting point</a></li>
+        <li><a href="#run-swiftui">Run SwiftUI</a></li>
+        <li><a href="#main">What does @main do?</a></li>
+        <li><a href="#start-uikit">Recreate it in UIKit</a></li>
+        <li><a href="#app-delegate">App delegate</a></li>
+        <li><a href="#scene-delegate">Build the scene</a></li>
+        <li><a href="#remove-main">Remove @main</a></li>
+        <li><a href="#black-screen">Black screen</a></li>
+        <li><a href="#scenes">Opt in to scenes</a></li>
+        <li><a href="#run-uikit">Run UIKit</a></li>
+        <li><a href="#map">Framework map</a></li>
+        <li><a href="#hidden">What SwiftUI hides</a></li>
+      </ol>
+    </aside>
+  </div>
+
+  <section class="series-footer">
+    <div class="next-label">Next in Look Under the Hood</div>
+    <a class="next-card" href="../following-swiftui-to-uiwindow/">
+      <span>
+        <span class="next-kicker">PART 02</span>
+        <span class="next-title">Following SwiftUI from App.main() to UIWindow</span>
+      </span>
+      <span class="next-arrow" aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 Eric Savoie</span>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Email</a>
+        <a href="#">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const editorStorageKey = `look-under-the-hood:draft:v7:${location.pathname}`;
+    const editorToggle = document.querySelector("[data-edit-toggle]");
+    const editorActions = document.querySelector("[data-editor-actions]");
+    const editorStatus = document.querySelector("[data-edit-status]");
+    const editorSave = document.querySelector("[data-edit-save]");
+    const editorExport = document.querySelector("[data-edit-export]");
+    const editorReset = document.querySelector("[data-edit-reset]");
+
+    try {
+      const savedDraft = JSON.parse(localStorage.getItem(editorStorageKey) || "null");
+      if (savedDraft?.regions) {
+        for (const [name, html] of Object.entries(savedDraft.regions)) {
+          const region = document.querySelector(`[data-edit-region="${name}"]`);
+          if (region && typeof html === "string") region.innerHTML = html;
+        }
+        editorStatus.textContent = "Local draft restored.";
+      }
+    } catch {
+      editorStatus.textContent = "Draft could not be restored.";
+    }
+
+    const editableRegions = [...document.querySelectorAll("[data-edit-region]")];
+    let editing = false;
+    let autosaveTimer;
+
+    function setEditorStatus(message) {
+      editorStatus.textContent = message;
+    }
+
+    function saveDraft(message = "Saved in this browser.") {
+      const regions = Object.fromEntries(
+        editableRegions.map(region => [region.dataset.editRegion, region.innerHTML])
+      );
+      localStorage.setItem(editorStorageKey, JSON.stringify({
+        savedAt: new Date().toISOString(),
+        regions,
+      }));
+      setEditorStatus(message);
+    }
+
+    function setEditing(nextEditing) {
+      editing = nextEditing;
+      document.body.classList.toggle("is-editing", editing);
+      editorToggle.textContent = editing ? "Done editing" : "Edit page";
+      editorActions.hidden = !editing;
+
+      for (const region of editableRegions) {
+        region.contentEditable = editing ? "true" : "false";
+        region.spellcheck = editing;
+      }
+
+      if (editing) {
+        setEditorStatus("Click the title or article to edit.");
+      } else {
+        saveDraft();
+      }
+    }
+
+    editorToggle.addEventListener("click", () => setEditing(!editing));
+    editorSave.addEventListener("click", () => saveDraft());
+
+    for (const region of editableRegions) {
+      region.addEventListener("input", () => {
+        setEditorStatus("Editing…");
+        window.clearTimeout(autosaveTimer);
+        autosaveTimer = window.setTimeout(
+          () => saveDraft("Autosaved locally."),
+          600
+        );
+      });
+    }
+
+    editorExport.addEventListener("click", () => {
+      saveDraft();
+      const clone = document.documentElement.cloneNode(true);
+      clone.querySelector("body")?.classList.remove("is-editing");
+      for (const region of clone.querySelectorAll("[data-edit-region]")) {
+        region.removeAttribute("contenteditable");
+        region.removeAttribute("spellcheck");
+      }
+      const clonedToggle = clone.querySelector("[data-edit-toggle]");
+      const clonedActions = clone.querySelector("[data-editor-actions]");
+      const clonedStatus = clone.querySelector("[data-edit-status]");
+      if (clonedToggle) clonedToggle.textContent = "Edit page";
+      if (clonedActions) clonedActions.hidden = true;
+      if (clonedStatus) clonedStatus.textContent = "Changes stay in this browser.";
+
+      const html = `<!doctype html>\n${clone.outerHTML}`;
+      const blob = new Blob([html], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const download = document.createElement("a");
+      const filename = document.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      download.href = url;
+      download.download = `${filename || "article-draft"}.html`;
+      download.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setEditorStatus("Edited HTML exported.");
+    });
+
+    editorReset.addEventListener("click", () => {
+      if (!window.confirm("Discard the browser draft and restore the original article?")) return;
+      localStorage.removeItem(editorStorageKey);
+      location.reload();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (editing && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        saveDraft();
+      }
+      if (editing && event.key === "Escape") {
+        setEditing(false);
+      }
+    });
+
+    const progress = document.querySelector(".reading-progress");
+    const headings = [...document.querySelectorAll(".article-body h2[id]")];
+    const tocLinks = [...document.querySelectorAll(".toc-list a")];
+
+    function updateReadingState() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const percentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progress.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
+
+      let currentId = headings[0]?.id;
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top <= 140) currentId = heading.id;
+      }
+
+      for (const link of tocLinks) {
+        link.classList.toggle("active", link.hash === `#${currentId}`);
+      }
+    }
+
+    document.addEventListener("scroll", updateReadingState, { passive: true });
+    window.addEventListener("resize", updateReadingState);
+    updateReadingState();
+
+    for (const button of document.querySelectorAll(".copy-button")) {
+      button.addEventListener("click", async () => {
+        const code = button.closest(".code-block").querySelector("code").innerText;
+        try {
+          await navigator.clipboard.writeText(code);
+          button.textContent = "Copied";
+          window.setTimeout(() => button.textContent = "Copy", 1400);
+        } catch {
+          button.textContent = "Select";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

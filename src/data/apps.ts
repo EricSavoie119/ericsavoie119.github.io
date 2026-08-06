@@ -22,10 +22,13 @@ export const apps: App[] = [
   {
     name: 'GridMetrics',
     image: '/assets/images/apps/GridMetrics/1024.png',
-    category: 'Real-time grid insights',
-    description: 'See the real time distribution of the UK grid generation mix.',
-    tech: ['AWS APIGateway', 'AWS Lambda', 'AWS S3', 'AWS EC2', 'AWS ECR'],
-    links: { appStore: 'https://apps.apple.com/gb/app/gridmetrics/id6752292390' },
+    category: 'Clean energy & tariff forecast',
+    description: 'Know the cleanest—and with Pro, cheapest—time to use electricity with one practical 24-hour recommendation.',
+    tech: ['SwiftUI', 'WidgetKit', 'StoreKit', 'PostHog'],
+    links: {
+      appStore: 'https://apps.apple.com/gb/app/gridmetrics/id6752292390',
+      features: '/apps/gridmetrics/',
+    },
   },
   {
     name: 'BeLoved',

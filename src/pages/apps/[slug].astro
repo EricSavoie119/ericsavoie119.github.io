@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppLandingPage from '../../components/AppLandingPage.astro';
+import { appPages, type AppPage } from '../../data/appPages';
+
+export function getStaticPaths() {
+  return appPages.map((app) => ({ params: { slug: app.slug }, props: { app } }));
+}
+
+interface Props { app: AppPage }
+const { app } = Astro.props;
+const canonicalUrl = `https://savoie.app/apps/${app.slug}/`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: app.name,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'iOS',
+  description: app.subhead,
+  downloadUrl: app.appStoreUrl,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP' },
+};
+---
+
+<Layout
+  title={`${app.name} — ${app.headline}`}
+  description={app.subhead}
+  canonicalUrl={canonicalUrl}
+  ogImage={`https://savoie.app${app.heroScreenshot}`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <AppLandingPage app={app} />
+</Layout>
