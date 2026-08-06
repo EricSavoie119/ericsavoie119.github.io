@@ -12,14 +12,6 @@ export interface App {
 
 export const apps: App[] = [
   {
-    name: 'Curiosity AI',
-    image: '/assets/images/apps/CuriosityAI/appstore.png',
-    category: 'Anonymous community chat',
-    description: 'Drop into live, topic-based rooms, speak your mind anonymously, and let built-in AI help you express ideas and keep conversations productive.',
-    tech: ['Cognito Identity Pool', 'DynamoDB', 'SigV4', 'WebSockets', 'URLSessionWebSocketTask', 'OpenAI ChatGPT API', 'OpenAI Moderation API', 'Streaming API responses', 'Presigned URLs', 'CryptoKit'],
-    links: { appStore: 'https://apps.apple.com/gb/app/curiosity-ai/id6753080466' },
-  },
-  {
     name: 'Bread Engineer',
     image: '/assets/images/icons/BreadEngineer.png',
     category: 'Equation-based fermentation timer',
@@ -34,14 +26,6 @@ export const apps: App[] = [
     description: 'See the real time distribution of the UK grid generation mix.',
     tech: ['AWS APIGateway', 'AWS Lambda', 'AWS S3', 'AWS EC2', 'AWS ECR'],
     links: { appStore: 'https://apps.apple.com/gb/app/gridmetrics/id6752292390' },
-  },
-  {
-    name: 'Swivo',
-    image: '/assets/images/apps/Swivo/appstore.png',
-    category: 'AI-generated social video feed',
-    description: 'Like TikTok for AI generated content with cloud-powered video generation.',
-    tech: ['UICollectionView', 'UIKit', 'Google Cloud Platform', 'Vertex AI API', 'VEO3 (Video Generation)', 'Cloud Storage'],
-    links: { appStore: 'https://apps.apple.com/gb/app/swivo/id6753713071' },
   },
   {
     name: 'BeLoved',
@@ -109,5 +93,24 @@ export const apps: App[] = [
     description: 'Using a keyboard toolbar and auto focusing textfields to achieve the fastest tip calculator on the market.',
     tech: [],
     links: { appStore: 'https://apps.apple.com/gb/app/tip-calculator-fast/id6752381498' },
+  },
+];
+
+export const retiredApps: App[] = [
+  {
+    name: 'Curiosity AI',
+    image: '/assets/images/apps/CuriosityAI/appstore.png',
+    category: 'Anonymous community chat · 2025–2026',
+    description: 'An experiment in anonymous, topic-based conversation with AI-assisted expression and moderation.',
+    tech: ['SwiftUI', 'WebSockets', 'AWS Lambda', 'DynamoDB', 'OpenAI'],
+    links: {},
+  },
+  {
+    name: 'Swivo',
+    image: '/assets/images/apps/Swivo/appstore.png',
+    category: 'AI-generated social video · 2025–2026',
+    description: 'An exploration of a social feed built around cloud-generated images and video.',
+    tech: ['UIKit', 'Google Cloud', 'Vertex AI', 'Veo', 'Cloud Storage'],
+    links: {},
   },
 ];

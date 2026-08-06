@@ -3,14 +3,18 @@ import type { App } from '../data/apps';
 
 interface Props {
   app: App;
+  retired?: boolean;
 }
-const { app } = Astro.props;
+const { app, retired = false } = Astro.props;
 ---
-<div class="app-card">
+<div class:list={["app-card", { "app-card--retired": retired }]}>
   <div class="app-card-header">
     <img src={app.image} alt={`${app.name} icon`} class="app-icon" width="52" height="52" />
     <div>
-      <h3 class="app-name">{app.name}</h3>
+      <div class="app-title-row">
+        <h3 class="app-name">{app.name}</h3>
+        {retired && <span class="retired-badge">Retired</span>}
+      </div>
       <span class="app-category">{app.category}</span>
     </div>
   </div>
@@ -52,6 +56,32 @@ const { app } = Astro.props;
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+
+  .app-card--retired {
+    border-color: color-mix(in srgb, var(--color-border-card) 70%, transparent);
+  }
+
+  .app-card--retired .app-card-header {
+    filter: saturate(0.65);
+  }
+
+  .app-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .retired-badge {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius-pill);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    text-transform: uppercase;
   }
 
   .app-icon {
