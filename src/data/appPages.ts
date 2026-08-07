@@ -37,11 +37,11 @@ export const appPages: AppPage[] = [
     accent: '#f02d55',
     accentDark: '#8f1835',
     eyebrow: 'A home for your love story',
-    headline: 'Keep every moment close.',
+    headline: 'Add your person. Keep every moment close.',
     subhead:
       'BeLoved brings anniversaries, milestones, special dates and a beautiful relationship widget together—so the moments that matter never get lost in the calendar.',
     appStoreUrl: 'https://apps.apple.com/gb/app/beloved/id6752829410',
-    heroScreenshot: '/assets/images/apps/BeLoved/product/love-story.webp',
+    heroScreenshot: '/assets/images/apps/BeLoved/product/love-story-couple.webp',
     heroScreenshotAlt: 'BeLoved relationship dashboard with anniversary, milestones and special dates',
     benefits: ['Anniversary countdowns', 'Relationship milestones', 'Home Screen widgets'],
     sections: [
@@ -49,8 +49,8 @@ export const appPages: AppPage[] = [
         eyebrow: 'Your story at a glance',
         title: 'Count every day together.',
         body:
-          'See your relationship length, next anniversary and favourite moments in one calm, personal view. Add your own photo to make the story unmistakably yours.',
-        screenshot: '/assets/images/apps/BeLoved/product/love-story.webp',
+          'Add your person’s photo, then see your relationship length, next anniversary and favourite moments in one calm, personal view.',
+        screenshot: '/assets/images/apps/BeLoved/product/love-story-couple.webp',
         screenshotAlt: 'BeLoved showing a relationship photo and time together',
       },
       {

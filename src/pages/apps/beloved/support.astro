@@ -1,0 +1,60 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="BeLoved Support — Savoie Apps"
+  description="Help, troubleshooting and contact details for BeLoved."
+  canonicalUrl="https://savoie.app/apps/beloved/support/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">BeLoved</p>
+      <h1>Support</h1>
+      <p class="lede">Need help with a relationship date, reminder, widget or BeLoved Premium subscription? Email us and we’ll help you get it sorted.</p>
+
+      <a class="contact" href="mailto:beloved@savoie.app?subject=BeLoved%20Support%20Request">Email BeLoved support</a>
+
+      <h2>Helpful details to include</h2>
+      <ul>
+        <li>Your BeLoved version and build number</li>
+        <li>Your iPhone model and iOS version</li>
+        <li>What you expected to happen and what happened instead</li>
+        <li>A screenshot, if it helps explain the problem</li>
+      </ul>
+
+      <h2>Common fixes</h2>
+      <h3>The widget is not updating</h3>
+      <p>Open BeLoved to refresh your relationship details, then wait briefly for iOS to update the widget. If necessary, remove the widget from your Home Screen and add it again.</p>
+
+      <h3>Reminders are not arriving</h3>
+      <p>Check that notifications are allowed for BeLoved in iOS Settings and that the reminder is enabled for the date you want to celebrate.</p>
+
+      <h3>BeLoved Premium is missing</h3>
+      <p>Open the Premium screen and choose “Restore Purchases”. Your subscription is restored through the App Store account that originally subscribed.</p>
+
+      <h3>A photo is not appearing in the widget</h3>
+      <p>Open BeLoved, confirm the photo you want is selected, and return to the Home Screen. iOS may take a short time to refresh the widget.</p>
+
+      <p class="footnote">For privacy information, see the <a href="/legal/privacy-policy/">Savoie Apps privacy policy</a>.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: #f02d55; font-weight: 700; }
+  h1 { margin: 0 0 1rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .lede { max-width: 42rem; color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  .contact { display: inline-block; margin: 1rem 0 2rem; padding: .8rem 1rem; border-radius: .8rem; background: #f02d55; color: white; font-weight: 700; text-decoration: none; }
+  h2 { margin: 2rem 0 .7rem; font-size: 1.3rem; }
+  h3 { margin: 1.4rem 0 .35rem; font-size: 1rem; }
+  p, li { line-height: 1.7; }
+  li + li { margin-top: .35rem; }
+  .footnote { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .9rem; }
+</style>
