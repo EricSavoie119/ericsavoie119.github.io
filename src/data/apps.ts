@@ -52,10 +52,13 @@ export const apps: App[] = [
   {
     name: 'Infinite Ruler',
     image: '/assets/images/icons/infiniteruler.png',
-    category: 'Measure anything with your phone',
-    description: 'An app that uses known DPI values to turn your phone into an old school ruler. Limited use but kind of fun.',
-    tech: ['Measurement framework'],
-    links: { appStore: 'https://apps.apple.com/gb/app/infinite-ruler/id6746876762' },
+    category: 'A calibrated ruler that keeps going',
+    description: 'Measure in centimetres or fractional inches with a movable zero, A–B markers and a ruler that continues past one screen.',
+    tech: ['SwiftUI', 'Device calibration', 'PostHog'],
+    links: {
+      appStore: 'https://apps.apple.com/gb/app/infinite-ruler/id6746876762',
+      features: '/apps/infinite-ruler/',
+    },
   },
   {
     name: 'Flip Clock Flow',

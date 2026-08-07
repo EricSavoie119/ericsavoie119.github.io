@@ -19,9 +19,12 @@ export interface AppPage {
   appStoreUrl: string;
   heroScreenshot: string;
   heroScreenshotAlt: string;
+  benefits: [string, string, string];
   sections: AppPageSection[];
+  trustEyebrow: string;
   trustTitle: string;
   trustBody: string;
+  finalEyebrow: string;
   footnote: string;
   faq: Array<{ question: string; answer: string }>;
 }
@@ -40,6 +43,7 @@ export const appPages: AppPage[] = [
     appStoreUrl: 'https://apps.apple.com/gb/app/gridmetrics/id6752292390',
     heroScreenshot: '/assets/images/apps/GridMetrics/product/forecast-top.webp',
     heroScreenshotAlt: 'GridMetrics recommending the cleanest upcoming time to use electricity',
+    benefits: ['One clear recommendation', '24-hour forecast', 'Carbon first, price aware'],
     sections: [
       {
         eyebrow: 'Price-aware with Pro',
@@ -75,11 +79,13 @@ export const appPages: AppPage[] = [
         screenshotAlt: 'The live Great Britain electricity generation mix in GridMetrics',
       },
     ],
+    trustEyebrow: 'Private by default',
     trustTitle: 'Useful without an energy account.',
     trustBody:
       'The core carbon forecast is provider-neutral and needs no login. Optional price-aware recommendations support public Octopus Agile prices or manual time-of-use rates.',
     footnote:
       'Forecasts are estimates and may change. GridMetrics is an independent app and is not affiliated with NESO or Octopus Energy.',
+    finalEyebrow: 'Make the next load count',
     faq: [
       {
         question: 'Do I need to be an Octopus Energy customer?',
@@ -95,6 +101,79 @@ export const appPages: AppPage[] = [
         question: 'What does GridMetrics Pro add?',
         answer:
           'Pro combines supported tariff prices with the carbon forecast and shows the estimated appliance cost and saving for a recommended window.',
+      },
+    ],
+  },
+  {
+    slug: 'infinite-ruler',
+    name: 'Infinite Ruler',
+    icon: '/assets/images/icons/infiniteruler.png',
+    accent: '#0a84ff',
+    accentDark: '#07517f',
+    eyebrow: 'A calibrated ruler that keeps going',
+    headline: 'Measure from any point.',
+    subhead:
+      'Infinite Ruler turns your iPhone into a practical ruler with centimetres, fractional inches, movable zero and A–B markers—then continues beyond the length of one screen.',
+    appStoreUrl: 'https://apps.apple.com/gb/app/infinite-ruler/id6746876762',
+    heroScreenshot: '/assets/images/apps/infiniteruler/product/precision.webp',
+    heroScreenshotAlt: 'Infinite Ruler measuring a distance with fractional-inch precision and A–B markers',
+    benefits: ['Centimetres or fractions', 'Movable zero + A–B markers', 'Measure past one screen'],
+    sections: [
+      {
+        eyebrow: 'Place the zero yourself',
+        title: 'Start exactly where you need.',
+        body:
+          'Move the zero point away from the edge of your phone, then place A and B markers to see a live distance between two real-world points.',
+        screenshot: '/assets/images/apps/infiniteruler/product/movable-zero.webp',
+        screenshotAlt: 'Infinite Ruler with a movable zero point and A–B measurement markers',
+      },
+      {
+        eyebrow: 'Longer than your phone',
+        title: 'Keep measuring past one screen.',
+        body:
+          'Advance the ruler page by page without losing your place. It is the pocket ruler that does not stop at the bottom of the display.',
+        screenshot: '/assets/images/apps/infiniteruler/product/infinite.webp',
+        screenshotAlt: 'Infinite Ruler continuing a measurement beyond one phone screen',
+      },
+      {
+        eyebrow: 'Use the comfortable side',
+        title: 'Measure from either edge.',
+        body:
+          'Put the scale and controls on the left or right edge so the ruler fits the object, your hand, and the way you are working.',
+        screenshot: '/assets/images/apps/infiniteruler/product/right-edge.webp',
+        screenshotAlt: 'Infinite Ruler using the right edge of the iPhone for measurement',
+      },
+      {
+        eyebrow: 'Built for real objects',
+        title: 'Fine-tune your phone.',
+        body:
+          'Use a physical ruler once to calibrate the scale for your device, then keep that adjustment available for future measurements.',
+        screenshot: '/assets/images/apps/infiniteruler/product/calibration.webp',
+        screenshotAlt: 'Infinite Ruler calibration instructions over the ruler interface',
+      },
+    ],
+    trustEyebrow: 'No account, camera or cloud',
+    trustTitle: 'Your measurements stay on your phone.',
+    trustBody:
+      'Infinite Ruler does not need an account or camera. Measurements and device calibration values remain on your device.',
+    footnote:
+      'Infinite Ruler is intended for convenient everyday measurements. Calibrate against a physical ruler before work that requires greater accuracy.',
+    finalEyebrow: 'Keep a ruler in your pocket',
+    faq: [
+      {
+        question: 'Does Infinite Ruler support centimetres and inches?',
+        answer:
+          'Yes. Measure in centimetres or choose 1/8, 1/16 or 1/32-inch fractional precision.',
+      },
+      {
+        question: 'How can a ruler be longer than the phone?',
+        answer:
+          'Use the next and previous controls to continue the scale across multiple ruler pages without resetting the measurement.',
+      },
+      {
+        question: 'How accurate is it?',
+        answer:
+          'The app uses device-aware dimensions and provides calibration controls. For accuracy-sensitive work, calibrate it against a physical ruler first.',
       },
     ],
   },

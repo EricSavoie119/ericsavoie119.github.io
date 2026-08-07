@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "sync:gridmetrics-screenshots": "./scripts/sync-gridmetrics-screenshots.sh"
+    "sync:gridmetrics-screenshots": "./scripts/sync-gridmetrics-screenshots.sh",
+    "sync:infinite-ruler-screenshots": "./scripts/sync-infinite-ruler-screenshots.sh"
   },
   "dependencies": {
     "astro": "^6.0.0"
