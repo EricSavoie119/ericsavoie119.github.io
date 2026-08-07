@@ -1,0 +1,357 @@
+---
+import type {
+  AgileRegionData,
+  UtilityRecommendation,
+} from '../lib/gridMetricsData';
+
+interface Props {
+  mode: 'carbon' | 'price';
+  eyebrow: string;
+  title: string;
+  intro: string;
+  generatedAt: string;
+  recommendationDate: string | null;
+  recommendations: UtilityRecommendation[];
+  regions?: AgileRegionData[];
+  activeRegionCode?: string;
+  available: boolean;
+  sourceLabel: string;
+  sourceUrl: string;
+  explanation: string;
+}
+
+const {
+  mode,
+  eyebrow,
+  title,
+  intro,
+  generatedAt,
+  recommendationDate,
+  recommendations,
+  regions = [],
+  activeRegionCode = 'C',
+  available,
+  sourceLabel,
+  sourceUrl,
+  explanation,
+} = Astro.props;
+
+const primary = recommendations.find((item) => item.minutes === 120 && item.window)
+  ?? recommendations.find((item) => item.window);
+const durationAdjective = (minutes: number) => minutes < 60
+  ? `${minutes}-minute`
+  : `${minutes / 60}-hour`;
+const appStoreUrl = 'https://apps.apple.com/gb/app/gridmetrics/id6752292390';
+const icon = '/assets/images/apps/GridMetrics/1024.png';
+const formatTime = (value?: string) => value
+  ? new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(value))
+  : '—';
+const formatDate = (value?: string | null) => value
+  ? new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(`${value}T12:00:00Z`))
+  : 'the next available day';
+const formatGeneratedAt = (value: string) => new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Europe/London',
+  day: 'numeric',
+  month: 'short',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+}).format(new Date(value));
+const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions.map((region) => [region.code, region]))) : null;
+---
+
+<div class:list={['utility-page', `mode-${mode}`]}>
+  <header class="utility-nav">
+    <a class="brand" href="/apps/gridmetrics/" aria-label="GridMetrics home">
+      <img src={icon} alt="" width="40" height="40" />
+      <span>GridMetrics</span>
+    </a>
+    <nav aria-label="GridMetrics utilities">
+      <a href="/apps/gridmetrics/cleanest-time-today/">Cleanest time</a>
+      <a href="/apps/gridmetrics/octopus-agile-cheapest-time-today/">Agile prices</a>
+      <a class="nav-cta" href={appStoreUrl} target="_blank" rel="noopener noreferrer">Get the app</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="utility-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{title}</h1>
+        <p class="intro">{intro}</p>
+        {regions.length > 0 && (
+          <label class="region-control">
+            <span>Your electricity region</span>
+            <select id="region-select" aria-label="Choose an Octopus Agile electricity region">
+              {regions.map((region) => (
+                <option value={region.code} selected={region.code === activeRegionCode}>{region.name}</option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+
+      <div class="answer-card" aria-live="polite">
+        <div class="answer-topline">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="answer-date">{available ? formatDate(recommendationDate) : 'Data unavailable'}</span>
+        </div>
+        {available && primary?.window ? (
+          <>
+            <p class="answer-label" id="answer-label">{mode === 'price' ? 'Cheapest' : 'Cleanest'} {durationAdjective(primary.minutes)} window</p>
+            <p class="answer-time" id="answer-time">
+              {formatTime(primary.window.start)}<span>–</span>{formatTime(primary.window.end)}
+            </p>
+            <div class="answer-metrics">
+              <div>
+                <span>{mode === 'price' ? 'Average rate' : 'Average forecast'}</span>
+                <strong id="answer-value">
+                  {primary.window.value.toFixed(mode === 'price' ? 2 : 0)} {mode === 'price' ? 'p/kWh' : 'gCO₂/kWh'}
+                </strong>
+              </div>
+              <div>
+                <span>{mode === 'price' ? 'Example cost' : 'Signal'}</span>
+                <strong id="answer-secondary">
+                  {mode === 'price' && primary.window.costPence !== undefined
+                    ? `${primary.window.costPence.toFixed(0)}p`
+                    : 'Lower carbon'}
+                </strong>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div class="unavailable">
+            <p>The latest data could not be loaded during this update.</p>
+            <p>Please check again shortly.</p>
+          </div>
+        )}
+        <p class="updated">Updated <time datetime={generatedAt}>{formatGeneratedAt(generatedAt)}</time> UK time</p>
+      </div>
+    </section>
+
+    <section class="window-section" aria-labelledby="window-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Plan around real life</p>
+        <h2 id="window-heading">Pick a window that fits.</h2>
+        <p>Each result uses consecutive half-hour settlement periods still available on the date shown.</p>
+      </div>
+      <div class="window-grid" id="window-grid">
+        {recommendations.map((item) => (
+          <article class="window-card" data-minutes={item.minutes}>
+            <div class="window-card-top">
+              <span>{item.label}</span>
+              <span>{item.example}</span>
+            </div>
+            {item.window ? (
+              <>
+                <strong class="window-time" data-field="time">{formatTime(item.window.start)}–{formatTime(item.window.end)}</strong>
+                <p class="window-value" data-field="value">
+                  {item.window.value.toFixed(mode === 'price' ? 2 : 0)} {mode === 'price' ? 'p/kWh average' : 'gCO₂/kWh average'}
+                </p>
+                <p class="window-note" data-field="note">
+                  {mode === 'price' && item.window.costPence !== undefined
+                    ? `About ${item.window.costPence.toFixed(0)}p for a ${item.energyKWh} kWh example`
+                    : 'Lowest mean forecast for this duration'}
+                </p>
+              </>
+            ) : (
+              <p class="window-empty">Not enough time remains for this window today.</p>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="explanation">
+      <div>
+        <p class="eyebrow">How this is calculated</p>
+        <h2>A useful answer, not a guess.</h2>
+      </div>
+      <div class="explanation-copy">
+        <p>{explanation}</p>
+        <p>Times are shown in UK local time and automatically account for daylight-saving changes. Forecasts and prices can change, so check the timestamp before planning a large load.</p>
+        <a href={sourceUrl} target="_blank" rel="noopener noreferrer">Data source: {sourceLabel} ↗</a>
+      </div>
+    </section>
+
+    <section class="appliance-examples">
+      <p class="eyebrow">What could fit here?</p>
+      <h2>Use the window, your way.</h2>
+      <div class="example-grid">
+        <div><span aria-hidden="true">◌</span><strong>Dishwasher</strong><p>A typical eco cycle fits a one- to two-hour window.</p></div>
+        <div><span aria-hidden="true">≈</span><strong>Laundry</strong><p>Plan washing and drying inside a longer low-impact period.</p></div>
+        <div><span aria-hidden="true">↯</span><strong>EV charging</strong><p>Use a longer window as a starting point for a home top-up.</p></div>
+      </div>
+    </section>
+
+    <section class="app-cta">
+      <img src={icon} alt="GridMetrics app icon" width="88" height="88" />
+      <div>
+        <p class="eyebrow">Take the forecast with you</p>
+        <h2>One recommendation, ready when you are.</h2>
+        <p>GridMetrics adds regional carbon forecasts, activity durations, widgets and price-aware recommendations in one private iPhone app.</p>
+      </div>
+      <a class="store-button" href={appStoreUrl} target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true"></span>
+        <span><small>Download on the</small>App Store</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="utility-footer">
+    <p>GridMetrics is independent and is not affiliated with NESO or Octopus Energy. Figures are informational estimates, not billing advice.</p>
+    <nav aria-label="Footer">
+      <a href="/apps/gridmetrics/">About GridMetrics</a>
+      <a href="mailto:gridmetrics@savoie.app">Support</a>
+      <a href="/legal/privacy-policy/">Privacy</a>
+    </nav>
+  </footer>
+
+  {regionPayload && <script id="region-data" type="application/json" set:html={regionPayload} />}
+</div>
+
+{regionPayload && (
+  <script is:inline>
+    (() => {
+      const select = document.querySelector('#region-select');
+      const payload = document.querySelector('#region-data');
+      if (!(select instanceof HTMLSelectElement) || !(payload instanceof HTMLScriptElement)) return;
+      const regions = JSON.parse(payload.textContent || '{}');
+      const time = (value) => new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', hour12: false,
+      }).format(new Date(value));
+      const date = (value) => new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London', weekday: 'long', day: 'numeric', month: 'long',
+      }).format(new Date(`${value}T12:00:00Z`));
+      const update = () => {
+        const region = regions[select.value];
+        if (!region) return;
+        const primary = region.recommendations.find((item) => item.minutes === 120 && item.window)
+          || region.recommendations.find((item) => item.window);
+        document.querySelector('#answer-date').textContent = date(region.recommendationDate);
+        if (primary?.window) {
+          const duration = primary.minutes < 60 ? `${primary.minutes}-minute` : `${primary.minutes / 60}-hour`;
+          document.querySelector('#answer-label').textContent = `Cheapest ${duration} window`;
+          document.querySelector('#answer-time').innerHTML = `${time(primary.window.start)}<span>–</span>${time(primary.window.end)}`;
+          document.querySelector('#answer-value').textContent = `${primary.window.value.toFixed(2)} p/kWh`;
+          document.querySelector('#answer-secondary').textContent = `${primary.window.costPence.toFixed(0)}p`;
+        }
+        region.recommendations.forEach((item) => {
+          const card = document.querySelector(`[data-minutes="${item.minutes}"]`);
+          if (!card || !item.window) return;
+          card.querySelector('[data-field="time"]').textContent = `${time(item.window.start)}–${time(item.window.end)}`;
+          card.querySelector('[data-field="value"]').textContent = `${item.window.value.toFixed(2)} p/kWh average`;
+          card.querySelector('[data-field="note"]').textContent = `About ${item.window.costPence.toFixed(0)}p for a ${item.energyKWh} kWh example`;
+        });
+        try { localStorage.setItem('gridmetrics-agile-region', select.value); } catch {}
+      };
+      try {
+        const saved = localStorage.getItem('gridmetrics-agile-region');
+        if (saved && regions[saved]) select.value = saved;
+      } catch {}
+      select.addEventListener('change', update);
+      update();
+    })();
+  </script>
+)}
+
+<style>
+  .utility-page { --utility-accent: #167445; --utility-soft: #e3f7ec; background: #f7faf8; color: #102119; font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }
+  .utility-page h2::before { content: none; }
+  .utility-page.mode-price { --utility-accent: #a64b12; --utility-soft: #fff0df; background: #fdfaf6; color: #24170f; }
+  .utility-nav { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: 1180px; padding: 20px 28px; }
+  .brand { align-items: center; display: flex; font-weight: 800; gap: 11px; letter-spacing: -.02em; }
+  .brand img, .app-cta img { border-radius: 22%; box-shadow: 0 8px 22px rgba(18, 62, 39, .14); }
+  .utility-nav nav { align-items: center; display: flex; font-size: .86rem; font-weight: 700; gap: 24px; }
+  .utility-nav nav > a:not(.nav-cta) { color: #5f6d65; }
+  .nav-cta { background: #102119; border-radius: 999px; color: #fff; padding: 9px 16px; }
+  .mode-price .nav-cta { background: #24170f; }
+  .utility-hero { align-items: center; display: grid; gap: clamp(48px, 9vw, 120px); grid-template-columns: 1.05fr .95fr; margin: 0 auto; max-width: 1180px; min-height: 670px; padding: 80px 28px 110px; }
+  .hero-copy { max-width: 680px; }
+  .eyebrow { color: var(--utility-accent); font-size: .76rem; font-weight: 850; letter-spacing: .14em; margin-bottom: 18px; text-transform: uppercase; }
+  h1, h2 { letter-spacing: -.055em; line-height: .98; }
+  h1 { font-size: clamp(3.5rem, 7vw, 6.7rem); margin-bottom: 28px; }
+  h2 { font-size: clamp(2.4rem, 5vw, 4.25rem); }
+  .intro { color: #5b6b62; font-size: clamp(1.05rem, 1.7vw, 1.25rem); line-height: 1.68; max-width: 650px; }
+  .mode-price .intro { color: #746257; }
+  .region-control { display: block; margin-top: 32px; max-width: 420px; }
+  .region-control span { display: block; font-size: .78rem; font-weight: 800; margin-bottom: 8px; }
+  .region-control select { appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8'%3E%3Cpath d='m1 1 6 6 6-6' fill='none' stroke='%2324170f' stroke-width='2'/%3E%3C/svg%3E") no-repeat calc(100% - 16px) center; border: 1px solid #dfd3c9; border-radius: 12px; color: inherit; font: inherit; font-weight: 700; padding: 13px 42px 13px 15px; width: 100%; }
+  .answer-card { background: #102119; border-radius: 34px; box-shadow: 0 35px 80px rgba(18, 62, 39, .2); color: #fff; min-height: 420px; padding: clamp(30px, 5vw, 54px); position: relative; }
+  .mode-price .answer-card { background: #24170f; box-shadow: 0 35px 80px rgba(111, 61, 22, .2); }
+  .answer-topline { align-items: center; color: #b8cdc1; display: flex; font-size: .8rem; font-weight: 750; gap: 9px; }
+  .live-dot { background: #63df9e; border-radius: 50%; box-shadow: 0 0 0 5px rgba(99, 223, 158, .12); height: 8px; width: 8px; }
+  .mode-price .live-dot { background: #ffb866; box-shadow: 0 0 0 5px rgba(255, 184, 102, .12); }
+  .answer-label { color: #b8cdc1; font-size: .75rem; font-weight: 800; letter-spacing: .1em; margin-top: 62px; text-transform: uppercase; }
+  .answer-time { align-items: center; display: flex; font-size: clamp(3rem, 6vw, 5.2rem); font-weight: 850; gap: 10px; letter-spacing: -.06em; line-height: 1; margin: 12px 0 45px; white-space: nowrap; }
+  .answer-time span { color: #63df9e; font-weight: 400; }
+  .mode-price .answer-time span { color: #ffb866; }
+  .answer-metrics { border-top: 1px solid rgba(255,255,255,.14); display: grid; gap: 20px; grid-template-columns: 1fr 1fr; padding-top: 25px; }
+  .answer-metrics span { color: #9db2a6; display: block; font-size: .72rem; margin-bottom: 5px; }
+  .answer-metrics strong { font-size: 1.05rem; }
+  .updated { bottom: 22px; color: #789084; font-size: .68rem; position: absolute; }
+  .unavailable { color: #b8cdc1; line-height: 1.7; margin-top: 80px; }
+  .window-section { background: #fff; padding: 120px max(28px, calc((100vw - 1124px) / 2)); }
+  .section-heading { display: grid; gap: 15px 70px; grid-template-columns: 1.1fr .9fr; margin-bottom: 65px; }
+  .section-heading .eyebrow { grid-column: 1 / -1; margin: 0; }
+  .section-heading > p:last-child { align-self: end; color: #637168; line-height: 1.65; }
+  .window-grid { display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); }
+  .window-card { background: #f6faf7; border: 1px solid #deebe3; border-radius: 20px; min-height: 250px; padding: 24px; }
+  .mode-price .window-card { background: #fdf8f3; border-color: #eee0d3; }
+  .window-card-top { color: #66746b; display: flex; flex-direction: column; font-size: .72rem; gap: 3px; margin-bottom: 42px; }
+  .window-card-top span:first-child { color: var(--utility-accent); font-weight: 850; text-transform: uppercase; }
+  .window-time { display: block; font-size: clamp(1.3rem, 2vw, 1.8rem); letter-spacing: -.04em; }
+  .window-value { color: #3f5147; font-size: .84rem; font-weight: 700; margin-top: 10px; }
+  .window-note, .window-empty { color: #7a887f; font-size: .72rem; line-height: 1.5; margin-top: 22px; }
+  .explanation { display: grid; gap: clamp(50px, 10vw, 140px); grid-template-columns: 1fr 1fr; margin: 0 auto; max-width: 1124px; padding: 130px 28px; }
+  .explanation-copy { color: #5f7066; font-size: 1.02rem; line-height: 1.75; }
+  .mode-price .explanation-copy { color: #74645a; }
+  .explanation-copy p + p { margin-top: 20px; }
+  .explanation-copy a { color: var(--utility-accent); display: inline-block; font-size: .82rem; font-weight: 800; margin-top: 26px; }
+  .appliance-examples { background: var(--utility-soft); padding: 110px max(28px, calc((100vw - 1124px) / 2)); }
+  .appliance-examples h2 { max-width: 680px; }
+  .example-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 60px; }
+  .example-grid > div { background: rgba(255,255,255,.74); border-radius: 20px; padding: 28px; }
+  .example-grid span { color: var(--utility-accent); display: block; font-size: 1.8rem; margin-bottom: 40px; }
+  .example-grid strong { display: block; font-size: 1.05rem; }
+  .example-grid p { color: #65756b; font-size: .82rem; line-height: 1.55; margin-top: 8px; }
+  .app-cta { align-items: center; background: #102119; color: #fff; display: grid; gap: 36px; grid-template-columns: auto 1fr auto; padding: 85px max(28px, calc((100vw - 1124px) / 2)); }
+  .mode-price .app-cta { background: #24170f; }
+  .app-cta h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); }
+  .app-cta p:not(.eyebrow) { color: #a9bdb1; line-height: 1.6; margin-top: 16px; max-width: 650px; }
+  .store-button { align-items: center; background: #fff; border-radius: 14px; color: #102119; display: inline-flex; font-weight: 800; gap: 10px; line-height: 1.05; padding: 12px 18px; white-space: nowrap; }
+  .store-button > span:first-child { font-family: -apple-system, sans-serif; font-size: 1.65rem; }
+  .store-button small { display: block; font-size: .6rem; font-weight: 600; margin-bottom: 2px; }
+  .utility-footer { background: #09150f; color: #84968c; display: flex; font-size: .72rem; gap: 40px; justify-content: space-between; padding: 34px max(28px, calc((100vw - 1124px) / 2)); }
+  .mode-price .utility-footer { background: #160d08; }
+  .utility-footer p { line-height: 1.6; max-width: 700px; }
+  .utility-footer nav { display: flex; gap: 20px; white-space: nowrap; }
+  @media (max-width: 850px) {
+    .utility-nav nav > a:not(.nav-cta) { display: none; }
+    .utility-hero { display: block; min-height: 0; padding: 70px 22px 90px; }
+    .answer-card { margin-top: 58px; }
+    .window-section { padding: 90px 22px; }
+    .section-heading, .explanation { display: block; }
+    .section-heading > p:last-child { margin-top: 22px; }
+    .window-grid { grid-template-columns: repeat(2, 1fr); }
+    .explanation { padding: 90px 22px; }
+    .explanation-copy { margin-top: 35px; }
+    .appliance-examples { padding: 90px 22px; }
+    .app-cta { grid-template-columns: auto 1fr; padding: 70px 22px; }
+    .store-button { grid-column: 2; justify-self: start; }
+    .utility-footer { flex-direction: column; }
+  }
+  @media (max-width: 540px) {
+    .utility-nav { padding: 16px 18px; }
+    .brand img { height: 34px; width: 34px; }
+    h1 { font-size: clamp(3.2rem, 15vw, 4.5rem); }
+    .answer-card { border-radius: 26px; min-height: 390px; padding: 28px; }
+    .answer-time { font-size: clamp(2.8rem, 15vw, 4rem); }
+    .window-grid, .example-grid { grid-template-columns: 1fr; }
+    .window-card { min-height: 215px; }
+    .example-grid > div { min-height: 190px; }
+    .app-cta { display: flex; flex-direction: column; text-align: center; }
+    .store-button { align-self: center; }
+    .utility-footer nav { flex-wrap: wrap; white-space: normal; }
+  }
+</style>
