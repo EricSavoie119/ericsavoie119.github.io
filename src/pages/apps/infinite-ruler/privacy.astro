@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Infinite Ruler Privacy Policy — Savoie Apps"
+  description="How Infinite Ruler handles measurements, calibration settings, support requests and optional product analytics."
+  canonicalUrl="https://savoie.app/apps/infinite-ruler/privacy/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Infinite Ruler</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta"><strong>Last updated:</strong> 7 August 2026</p>
+      <p class="lede">Infinite Ruler works without an account. Your measurements and calibration settings stay on your device. Optional product analytics are off until you choose to enable them.</p>
+
+      <h2>Data stored on your device</h2>
+      <p>Your unit, fractional precision and calibration settings are stored locally on your device. Ruler-edge selection, marker visibility, movable-zero position and A–B marker positions are used only while the app is running. Infinite Ruler does not upload measurements, marker positions or calibration values.</p>
+
+      <h2>Optional product analytics</h2>
+      <p>If you enable analytics in the app, Infinite Ruler uses PostHog’s European service to collect a limited set of product-interaction events. These include opening the app, completing a first-use milestone and using named features such as paging, calibration, ruler-edge selection, fractional precision, movable zero and A–B markers.</p>
+      <p>Analytics events include a randomly generated installation identifier and may include app version, build number, distribution environment, platform, device model, operating-system version, locale, time zone, screen dimensions and network connection type. The identifier allows events from the same installation to be associated across sessions, but it is not connected to an Infinite Ruler account because the app has no accounts. The PostHog project anonymizes network addresses.</p>
+      <p>We do not send your measurements, marker positions, calibration values, screen contents, element contents, name, email address or other account information to PostHog. Infinite Ruler does not create an account or call PostHog’s user-identification feature. Session replay, screen capture, automatic element capture, person profiles and automatic crash capture are disabled.</p>
+      <p>Analytics is used only to measure and improve Infinite Ruler. It is not used for advertising, cross-app tracking or sale to data brokers.</p>
+
+      <h2>Your analytics choice</h2>
+      <p>You can enable or disable analytics at any time in Infinite Ruler’s Settings. Disabling it stops future analytics collection. You may ask us to delete analytics associated with your installation identifier; we may need information from your device to locate the relevant records.</p>
+
+      <h2>Support</h2>
+      <p>If you email support, we receive the information you choose to include, such as your email address, message and optional diagnostic details. We use it only to respond and investigate the issue.</p>
+
+      <h2>Sharing and retention</h2>
+      <p>We do not sell personal information. Optional analytics data is processed by PostHog in the European Union. Analytics and support information is retained only as long as reasonably necessary for product improvement, support, security and legal obligations.</p>
+
+      <h2>Your rights</h2>
+      <p>You may ask about, correct or request deletion of information associated with an analytics installation identifier or support request. Deleting Infinite Ruler removes its locally stored app data from your device.</p>
+
+      <h2>Contact</h2>
+      <p>Questions or privacy requests can be sent to <a href="mailto:privacy@savoie.app?subject=Infinite%20Ruler%20Privacy">privacy@savoie.app</a>. General help is available on the <a href="/apps/infinite-ruler/support/">Infinite Ruler support page</a>.</p>
+
+      <h2>Changes</h2>
+      <p>We may update this policy as Infinite Ruler changes. The date above identifies the current version.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: #0a84ff; font-weight: 700; }
+  h1 { margin: 0 0 .5rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .meta { margin: 0 0 1.5rem; color: var(--color-text-secondary); font-size: .88rem; }
+  .lede { color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  h2 { margin: 2rem 0 .55rem; font-size: 1.3rem; }
+  p { line-height: 1.72; }
+  a { color: var(--color-primary); }
+</style>

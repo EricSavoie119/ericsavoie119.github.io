@@ -1,0 +1,60 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Infinite Ruler Support — Savoie Apps"
+  description="Calibration, measurement and troubleshooting help for Infinite Ruler."
+  canonicalUrl="https://savoie.app/apps/infinite-ruler/support/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Infinite Ruler</p>
+      <h1>Support</h1>
+      <p class="lede">Need help with calibration, fractional inches, movable zero, A–B markers or measuring beyond one screen? Email us and we’ll help you get it sorted.</p>
+
+      <a class="contact" href="mailto:infinite-ruler@savoie.app?subject=Infinite%20Ruler%20Support%20Request">Email Infinite Ruler support</a>
+
+      <h2>Helpful details to include</h2>
+      <ul>
+        <li>Your Infinite Ruler version and build number</li>
+        <li>Your iPhone model and iOS version</li>
+        <li>What you expected to happen and what happened instead</li>
+        <li>A screenshot, if it helps explain the problem</li>
+      </ul>
+
+      <h2>Common fixes</h2>
+      <h3>The scale does not match a physical ruler</h3>
+      <p>Open calibration from the ruler controls and adjust the scale against a trusted physical ruler. Device profiles provide a starting point, but calibration is recommended for accuracy-sensitive work.</p>
+
+      <h3>I need to start away from the phone edge</h3>
+      <p>Press and hold the orange zero briefly. When you feel the haptic, drag it to the point where you want the measurement to begin.</p>
+
+      <h3>I want the distance between two points</h3>
+      <p>Show the measurement markers, then touch the ruler at point A and drag to point B. Infinite Ruler displays the distance between them using your selected unit and precision.</p>
+
+      <h3>The object is longer than the screen</h3>
+      <p>Use the next and previous controls to continue the ruler scale page by page without losing your accumulated position.</p>
+
+      <p class="footnote">Infinite Ruler is intended for convenient everyday measurements. Calibrate against a physical ruler before work that requires greater accuracy. See the <a href="/apps/infinite-ruler/privacy/">Infinite Ruler privacy policy</a> for data-handling details.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: #0a84ff; font-weight: 700; }
+  h1 { margin: 0 0 1rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .lede { max-width: 42rem; color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  .contact { display: inline-block; margin: 1rem 0 2rem; padding: .8rem 1rem; border-radius: .8rem; background: #0a84ff; color: white; font-weight: 700; text-decoration: none; }
+  h2 { margin: 2rem 0 .7rem; font-size: 1.3rem; }
+  h3 { margin: 1.4rem 0 .35rem; font-size: 1rem; }
+  p, li { line-height: 1.7; }
+  li + li { margin-top: .35rem; }
+  .footnote { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .9rem; }
+</style>
