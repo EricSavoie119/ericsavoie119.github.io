@@ -1,0 +1,60 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="GridMetrics Privacy Policy — Savoie Apps"
+  description="How GridMetrics handles forecasts, preferences, purchases and anonymous product analytics."
+  canonicalUrl="https://savoie.app/apps/gridmetrics/privacy/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">GridMetrics</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta"><strong>Last updated:</strong> 7 August 2026</p>
+      <p class="lede">GridMetrics is designed to work without an account. Your forecast preferences remain on your device, and limited pseudonymous usage analytics help us understand whether the app is useful.</p>
+
+      <h2>Data stored on your device</h2>
+      <p>Your outward postcode area, activity and forecast settings, tariff preferences, notification choice, cached recommendation and Pro entitlement state are stored locally on your device or in the shared app container used by the GridMetrics widget.</p>
+      <p>GridMetrics sends an outward postcode area to public carbon-intensity and tariff services only when needed to provide the regional forecast or price information you request. It is not included in our analytics events.</p>
+
+      <h2>Anonymous product analytics</h2>
+      <p>GridMetrics uses PostHog’s European service to collect a small set of product-interaction events, such as opening the app, loading a forecast, viewing a recommended window, opening the Pro explanation, or completing a Pro purchase.</p>
+      <p>These events can include a pseudonymous installation identifier, app version, build number, platform, device and operating-system context. We do not send your postcode, tariff values, electricity usage, support messages or purchase payment details to PostHog. Analytics is used only to measure and improve GridMetrics; it is not used for advertising or cross-app tracking, and PostHog person profiles, session replay, screen capture and automatic element capture are disabled.</p>
+
+      <h2>Purchases</h2>
+      <p>GridMetrics Pro is purchased through Apple. Apple processes payment and App Store account information. GridMetrics receives only the transaction information required to unlock and restore the purchase.</p>
+
+      <h2>Support</h2>
+      <p>If you email support, we receive the information you choose to include, such as your email address, message and diagnostic details. We use it only to respond and investigate the issue.</p>
+
+      <h2>Sharing and retention</h2>
+      <p>We do not sell personal information. Data is shared only with service providers required to operate the app: Apple for App Store purchases, PostHog for product analytics, and public electricity-data providers for requested forecasts and prices. Analytics and support information is retained only as long as reasonably necessary for product improvement, support, security and legal obligations.</p>
+
+      <h2>Your choices and rights</h2>
+      <p>You can remove locally stored app data by deleting GridMetrics. You may also ask about, correct or request deletion of information associated with a support request or analytics installation identifier by contacting us. We may need details from you to locate the relevant data.</p>
+
+      <h2>Contact</h2>
+      <p>Questions or privacy requests can be sent to <a href="mailto:privacy@savoie.app?subject=GridMetrics%20Privacy">privacy@savoie.app</a>. General app help is available on the <a href="/apps/gridmetrics/support/">GridMetrics support page</a>.</p>
+
+      <h2>Changes</h2>
+      <p>We may update this policy as GridMetrics changes. The date above identifies the current version.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
+  h1 { margin: 0 0 .5rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .meta { margin: 0 0 1.5rem; color: var(--color-text-secondary); font-size: .88rem; }
+  .lede { color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  h2 { margin: 2rem 0 .55rem; font-size: 1.3rem; }
+  p { line-height: 1.72; }
+  a { color: var(--color-primary); }
+</style>
