@@ -6,6 +6,22 @@ interface Props {
 }
 
 const { app } = Astro.props;
+const privacyHref = app.slug === 'bread-engineer'
+  ? '/apps/bread-engineer/privacy/'
+  : app.slug === 'gridmetrics'
+    ? '/apps/gridmetrics/privacy/'
+  : app.slug === 'infinite-ruler'
+    ? '/apps/infinite-ruler/privacy/'
+    : '/legal/privacy-policy/';
+const supportHref = app.slug === 'bread-engineer'
+  ? '/apps/bread-engineer/support/'
+  : app.slug === 'beloved'
+    ? '/apps/beloved/support/'
+  : app.slug === 'gridmetrics'
+    ? '/apps/gridmetrics/support/'
+    : app.slug === 'infinite-ruler'
+      ? '/apps/infinite-ruler/support/'
+      : 'mailto:eric@savoie.app';
 ---
 
 <div class="sales-page" style={`--app-accent:${app.accent};--app-accent-dark:${app.accentDark}`}>
@@ -122,8 +138,8 @@ const { app } = Astro.props;
   <footer class="sales-footer">
     <span>© {new Date().getFullYear()} Eric Savoie</span>
     <nav aria-label="Legal">
-      <a href="/legal/privacy-policy/">Privacy</a>
-      <a href="mailto:eric@savoie.app">Support</a>
+      <a href={privacyHref}>Privacy</a>
+      <a href={supportHref}>Support</a>
       <a href="/">More apps</a>
     </nav>
     <p>{app.footnote}</p>

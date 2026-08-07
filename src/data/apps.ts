@@ -14,10 +14,13 @@ export const apps: App[] = [
   {
     name: 'Bread Engineer',
     image: '/assets/images/icons/BreadEngineer.png',
-    category: 'Equation-based fermentation timer',
-    description: 'Predicts peak fermentation for your dough using proven equations—no more guesswork. Generous two‑month trial included.',
-    tech: ['CloudKit', 'SwiftData', 'Firebase Auth', 'Firebase Analytics', 'Tuist', 'Module architecture', 'Photo Compression', 'Fastlane'],
-    links: { appStore: 'https://apps.apple.com/gb/app/bread-engineer/id6738381066' },
+    category: 'Bread recipes & dough timer',
+    description: 'Plan a loaf, adjust fermentation timing for your dough and kitchen, and follow every stage with reliable step alarms.',
+    tech: ['SwiftUI', 'SwiftData', 'AlarmKit', 'ActivityKit', 'Fastlane'],
+    links: {
+      appStore: 'https://apps.apple.com/gb/app/bread-engineer/id6738381066',
+      features: '/apps/bread-engineer/',
+    },
   },
   {
     name: 'GridMetrics',

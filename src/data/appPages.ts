@@ -31,6 +31,78 @@ export interface AppPage {
 
 export const appPages: AppPage[] = [
   {
+    slug: 'bread-engineer',
+    name: 'Bread Engineer',
+    icon: '/assets/images/icons/BreadEngineer.png',
+    accent: '#c96d52',
+    accentDark: '#6d3425',
+    eyebrow: 'A calmer way to bake bread',
+    headline: 'Plan the loaf. Follow every step.',
+    subhead:
+      'Bread Engineer brings clear recipes, equation-based fermentation timing and reliable step alarms together—so you can spend less time watching the clock and more time understanding your dough.',
+    appStoreUrl: 'https://apps.apple.com/gb/app/bread-engineer/id6738381066',
+    heroScreenshot: '/assets/images/apps/BreadEngineer/product/recipe-plan.webp',
+    heroScreenshotAlt: 'Bread Engineer showing a complete bread recipe plan',
+    benefits: ['Guided bread recipes', 'Adjustable fermentation timing', 'Step alarms that keep working'],
+    sections: [
+      {
+        eyebrow: 'The whole bake, mapped out',
+        title: 'See what comes next.',
+        body:
+          'Choose a recipe and review its ingredients, durations and stages before you begin. Every step stays in one clear progression from mix to bake.',
+        screenshot: '/assets/images/apps/BreadEngineer/product/step-by-step.webp',
+        screenshotAlt: 'The step-by-step stages of a recipe in Bread Engineer',
+      },
+      {
+        eyebrow: 'Timing that fits your kitchen',
+        title: 'Adjust the plan to your dough.',
+        body:
+          'Tune the fermentation inputs to match your dough and room conditions. Bread Engineer uses transparent equations to update the schedule—without presenting an estimate as certainty.',
+        screenshot: '/assets/images/apps/BreadEngineer/product/adjust-timing.webp',
+        screenshotAlt: 'Bread Engineer controls for adjusting a fermentation schedule',
+      },
+      {
+        eyebrow: 'Keep moving through the recipe',
+        title: 'Let each step call you back.',
+        body:
+          'Start the current stage and keep its countdown close at hand. Native alarms and Live Activities help the bake stay visible when the app is not open.',
+        screenshot: '/assets/images/apps/BreadEngineer/product/step-timer.webp',
+        screenshotAlt: 'An active recipe step countdown in Bread Engineer',
+      },
+      {
+        eyebrow: 'A record of every loaf',
+        title: 'Keep what you learned.',
+        body:
+          'Save completed bakes with your notes and photos, then return to them when you want to repeat a result or change one variable next time.',
+        screenshot: '/assets/images/apps/BreadEngineer/product/completed-bake.webp',
+        screenshotAlt: 'A completed bake saved in Bread Engineer',
+      },
+    ],
+    trustEyebrow: 'Private by design',
+    trustTitle: 'Your recipes stay on your device.',
+    trustBody:
+      'Bread Engineer needs no account and includes no advertising or cross-app tracking. Recipe progress, notes, photos and preferences are stored locally on your device.',
+    footnote:
+      'Fermentation times are estimates. Use your judgement and observe the dough; ingredients, temperature and technique can change the result.',
+    finalEyebrow: 'Bake with less guesswork',
+    faq: [
+      {
+        question: 'Does Bread Engineer use artificial intelligence?',
+        answer:
+          'No. Its fermentation estimates use deterministic equations and the conditions you enter. The result is a planning aid, not a guarantee.',
+      },
+      {
+        question: 'Do I need an account or subscription?',
+        answer: 'No. Bread Engineer works without an account and the current release is free to use.',
+      },
+      {
+        question: 'Will a timer continue if I leave the app?',
+        answer:
+          'Bread Engineer uses iOS alarms and Live Activities for supported timers. Notification and alarm permissions must be enabled for alerts to appear.',
+      },
+    ],
+  },
+  {
     slug: 'beloved',
     name: 'BeLoved',
     icon: '/assets/images/apps/BeLoved/appstore.png',

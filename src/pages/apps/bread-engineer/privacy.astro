@@ -1,0 +1,55 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Bread Engineer Privacy Policy — Savoie Apps"
+  description="How Bread Engineer handles recipes, photos, timers, preferences and support requests."
+  canonicalUrl="https://savoie.app/apps/bread-engineer/privacy/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Bread Engineer</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta"><strong>Last updated:</strong> 7 August 2026</p>
+      <p class="lede">Bread Engineer works without an account. It does not include advertising, cross-app tracking or product analytics, and your baking data stays on your device.</p>
+
+      <h2>Data stored on your device</h2>
+      <p>Your recipe progress, fermentation inputs, notes, bake photos, alarm preferences and other settings are stored locally on your device. Bread Engineer does not upload this information to us or sync it to an account.</p>
+
+      <h2>Timers, alarms and Live Activities</h2>
+      <p>When you start a supported recipe timer, Bread Engineer gives iOS the timing and display information needed to schedule an alarm, notification or Live Activity on your device. These features are provided by Apple’s operating system. We do not receive your timer or alarm information.</p>
+
+      <h2>Analytics and tracking</h2>
+      <p>Bread Engineer does not use third-party analytics or advertising services. It does not create a user profile, sell personal information or track you across apps or websites.</p>
+
+      <h2>Support</h2>
+      <p>If you choose to email support, we receive the information you include, such as your email address, message, screenshots and optional diagnostic details. We use it only to answer your request and investigate the issue, and retain it only as long as reasonably necessary for support, security and legal obligations.</p>
+
+      <h2>Your choices and rights</h2>
+      <p>Deleting Bread Engineer removes its locally stored app data from your device. You may ask about, correct or request deletion of information associated with a support message by contacting us.</p>
+
+      <h2>Contact</h2>
+      <p>Questions or privacy requests can be sent to <a href="mailto:privacy@savoie.app?subject=Bread%20Engineer%20Privacy">privacy@savoie.app</a>. General help is available on the <a href="/apps/bread-engineer/support/">Bread Engineer support page</a>.</p>
+
+      <h2>Changes</h2>
+      <p>We may update this policy as Bread Engineer changes. The date above identifies the current version.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
+  h1 { margin: 0 0 .5rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .meta { margin: 0 0 1.5rem; color: var(--color-text-secondary); font-size: .88rem; }
+  .lede { color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  h2 { margin: 2rem 0 .55rem; font-size: 1.3rem; }
+  p { line-height: 1.72; }
+  a { color: var(--color-primary); }
+</style>

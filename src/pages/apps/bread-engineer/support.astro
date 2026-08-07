@@ -1,0 +1,62 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Bread Engineer Support — Savoie Apps"
+  description="Help, troubleshooting and contact details for Bread Engineer."
+  canonicalUrl="https://savoie.app/apps/bread-engineer/support/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Bread Engineer</p>
+      <h1>Support</h1>
+      <p class="lede">Need help with a recipe, fermentation estimate, timer, alarm, Live Activity or saved bake? Email us and we’ll help you get it sorted.</p>
+
+      <a class="contact" href="mailto:support@savoie.app?subject=Bread%20Engineer%20Support%20Request">Email Bread Engineer support</a>
+
+      <h2>Helpful details to include</h2>
+      <ul>
+        <li>Your Bread Engineer version and build number</li>
+        <li>Your iPhone model and iOS version</li>
+        <li>The recipe step you were using</li>
+        <li>What you expected to happen and what happened instead</li>
+        <li>A screenshot, if it helps explain the problem</li>
+      </ul>
+
+      <h2>Common fixes</h2>
+      <h3>An alarm or notification did not appear</h3>
+      <p>Open iOS Settings and confirm that Bread Engineer is allowed to show notifications and alarms. In Bread Engineer Settings, check that the alert types you want are enabled.</p>
+
+      <h3>A timer is no longer visible</h3>
+      <p>Open the active recipe and its current step. If a timer was interrupted by a device restart or permission change, start that step’s timer again.</p>
+
+      <h3>A photo cannot be added</h3>
+      <p>Check Bread Engineer’s Photos permission in iOS Settings, confirm there is free storage on the device, and try selecting the image again.</p>
+
+      <h3>The fermentation estimate looks wrong</h3>
+      <p>Check the dough and room conditions entered for the recipe. Fermentation timing is an equation-based estimate: flour, starter activity, temperature and technique can all affect the actual dough.</p>
+
+      <p class="footnote">Bread Engineer is a planning aid, not a food-safety instrument. Observe your dough and use your judgement. See the <a href="/apps/bread-engineer/privacy/">Bread Engineer privacy policy</a> for data-handling details.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
+  h1 { margin: 0 0 1rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .lede { max-width: 42rem; color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  .contact { display: inline-block; margin: 1rem 0 2rem; padding: .8rem 1rem; border-radius: .8rem; background: var(--color-primary); color: white; font-weight: 700; text-decoration: none; }
+  h2 { margin: 2rem 0 .7rem; font-size: 1.3rem; }
+  h3 { margin: 1.4rem 0 .35rem; font-size: 1rem; }
+  p, li { line-height: 1.7; }
+  li + li { margin-top: .35rem; }
+  .footnote { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .9rem; }
+  .footnote a { color: var(--color-primary); }
+</style>

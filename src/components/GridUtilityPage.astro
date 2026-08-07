@@ -60,7 +60,7 @@ const formatGeneratedAt = (value: string) => new Intl.DateTimeFormat('en-GB', {
 const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions.map((region) => [region.code, region]))) : null;
 ---
 
-<div class:list={['utility-page', `mode-${mode}`]}>
+<div class:list={['utility-page', `mode-${mode}`]} data-generated-at={generatedAt}>
   <header class="utility-nav">
     <a class="brand" href="/apps/gridmetrics/" aria-label="GridMetrics home">
       <img src={icon} alt="" width="40" height="40" />
@@ -93,9 +93,16 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
 
       <div class="answer-card" aria-live="polite">
         <div class="answer-topline">
-          <span class="live-dot" aria-hidden="true"></span>
-          <span id="answer-date">{available ? formatDate(recommendationDate) : 'Data unavailable'}</span>
+          <div class="live-status">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span>Live data · updated every 30 minutes</span>
+          </div>
+          <div class="refresh-timer">
+            <span id="refresh-label">Next calculation</span>
+            <strong id="refresh-countdown">--:--</strong>
+          </div>
         </div>
+        <p class="answer-date" id="answer-date">{available ? formatDate(recommendationDate) : 'Data unavailable'}</p>
         {available && primary?.window ? (
           <>
             <p class="answer-label" id="answer-label">{mode === 'price' ? 'Cheapest' : 'Cleanest'} {durationAdjective(primary.minutes)} window</p>
@@ -255,6 +262,82 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
   </script>
 )}
 
+<script is:inline>
+  (() => {
+    const page = document.querySelector('.utility-page');
+    const countdown = document.querySelector('#refresh-countdown');
+    const label = document.querySelector('#refresh-label');
+    if (!(page instanceof HTMLElement) || !(countdown instanceof HTMLElement) || !(label instanceof HTMLElement)) return;
+
+    const generatedAt = new Date(page.dataset.generatedAt || 0);
+    let pollTimer;
+
+    const scheduledTime = (now, direction) => {
+      const candidate = new Date(now);
+      candidate.setSeconds(0, 0);
+      const minute = now.getMinutes();
+      if (direction === 'next') {
+        if (minute < 7) candidate.setMinutes(7);
+        else if (minute < 37) candidate.setMinutes(37);
+        else {
+          candidate.setHours(candidate.getHours() + 1);
+          candidate.setMinutes(7);
+        }
+      } else if (minute >= 37) candidate.setMinutes(37);
+      else if (minute >= 7) candidate.setMinutes(7);
+      else {
+        candidate.setHours(candidate.getHours() - 1);
+        candidate.setMinutes(37);
+      }
+      return candidate;
+    };
+
+    const checkForFreshPage = async () => {
+      try {
+        const response = await fetch(`${window.location.pathname}?live=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) return;
+        const html = await response.text();
+        const documentCopy = new DOMParser().parseFromString(html, 'text/html');
+        const freshPage = documentCopy.querySelector('.utility-page');
+        const freshGeneratedAt = new Date(freshPage?.getAttribute('data-generated-at') || 0);
+        if (freshGeneratedAt > generatedAt) {
+          window.location.replace(`${window.location.pathname}?live=${freshGeneratedAt.getTime()}`);
+        }
+      } catch {
+        // Keep the last successful recommendation visible while the refresh catches up.
+      }
+    };
+
+    const updateCountdown = () => {
+      const now = new Date();
+      const previous = scheduledTime(now, 'previous');
+      const pageIncludesLatestRun = generatedAt >= previous;
+      if (!pageIncludesLatestRun) {
+        label.textContent = 'New calculation';
+        countdown.textContent = 'Updating now…';
+        countdown.classList.add('is-updating');
+        if (!pollTimer) pollTimer = window.setInterval(checkForFreshPage, 30_000);
+        return;
+      }
+
+      const next = scheduledTime(now, 'next');
+      const remaining = Math.max(0, next.getTime() - now.getTime());
+      const minutes = Math.floor(remaining / 60_000);
+      const seconds = Math.floor((remaining % 60_000) / 1000);
+      label.textContent = 'Next calculation';
+      countdown.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      countdown.classList.remove('is-updating');
+      if (pollTimer) {
+        window.clearInterval(pollTimer);
+        pollTimer = undefined;
+      }
+    };
+
+    updateCountdown();
+    window.setInterval(updateCountdown, 1_000);
+  })();
+</script>
+
 <style>
   .utility-page { --utility-accent: #167445; --utility-soft: #e3f7ec; background: #f7faf8; color: #102119; font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }
   .utility-page h2::before { content: none; }
@@ -279,10 +362,17 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
   .region-control select { appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8'%3E%3Cpath d='m1 1 6 6 6-6' fill='none' stroke='%2324170f' stroke-width='2'/%3E%3C/svg%3E") no-repeat calc(100% - 16px) center; border: 1px solid #dfd3c9; border-radius: 12px; color: inherit; font: inherit; font-weight: 700; padding: 13px 42px 13px 15px; width: 100%; }
   .answer-card { background: #102119; border-radius: 34px; box-shadow: 0 35px 80px rgba(18, 62, 39, .2); color: #fff; min-height: 420px; padding: clamp(30px, 5vw, 54px); position: relative; }
   .mode-price .answer-card { background: #24170f; box-shadow: 0 35px 80px rgba(111, 61, 22, .2); }
-  .answer-topline { align-items: center; color: #b8cdc1; display: flex; font-size: .8rem; font-weight: 750; gap: 9px; }
+  .answer-topline { align-items: center; color: #b8cdc1; display: flex; font-size: .75rem; font-weight: 750; gap: 20px; justify-content: space-between; }
+  .live-status { align-items: center; display: flex; gap: 9px; }
   .live-dot { background: #63df9e; border-radius: 50%; box-shadow: 0 0 0 5px rgba(99, 223, 158, .12); height: 8px; width: 8px; }
   .mode-price .live-dot { background: #ffb866; box-shadow: 0 0 0 5px rgba(255, 184, 102, .12); }
-  .answer-label { color: #b8cdc1; font-size: .75rem; font-weight: 800; letter-spacing: .1em; margin-top: 62px; text-transform: uppercase; }
+  .refresh-timer { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; min-width: 132px; padding: 9px 12px; text-align: right; }
+  .refresh-timer span { color: #8fa69a; display: block; font-size: .58rem; letter-spacing: .05em; text-transform: uppercase; }
+  .refresh-timer strong { color: #fff; display: block; font-size: .92rem; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .refresh-timer strong.is-updating { color: #63df9e; font-size: .72rem; }
+  .mode-price .refresh-timer strong.is-updating { color: #ffb866; }
+  .answer-date { color: #849d90; font-size: .75rem; margin-top: 18px; }
+  .answer-label { color: #b8cdc1; font-size: .75rem; font-weight: 800; letter-spacing: .1em; margin-top: 42px; text-transform: uppercase; }
   .answer-time { align-items: center; display: flex; font-size: clamp(3rem, 6vw, 5.2rem); font-weight: 850; gap: 10px; letter-spacing: -.06em; line-height: 1; margin: 12px 0 45px; white-space: nowrap; }
   .answer-time span { color: #63df9e; font-weight: 400; }
   .mode-price .answer-time span { color: #ffb866; }
@@ -346,6 +436,8 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
     .brand img { height: 34px; width: 34px; }
     h1 { font-size: clamp(3.2rem, 15vw, 4.5rem); }
     .answer-card { border-radius: 26px; min-height: 390px; padding: 28px; }
+    .answer-topline { align-items: flex-start; flex-direction: column; }
+    .refresh-timer { text-align: left; }
     .answer-time { font-size: clamp(2.8rem, 15vw, 4rem); }
     .window-grid, .example-grid { grid-template-columns: 1fr; }
     .window-card { min-height: 215px; }
