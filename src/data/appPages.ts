@@ -117,7 +117,7 @@ export const appPages: AppPage[] = [
     appStoreUrl: 'https://apps.apple.com/gb/app/infinite-ruler/id6746876762',
     heroScreenshot: '/assets/images/apps/infiniteruler/product/precision.webp',
     heroScreenshotAlt: 'Infinite Ruler measuring a distance with fractional-inch precision and A–B markers',
-    benefits: ['Centimetres or fractions', 'Movable zero + A–B markers', 'Measure past one screen'],
+    benefits: ['Centimetres or fractional inches', 'Movable zero + A–B markers', 'Measure past one screen'],
     sections: [
       {
         eyebrow: 'Place the zero yourself',
