@@ -1,0 +1,42 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import GridUtilityPage from '../../../components/GridUtilityPage.astro';
+import { getCleanestTimeData } from '../../../lib/gridMetricsData';
+
+const data = await getCleanestTimeData();
+const canonicalUrl = 'https://savoie.app/apps/gridmetrics/cleanest-time-today/';
+const title = 'Cleanest Time to Use Electricity Today in Great Britain | GridMetrics';
+const description = 'See today’s cleanest remaining time to use electricity in Great Britain, with practical 30-minute to four-hour windows calculated from the official carbon forecast.';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: canonicalUrl,
+  dateModified: data.generatedAt,
+  isPartOf: { '@type': 'WebSite', name: 'Savoie Apps', url: 'https://savoie.app/' },
+  about: { '@type': 'Thing', name: 'Great Britain electricity carbon intensity forecast' },
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+  ogImage="https://savoie.app/assets/images/apps/GridMetrics/utility-og.png"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <GridUtilityPage
+    mode="carbon"
+    eyebrow="Live Great Britain forecast"
+    title="The cleanest time to use electricity today."
+    intro="Plan flexible electricity use around the lowest-carbon part of the day. Choose a useful duration and see the cleanest remaining window in UK local time."
+    generatedAt={data.generatedAt}
+    recommendationDate={data.recommendationDate}
+    recommendations={data.recommendations}
+    available={data.available}
+    sourceLabel="NESO Carbon Intensity API"
+    sourceUrl="https://carbonintensity.org.uk/"
+    explanation="GridMetrics checks every consecutive half-hour period in the official Great Britain carbon forecast. For each duration, it selects the remaining window with the lowest mean forecast carbon intensity."
+  />
+</Layout>
