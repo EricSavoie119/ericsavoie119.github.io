@@ -31,6 +31,79 @@ export interface AppPage {
 
 export const appPages: AppPage[] = [
   {
+    slug: 'beloved',
+    name: 'BeLoved',
+    icon: '/assets/images/apps/BeLoved/appstore.png',
+    accent: '#f02d55',
+    accentDark: '#8f1835',
+    eyebrow: 'A home for your love story',
+    headline: 'Keep every moment close.',
+    subhead:
+      'BeLoved brings anniversaries, milestones, special dates and a beautiful relationship widget together—so the moments that matter never get lost in the calendar.',
+    appStoreUrl: 'https://apps.apple.com/gb/app/beloved/id6752829410',
+    heroScreenshot: '/assets/images/apps/BeLoved/product/love-story.webp',
+    heroScreenshotAlt: 'BeLoved relationship dashboard with anniversary, milestones and special dates',
+    benefits: ['Anniversary countdowns', 'Relationship milestones', 'Home Screen widgets'],
+    sections: [
+      {
+        eyebrow: 'Your story at a glance',
+        title: 'Count every day together.',
+        body:
+          'See your relationship length, next anniversary and favourite moments in one calm, personal view. Add your own photo to make the story unmistakably yours.',
+        screenshot: '/assets/images/apps/BeLoved/product/love-story.webp',
+        screenshotAlt: 'BeLoved showing a relationship photo and time together',
+      },
+      {
+        eyebrow: 'More than anniversaries',
+        title: 'Celebrate every milestone.',
+        body:
+          'Follow meaningful day and week milestones automatically, then add the personal milestones that belong to your relationship alone.',
+        screenshot: '/assets/images/apps/BeLoved/product/milestones.webp',
+        screenshotAlt: 'A list of upcoming relationship milestones in BeLoved',
+      },
+      {
+        eyebrow: 'The dates only you share',
+        title: 'Remember what matters to both of you.',
+        body:
+          'Keep date nights, firsts, traditions and other special dates beside your anniversary, with a clear view of what is coming next.',
+        screenshot: '/assets/images/apps/BeLoved/product/special-dates.webp',
+        screenshotAlt: 'A special relationship date saved in BeLoved',
+      },
+      {
+        eyebrow: 'Always close',
+        title: 'Put your story on the Home Screen.',
+        body:
+          'Add a BeLoved widget in the size that fits your Home Screen and keep your favourite photo and time together visible throughout the day.',
+        screenshot: '/assets/images/apps/BeLoved/product/widget-setup.webp',
+        screenshotAlt: 'BeLoved Home Screen widget setup guide',
+      },
+    ],
+    trustEyebrow: 'Personal by design',
+    trustTitle: 'Your relationship stays on your device.',
+    trustBody:
+      'Your relationship details and photo are stored on your device and no account is required. Optional anonymous usage analytics are only enabled after you choose to share them.',
+    footnote:
+      'Some widget styles and customisation options require BeLoved Premium. Subscription terms are shown in the app before purchase.',
+    finalEyebrow: 'Celebrate your story',
+    faq: [
+      {
+        question: 'What can I track in BeLoved?',
+        answer:
+          'Track your relationship start date, anniversary, engagement or marriage dates, automatic milestones, custom milestones and special dates.',
+      },
+      {
+        question: 'Can I add BeLoved to my Home Screen?',
+        answer:
+          'Yes. BeLoved includes small, medium and large widget layouts that keep your relationship photo and time together visible at a glance.',
+      },
+      {
+        question: 'Do I need an account?',
+        answer:
+          'No. BeLoved works without an account, and your relationship details and photo remain on your device.',
+      },
+    ],
+  },
+  {
     slug: 'gridmetrics',
     name: 'GridMetrics',
     icon: '/assets/images/apps/GridMetrics/1024.png',

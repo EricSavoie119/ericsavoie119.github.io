@@ -36,7 +36,10 @@ export const apps: App[] = [
     category: 'Beautiful relationship tracker',
     description: 'Track anniversaries, milestones, and special dates with notifications to never miss a moment.',
     tech: ['WidgetKit', 'StoreKit Configuration files'],
-    links: { appStore: 'https://apps.apple.com/gb/app/beloved/id6752829410' },
+    links: {
+      appStore: 'https://apps.apple.com/gb/app/beloved/id6752829410',
+      features: '/apps/beloved/',
+    },
   },
   {
     name: 'Fast Simple Invoice Maker',
