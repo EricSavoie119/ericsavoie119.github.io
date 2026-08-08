@@ -114,16 +114,16 @@ export const appPages: AppPage[] = [
       'BeLoved brings anniversaries, milestones, special dates and a beautiful relationship widget together—so the moments that matter never get lost in the calendar.',
     appStoreUrl: 'https://apps.apple.com/gb/app/beloved/id6752829410',
     heroScreenshot: '/assets/images/apps/BeLoved/product/love-story-couple.webp',
-    heroScreenshotAlt: 'BeLoved relationship dashboard with anniversary, milestones and special dates',
+    heroScreenshotAlt: 'BeLoved Love Story showing together, engagement and marriage headline counts with an exact-date timeline',
     benefits: ['Anniversary countdowns', 'Relationship milestones', 'Home Screen widgets'],
     sections: [
       {
         eyebrow: 'Your story at a glance',
         title: 'Count every day together.',
         body:
-          'Add your person’s photo, then see your relationship length, next anniversary and favourite moments in one calm, personal view.',
+          'Add your person’s photo, then see your time together, engagement and marriage as headline moments—with the exact dates and next celebration close by.',
         screenshot: '/assets/images/apps/BeLoved/product/love-story-couple.webp',
-        screenshotAlt: 'BeLoved showing a relationship photo and time together',
+        screenshotAlt: 'BeLoved showing a relationship photo, three headline duration cards and a dated relationship timeline',
       },
       {
         eyebrow: 'More than anniversaries',
@@ -147,7 +147,7 @@ export const appPages: AppPage[] = [
         body:
           'Add a BeLoved widget in the size that fits your Home Screen and keep your favourite photo and time together visible throughout the day.',
         screenshot: '/assets/images/apps/BeLoved/product/widget-setup.webp',
-        screenshotAlt: 'BeLoved Home Screen widget setup guide',
+        screenshotAlt: 'BeLoved medium and large photo widgets installed on an iPhone Home Screen',
       },
     ],
     trustEyebrow: 'Personal by design',
