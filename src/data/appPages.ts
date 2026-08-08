@@ -5,6 +5,7 @@ export interface AppPageSection {
   screenshot: string;
   screenshotAlt: string;
   format?: 'phone' | 'widget';
+  focusY?: string;
 }
 
 export interface AppPage {
@@ -19,6 +20,7 @@ export interface AppPage {
   appStoreUrl: string;
   heroScreenshot: string;
   heroScreenshotAlt: string;
+  heroFocusY?: string;
   benefits: [string, string, string];
   sections: AppPageSection[];
   trustEyebrow: string;
@@ -37,37 +39,41 @@ export const appPages: AppPage[] = [
     accent: '#c96d52',
     accentDark: '#6d3425',
     eyebrow: 'A calmer way to bake bread',
-    headline: 'Plan the loaf. Follow every step.',
+    headline: 'Know what to do. Know when to do it.',
     subhead:
-      'Bread Engineer brings clear recipes, equation-based fermentation timing and reliable step alarms together—so you can spend less time watching the clock and more time understanding your dough.',
+      'Bread Engineer turns a full bread recipe into one clear, adjustable schedule—with the current step, finish time and alarm always close at hand.',
     appStoreUrl: 'https://apps.apple.com/gb/app/bread-engineer/id6738381066',
-    heroScreenshot: '/assets/images/apps/BreadEngineer/product/recipe-plan.webp',
-    heroScreenshotAlt: 'Bread Engineer showing a complete bread recipe plan',
-    benefits: ['Guided bread recipes', 'Adjustable fermentation timing', 'Step alarms that keep working'],
+    heroScreenshot: '/assets/images/apps/BreadEngineer/product/step-timer.webp',
+    heroScreenshotAlt: 'Bread Engineer showing the current bread step countdown and timing controls',
+    heroFocusY: '-390px',
+    benefits: ['One clear current step', 'Timing that stays adjustable', 'Alarms that keep working'],
     sections: [
       {
-        eyebrow: 'The whole bake, mapped out',
-        title: 'See what comes next.',
+        eyebrow: 'Before the first mix',
+        title: 'See the whole bake before you start.',
         body:
-          'Choose a recipe and review its ingredients, durations and stages before you begin. Every step stays in one clear progression from mix to bake.',
+          'Review every stage, duration and ingredient before committing to the recipe. The whole process stays visible from first mix to finished loaf.',
         screenshot: '/assets/images/apps/BreadEngineer/product/step-by-step.webp',
         screenshotAlt: 'The step-by-step stages of a recipe in Bread Engineer',
+        focusY: '-24px',
       },
       {
-        eyebrow: 'Timing that fits your kitchen',
-        title: 'Adjust the plan to your dough.',
+        eyebrow: 'A schedule for your kitchen',
+        title: 'Choose a start time. See where the bake lands.',
         body:
-          'Tune the fermentation inputs to match your dough and room conditions. Bread Engineer uses transparent equations to update the schedule—without presenting an estimate as certainty.',
+          'Choose when you want to begin, see the estimated finish immediately and keep step reminders enabled. Bread Engineer recalculates the plan without pretending dough is perfectly predictable.',
         screenshot: '/assets/images/apps/BreadEngineer/product/adjust-timing.webp',
-        screenshotAlt: 'Bread Engineer controls for adjusting a fermentation schedule',
+        screenshotAlt: 'Bread Engineer showing an estimated finish time and step reminder control',
+        focusY: '-76px',
       },
       {
-        eyebrow: 'Keep moving through the recipe',
-        title: 'Let each step call you back.',
+        eyebrow: 'Everything for the recipe',
+        title: 'Keep the ingredients and timing together.',
         body:
-          'Start the current stage and keep its countdown close at hand. Native alarms and Live Activities help the bake stay visible when the app is not open.',
-        screenshot: '/assets/images/apps/BreadEngineer/product/step-timer.webp',
-        screenshotAlt: 'An active recipe step countdown in Bread Engineer',
+          'Start from one recipe plan with the dough schedule, ingredient weights and every step in context. There is no separate spreadsheet or timer list to reconcile.',
+        screenshot: '/assets/images/apps/BreadEngineer/product/recipe-plan.webp',
+        screenshotAlt: 'Bread Engineer showing a recipe schedule and ingredient weights',
+        focusY: '-44px',
       },
       {
         eyebrow: 'A record of every loaf',
@@ -76,6 +82,7 @@ export const appPages: AppPage[] = [
           'Save completed bakes with your notes and photos, then return to them when you want to repeat a result or change one variable next time.',
         screenshot: '/assets/images/apps/BreadEngineer/product/completed-bake.webp',
         screenshotAlt: 'A completed bake saved in Bread Engineer',
+        focusY: '-190px',
       },
     ],
     trustEyebrow: 'Private by design',

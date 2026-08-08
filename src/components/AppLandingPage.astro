@@ -49,7 +49,7 @@ const supportHref = app.slug === 'bread-engineer'
           <span class="no-account">No account required</span>
         </div>
       </div>
-      <div class="hero-art">
+      <div class="hero-art" style={`--hero-focus-y:${app.heroFocusY ?? '0px'}`}>
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
         <img src={app.heroScreenshot} alt={app.heroScreenshotAlt} width="660" height="1434" fetchpriority="high" />
@@ -90,7 +90,10 @@ const supportHref = app.slug === 'bread-engineer'
             <h2>{section.title}</h2>
             <p>{section.body}</p>
           </div>
-          <div class:list={['screen-card', { 'widget-card': section.format === 'widget' }]}>
+          <div
+            class:list={['screen-card', { 'widget-card': section.format === 'widget' }]}
+            style={`--screen-focus-y:${section.focusY ?? '0px'}`}
+          >
             <img
               src={section.screenshot}
               alt={section.screenshotAlt}
@@ -176,8 +179,8 @@ const supportHref = app.slug === 'bread-engineer'
   .store-button small { display: block; font-size: .62rem; font-weight: 500; margin-bottom: 2px; }
   .apple { display: block; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 1.65rem; font-weight: 400; line-height: 1; }
   .no-account { color: #6f7d92; font-size: .86rem; }
-  .hero-art { align-self: end; height: 690px; position: relative; }
-  .hero-art img { border-radius: 44px; bottom: -150px; filter: drop-shadow(0 34px 50px rgba(17,52,110,.2)); height: auto; left: 50%; max-width: 430px; position: absolute; transform: translateX(-50%); width: 74%; z-index: 2; }
+  .hero-art { align-self: end; border-radius: 48px 48px 0 0; height: 690px; overflow: hidden; position: relative; }
+  .hero-art img { border-radius: 44px; bottom: -150px; filter: drop-shadow(0 34px 50px rgba(17,52,110,.2)); height: auto; left: 50%; max-width: 430px; position: absolute; transform: translate(-50%, var(--hero-focus-y)); width: 74%; z-index: 2; }
   .orb { border-radius: 999px; filter: blur(2px); position: absolute; }
   .orb-one { background: linear-gradient(145deg, color-mix(in srgb, var(--app-accent) 18%, white), color-mix(in srgb, var(--app-accent) 5%, white)); height: 540px; left: 50%; top: 70px; transform: translateX(-50%); width: 540px; }
   .orb-two { background: color-mix(in srgb, var(--app-accent) 26%, transparent); height: 230px; right: 0; top: 0; width: 230px; }
@@ -197,7 +200,7 @@ const supportHref = app.slug === 'bread-engineer'
   .story-row.reverse .story-copy { order: 2; }
   .story-copy > p:last-child, .trust > p { color: #586a83; font-size: 1.08rem; line-height: 1.7; }
   .screen-card { align-items: flex-start; background: linear-gradient(145deg, color-mix(in srgb, var(--app-accent) 12%, white), #fff); border: 1px solid color-mix(in srgb, var(--app-accent) 14%, transparent); border-radius: 42px; display: flex; height: 650px; justify-content: center; overflow: hidden; padding: 42px 44px 0; }
-  .screen-card img { border-radius: 34px; flex: 0 0 auto; filter: drop-shadow(0 25px 36px rgba(17,52,110,.18)); height: auto; max-width: 340px; object-fit: contain; object-position: top; width: 100%; }
+  .screen-card img { border-radius: 34px; flex: 0 0 auto; filter: drop-shadow(0 25px 36px rgba(17,52,110,.18)); height: auto; max-width: 340px; object-fit: contain; object-position: top; transform: translateY(var(--screen-focus-y)); width: 100%; }
   .widget-card { align-items: center; background: radial-gradient(circle at 50% 42%, #fafdff 0, #e4efff 72%); padding: 60px; }
   .widget-card img { border-radius: 24%; filter: drop-shadow(0 28px 36px rgba(17,52,110,.22)); max-width: 390px; object-position: center; }
   .trust { background: color-mix(in srgb, var(--app-accent) 9%, white); border-radius: 40px; display: grid; gap: 80px; grid-template-columns: 1fr 1fr; margin: 0 auto 140px; max-width: 1120px; padding: clamp(42px, 7vw, 82px); }
@@ -216,8 +219,8 @@ const supportHref = app.slug === 'bread-engineer'
   @media (max-width: 800px) {
     .sales-nav { padding: 18px 20px; }
     .hero { display: block; min-height: 0; padding: 70px 22px 0; }
-    h1 { font-size: clamp(3.4rem, 16vw, 5rem); }
-    .hero-art { height: 720px; margin-top: 20px; }
+    h1 { font-size: clamp(3.2rem, 13vw, 4.5rem); }
+    .hero-art { height: 640px; margin-top: 4px; }
     .hero-art img { bottom: auto; top: 24px; width: 80%; }
     .orb-one { height: 440px; width: 440px; }
     .promise-strip { font-size: .72rem; gap: 12px; padding: 22px 16px; }
@@ -226,7 +229,7 @@ const supportHref = app.slug === 'bread-engineer'
     .story { padding: 90px 22px 30px; }
     .story-row, .story-row.reverse { display: flex; flex-direction: column; gap: 40px; margin-bottom: 100px; }
     .story-row.reverse .story-copy { order: 0; }
-    .screen-card { height: 560px; max-width: 520px; padding: 32px 34px 0; width: 100%; }
+    .screen-card { height: 520px; max-width: 520px; padding: 32px 34px 0; width: 100%; }
     .trust { border-radius: 0; display: block; margin-bottom: 100px; padding: 70px 24px; }
     .trust > p { margin-top: 32px; }
     .faq { padding: 0 24px 100px; }
@@ -235,10 +238,10 @@ const supportHref = app.slug === 'bread-engineer'
   }
   @media (max-width: 480px) {
     .nav-cta { font-size: .8rem; }
-    .hero-art { height: 720px; }
+    .hero-art { height: 600px; }
     .hero-art img { width: 92%; }
     .promise-strip { grid-template-columns: 1fr; }
     .promise-strip span + span { border-left: 0; }
-    .screen-card { height: 520px; }
+    .screen-card { height: 480px; }
   }
 </style>
