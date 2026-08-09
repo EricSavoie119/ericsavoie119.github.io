@@ -1,0 +1,172 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const caseStudies = [
+  {
+    app: 'GridMetrics',
+    icon: '/assets/images/thumbs/gridmetrics.webp',
+    label: 'Live data product',
+    title: 'Turning energy data into one useful decision.',
+    body: 'A SwiftUI app, widgets and public web tools that translate carbon forecasts and electricity tariffs into a practical time to act.',
+    href: '/apps/gridmetrics/',
+  },
+  {
+    app: 'Fast Simple Invoice Maker',
+    icon: '/assets/images/thumbs/fast-simple-invoice-maker.webp',
+    label: 'Commercial utility',
+    title: 'Removing the friction from getting paid.',
+    body: 'A local-first invoicing product spanning polished PDFs, client records, payment links, subscriptions and App Store release operations.',
+    href: '/apps/fast-simple-invoice-maker/',
+  },
+  {
+    app: 'Portfolio foundations',
+    icon: '/assets/images/thumbs/infinite-ruler.webp',
+    label: 'Product operations',
+    title: 'A repeatable system for shipping iOS apps.',
+    body: 'Shared telemetry, screenshot automation, release gates, Fastlane workflows and portfolio reporting built around real products.',
+    href: '/#apps',
+  },
+];
+---
+
+<Layout
+  title="Eric Savoie — iOS Product Developer"
+  description="A private homepage concept showing how Eric Savoie could present his iOS product work."
+  canonicalUrl="https://savoie.app/demo/developer-home/"
+  analyticsPageType="developer_home_demo"
+  noindex
+>
+  <Navbar />
+  <main class="developer-demo">
+    <section class="developer-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">iOS products, end to end</p>
+          <h1>I turn useful ideas into iPhone apps people can actually use.</h1>
+          <p class="lede">I’m Eric Savoie, an iOS developer in London. I design, build, ship and operate independent products—from SwiftUI and StoreKit through telemetry, automation and App Store release.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#selected-work" data-analytics-event="developer_demo_cta_clicked" data-analytics-destination="selected_work">See selected work</a>
+            <a class="secondary-action" href="mailto:eric@savoie.app" data-analytics-event="developer_contact_opened" data-analytics-destination="email" data-analytics-placement="developer_demo">Talk to me</a>
+          </div>
+        </div>
+        <div class="hero-proof" aria-label="Developer profile">
+          <img src="/assets/images/thumbs/eric-headshot.webp" alt="Eric Savoie" width="180" height="180" />
+          <div>
+            <strong>Six apps live</strong>
+            <span>Products, not prototypes</span>
+          </div>
+          <div>
+            <strong>SwiftUI → App Store</strong>
+            <span>Product and release ownership</span>
+          </div>
+          <div>
+            <strong>London, UK</strong>
+            <span>Canadian and British citizen</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="Capabilities">
+      <span>Product strategy</span>
+      <span>SwiftUI + WidgetKit</span>
+      <span>StoreKit + payments</span>
+      <span>Telemetry + experiments</span>
+      <span>Release automation</span>
+    </section>
+
+    <section class="selected-work" id="selected-work">
+      <div class="container">
+        <p class="eyebrow">Selected product work</p>
+        <div class="section-heading">
+          <h2>Shipping the whole product.</h2>
+          <p>The apps are the portfolio. These are three examples of the product, engineering and operational problems behind them.</p>
+        </div>
+        <div class="case-grid">
+          {caseStudies.map((study) => (
+            <a class="case-card" href={study.href} data-analytics-event="developer_case_study_opened" data-analytics-destination={study.app}>
+              <div class="case-topline">
+                <img src={study.icon} alt="" width="52" height="52" />
+                <span>{study.label}</span>
+              </div>
+              <h3>{study.title}</h3>
+              <p>{study.body}</p>
+              <strong>Explore the work <span aria-hidden="true">→</span></strong>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="working-style">
+      <div class="container working-grid">
+        <div>
+          <p class="eyebrow">How I work</p>
+          <h2>Pragmatic product engineering.</h2>
+        </div>
+        <div class="principles">
+          <article><strong>Start with the decision.</strong><p>Define what the product should help someone do before expanding the feature list.</p></article>
+          <article><strong>Ship the complete path.</strong><p>Implementation includes privacy, telemetry, screenshots, support and the App Store—not only the code.</p></article>
+          <article><strong>Let evidence narrow the work.</strong><p>Measure discovery, activation and repeat use, then improve the constraint that is actually limiting the product.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="developer-cta">
+      <div class="container">
+        <p class="eyebrow">Build something useful</p>
+        <h2>Need someone who can own the product, not just the screen?</h2>
+        <a href="mailto:eric@savoie.app" data-analytics-event="developer_contact_opened" data-analytics-destination="email" data-analytics-placement="developer_demo_footer">Start a conversation</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .developer-demo { background: #f7f9fc; color: #17202d; font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .developer-hero { background: radial-gradient(circle at 82% 18%, rgba(197,27,41,.12), transparent 32%), linear-gradient(145deg, #fff 0%, #f2f5fa 100%); border-bottom: 1px solid #e3e8ef; padding: 110px 0 100px; }
+  .hero-grid { align-items: center; display: grid; gap: 80px; grid-template-columns: 1.35fr .65fr; }
+  .eyebrow { color: #c51b29; font-size: .76rem; font-weight: 800; letter-spacing: .14em; margin-bottom: 20px; text-transform: uppercase; }
+  h1, h2, h3 { letter-spacing: -.05em; line-height: 1.02; }
+  h1 { font-size: clamp(3.3rem, 6.7vw, 6.4rem); margin-bottom: 30px; }
+  h2 { font-size: clamp(2.5rem, 4.4vw, 4.3rem); }
+  .lede { color: #526176; font-size: clamp(1.08rem, 1.8vw, 1.3rem); line-height: 1.65; max-width: 750px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .primary-action, .secondary-action, .developer-cta a { border-radius: 10px; display: inline-flex; font-size: .9rem; font-weight: 800; padding: 14px 20px; }
+  .primary-action, .developer-cta a { background: #17202d; color: #fff; }
+  .secondary-action { border: 1px solid #ccd4df; color: #17202d; }
+  .hero-proof { background: #17202d; border-radius: 24px; box-shadow: 0 30px 80px rgba(25,38,58,.18); color: #fff; padding: 28px; }
+  .hero-proof img { border: 3px solid rgba(255,255,255,.22); border-radius: 50%; margin: -70px auto 28px; }
+  .hero-proof div { border-top: 1px solid rgba(255,255,255,.14); display: flex; flex-direction: column; gap: 4px; padding: 18px 0; }
+  .hero-proof strong { font-size: 1rem; }
+  .hero-proof span { color: #abb6c5; font-size: .8rem; }
+  .proof-strip { background: #17202d; color: #dfe5ec; display: flex; flex-wrap: wrap; font-size: .75rem; font-weight: 750; gap: 34px; justify-content: center; letter-spacing: .04em; padding: 22px; }
+  .selected-work { padding: 120px 0; }
+  .section-heading { align-items: end; display: grid; gap: 60px; grid-template-columns: 1fr .8fr; margin-bottom: 58px; }
+  .section-heading p, .principles p { color: #59677a; line-height: 1.7; }
+  .case-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); }
+  .case-card { background: #fff; border: 1px solid #dde4ec; border-radius: 18px; display: flex; flex-direction: column; min-height: 390px; padding: 28px; transition: transform 160ms ease, box-shadow 160ms ease; }
+  .case-card:hover { box-shadow: 0 20px 50px rgba(25,38,58,.1); transform: translateY(-4px); }
+  .case-topline { align-items: center; display: flex; gap: 14px; }
+  .case-topline img { border-radius: 12px; }
+  .case-topline span { color: #c51b29; font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .case-card h3 { font-size: 1.65rem; margin: 38px 0 18px; }
+  .case-card p { color: #59677a; line-height: 1.65; }
+  .case-card > strong { font-size: .82rem; margin-top: auto; padding-top: 30px; }
+  .working-style { background: #fff; border-block: 1px solid #e3e8ef; padding: 110px 0; }
+  .working-grid { display: grid; gap: 100px; grid-template-columns: .8fr 1.2fr; }
+  .principles article { border-top: 1px solid #dce3eb; padding: 25px 0; }
+  .principles strong { display: block; font-size: 1.08rem; margin-bottom: 8px; }
+  .developer-cta { padding: 120px 0; text-align: center; }
+  .developer-cta h2 { margin: 0 auto 36px; max-width: 900px; }
+  @media (max-width: 800px) {
+    .developer-hero { padding: 80px 0; }
+    .hero-grid, .section-heading, .working-grid { grid-template-columns: 1fr; }
+    .hero-grid { gap: 100px; }
+    .case-grid { grid-template-columns: 1fr; }
+    .case-card { min-height: 0; }
+  }
+</style>
