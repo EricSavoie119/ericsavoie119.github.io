@@ -1,0 +1,78 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Easymode Privacy Notice - Savoie Apps"
+  description="How Easymode handles connected email, calendar, reminders, account information and AI processing."
+  canonicalUrl="https://savoie.app/apps/easymode/privacy/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Easymode</p>
+      <h1>Privacy Notice</h1>
+      <p class="meta"><strong>Version:</strong> privacy-2026-08-06 · <strong>Published:</strong> 9 August 2026</p>
+      <p class="notice"><strong>Pilot notice.</strong> This notice describes the current Easymode implementation. Lawful-basis, international-transfer and final legal review remain release gates before an external paid pilot.</p>
+
+      <h2>Controller and contact</h2>
+      <p>Easymode is operated by Eric Savoie, trading as Easymode. Eric Savoie is the data controller and operates as an individual without a company registration number.</p>
+      <address>241 Dover House Road<br />London<br />SW15 5AF<br />United Kingdom</address>
+      <p>Privacy and support requests: <a href="mailto:support@savoie.app?subject=Easymode%20Privacy%20Request">support@savoie.app</a>.</p>
+
+      <h2>Information Easymode processes</h2>
+      <ul>
+        <li>Account identifiers and profile details supplied through Clerk.</li>
+        <li>Connected Gmail sender, recipients, subject, body, snippet, labels, message and thread identifiers, and supported attachment or invitation content.</li>
+        <li>Relevant Google Calendar data and records of events Easymode proposes or creates after approval.</li>
+        <li>Suggestions, decisions, preferences, approved outcomes, Gmail drafts, Apple Reminders receipts and activity history.</li>
+        <li>AI request metadata, structured model output and quality feedback used to evaluate reliability.</li>
+        <li>Notification settings and APNs device identifiers when notifications are enabled.</li>
+        <li>Security, operational and diagnostic records needed to run and protect the service.</li>
+      </ul>
+
+      <h2>Why the information is used</h2>
+      <p>Easymode uses this information to classify connected email, identify useful next steps, generate draft replies, present evidence for review, carry out actions you approve, apply preferences you select, notify you about reviewable work, secure the service and evaluate product reliability.</p>
+
+      <h2>AI processing</h2>
+      <p>Connected email sender, subject and body may be sent from Easymode's Google Cloud backend to the OpenAI API for classification, structured extraction and draft generation. Easymode requests that OpenAI does not store response application state. OpenAI states that API inputs and outputs are not used to train its models by default; standard abuse-monitoring logs may retain customer content for up to 30 days.</p>
+      <p>AI suggestions may be incomplete or wrong. Easymode requires review before creating calendar events, reminders or Gmail drafts. High-confidence low-value email is marked read automatically only when you separately enable Auto-clear.</p>
+
+      <h2>Google Workspace data</h2>
+      <p>Google authorization is requested separately and can be disconnected in Settings. Easymode's use and transfer of information received from Google Workspace APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Google Workspace data is not sold, used for advertising or used to train a general-purpose AI model.</p>
+
+      <h2>Service providers</h2>
+      <p>Easymode uses Clerk for authentication, Google Cloud for hosting and storage, Google APIs for Gmail and Calendar access, OpenAI for AI processing, and Apple for purchases, reminders and notifications where those features are enabled. These providers process information only as needed to provide their part of the service.</p>
+
+      <h2>Retention and deletion</h2>
+      <p>Stored raw Gmail body, snippet and parsed invitation content is scrubbed 30 days after import unless unresolved work or active processing still requires it. Derived records remain while the account is active. Normal application logs are retained for 30 days, required Google audit logs for 400 days, and Cloud SQL recovery data for up to seven days.</p>
+      <p>You can disconnect Google, withdraw processing authorization, delete imported data or permanently delete your Easymode account in Settings. Account deletion removes Easymode account data, imported content, suggestions, AI records, preferences, activity and notification devices, and revokes Google access. Bounded backups and legally required audit records expire according to the periods above.</p>
+
+      <h2>Your choices and rights</h2>
+      <p>Settings lets you inspect and export Easymode data, correct your display name, stop AI processing, disconnect Google, delete imported data and delete your account. You may also ask to access, correct or delete personal information, or object to or restrict processing, by emailing the controller. You may complain to the UK Information Commissioner's Office if you believe your data-protection rights have been infringed.</p>
+
+      <h2>Changes</h2>
+      <p>Material changes to purposes, recipients, retention or data categories require a new notice version and renewed acknowledgement or consent where legally required. The version and publication date above identify this notice.</p>
+
+      <p class="footnote">See <a href="/apps/easymode/account-deletion/">account deletion</a>, <a href="/apps/easymode/terms/">terms</a> or <a href="/apps/easymode/support/">support</a>.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 760px; }
+  .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
+  h1 { margin: 0 0 .5rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .meta { margin: 0 0 1.5rem; color: var(--color-text-secondary); font-size: .88rem; }
+  .notice { padding: 1rem; border-left: 3px solid var(--color-primary); background: var(--color-surface); }
+  h2 { margin: 2rem 0 .55rem; font-size: 1.3rem; }
+  p, li, address { line-height: 1.72; }
+  li + li { margin-top: .35rem; }
+  address { font-style: normal; }
+  a { color: var(--color-primary); }
+  .footnote { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .9rem; }
+</style>

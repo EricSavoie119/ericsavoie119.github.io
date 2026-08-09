@@ -1,0 +1,67 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Easymode Terms - Savoie Apps"
+  description="Pilot terms for using Easymode."
+  canonicalUrl="https://savoie.app/apps/easymode/terms/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Easymode</p>
+      <h1>Terms</h1>
+      <p class="meta"><strong>Version:</strong> terms-2026-08-06 · <strong>Published:</strong> 9 August 2026</p>
+      <p class="notice"><strong>Pilot terms.</strong> These terms describe the current pilot service. Final governing-law, liability, availability and subscription language remains subject to legal review before an external paid pilot.</p>
+
+      <h2>Operator</h2>
+      <p>Easymode is operated by Eric Savoie, trading as Easymode, as an individual. Support is available at <a href="mailto:support@savoie.app?subject=Easymode%20Support%20Request">support@savoie.app</a>.</p>
+
+      <h2>The service</h2>
+      <p>Easymode is a productivity service that uses automated systems to identify possible actions in connected email and related sources. It may propose reminders, calendar events, Gmail drafts, information to review and low-value messages to clear.</p>
+
+      <h2>Your account and connected services</h2>
+      <p>You must provide accurate account information, protect access to your devices and account, and have authority to connect and process the contents of any Gmail or Calendar account you authorize. Google access is optional and separately authorized. You can disconnect Google without deleting your Easymode account.</p>
+
+      <h2>Review AI output</h2>
+      <p>Suggestions, classifications, summaries and drafts may be incomplete or wrong. Easymode is not professional, legal, financial or medical advice. You remain responsible for reviewing recipients, dates, deadlines, amounts, locations, wording and destination changes before relying on or approving an outcome.</p>
+
+      <h2>Acceptable use</h2>
+      <p>Do not use Easymode unlawfully, attempt to bypass security, interfere with the service, access another person's account, or connect information you are not authorized to process. Do not rely on Easymode as the sole record for urgent, safety-critical or legally significant communications.</p>
+
+      <h2>Subscriptions</h2>
+      <p>A paid release is expected to use an auto-renewable App Store subscription. Apple will show the price, billing period, trial terms and renewal terms before purchase. Subscriptions can be cancelled or managed through Apple. Cancelling a subscription, withdrawing data-processing authorization and deleting an Easymode account are separate actions.</p>
+
+      <h2>Availability and changes</h2>
+      <p>The pilot may change, experience interruptions or be withdrawn. Connected providers may also change or interrupt their services. Easymode may update features and these terms as the product develops. Material terms changes will be identified by a new version and presented again where required.</p>
+
+      <h2>Ending use</h2>
+      <p>You may stop using Easymode, disconnect Google or delete your account at any time. Easymode may suspend access where necessary to protect users, providers or the service, or to address unlawful or abusive use.</p>
+
+      <h2>Consumer rights</h2>
+      <p>Nothing in these pilot terms excludes rights or remedies that cannot lawfully be excluded. Final liability and governing-law provisions will be added only after the separate legal review gate is complete.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about these terms can be sent to <a href="mailto:support@savoie.app?subject=Easymode%20Terms">support@savoie.app</a> or by post to Eric Savoie, 241 Dover House Road, London, SW15 5AF, United Kingdom.</p>
+
+      <p class="footnote">See the <a href="/apps/easymode/privacy/">Privacy Notice</a>, <a href="/apps/easymode/account-deletion/">account deletion information</a> or <a href="/apps/easymode/support/">support page</a>.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 760px; }
+  .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
+  h1 { margin: 0 0 .5rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .meta { margin: 0 0 1.5rem; color: var(--color-text-secondary); font-size: .88rem; }
+  .notice { padding: 1rem; border-left: 3px solid var(--color-primary); background: var(--color-surface); }
+  h2 { margin: 2rem 0 .55rem; font-size: 1.3rem; }
+  p { line-height: 1.72; }
+  a { color: var(--color-primary); }
+  .footnote { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .9rem; }
+</style>

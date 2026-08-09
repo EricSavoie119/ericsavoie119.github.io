@@ -1,0 +1,59 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Delete an Easymode Account - Savoie Apps"
+  description="How to permanently delete an Easymode account and its imported data."
+  canonicalUrl="https://savoie.app/apps/easymode/account-deletion/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Easymode</p>
+      <h1>Delete your account</h1>
+      <p class="lede">You can permanently delete your Easymode account from inside the app without contacting support.</p>
+
+      <h2>Delete in the app</h2>
+      <ol>
+        <li>Open Easymode and select <strong>Settings</strong>.</li>
+        <li>Under <strong>Account</strong>, select <strong>Delete account</strong>.</li>
+        <li>Review what will and will not be removed.</li>
+        <li>Type <strong>DELETE</strong> and confirm <strong>Delete account</strong>.</li>
+      </ol>
+
+      <h2>What deletion removes</h2>
+      <p>Deletion erases your Easymode account data, imported content, suggestions, AI records, preferences, activity and notification devices. Google access is revoked and your Easymode sign-in is deleted.</p>
+
+      <h2>What deletion does not remove</h2>
+      <p>Easymode does not delete messages or drafts already in Gmail, events already in Google Calendar, or reminders already in Apple Reminders. Manage those records in the destination service.</p>
+
+      <h2>Backups and required records</h2>
+      <p>Deleted active records may remain recoverable in bounded Cloud SQL backup and point-in-time recovery data for up to seven days. Required Google audit logs are retained for 400 days and contain operational audit information rather than reusable account content. These copies expire under the documented retention schedule.</p>
+
+      <h2>Subscription cancellation is separate</h2>
+      <p>Deleting your Easymode account does not itself cancel an App Store subscription. Manage or cancel subscriptions through your Apple Account subscription settings.</p>
+
+      <h2>Cannot access the app?</h2>
+      <p>Email <a href="mailto:support@savoie.app?subject=Easymode%20Account%20Deletion">support@savoie.app</a> from the address associated with your account. Include only the information needed to identify the account; never send a password or verification code.</p>
+
+      <p class="footnote">For related information, see the <a href="/apps/easymode/privacy/">Privacy Notice</a>, <a href="/apps/easymode/terms/">Terms</a> and <a href="/apps/easymode/support/">support page</a>.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
+  h1 { margin: 0 0 1rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .lede { color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  h2 { margin: 2rem 0 .55rem; font-size: 1.3rem; }
+  p, li { line-height: 1.72; }
+  li + li { margin-top: .45rem; }
+  a { color: var(--color-primary); }
+  .footnote { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .9rem; }
+</style>

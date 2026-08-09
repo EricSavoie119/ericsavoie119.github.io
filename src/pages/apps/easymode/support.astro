@@ -1,0 +1,55 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<Layout
+  title="Easymode Support - Savoie Apps"
+  description="Help and contact information for Easymode."
+  canonicalUrl="https://savoie.app/apps/easymode/support/"
+>
+  <Navbar />
+  <main class="app-info">
+    <article class="container">
+      <p class="eyebrow">Easymode</p>
+      <h1>Support</h1>
+      <p class="lede">For help with sign-in, Gmail or Calendar connections, suggestions, reminders, notifications, privacy requests or account deletion, contact Easymode support.</p>
+
+      <a class="contact" href="mailto:support@savoie.app?subject=Easymode%20Support%20Request">Email Easymode support</a>
+
+      <h2>Helpful details to include</h2>
+      <ul>
+        <li>Your Easymode version and build number</li>
+        <li>Your iPhone model and iOS version</li>
+        <li>The screen or action involved</li>
+        <li>What you expected and what happened instead</li>
+        <li>A screenshot with private email content removed, if useful</li>
+      </ul>
+
+      <h2>Protect your information</h2>
+      <p>Do not email passwords, verification codes, OAuth tokens, API keys or complete private email contents. Support will never ask for your password or sign-in code.</p>
+
+      <h2>Privacy and account requests</h2>
+      <p>The same address handles access, correction, deletion and other privacy requests. Most data controls are also available directly in Easymode Settings.</p>
+
+      <p class="footnote">See the <a href="/apps/easymode/privacy/">Privacy Notice</a>, <a href="/apps/easymode/terms/">Terms</a> and <a href="/apps/easymode/account-deletion/">account deletion information</a>.</p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .app-info { padding: 4rem 0 5rem; }
+  .app-info .container { max-width: 720px; }
+  .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
+  h1 { margin: 0 0 1rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
+  .lede { max-width: 42rem; color: var(--color-text-secondary); font-size: 1.12rem; line-height: 1.7; }
+  .contact { display: inline-block; margin: 1rem 0 2rem; padding: .8rem 1rem; border-radius: .5rem; background: var(--color-primary); color: white; font-weight: 700; text-decoration: none; }
+  h2 { margin: 2rem 0 .7rem; font-size: 1.3rem; }
+  p, li { line-height: 1.7; }
+  li + li { margin-top: .35rem; }
+  a { color: var(--color-primary); }
+  .contact { color: white; }
+  .footnote { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .9rem; }
+</style>
