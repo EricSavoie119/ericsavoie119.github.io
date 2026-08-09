@@ -5,12 +5,41 @@ import Hero from '../components/Hero.astro';
 import AppCard from '../components/AppCard.astro';
 import Footer from '../components/Footer.astro';
 import { apps, retiredApps } from '../data/apps';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://savoie.app/#website',
+      url: 'https://savoie.app/',
+      name: 'Savoie Apps',
+      description: 'Independent iOS apps designed and built by Eric Savoie.',
+      publisher: { '@id': 'https://savoie.app/#eric-savoie' },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://savoie.app/#eric-savoie',
+      name: 'Eric Savoie',
+      url: 'https://savoie.app/',
+      image: 'https://savoie.app/assets/images/thumbs/eric-headshot.webp',
+      jobTitle: 'iOS Developer',
+      homeLocation: { '@type': 'Place', name: 'London, United Kingdom' },
+      sameAs: [
+        'https://github.com/EricSavoie119',
+        'https://www.linkedin.com/in/eric-savoie-2a713241/',
+      ],
+    },
+  ],
+};
 ---
 <Layout
   title="Eric Savoie | iOS Developer & App Builder"
   description="Eric Savoie builds iOS apps across productivity, finance, AI, and utilities. Explore shipped App Store projects."
   canonicalUrl="https://savoie.app/"
+  analyticsPageType="portfolio_home"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <Navbar />
   <Hero />
   <main>

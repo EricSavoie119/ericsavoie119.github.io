@@ -6,6 +6,10 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   ogImage?: string;
+  analyticsPageType?: string;
+  analyticsApp?: string;
+  noindex?: boolean;
+  appleAppId?: string;
 }
 
 const {
@@ -13,6 +17,10 @@ const {
   description = 'Eric Savoie builds iOS apps across productivity, finance, AI, and utilities.',
   canonicalUrl = 'https://savoie.app/',
   ogImage = 'https://savoie.app/assets/images/Eric.png',
+  analyticsPageType = 'website',
+  analyticsApp,
+  noindex = false,
+  appleAppId,
 } = Astro.props;
 ---
 <!doctype html>
@@ -22,6 +30,8 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Eric Savoie" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {appleAppId && <meta name="apple-itunes-app" content={`app-id=${appleAppId}`} />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -37,7 +47,10 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-analytics-page-type={analyticsPageType} data-analytics-app={analyticsApp}>
     <slot />
+    <script>
+      import '../scripts/analytics';
+    </script>
   </body>
 </html>

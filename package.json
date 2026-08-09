@@ -10,6 +10,8 @@
     "sync:infinite-ruler-screenshots": "./scripts/sync-infinite-ruler-screenshots.sh"
   },
   "dependencies": {
-    "astro": "^6.0.0"
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.0.0",
+    "posthog-js": "^1.414.0"
   }
 }

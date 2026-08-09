@@ -13,7 +13,7 @@ export interface App {
 export const apps: App[] = [
   {
     name: 'Bread Engineer',
-    image: '/assets/images/icons/BreadEngineer.png',
+    image: '/assets/images/thumbs/bread-engineer.webp',
     category: 'Bread recipes & dough timer',
     description: 'Plan a loaf, adjust fermentation timing for your dough and kitchen, and follow every stage with reliable step alarms.',
     tech: ['SwiftUI', 'SwiftData', 'AlarmKit', 'ActivityKit', 'Fastlane'],
@@ -24,7 +24,7 @@ export const apps: App[] = [
   },
   {
     name: 'GridMetrics',
-    image: '/assets/images/apps/GridMetrics/1024.png',
+    image: '/assets/images/thumbs/gridmetrics.webp',
     category: 'Clean energy & tariff forecast',
     description: 'Know the cleanest—and with Pro, cheapest—time to use electricity with one practical 24-hour recommendation.',
     tech: ['SwiftUI', 'WidgetKit', 'StoreKit', 'PostHog'],
@@ -35,7 +35,7 @@ export const apps: App[] = [
   },
   {
     name: 'BeLoved',
-    image: '/assets/images/apps/BeLoved/appstore.png',
+    image: '/assets/images/thumbs/beloved.webp',
     category: 'Beautiful relationship tracker',
     description: 'Track anniversaries, milestones, and special dates with notifications to never miss a moment.',
     tech: ['WidgetKit', 'StoreKit Configuration files'],
@@ -46,7 +46,7 @@ export const apps: App[] = [
   },
   {
     name: 'Fast Simple Invoice Maker',
-    image: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png',
+    image: '/assets/images/thumbs/fast-simple-invoice-maker.webp',
     category: 'Create professional invoices fast',
     description: 'Invoice apps that create PDFs had log ins and lots of friction when creating PDFs is quite simple so I made a Fast Simple version.',
     tech: ['PDFKit'],
@@ -57,7 +57,7 @@ export const apps: App[] = [
   },
   {
     name: 'Infinite Ruler',
-    image: '/assets/images/icons/infiniteruler.png',
+    image: '/assets/images/thumbs/infinite-ruler.webp',
     category: 'A calibrated ruler that keeps going',
     description: 'Measure in centimetres or fractional inches with a movable zero, A–B markers and a ruler that continues past one screen.',
     tech: ['SwiftUI', 'Device calibration', 'PostHog'],
@@ -68,7 +68,7 @@ export const apps: App[] = [
   },
   {
     name: 'Flip Clock Flow',
-    image: '/assets/images/apps/Flip%20Clock%20Flow/appstore.png',
+    image: '/assets/images/thumbs/flip-clock-flow.webp',
     category: 'Elegant flip clock + focus timer',
     description: 'A cool nostalgic clock built by referencing open source code.',
     tech: [],
@@ -79,7 +79,7 @@ export const apps: App[] = [
 export const retiredApps: App[] = [
   {
     name: 'Curiosity AI',
-    image: '/assets/images/apps/CuriosityAI/appstore.png',
+    image: '/assets/images/thumbs/curiosity-ai.webp',
     category: 'Anonymous community chat · 2025–2026',
     description: 'An experiment in anonymous, topic-based conversation with AI-assisted expression and moderation.',
     tech: ['SwiftUI', 'WebSockets', 'AWS Lambda', 'DynamoDB', 'OpenAI'],
@@ -87,7 +87,7 @@ export const retiredApps: App[] = [
   },
   {
     name: 'Swivo',
-    image: '/assets/images/apps/Swivo/appstore.png',
+    image: '/assets/images/thumbs/swivo.webp',
     category: 'AI-generated social video · 2025–2026',
     description: 'An exploration of a social feed built around cloud-generated images and video.',
     tech: ['UIKit', 'Google Cloud', 'Vertex AI', 'Veo', 'Cloud Storage'],
@@ -95,7 +95,7 @@ export const retiredApps: App[] = [
   },
   {
     name: 'SuperGoodBudget',
-    image: '/assets/images/apps/SuperGoodBudget/appstore.png',
+    image: '/assets/images/thumbs/super-good-budget.webp',
     category: 'Personal budgeting · 2025–2026',
     description: 'A zero-based budgeting and spending tracker inspired by envelope budgeting.',
     tech: [],
@@ -103,7 +103,7 @@ export const retiredApps: App[] = [
   },
   {
     name: 'Loan Calculator Smart',
-    image: '/assets/images/apps/LoanCalculatorSmart/appstore.png',
+    image: '/assets/images/thumbs/loan-calculator-smart.webp',
     category: 'Loan comparison · 2025–2026',
     description: 'A loan comparison calculator with interactive charts, breakeven calculations and PDF reports.',
     tech: ['Swift Charts'],
@@ -111,7 +111,7 @@ export const retiredApps: App[] = [
   },
   {
     name: 'Tip Calculator Fast',
-    image: '/assets/images/apps/Tip%20Calculator%20Fast/appstore.png',
+    image: '/assets/images/thumbs/tip-calculator-fast.webp',
     category: 'Tip calculator · 2025–2026',
     description: 'A fast tip and bill-splitting calculator built around keyboard-first input.',
     tech: [],
@@ -119,7 +119,7 @@ export const retiredApps: App[] = [
   },
   {
     name: 'Water?',
-    image: '/assets/images/apps/Water/appstore.png',
+    image: '/assets/images/thumbs/water.webp',
     category: 'Hydration tracker · 2025–2026',
     description: 'A lightweight daily water-intake tracker.',
     tech: [],

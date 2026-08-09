@@ -9,7 +9,7 @@ const { app, retired = false } = Astro.props;
 ---
 <div class:list={["app-card", { "app-card--retired": retired }]}>
   <div class="app-card-header">
-    <img src={app.image} alt={`${app.name} icon`} class="app-icon" width="52" height="52" />
+    <img src={app.image} alt={`${app.name} icon`} class="app-icon" width="52" height="52" loading="lazy" decoding="async" />
     <div>
       <div class="app-title-row">
         <h3 class="app-name">{app.name}</h3>
@@ -27,12 +27,12 @@ const { app, retired = false } = Astro.props;
     )}
     <div class="app-links">
       {app.links.appStore && (
-        <a href={app.links.appStore} class="btn-store" target="_blank" rel="noopener noreferrer">
+        <a href={app.links.appStore} class="btn-store" target="_blank" rel="noopener noreferrer" data-analytics-event="app_store_clicked" data-analytics-app={app.name} data-analytics-placement="portfolio_card">
           App Store ↗
         </a>
       )}
       {app.links.features && (
-        <a href={app.links.features} class="btn-features">Features</a>
+        <a href={app.links.features} class="btn-features" data-analytics-event="product_page_opened" data-analytics-app={app.name} data-analytics-placement="portfolio_card">Features</a>
       )}
     </div>
   </div>

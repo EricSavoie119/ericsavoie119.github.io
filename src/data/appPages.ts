@@ -11,6 +11,7 @@ export interface AppPageSection {
 export interface AppPage {
   slug: string;
   name: string;
+  category: string;
   icon: string;
   accent: string;
   accentDark: string;
@@ -35,6 +36,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'bread-engineer',
     name: 'Bread Engineer',
+    category: 'Food & Drink',
     icon: '/assets/images/icons/BreadEngineer.png',
     accent: '#c96d52',
     accentDark: '#6d3425',
@@ -112,6 +114,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'beloved',
     name: 'BeLoved',
+    category: 'Lifestyle',
     icon: '/assets/images/apps/BeLoved/appstore.png',
     accent: '#f02d55',
     accentDark: '#8f1835',
@@ -185,6 +188,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'gridmetrics',
     name: 'GridMetrics',
+    category: 'Utilities',
     icon: '/assets/images/apps/GridMetrics/1024.png',
     accent: '#2876ff',
     accentDark: '#0a3b99',
@@ -259,6 +263,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'infinite-ruler',
     name: 'Infinite Ruler',
+    category: 'Utilities',
     icon: '/assets/images/icons/infiniteruler.png',
     accent: '#0a84ff',
     accentDark: '#07517f',

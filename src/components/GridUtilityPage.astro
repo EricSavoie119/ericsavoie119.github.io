@@ -69,7 +69,7 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
     <nav aria-label="GridMetrics utilities">
       <a href="/apps/gridmetrics/cleanest-time-today/">Cleanest time</a>
       <a href="/apps/gridmetrics/octopus-agile-cheapest-time-today/">Agile prices</a>
-      <a class="nav-cta" href={appStoreUrl} target="_blank" rel="noopener noreferrer">Get the app</a>
+      <a class="nav-cta" href={appStoreUrl} data-app-store-cta="utility_nav" data-analytics-app="GridMetrics" target="_blank" rel="noopener noreferrer">Get the app</a>
     </nav>
   </header>
 
@@ -82,7 +82,7 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
         {regions.length > 0 && (
           <label class="region-control">
             <span>Your electricity region</span>
-            <select id="region-select" aria-label="Choose an Octopus Agile electricity region">
+            <select id="region-select" aria-label="Choose an Octopus Agile electricity region" data-analytics-event="utility_region_changed" data-analytics-app="GridMetrics" data-analytics-placement="cheapest_time_tool">
               {regions.map((region) => (
                 <option value={region.code} selected={region.code === activeRegionCode}>{region.name}</option>
               ))}
@@ -198,7 +198,7 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
         <h2>One recommendation, ready when you are.</h2>
         <p>GridMetrics adds regional carbon forecasts, activity durations, widgets and price-aware recommendations in one private iPhone app.</p>
       </div>
-      <a class="store-button" href={appStoreUrl} target="_blank" rel="noopener noreferrer">
+      <a class="store-button" href={appStoreUrl} data-app-store-cta="utility_footer" data-analytics-app="GridMetrics" target="_blank" rel="noopener noreferrer">
         <span aria-hidden="true"></span>
         <span><small>Download on the</small>App Store</span>
       </a>

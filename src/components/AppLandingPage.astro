@@ -30,7 +30,7 @@ const supportHref = app.slug === 'bread-engineer'
       <img src={app.icon} alt="" width="42" height="42" />
       <span>{app.name}</span>
     </a>
-    <a class="nav-cta" href={app.appStoreUrl} data-app-store-cta="nav" target="_blank" rel="noopener noreferrer">
+    <a class="nav-cta" href={app.appStoreUrl} data-app-store-cta="nav" data-analytics-app={app.name} target="_blank" rel="noopener noreferrer">
       Get the app
     </a>
   </header>
@@ -42,7 +42,7 @@ const supportHref = app.slug === 'bread-engineer'
         <h1>{app.headline}</h1>
         <p class="lede">{app.subhead}</p>
         <div class="hero-actions">
-          <a class="store-button" href={app.appStoreUrl} data-app-store-cta="hero" target="_blank" rel="noopener noreferrer">
+          <a class="store-button" href={app.appStoreUrl} data-app-store-cta="hero" data-analytics-app={app.name} target="_blank" rel="noopener noreferrer">
             <span class="apple" aria-hidden="true"></span>
             <span><small>Download on the</small>App Store</span>
           </a>
@@ -68,12 +68,12 @@ const supportHref = app.slug === 'bread-engineer'
           <p>Use the public forecast tools to see a real recommendation, then get GridMetrics for regional results, widgets and alerts.</p>
         </div>
         <div class="live-tool-links">
-          <a href="/apps/gridmetrics/cleanest-time-today/">
+          <a href="/apps/gridmetrics/cleanest-time-today/" data-analytics-event="web_tool_opened" data-analytics-app="GridMetrics" data-analytics-placement="product_page" data-analytics-destination="cleanest_time">
             <span>Great Britain forecast</span>
             <strong>Cleanest time today</strong>
             <span aria-hidden="true">↗</span>
           </a>
-          <a href="/apps/gridmetrics/octopus-agile-cheapest-time-today/">
+          <a href="/apps/gridmetrics/octopus-agile-cheapest-time-today/" data-analytics-event="web_tool_opened" data-analytics-app="GridMetrics" data-analytics-placement="product_page" data-analytics-destination="cheapest_time">
             <span>Public Agile rates</span>
             <strong>Cheapest time today</strong>
             <span aria-hidden="true">↗</span>
@@ -131,7 +131,7 @@ const supportHref = app.slug === 'bread-engineer'
       <img src={app.icon} alt={`${app.name} app icon`} width="86" height="86" />
       <p class="eyebrow">{app.finalEyebrow}</p>
       <h2>{app.headline}</h2>
-      <a class="store-button" href={app.appStoreUrl} data-app-store-cta="footer" target="_blank" rel="noopener noreferrer">
+      <a class="store-button" href={app.appStoreUrl} data-app-store-cta="footer" data-analytics-app={app.name} target="_blank" rel="noopener noreferrer">
         <span class="apple" aria-hidden="true"></span>
         <span><small>Download on the</small>App Store</span>
       </a>
@@ -148,18 +148,6 @@ const supportHref = app.slug === 'bread-engineer'
     <p>{app.footnote}</p>
   </footer>
 </div>
-
-<script>
-  document.querySelectorAll<HTMLElement>('[data-app-store-cta]').forEach((link) => {
-    link.addEventListener('click', () => {
-      const posthog = (window as Window & { posthog?: { capture: (name: string, properties: object) => void } }).posthog;
-      posthog?.capture('app_store_clicked', {
-        app: document.title.split('—')[0]?.trim(),
-        placement: link.dataset.appStoreCta,
-      });
-    });
-  });
-</script>
 
 <style>
   .sales-page { background: #f6f9ff; color: #0d1f3c; min-height: 100vh; font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
