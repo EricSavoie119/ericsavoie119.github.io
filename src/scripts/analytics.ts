@@ -4,6 +4,25 @@ const projectToken = 'phc_AEHHm2KQ8upioFfjV9BoVVYFkCFcSKkfNmNpAijPSUHE';
 const body = document.body;
 const pageType = body.dataset.analyticsPageType ?? 'website';
 const pageApp = body.dataset.analyticsApp;
+const experimentId = body.dataset.analyticsExperimentId;
+const query = new URLSearchParams(window.location.search);
+const referringDomain = (() => {
+  if (!document.referrer) return 'direct';
+  try {
+    return new URL(document.referrer).hostname;
+  } catch {
+    return 'unknown';
+  }
+})();
+const acquisitionProperties = {
+  ...(experimentId ? { experiment_id: experimentId } : {}),
+  landing_path: window.location.pathname,
+  referring_domain: referringDomain,
+  utm_source: query.get('utm_source') ?? undefined,
+  utm_medium: query.get('utm_medium') ?? undefined,
+  utm_campaign: query.get('utm_campaign') ?? undefined,
+  utm_content: query.get('utm_content') ?? undefined,
+};
 
 posthog.init(projectToken, {
   api_host: 'https://eu.i.posthog.com',
@@ -24,6 +43,7 @@ posthog.init(projectToken, {
 posthog.capture('$pageview', {
   page_type: pageType,
   ...(pageApp ? { app: pageApp } : {}),
+  ...acquisitionProperties,
 });
 
 const captureInteraction = (target: HTMLElement) => {
@@ -43,6 +63,8 @@ const captureInteraction = (target: HTMLElement) => {
       destination: target.dataset.analyticsDestination
         ?? (link ? new URL(link.href, window.location.href).hostname : undefined),
       value: target instanceof HTMLSelectElement ? target.value : undefined,
+      campaign_token: target.dataset.analyticsCampaignToken,
+      ...acquisitionProperties,
     },
     { transport: 'sendBeacon', send_instantly: true },
   );

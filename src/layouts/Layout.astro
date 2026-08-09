@@ -8,6 +8,7 @@ interface Props {
   ogImage?: string;
   analyticsPageType?: string;
   analyticsApp?: string;
+  analyticsExperimentId?: string;
   noindex?: boolean;
   appleAppId?: string;
 }
@@ -19,6 +20,7 @@ const {
   ogImage = 'https://savoie.app/assets/images/Eric.png',
   analyticsPageType = 'website',
   analyticsApp,
+  analyticsExperimentId,
   noindex = false,
   appleAppId,
 } = Astro.props;
@@ -47,7 +49,11 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body data-analytics-page-type={analyticsPageType} data-analytics-app={analyticsApp}>
+  <body
+    data-analytics-page-type={analyticsPageType}
+    data-analytics-app={analyticsApp}
+    data-analytics-experiment-id={analyticsExperimentId}
+  >
     <slot />
     <script>
       import '../scripts/analytics';

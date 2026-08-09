@@ -18,6 +18,8 @@ interface Props {
   sourceLabel: string;
   sourceUrl: string;
   explanation: string;
+  appStoreUrl?: string;
+  campaignToken?: string;
 }
 
 const {
@@ -34,6 +36,8 @@ const {
   sourceLabel,
   sourceUrl,
   explanation,
+  appStoreUrl = 'https://apps.apple.com/gb/app/gridmetrics/id6752292390',
+  campaignToken,
 } = Astro.props;
 
 const primary = recommendations.find((item) => item.minutes === 120 && item.window)
@@ -41,7 +45,6 @@ const primary = recommendations.find((item) => item.minutes === 120 && item.wind
 const durationAdjective = (minutes: number) => minutes < 60
   ? `${minutes}-minute`
   : `${minutes / 60}-hour`;
-const appStoreUrl = 'https://apps.apple.com/gb/app/gridmetrics/id6752292390';
 const icon = '/assets/images/apps/GridMetrics/1024.png';
 const formatTime = (value?: string) => value
   ? new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(value))
@@ -69,7 +72,7 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
     <nav aria-label="GridMetrics utilities">
       <a href="/apps/gridmetrics/cleanest-time-today/">Cleanest time</a>
       <a href="/apps/gridmetrics/octopus-agile-cheapest-time-today/">Agile prices</a>
-      <a class="nav-cta" href={appStoreUrl} data-app-store-cta="utility_nav" data-analytics-app="GridMetrics" target="_blank" rel="noopener noreferrer">Get the app</a>
+      <a class="nav-cta" href={appStoreUrl} data-app-store-cta="utility_nav" data-analytics-app="GridMetrics" data-analytics-campaign-token={campaignToken} target="_blank" rel="noopener noreferrer">Get the app</a>
     </nav>
   </header>
 
@@ -198,7 +201,7 @@ const regionPayload = regions.length ? JSON.stringify(Object.fromEntries(regions
         <h2>One recommendation, ready when you are.</h2>
         <p>GridMetrics adds regional carbon forecasts, activity durations, widgets and price-aware recommendations in one private iPhone app.</p>
       </div>
-      <a class="store-button" href={appStoreUrl} data-app-store-cta="utility_footer" data-analytics-app="GridMetrics" target="_blank" rel="noopener noreferrer">
+      <a class="store-button" href={appStoreUrl} data-app-store-cta="utility_footer" data-analytics-app="GridMetrics" data-analytics-campaign-token={campaignToken} target="_blank" rel="noopener noreferrer">
         <span aria-hidden="true"></span>
         <span><small>Download on the</small>App Store</span>
       </a>

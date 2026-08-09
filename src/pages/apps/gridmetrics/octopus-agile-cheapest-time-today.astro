@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import GridUtilityPage from '../../../components/GridUtilityPage.astro';
 import { getAgileTimeData } from '../../../lib/gridMetricsData';
+import { appStoreCampaignUrl, gridMetricsOctopusExperiment } from '../../../data/experiments';
 
 const data = await getAgileTimeData();
 const defaultRegion = data.regions.find((region) => region.code === 'C') ?? data.regions[0];
@@ -27,6 +28,7 @@ const schema = {
   ogImage="https://savoie.app/assets/images/apps/GridMetrics/utility-og.png"
   analyticsPageType="acquisition_tool"
   analyticsApp="GridMetrics"
+  analyticsExperimentId={gridMetricsOctopusExperiment.id}
   appleAppId="6752292390"
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -44,5 +46,7 @@ const schema = {
     sourceLabel="Octopus Energy public API"
     sourceUrl="https://developer.octopus.energy/guides/rest/api-endpoints/"
     explanation="Octopus publishes a VAT-inclusive rate for every half-hour and electricity region. GridMetrics checks every consecutive set of remaining periods and selects the lowest average rate for each duration. This page shows the absolute cheapest price window; the app can instead balance price with carbon intensity."
+    appStoreUrl={appStoreCampaignUrl(gridMetricsOctopusExperiment)}
+    campaignToken={gridMetricsOctopusExperiment.campaignToken}
   />
 </Layout>
