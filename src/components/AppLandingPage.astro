@@ -56,6 +56,24 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
           )}
           <span class="no-account">{isPilot ? 'Less to remember. More room to think.' : 'No account required'}</span>
         </div>
+        <div class="android-interest">
+          <button
+            type="button"
+            class="android-interest-button"
+            aria-expanded="false"
+            aria-controls={`android-interest-note-${app.slug}`}
+            data-android-interest
+            data-analytics-event="android_interest_clicked"
+            data-analytics-app={app.name}
+            data-analytics-placement="product_page_hero"
+            data-analytics-destination="android_interest"
+          >
+            Android isn’t available yet · Register interest
+          </button>
+          <p id={`android-interest-note-${app.slug}`} class="android-interest-note" hidden>
+            Thanks—this anonymous click helps us measure interest before deciding what to build. No signup or email required.
+          </p>
+        </div>
       </div>
       <div class="hero-art" style={`--hero-focus-y:${app.heroFocusY ?? '0px'}`}>
         <div class="orb orb-one"></div>
@@ -183,6 +201,12 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
   .store-button small { display: block; font-size: .62rem; font-weight: 500; margin-bottom: 2px; }
   .apple { display: block; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 1.65rem; font-weight: 400; line-height: 1; }
   .no-account { color: #6f7d92; font-size: .86rem; }
+  .android-interest { margin-top: 18px; max-width: 520px; }
+  .android-interest-button { align-items: center; appearance: none; background: transparent; border: 0; border-bottom: 1px solid currentColor; color: #66758c; cursor: pointer; display: inline-flex; font: inherit; font-size: .8rem; min-height: 44px; padding: 8px 0; text-align: left; }
+  .android-interest-button:hover { color: var(--app-accent-dark); }
+  .android-interest-button:focus-visible { border-radius: 4px; outline: 3px solid color-mix(in srgb, var(--app-accent) 30%, transparent); outline-offset: 4px; }
+  .android-interest-button:disabled { border-bottom-color: transparent; color: #60718a; cursor: default; font-weight: 700; }
+  .android-interest-note { color: #66758c; font-size: .78rem; line-height: 1.5; margin: 8px 0 0; max-width: 480px; }
   .hero-art { align-self: end; border-radius: 48px 48px 0 0; height: 690px; overflow: hidden; position: relative; }
   .hero-art img { border-radius: 44px; bottom: -150px; filter: drop-shadow(0 34px 50px rgba(17,52,110,.2)); height: auto; left: 50%; max-width: 430px; position: absolute; transform: translate(-50%, var(--hero-focus-y)); width: 74%; z-index: 2; }
   .app-easymode .hero { column-gap: 48px; grid-template-columns: 1fr 1fr; }
@@ -228,6 +252,8 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
     .app-easymode .hero-copy { margin: 0 auto; max-width: 680px; text-align: center; }
     .app-easymode .hero-copy .lede { margin-left: auto; margin-right: auto; }
     .app-easymode .hero-actions { justify-content: center; }
+    .app-easymode .android-interest { margin-left: auto; margin-right: auto; }
+    .app-easymode .android-interest-button { text-align: center; }
     .app-easymode .hero-art { margin: 42px auto 0; max-width: 620px; }
     .app-easymode .hero-art img { width: 68%; }
   }
@@ -260,3 +286,19 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
     .screen-card { height: 480px; }
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-android-interest]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (button.getAttribute('aria-expanded') === 'true') return;
+
+      const noteId = button.getAttribute('aria-controls');
+      const note = noteId ? document.getElementById(noteId) : null;
+
+      if (note) note.hidden = false;
+      button.setAttribute('aria-expanded', 'true');
+      button.textContent = 'Android interest noted';
+      button.disabled = true;
+    });
+  });
+</script>
