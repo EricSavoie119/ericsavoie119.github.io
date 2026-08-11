@@ -10,7 +10,25 @@ export function getStaticPaths() {
 interface Props { app: AppPage }
 const { app } = Astro.props;
 const canonicalUrl = `https://savoie.app/apps/${app.slug}/`;
-const appleAppId = app.appStoreUrl.match(/id(\d+)/)?.[1];
+const appleAppId = app.appStoreUrl?.match(/id(\d+)/)?.[1];
+const softwareApplication = {
+  '@type': 'SoftwareApplication',
+  '@id': `${canonicalUrl}#app`,
+  name: app.name,
+  applicationCategory: app.category,
+  operatingSystem: 'iOS',
+  description: app.subhead,
+  url: canonicalUrl,
+  image: `https://savoie.app${app.icon}`,
+  author: { '@id': 'https://savoie.app/#eric-savoie' },
+  ...(app.appStoreUrl
+    ? {
+        downloadUrl: app.appStoreUrl,
+        installUrl: app.appStoreUrl,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP', availability: 'https://schema.org/InStock' },
+      }
+    : {}),
+};
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -24,20 +42,7 @@ const schema = {
       about: { '@id': `${canonicalUrl}#app` },
       breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` },
     },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': `${canonicalUrl}#app`,
-      name: app.name,
-      applicationCategory: app.category,
-      operatingSystem: 'iOS',
-      description: app.subhead,
-      url: canonicalUrl,
-      image: `https://savoie.app${app.icon}`,
-      downloadUrl: app.appStoreUrl,
-      installUrl: app.appStoreUrl,
-      author: { '@id': 'https://savoie.app/#eric-savoie' },
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP', availability: 'https://schema.org/InStock' },
-    },
+    softwareApplication,
     {
       '@type': 'FAQPage',
       '@id': `${canonicalUrl}#faq`,

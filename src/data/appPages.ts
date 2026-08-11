@@ -18,7 +18,7 @@ export interface AppPage {
   eyebrow: string;
   headline: string;
   subhead: string;
-  appStoreUrl: string;
+  appStoreUrl?: string;
   heroScreenshot: string;
   heroScreenshotAlt: string;
   heroFocusY?: string;
@@ -33,6 +33,79 @@ export interface AppPage {
 }
 
 export const appPages: AppPage[] = [
+  {
+    slug: 'easymode',
+    name: 'Easymode',
+    category: 'Productivity',
+    icon: '/assets/images/apps/EasyMode/icon.webp',
+    accent: '#111111',
+    accentDark: '#111111',
+    eyebrow: 'A calmer way through life admin',
+    headline: 'Turn email into a clear next step.',
+    subhead:
+      'Easymode reviews messages in the Gmail account you choose, identifies actionable admin, and prepares reminders, Google Calendar events, or Gmail drafts for you to review before anything changes.',
+    heroScreenshot: '/assets/images/apps/EasyMode/product/today-review.webp',
+    heroScreenshotAlt: 'Easymode Today showing one life-admin item ready for review and approval',
+    benefits: ['One item at a time', 'Approval before changes', 'Outcomes stay in the right app'],
+    sections: [
+      {
+        eyebrow: 'A short daily review',
+        title: 'See what actually needs attention.',
+        body:
+          'After you connect Google, Easymode uses AI-assisted processing to review supported Gmail messages and separate actionable admin from useful updates and low-value noise. You work through one proposed next step at a time.',
+        screenshot: '/assets/images/apps/EasyMode/product/today-review.webp',
+        screenshotAlt: 'Easymode separating an actionable school payment from worth-knowing email updates',
+      },
+      {
+        eyebrow: 'Evidence before action',
+        title: 'Review the details before you approve.',
+        body:
+          'Open a suggestion to see the source evidence, extracted facts, proposed destination, and what Easymode plans to do. Edit, approve, review later, or dismiss it—the AI can be wrong, and the decision remains yours.',
+        screenshot: '/assets/images/apps/EasyMode/product/review-detail.webp',
+        screenshotAlt: 'Easymode review detail showing source evidence, date, proposed calendar event, and approval controls',
+      },
+      {
+        eyebrow: 'The destination stays canonical',
+        title: 'Set work in motion without replacing your apps.',
+        body:
+          'Approved outcomes live where they belong: events in Google Calendar, reminders in Apple Reminders, and editable replies as Gmail drafts. Easymode coordinates the next step and links you back to the destination app.',
+        screenshot: '/assets/images/apps/EasyMode/product/plan.webp',
+        screenshotAlt: 'Easymode Plan showing approved work in Google Calendar and Apple Reminders',
+      },
+      {
+        eyebrow: 'Connections and control',
+        title: 'Google access is separate—and optional.',
+        body:
+          'Your Easymode account does not automatically connect Google. You separately choose a Google account and authorize Gmail and Calendar access, which you can disconnect later. Auto-clear is another separate opt-in for high-confidence, low-risk automated mail; protected categories remain excluded and cleared items stay inspectable.',
+        screenshot: '/assets/images/apps/EasyMode/product/settings.webp',
+        screenshotAlt: 'Easymode Settings showing separate Google connection controls and trust and privacy options',
+      },
+    ],
+    trustEyebrow: 'Designed around review',
+    trustTitle: 'AI assists. You remain responsible.',
+    trustBody:
+      'Easymode processes connected Gmail content and relevant calendar context through its backend and an AI processing service provider to classify messages, extract next steps, and generate draft replies. Calendar events, reminders, Gmail drafts, and other external changes require your review and approval; optional Auto-clear requires its own opt-in.',
+    footnote:
+      'Easymode is being prepared for a limited external pilot and is not currently offered for general download. AI suggestions may be incomplete or incorrect; review every proposed outcome before approval.',
+    finalEyebrow: 'Life admin, with a review step',
+    faq: [
+      {
+        question: 'What Google data does Easymode use?',
+        answer:
+          'After separate Google authorization, Easymode can process supported Gmail sender, subject, body, identifiers, and relevant Google Calendar context to identify and prepare useful next steps. The Privacy Notice explains the data, processors, retention, and controls in detail.',
+      },
+      {
+        question: 'Does Easymode send email or change my calendar automatically?',
+        answer:
+          'No. Gmail replies are created as editable drafts and are never sent automatically. Calendar events and reminders require your approval before Easymode attempts to create them in their destination app.',
+      },
+      {
+        question: 'What is Auto-clear?',
+        answer:
+          'Auto-clear is an optional, separately enabled setting that can mark only high-confidence, low-risk automated messages as read. Security, money, account changes, deadlines, travel, documents, consequential subscription changes, and human correspondence remain protected by deterministic rules.',
+      },
+    ],
+  },
   {
     slug: 'bread-engineer',
     name: 'Bread Engineer',

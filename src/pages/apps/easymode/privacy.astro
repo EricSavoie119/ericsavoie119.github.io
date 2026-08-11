@@ -15,7 +15,6 @@ import Footer from '../../../components/Footer.astro';
       <p class="eyebrow">Easymode</p>
       <h1>Privacy Notice</h1>
       <p class="meta"><strong>Version:</strong> privacy-2026-08-06 · <strong>Published:</strong> 9 August 2026</p>
-      <p class="notice"><strong>Pilot notice.</strong> This notice describes the current Easymode implementation. Lawful-basis, international-transfer and final legal review remain release gates before an external paid pilot.</p>
 
       <h2>Controller and contact</h2>
       <p>Easymode is operated by Eric Savoie, trading as Easymode. Eric Savoie is the data controller and operates as an individual without a company registration number.</p>
@@ -37,14 +36,14 @@ import Footer from '../../../components/Footer.astro';
       <p>Easymode uses this information to classify connected email, identify useful next steps, generate draft replies, present evidence for review, carry out actions you approve, apply preferences you select, notify you about reviewable work, secure the service and evaluate product reliability.</p>
 
       <h2>AI processing</h2>
-      <p>Connected email sender, subject and body may be sent from Easymode's Google Cloud backend to the OpenAI API for classification, structured extraction and draft generation. Easymode requests that OpenAI does not store response application state. OpenAI states that API inputs and outputs are not used to train its models by default; standard abuse-monitoring logs may retain customer content for up to 30 days.</p>
+      <p>Connected Gmail sender, subject, body and relevant context may be sent from Easymode's Google Cloud backend to an AI processing service provider for AI-assisted classification, structured extraction and draft generation. Easymode configures the service so request and response content is not used to train general-purpose AI models. The provider may retain content in security and abuse-monitoring logs for up to 30 days.</p>
       <p>AI suggestions may be incomplete or wrong. Easymode requires review before creating calendar events, reminders or Gmail drafts. High-confidence low-value email is marked read automatically only when you separately enable Auto-clear.</p>
 
       <h2>Google Workspace data</h2>
       <p>Google authorization is requested separately and can be disconnected in Settings. Easymode's use and transfer of information received from Google Workspace APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Google Workspace data is not sold, used for advertising or used to train a general-purpose AI model.</p>
 
       <h2>Service providers</h2>
-      <p>Easymode uses Clerk for authentication, Google Cloud for hosting and storage, Google APIs for Gmail and Calendar access, OpenAI for AI processing, and Apple for purchases, reminders and notifications where those features are enabled. These providers process information only as needed to provide their part of the service.</p>
+      <p>Easymode uses Clerk for authentication, Google Cloud for hosting and storage, Google APIs for Gmail and Calendar access, an AI processing service provider, and Apple for purchases, reminders and notifications where those features are enabled. These providers process information only as needed to provide their part of the service.</p>
 
       <h2>Retention and deletion</h2>
       <p>Stored raw Gmail body, snippet and parsed invitation content is scrubbed 30 days after import unless unresolved work or active processing still requires it. Derived records remain while the account is active. Normal application logs are retained for 30 days, required Google audit logs for 400 days, and Cloud SQL recovery data for up to seven days.</p>
@@ -68,7 +67,6 @@ import Footer from '../../../components/Footer.astro';
   .eyebrow { margin: 0 0 .5rem; color: var(--color-primary); font-weight: 700; }
   h1 { margin: 0 0 .5rem; font-size: clamp(2.25rem, 7vw, 3.75rem); letter-spacing: -.05em; }
   .meta { margin: 0 0 1.5rem; color: var(--color-text-secondary); font-size: .88rem; }
-  .notice { padding: 1rem; border-left: 3px solid var(--color-primary); background: var(--color-surface); }
   h2 { margin: 2rem 0 .55rem; font-size: 1.3rem; }
   p, li, address { line-height: 1.72; }
   li + li { margin-top: .35rem; }
