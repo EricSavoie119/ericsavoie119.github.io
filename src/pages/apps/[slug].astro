@@ -11,13 +11,14 @@ interface Props { app: AppPage }
 const { app } = Astro.props;
 const canonicalUrl = `https://savoie.app/apps/${app.slug}/`;
 const appleAppId = app.appStoreUrl?.match(/id(\d+)/)?.[1];
+const metaDescription = app.metaDescription ?? app.subhead;
 const softwareApplication = {
   '@type': 'SoftwareApplication',
   '@id': `${canonicalUrl}#app`,
   name: app.name,
   applicationCategory: app.category,
   operatingSystem: 'iOS',
-  description: app.subhead,
+  description: metaDescription,
   url: canonicalUrl,
   image: `https://savoie.app${app.icon}`,
   author: { '@id': 'https://savoie.app/#eric-savoie' },
@@ -37,7 +38,7 @@ const schema = {
       '@id': `${canonicalUrl}#webpage`,
       url: canonicalUrl,
       name: `${app.name} — ${app.headline}`,
-      description: app.subhead,
+      description: metaDescription,
       isPartOf: { '@id': 'https://savoie.app/#website' },
       about: { '@id': `${canonicalUrl}#app` },
       breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` },
@@ -66,7 +67,7 @@ const schema = {
 
 <Layout
   title={`${app.name} — ${app.headline}`}
-  description={app.subhead}
+  description={metaDescription}
   canonicalUrl={canonicalUrl}
   ogImage={`https://savoie.app${app.heroScreenshot}`}
   analyticsPageType="app_product_page"
