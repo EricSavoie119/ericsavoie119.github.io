@@ -1,7 +1,7 @@
 export const gridMetricsOctopusExperiment = {
   id: 'gridmetrics_octopus_2026_08',
   campaignToken: 'gridmetrics_octopus_2026_08',
-  appStoreBaseUrl: 'https://apps.apple.com/app/apple-store/id6752292390',
+  appStoreBaseUrl: 'https://apps.apple.com/gb/app/gridmetrics/id6752292390',
   providerToken: '126347138',
 } as const;
 
