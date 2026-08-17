@@ -11,7 +11,7 @@ export default defineConfig({
         'https://savoie.app/apps/fast-simple-invoice-maker/',
         'https://savoie.app/poker-timer/',
       ],
-      filter: (page) => !page.includes('/demo/'),
+      filter: (page) => !page.includes('/demo/') && !page.includes('/gridmetrics-today/'),
     }),
   ],
 });

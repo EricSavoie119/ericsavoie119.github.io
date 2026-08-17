@@ -2,8 +2,19 @@ import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {
   GRIDMETRICS_FIELD_TEST_CAMPAIGN,
+  GRIDMETRICS_FIELD_TEST_LANDING_URL,
   gridMetricsFieldTestAppStoreUrl,
 } from '../src/scripts/analyticsCampaign.mjs';
+
+test('short-link destination preserves the field-test attribution contract', () => {
+  const destination = new URL(GRIDMETRICS_FIELD_TEST_LANDING_URL);
+  assert.equal(destination.origin, 'https://savoie.app');
+  assert.equal(destination.pathname, '/apps/gridmetrics/octopus-agile-cheapest-time-today/');
+  assert.equal(destination.searchParams.get('utm_source'), 'x');
+  assert.equal(destination.searchParams.get('utm_medium'), 'social');
+  assert.equal(destination.searchParams.get('utm_campaign'), GRIDMETRICS_FIELD_TEST_CAMPAIGN);
+  assert.equal(destination.searchParams.get('utm_content'), 'bridge');
+});
 
 test('field-test traffic receives a matching Apple campaign token', () => {
   const source = 'https://apps.apple.com/gb/app/gridmetrics/id6752292390?pt=126347138&ct=gridmetrics_octopus_2026_08&mt=8';

@@ -1,0 +1,24 @@
+---
+import { GRIDMETRICS_FIELD_TEST_LANDING_URL } from '../scripts/analyticsCampaign.mjs';
+
+const destination = GRIDMETRICS_FIELD_TEST_LANDING_URL;
+const canonical = 'https://savoie.app/apps/gridmetrics/octopus-agile-cheapest-time-today/';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="canonical" href={canonical} />
+    <title>GridMetrics today</title>
+    <script is:inline define:vars={{ destination }}>
+      window.location.replace(destination);
+    </script>
+  </head>
+  <body>
+    <p><a href={destination}>Continue to today’s GridMetrics forecast</a></p>
+  </body>
+</html>
