@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "test:analytics-campaign": "node --test scripts/analytics-campaign.test.mjs",
     "sync:gridmetrics-screenshots": "./scripts/sync-gridmetrics-screenshots.sh",
     "sync:infinite-ruler-screenshots": "./scripts/sync-infinite-ruler-screenshots.sh"
   },
