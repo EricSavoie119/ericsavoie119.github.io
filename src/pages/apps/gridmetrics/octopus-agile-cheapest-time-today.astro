@@ -34,9 +34,9 @@ const schema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <GridUtilityPage
     mode="price"
-    eyebrow="Live public Agile prices"
-    title="The cheapest Octopus Agile time today."
-    intro="Choose your electricity region to find the lowest-cost remaining Agile window. Rates include VAT and no Octopus login or account connection is required."
+    eyebrow="Today · Live Agile prices"
+    title="Cheapest time."
+    intro="Choose your region and duration."
     generatedAt={data.generatedAt}
     recommendationDate={defaultRegion?.recommendationDate ?? null}
     recommendations={defaultRegion?.recommendations ?? []}
@@ -45,7 +45,7 @@ const schema = {
     available={data.available}
     sourceLabel="Octopus Energy public API"
     sourceUrl="https://developer.octopus.energy/guides/rest/api-endpoints/"
-    explanation="Octopus publishes a VAT-inclusive rate for every half-hour and electricity region. GridMetrics checks every consecutive set of remaining periods and selects the lowest average rate for each duration. This page shows the absolute cheapest price window; the app can instead balance price with carbon intensity."
+    explanation="Uses public VAT-inclusive Agile rates and checks every remaining consecutive half-hour period for the lowest average."
     appStoreUrl={appStoreCampaignUrl(gridMetricsOctopusExperiment)}
     campaignToken={gridMetricsOctopusExperiment.campaignToken}
   />

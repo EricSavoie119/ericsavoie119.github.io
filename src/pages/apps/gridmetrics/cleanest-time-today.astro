@@ -31,15 +31,15 @@ const schema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <GridUtilityPage
     mode="carbon"
-    eyebrow="Live Great Britain forecast"
-    title="The cleanest time to use electricity today."
-    intro="Plan flexible electricity use around the lowest-carbon part of the day. Choose a useful duration and see the cleanest remaining window in UK local time."
+    eyebrow="Today · Great Britain"
+    title="Cleanest time."
+    intro="Choose your duration."
     generatedAt={data.generatedAt}
     recommendationDate={data.recommendationDate}
     recommendations={data.recommendations}
     available={data.available}
     sourceLabel="NESO Carbon Intensity API"
     sourceUrl="https://carbonintensity.org.uk/"
-    explanation="GridMetrics checks every consecutive half-hour period in the official Great Britain carbon forecast. For each duration, it selects the remaining window with the lowest mean forecast carbon intensity."
+    explanation="Checks every remaining consecutive half-hour period in the official Great Britain forecast for the lowest average carbon intensity."
   />
 </Layout>
