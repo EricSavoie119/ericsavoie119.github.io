@@ -1,10 +1,25 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {
+  appStoreCampaignUrl,
+  BLUESKY_APP_CAMPAIGNS,
   GRIDMETRICS_FIELD_TEST_CAMPAIGN,
   GRIDMETRICS_FIELD_TEST_LANDING_URL,
   gridMetricsFieldTestAppStoreUrl,
 } from '../src/scripts/analyticsCampaign.mjs';
+
+test('Bluesky app campaigns use isolated Apple campaign tokens', () => {
+  const fsim = new URL(appStoreCampaignUrl(BLUESKY_APP_CAMPAIGNS.fsim));
+  const ruler = new URL(appStoreCampaignUrl(BLUESKY_APP_CAMPAIGNS.infiniteRuler));
+  assert.equal(fsim.pathname, '/gb/app/fast-simple-invoice-maker/id6752559476');
+  assert.equal(fsim.searchParams.get('ct'), 'fsim_bluesky_2026_08');
+  assert.equal(ruler.pathname, '/gb/app/infinite-ruler/id6746876762');
+  assert.equal(ruler.searchParams.get('ct'), 'infinite_ruler_bluesky_2026_08');
+  for (const destination of [fsim, ruler]) {
+    assert.equal(destination.searchParams.get('pt'), '126347138');
+    assert.equal(destination.searchParams.get('mt'), '8');
+  }
+});
 
 test('short-link destination preserves the field-test attribution contract', () => {
   const destination = new URL(GRIDMETRICS_FIELD_TEST_LANDING_URL);

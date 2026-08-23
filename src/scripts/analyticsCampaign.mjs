@@ -9,3 +9,25 @@ export function gridMetricsFieldTestAppStoreUrl(href, utmCampaign) {
   destination.searchParams.set('ct', GRIDMETRICS_FIELD_TEST_CAMPAIGN);
   return destination.toString();
 }
+
+const APP_STORE_PROVIDER_TOKEN = '126347138';
+
+export const BLUESKY_APP_CAMPAIGNS = {
+  fsim: {
+    token: 'fsim_bluesky_2026_08',
+    destination: 'https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476',
+  },
+  infiniteRuler: {
+    token: 'infinite_ruler_bluesky_2026_08',
+    destination: 'https://apps.apple.com/gb/app/infinite-ruler/id6746876762',
+  },
+};
+
+export function appStoreCampaignUrl({destination, token}) {
+  const url = new URL(destination);
+  if (url.hostname !== 'apps.apple.com') throw new Error('Campaign destination must be an App Store URL');
+  url.searchParams.set('pt', APP_STORE_PROVIDER_TOKEN);
+  url.searchParams.set('ct', token);
+  url.searchParams.set('mt', '8');
+  return url.toString();
+}

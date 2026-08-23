@@ -1,0 +1,25 @@
+---
+import {appStoreCampaignUrl, BLUESKY_APP_CAMPAIGNS} from '../scripts/analyticsCampaign.mjs';
+
+const campaign = BLUESKY_APP_CAMPAIGNS.fsim;
+const destination = appStoreCampaignUrl(campaign);
+const canonical = campaign.destination;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="canonical" href={canonical} />
+    <title>Fast Simple Invoice Maker</title>
+    <script is:inline define:vars={{destination}}>
+      window.location.replace(destination);
+    </script>
+  </head>
+  <body>
+    <p><a href={destination}>Continue to Fast Simple Invoice Maker on the App Store</a></p>
+  </body>
+</html>
