@@ -1,6 +1,6 @@
 {
-  "name": "Eric Savoie - App Developer & Creator",
-  "short_name": "Eric Savoie",
+  "name": "Savoie Apps",
+  "short_name": "Savoie Apps",
   "description": "Independent app developer creating productivity tools and meaningful software experiences. Explore InfiniteRuler, Mental Load, and more.",
   "start_url": "/",
   "scope": "/",
@@ -213,4 +213,4 @@
     "minimal-ui",
     "browser"
   ]
-} 
+}

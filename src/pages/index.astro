@@ -14,29 +14,24 @@ const schema = {
       '@id': 'https://savoie.app/#website',
       url: 'https://savoie.app/',
       name: 'Savoie Apps',
-      description: 'Independent iOS apps designed and built by Eric Savoie.',
-      publisher: { '@id': 'https://savoie.app/#eric-savoie' },
+      description: 'Small independent iPhone apps across productivity, finance, and utilities.',
+      publisher: { '@id': 'https://savoie.app/#savoie-apps' },
     },
     {
-      '@type': 'Person',
-      '@id': 'https://savoie.app/#eric-savoie',
-      name: 'Eric Savoie',
+      '@type': 'Organization',
+      '@id': 'https://savoie.app/#savoie-apps',
+      name: 'Savoie Apps',
       url: 'https://savoie.app/',
-      image: 'https://savoie.app/assets/images/thumbs/eric-headshot.webp',
-      jobTitle: 'iOS Developer',
-      homeLocation: { '@type': 'Place', name: 'London, United Kingdom' },
-      sameAs: [
-        'https://github.com/EricSavoie119',
-        'https://www.linkedin.com/in/eric-savoie-2a713241/',
-      ],
+      logo: 'https://savoie.app/assets/images/savoie-apps-social-preview.png',
     },
   ],
 };
 ---
 <Layout
-  title="Eric Savoie | iOS Developer & App Builder"
-  description="Eric Savoie builds iOS apps across productivity, finance, AI, and utilities. Explore shipped App Store projects."
+  title="Savoie Apps | Small iPhone Apps"
+  description="Small iPhone apps across productivity, finance, and utilities. Explore the apps available from Savoie Apps."
   canonicalUrl="https://savoie.app/"
+  ogImageAlt="Savoie Apps — Small iPhone apps, thoughtfully made."
   analyticsPageType="portfolio_home"
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
