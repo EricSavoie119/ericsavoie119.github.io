@@ -337,6 +337,87 @@ export const appPages: AppPage[] = [
     ],
   },
   {
+    slug: 'flip-clock-flow',
+    name: 'Flip Clock Flow',
+    category: 'Productivity',
+    icon: '/assets/images/apps/Flip Clock Flow/appstore.png',
+    accent: '#ef455f',
+    accentDark: '#8f1d35',
+    eyebrow: 'Clock. Focus. Back to what matters.',
+    headline: 'Make time feel intentional.',
+    subhead:
+      'A calm flip clock, focus timer, Live Activities and widgets—with optional Screen Time blocking when you want a stronger boundary.',
+    metaDescription:
+      'Flip Clock Flow combines an elegant flip clock, focus timer, Live Activities, widgets, themes and optional Screen Time distraction blocking.',
+    appStoreUrl: 'https://apps.apple.com/gb/app/flip-clock-flow/id6752408901',
+    heroScreenshot: '/assets/images/apps/Flip Clock Flow/product/dashboard.webp',
+    heroScreenshotAlt: 'Flip Clock Flow portrait dashboard with a large flip clock and focus controls',
+    benefits: ['A clock worth leaving open', 'Focus sessions in one tap', 'Optional distraction blocking'],
+    sections: [
+      {
+        eyebrow: 'A quieter display',
+        title: 'Let the clock take the room.',
+        body:
+          'Keep the full dashboard close in portrait, or use the immersive landscape clock when you want the interface to fall away. Choose whether seconds are shown and pick the theme that fits your space.',
+        screenshot: '/assets/images/apps/Flip Clock Flow/product/themes.webp',
+        screenshotAlt: 'Flip Clock Flow showing multiple clock themes and display options',
+      },
+      {
+        eyebrow: 'Focus without friction',
+        title: 'Start a session in one tap.',
+        body:
+          'Choose 25, 45 or 60 minutes—or set your own duration. A Live Activity keeps the remaining time visible while you work, with an optional notification when the session ends.',
+        screenshot: '/assets/images/apps/Flip Clock Flow/product/focus.webp',
+        screenshotAlt: 'Flip Clock Flow focus session controls and running focus timer',
+      },
+      {
+        eyebrow: 'Time at a glance',
+        title: 'Put the clock on your Home Screen.',
+        body:
+          'Add a clock widget to your Home Screen or Lock Screen. WidgetKit refreshes the display on its system-managed timeline and carries your selected theme beyond the app.',
+        screenshot: '/assets/images/apps/Flip Clock Flow/product/widgets.webp',
+        screenshotAlt: 'Flip Clock Flow clock widgets on an iPhone Home Screen and Lock Screen',
+      },
+      {
+        eyebrow: 'A stronger boundary with Pro',
+        title: 'Block the distractions you choose.',
+        body:
+          'Lifetime Pro can shield selected apps, categories and websites while a focus session is running. You stay in control of what is blocked, and the restrictions end with the session.',
+        screenshot: '/assets/images/apps/Flip Clock Flow/product/lifetime-pro.webp',
+        screenshotAlt: 'Flip Clock Flow Lifetime Pro features including distraction blocking and themes',
+      },
+    ],
+    trustEyebrow: 'Private by design',
+    trustTitle: 'Your focus choices stay on your device.',
+    trustBody:
+      'Flip Clock Flow needs no account. Focus history and Screen Time selections stay on your device, and app, category and website identities are never sent to analytics.',
+    footnote:
+      'Screen Time blocking requires Lifetime Pro, Apple authorization and the apps, categories or websites you choose. The core clock and focus timer remain free.',
+    finalEyebrow: 'Give your attention a place to land',
+    faq: [
+      {
+        question: 'Does Flip Clock Flow block other apps?',
+        answer:
+          'It can. With Lifetime Pro and Apple Screen Time authorization, you can choose apps, categories and websites to shield while a focus session is running.',
+      },
+      {
+        question: 'Do I need a subscription?',
+        answer:
+          'No. The core flip clock and focus timer are free. Lifetime Pro is a one-time purchase that unlocks distraction blocking, additional themes, presets and focus history.',
+      },
+      {
+        question: 'Are my Screen Time selections private?',
+        answer:
+          'Yes. Your selections are represented by Apple-provided private tokens, stay on your device and are not included in analytics.',
+      },
+      {
+        question: 'How often do the widgets update?',
+        answer:
+          'The widgets use Apple WidgetKit timelines. iOS controls the exact refresh schedule, so the clock is designed for glanceable minute-level updates rather than continuous animation.',
+      },
+    ],
+  },
+  {
     slug: 'infinite-ruler',
     name: 'Infinite Ruler',
     category: 'Utilities',

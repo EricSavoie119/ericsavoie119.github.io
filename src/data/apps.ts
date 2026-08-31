@@ -70,9 +70,12 @@ export const apps: App[] = [
     name: 'Flip Clock Flow',
     image: '/assets/images/thumbs/flip-clock-flow.webp',
     category: 'Elegant flip clock + focus timer',
-    description: 'A cool nostalgic clock built by referencing open source code.',
-    tech: [],
-    links: { appStore: 'https://apps.apple.com/gb/app/flip-clock-flow/id6752408901' },
+    description: 'A calm flip clock and focus timer with themes, widgets, Live Activities and optional distraction blocking.',
+    tech: ['SwiftUI', 'WidgetKit', 'ActivityKit', 'FamilyControls'],
+    links: {
+      appStore: 'https://apps.apple.com/gb/app/flip-clock-flow/id6752408901',
+      features: '/apps/flip-clock-flow/',
+    },
   },
 ];
 
