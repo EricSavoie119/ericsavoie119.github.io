@@ -294,6 +294,177 @@ export const guides: SearchGuide[] = [
     ],
     relatedGuideSlugs: ['focus-timer-live-activity'],
   },
+  {
+    slug: 'plan-bread-baking-schedule',
+    appSlug: 'bread-engineer',
+    appName: 'Bread Engineer',
+    appIcon: '/assets/images/icons/BreadEngineer.png',
+    appStoreUrl: 'https://apps.apple.com/gb/app/bread-engineer/id6738381066',
+    socialImage: '/assets/images/thumbs/bread-engineer.webp',
+    accent: '#c96d52',
+    eyebrow: 'Bread schedule guide',
+    title: 'How to plan a bread baking schedule',
+    description:
+      'Work backwards from the time you want a straight-dough loaf ready, map the active and waiting stages, and leave room for fermentation to move at its own pace.',
+    introduction:
+      'A straight-dough artisan bread schedule becomes manageable when you stop treating it as one long block. Separate the hands-on steps from the waiting stages, choose the time the loaf needs to be ready, then work backwards with enough margin for the dough—not just the clock.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '6 min read',
+    sections: [
+      {
+        title: 'Write down every stage before choosing a start time',
+        body: [
+          'Begin with the formula you actually plan to bake. List mixing, resting, folds, bulk fermentation, shaping, final proof, preheating, baking and cooling. Mark each stage as either hands-on or waiting.',
+          'This prevents a common planning mistake: adding the fermentation times while forgetting the short steps between them. Ten minutes of work can still require you to be in the kitchen at a very specific time.',
+        ],
+      },
+      {
+        title: 'Work backwards from when the loaf must be ready',
+        body: [
+          'Choose the real finish—not merely the moment the loaf leaves the oven. If it needs to cool before slicing or travelling, include that cooling time in the plan.',
+        ],
+        steps: [
+          'Set the time the cooled loaf needs to be ready.',
+          'Subtract cooling and baking time.',
+          'Subtract the final proof and shaping stages.',
+          'Subtract bulk fermentation, folds and initial mixing.',
+          'If the calculated start is inconvenient, move a suitable waiting stage into the refrigerator or choose a different finish time according to your recipe.',
+        ],
+      },
+      {
+        title: 'Treat fermentation as a window, not an appointment',
+        body: [
+          'Temperature, dough composition, yeast percentage and handling can all move the schedule. Use the recipe’s time as an estimate and check the dough for the signs of readiness described by the recipe you trust.',
+          'Give the plan a buffer rather than forcing the next step because a countdown reached zero. If the dough is moving slowly, the schedule should move with it.',
+        ],
+        note: 'Bread Engineer’s estimates are planning aids for its artisan yeasted loaves. The timer tells you when to check; the dough tells you when it is ready.',
+      },
+      {
+        title: 'Use the same method in Bread Engineer',
+        body: [
+          'Bread Engineer currently focuses on straight-dough loaves made with commercial yeast. It does not currently include sourdough, levain, poolish or biga recipes.',
+          'The app shows the full sequence for its built-in same-day, overnight and whole-wheat recipes. Choose Start at to see an estimated finish, or Finish by to calculate a recommended mixing time from the target you choose.',
+          'The app recalculates its built-in recipe schedule from dough mass, hydration, yeast percentage, dough temperature, room temperature and humidity. It also shows a planning allowance because fermentation is naturally variable.',
+        ],
+      },
+      {
+        title: 'Make the schedule useful in the kitchen',
+        body: [
+          'Put reminders on the transitions you are most likely to miss: the recommended start, the end of a long rest, the beginning of preheating and the end of the bake. Avoid creating so many alerts that none of them feel important.',
+          'Bread Engineer can optionally remind you when its calculated start time arrives, then guide the active bake one step at a time.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'Should I plan bread from the start time or finish time?',
+        answer:
+          'Use the finish time when the loaf is needed for a meal, event or journey. Use the start time when your availability to mix is fixed and the eventual finish can remain flexible.',
+      },
+      {
+        question: 'Why does a bread schedule need extra time?',
+        answer:
+          'Fermentation is affected by the dough and its environment, so a written duration is an estimate. A buffer lets you respond to the dough without making the whole day late.',
+      },
+      {
+        question: 'What kinds of bread does Bread Engineer include?',
+        answer:
+          'Its built-in recipes cover same-day white, overnight low-yeast white and same-day whole-wheat straight-dough loaves using commercial yeast. Sourdough, levain, poolish and biga recipes are not currently included.',
+      },
+      {
+        question: 'Can Bread Engineer calculate backwards from a finish time?',
+        answer:
+          'Yes. Finish by mode uses all included recipe steps and the current timing conditions to recommend when to start mixing, while showing an allowance around the estimate.',
+      },
+    ],
+    relatedGuideSlugs: ['bread-dough-timer-fermentation-reminders'],
+  },
+  {
+    slug: 'bread-dough-timer-fermentation-reminders',
+    appSlug: 'bread-engineer',
+    appName: 'Bread Engineer',
+    appIcon: '/assets/images/icons/BreadEngineer.png',
+    appStoreUrl: 'https://apps.apple.com/gb/app/bread-engineer/id6738381066',
+    socialImage: '/assets/images/apps/BreadEngineer/product/step-timer.webp',
+    accent: '#c96d52',
+    eyebrow: 'Bread timer guide',
+    title: 'How to use a bread dough timer and fermentation reminders',
+    description:
+      'Keep the folds, fermentation, proofing and baking steps of a straight-dough loaf on time with useful reminders that remain visible while you leave the app.',
+    introduction:
+      'A straight-dough loaf rarely needs constant attention, but it does need you to return at the right moments. A useful timer system keeps the current step visible, alerts you when a waiting stage ends and still leaves the final readiness decision to you. Bread Engineer currently guides commercially yeasted straight-dough recipes—not sourdough or preferment recipes.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '5 min read',
+    sections: [
+      {
+        title: 'Use one timer for the step you are actually on',
+        body: [
+          'Separate the recipe into a sequence instead of starting several anonymous timers at once. A label such as “first fold” or “bulk fermentation check” is much more useful than an alarm named only “timer.”',
+          'Before starting a waiting stage, confirm what you need to do when it ends. That turns the alert into a clear next action rather than another notification to interpret.',
+        ],
+      },
+      {
+        title: 'Set reminders for transitions, not every thought',
+        body: [
+          'The easy-to-miss transitions deserve alarms: the end of a rest, the next fold, the time to shape, the beginning of preheating and the end of the bake. Brief hands-on instructions usually do not need separate alerts.',
+        ],
+        steps: [
+          'Read the complete recipe before starting.',
+          'Identify each waiting stage and the action that follows it.',
+          'Enable sound and notification permissions before relying on an alert.',
+          'Keep one clearly named current timer running.',
+          'When it ends, inspect the dough before moving to the next stage.',
+        ],
+      },
+      {
+        title: 'Keep the active step visible away from the app',
+        body: [
+          'Bread Engineer uses a Live Activity for supported waiting steps, keeping the recipe name, current step and remaining time visible on the Lock Screen. You can check the countdown without repeatedly reopening the recipe.',
+          'The Live Activity is the glanceable display; the alarm or notification is the active prompt. They complement one another rather than doing the same job.',
+        ],
+      },
+      {
+        title: 'Understand how the alert reaches you',
+        body: [
+          'On supported devices and system versions, Bread Engineer uses native alarms when a bread step ends. If alarms are unavailable, it falls back to a local notification. Permissions and device settings still determine whether sound and banners can appear.',
+          'Test the reminder behaviour before depending on it for an unattended stretch, especially if Focus modes, silent settings or notification changes are part of your normal setup.',
+        ],
+        note: 'A timer can tell you when to check. It cannot observe the dough or guarantee that fermentation is complete.',
+      },
+      {
+        title: 'Adjust the estimate when conditions change',
+        body: [
+          'If the kitchen or dough is warmer or cooler than expected, update the timing conditions rather than pretending the original countdown is still exact. Bread Engineer recalculates fermentation timing on the device from the recipe and the conditions you enter.',
+          'Use that updated time as the next check point, then rely on the dough and the recipe’s readiness cues for the final decision.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'Will a Bread Engineer timer continue if I leave the app?',
+        answer:
+          'Yes. Supported waiting steps use native alarms and a Lock Screen Live Activity, with a local-notification fallback when alarms are unavailable. The required permissions must remain enabled.',
+      },
+      {
+        question: 'Does a fermentation timer know when dough is ready?',
+        answer:
+          'No. It provides an estimated check time. Ingredients, temperature and technique affect the result, so inspect the dough before continuing.',
+      },
+      {
+        question: 'What is the difference between the alarm and Live Activity?',
+        answer:
+          'The Live Activity keeps the current step and remaining time visible. The alarm or fallback notification actively alerts you when the waiting stage ends.',
+      },
+      {
+        question: 'Does Bread Engineer need an account?',
+        answer:
+          'No. Bread Engineer is free, requires no account and stores recipe data and photos on your device.',
+      },
+    ],
+    relatedGuideSlugs: ['plan-bread-baking-schedule'],
+  },
 ];
 
 export function getGuide(slug: string) {
