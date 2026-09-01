@@ -235,7 +235,7 @@ export const appPages: AppPage[] = [
         eyebrow: 'Always close',
         title: 'Put your story on the Home Screen.',
         body:
-          'Add a BeLoved widget in the size that fits your Home Screen and keep your favourite photo and time together visible throughout the day.',
+          'With BeLoved Premium, add a personalised widget in the size that fits your Home Screen and keep your favourite photo and time together visible throughout the day.',
         screenshot: '/assets/images/apps/BeLoved/product/widget-setup.webp',
         screenshotAlt: 'BeLoved medium and large photo widgets installed on an iPhone Home Screen',
       },
@@ -245,7 +245,7 @@ export const appPages: AppPage[] = [
     trustBody:
       'Your relationship details and photo are stored on your device and no account is required. Optional anonymous usage analytics are only enabled after you choose to share them.',
     footnote:
-      'Some widget styles and customisation options require BeLoved Premium. Subscription terms are shown in the app before purchase.',
+      'Personalised relationship widgets and their display styles require BeLoved Premium. Subscription terms are shown in the app before purchase.',
     finalEyebrow: 'Celebrate your story',
     faq: [
       {
@@ -256,7 +256,7 @@ export const appPages: AppPage[] = [
       {
         question: 'Can I add BeLoved to my Home Screen?',
         answer:
-          'Yes. BeLoved includes small, medium and large widget layouts that keep your relationship photo and time together visible at a glance.',
+          'Yes. With BeLoved Premium, you can use small, medium and large widget layouts to keep your relationship photo and chosen date or duration visible at a glance.',
       },
       {
         question: 'Do I need an account?',

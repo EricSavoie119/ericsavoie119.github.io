@@ -47,7 +47,7 @@ const { guide, relatedGuides } = Astro.props;
                 {section.steps.map((step) => <li>{step}</li>)}
               </ol>
             )}
-            {section.note && <aside class="note"><strong>Privacy note</strong><p>{section.note}</p></aside>}
+            {section.note && <aside class="note"><strong>{section.noteLabel ?? 'Good to know'}</strong><p>{section.note}</p></aside>}
           </section>
         ))}
       </div>

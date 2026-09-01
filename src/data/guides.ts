@@ -3,6 +3,7 @@ export interface GuideSection {
   body: string[];
   steps?: string[];
   note?: string;
+  noteLabel?: string;
 }
 
 export interface SearchGuide {
@@ -69,6 +70,7 @@ export const guides: SearchGuide[] = [
           'The important moment is not when you configure the limit. It is when the warning appears and your thumb is already looking for “Ignore Limit.” Put the phone down, name what you intended to do next, and wait a few seconds before choosing.',
           'LookAtYourself is built around this moment. It protects a chosen app or website and presents a short, private front-camera mirror pause when the allowance is used. After the pause, you choose to stop or grant five more minutes.',
         ],
+        noteLabel: 'Privacy note',
         note: 'The camera is a live mirror only. LookAtYourself does not record, save, collect or transmit photos or video.',
       },
       {
@@ -821,6 +823,170 @@ export const guides: SearchGuide[] = [
       },
     ],
     relatedGuideSlugs: ['create-send-pdf-invoice-iphone'],
+  },
+  {
+    slug: 'track-relationship-anniversaries-milestones',
+    appSlug: 'beloved',
+    appName: 'BeLoved',
+    appIcon: '/assets/images/apps/BeLoved/appstore.png',
+    appStoreUrl: 'https://apps.apple.com/gb/app/beloved/id6752829410',
+    socialImage: '/assets/images/apps/BeLoved/product/milestones.webp',
+    accent: '#f02d55',
+    eyebrow: 'Relationship date guide',
+    title: 'How to track relationship anniversaries and milestones',
+    description:
+      'Organise your relationship start date, anniversaries, elapsed-time milestones and personal special dates without turning every memory into another calendar alert.',
+    introduction:
+      'Relationship dates are easier to keep meaningful when they are organised by what they represent. Use anniversaries for dates that repeat each year, milestones for time spent together and special dates for the moments that belong to your story.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '5 min read',
+    sections: [
+      {
+        title: 'Choose the date that begins your shared timeline',
+        body: [
+          'Start with the date you both recognise as the beginning of the relationship. It might be a first date, the day you became a couple or another agreed moment. The label matters less than choosing one date consistently.',
+          'If engagement or marriage is part of your story, keep those as separate dated events. This lets you see time together alongside engagement and marriage without replacing the original relationship date.',
+        ],
+      },
+      {
+        title: 'Separate anniversaries from elapsed-time milestones',
+        body: [
+          'An anniversary repeats on a calendar date each year, such as a relationship, engagement or wedding anniversary. A milestone marks an amount of time since the relationship began, such as 100 days, 52 weeks or a custom combination of years and days.',
+          'BeLoved calculates upcoming day and week milestones automatically and lets you enable the ones you enjoy. You can also add a custom milestone when a particular number or interval means something to you.',
+        ],
+      },
+      {
+        title: 'Use special dates for the story around the anniversary',
+        body: [
+          'Save personal events such as a first trip, a favourite date-night tradition or another meaningful first as special dates. Mark a date as repeating annually only when you genuinely intend to celebrate it every year.',
+          'Keep the list selective. A short set of recognisable moments is easier to enjoy than a crowded archive in which every date appears equally important.',
+        ],
+      },
+      {
+        title: 'Add reminders only where they help',
+        body: [
+          'Enable notifications for the celebrations you do not want to miss, then confirm that BeLoved is allowed to send notifications in iOS Settings. A reminder can protect the date without dictating what the celebration should look like.',
+          'Review the dates after a relationship change, a corrected memory or a device migration. An inaccurate date repeated every year is worse than leaving it unset until you can confirm it.',
+        ],
+      },
+      {
+        title: 'Keep the next meaningful moment visible',
+        body: [
+          'BeLoved brings the relationship timeline, next celebration, upcoming milestones and special dates into one view. Add your person’s photo if you want the tracker to feel personal rather than like a general calendar.',
+          'Your relationship details and photo remain on your device, and no account is required. A Home Screen widget can optionally keep a chosen countdown or duration visible without opening the app.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'What is the difference between an anniversary and a relationship milestone?',
+        answer:
+          'An anniversary repeats on the same calendar date each year. A milestone marks a particular amount of elapsed time, such as 100 days or 52 weeks together.',
+      },
+      {
+        question: 'Can I track engagement and wedding anniversaries separately?',
+        answer:
+          'Yes. BeLoved can keep the relationship start, engagement and marriage dates as separate parts of the same timeline.',
+      },
+      {
+        question: 'Can I add my own relationship milestone?',
+        answer:
+          'Yes. Alongside its built-in day and week milestones, BeLoved supports custom milestones using days, weeks, years or a combination.',
+      },
+      {
+        question: 'Does BeLoved require an account?',
+        answer:
+          'No. BeLoved works without an account, and relationship details and photos are stored on your device.',
+      },
+    ],
+    relatedGuideSlugs: ['anniversary-countdown-widget-iphone-home-screen'],
+  },
+  {
+    slug: 'anniversary-countdown-widget-iphone-home-screen',
+    appSlug: 'beloved',
+    appName: 'BeLoved',
+    appIcon: '/assets/images/apps/BeLoved/appstore.png',
+    appStoreUrl: 'https://apps.apple.com/gb/app/beloved/id6752829410',
+    socialImage: '/assets/images/apps/BeLoved/product/widget-setup.webp',
+    accent: '#f02d55',
+    eyebrow: 'iPhone widget guide',
+    title: 'How to add an anniversary countdown widget to your iPhone Home Screen',
+    description:
+      'Add a relationship widget to the iPhone Home Screen, choose its size and decide whether it shows time together, an anniversary, a milestone or a special date.',
+    introduction:
+      'An anniversary widget keeps one meaningful date visible without asking you to open a calendar. Set up the relationship information first, add the widget through the iPhone widget gallery, then choose the display that deserves a place on your Home Screen.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '5 min read',
+    sections: [
+      {
+        title: 'Prepare the relationship details in BeLoved',
+        body: [
+          'Open BeLoved and set the relationship start date. Add engagement, marriage, milestones or special dates only when you want those moments available as widget choices.',
+          'Choose the photo you want behind the widget and check its crop in the app. A clear image with room for overlaid text usually works better than a tightly framed photo.',
+        ],
+        noteLabel: 'Premium feature',
+        note: 'Personalised BeLoved widgets, including the relationship photo and display styles, require an active BeLoved Premium subscription. Current terms are shown in the app before purchase.',
+      },
+      {
+        title: 'Open the iPhone widget gallery',
+        body: [
+          'Return to the Home Screen and press and hold an empty area until the apps begin to move. Tap Edit, then Add Widget—or use the plus button on iOS versions that show one directly.',
+        ],
+        steps: [
+          'Press and hold an empty area of the Home Screen.',
+          'Tap Edit and then Add Widget, or tap the plus button.',
+          'Search for BeLoved in the widget gallery.',
+          'Swipe through the Small, Medium and Large previews.',
+          'Tap Add Widget and place it where you want it.',
+        ],
+      },
+      {
+        title: 'Choose what the widget displays',
+        body: [
+          'Press and hold the added widget, then choose Edit Widget. BeLoved can show Years + Days, Next Anniversary, Total Days, Next Milestone or Next Special Date.',
+          'Choose one value that remains useful at a glance. Next Anniversary works as a countdown, while Years + Days or Total Days keeps the time already shared visible every day.',
+        ],
+      },
+      {
+        title: 'Pick a size that suits the photo and information',
+        body: [
+          'A Small widget uses less Home Screen space and keeps the message compact. Medium and Large layouts give the photo and relationship information more room.',
+          'If the text competes with an important part of the image, return to BeLoved and adjust the selected photo or crop rather than accepting a widget that is difficult to read.',
+        ],
+      },
+      {
+        title: 'Refresh a widget that looks out of date',
+        body: [
+          'iOS controls the exact widget refresh schedule. BeLoved requests a refresh when relationship data, the photo or subscription status changes, and its timeline advances daily for date-based information.',
+          'If the widget still looks stale, open BeLoved to refresh the shared relationship details and wait briefly. If needed, remove the widget from the Home Screen and add it again.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'What can a BeLoved widget display?',
+        answer:
+          'It can show Years + Days, Next Anniversary, Total Days, Next Milestone or Next Special Date using your selected relationship photo.',
+      },
+      {
+        question: 'Which BeLoved widget sizes are available?',
+        answer:
+          'BeLoved provides Small, Medium and Large Home Screen widget layouts.',
+      },
+      {
+        question: 'Do BeLoved widgets require Premium?',
+        answer:
+          'Yes. The personalised photo widgets and their display styles require an active BeLoved Premium subscription.',
+      },
+      {
+        question: 'Why has my anniversary widget not updated yet?',
+        answer:
+          'iOS manages widget refresh timing. Open BeLoved after changing a date or photo, wait briefly for the widget to refresh and remove and re-add it if the old content remains.',
+      },
+    ],
+    relatedGuideSlugs: ['track-relationship-anniversaries-milestones'],
   },
 ];
 
