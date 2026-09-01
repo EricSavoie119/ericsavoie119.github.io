@@ -212,6 +212,9 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
   .app-easymode .hero { column-gap: 48px; grid-template-columns: 1fr 1fr; }
   .app-easymode .hero-art { justify-self: center; max-width: 520px; width: 100%; }
   .app-easymode .hero-art img { bottom: auto; top: 24px; width: 78%; }
+  .app-flip-clock-flow .hero { column-gap: 28px; grid-template-columns: .9fr 1.1fr; }
+  .app-flip-clock-flow .hero-art { align-self: center; height: 520px; overflow: visible; }
+  .app-flip-clock-flow .hero-art img { background: #050505; border: 9px solid #11151c; border-radius: 34px; bottom: auto; box-shadow: 0 34px 60px rgba(17,52,110,.24); filter: none; max-width: 680px; top: 50%; transform: translate(-50%, -50%); width: 108%; }
   .orb { border-radius: 999px; filter: blur(2px); position: absolute; }
   .orb-one { background: linear-gradient(145deg, color-mix(in srgb, var(--app-accent) 18%, white), color-mix(in srgb, var(--app-accent) 5%, white)); height: 540px; left: 50%; top: 70px; transform: translateX(-50%); width: 540px; }
   .orb-two { background: color-mix(in srgb, var(--app-accent) 26%, transparent); height: 230px; right: 0; top: 0; width: 230px; }
@@ -256,6 +259,13 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
     .app-easymode .android-interest-button { text-align: center; }
     .app-easymode .hero-art { margin: 42px auto 0; max-width: 620px; }
     .app-easymode .hero-art img { width: 68%; }
+    .app-flip-clock-flow .hero { display: block; max-width: 800px; padding-top: 70px; }
+    .app-flip-clock-flow .hero-copy { margin: 0 auto; max-width: 680px; text-align: center; }
+    .app-flip-clock-flow .hero-copy .lede { margin-left: auto; margin-right: auto; }
+    .app-flip-clock-flow .hero-actions { justify-content: center; }
+    .app-flip-clock-flow .android-interest { margin-left: auto; margin-right: auto; }
+    .app-flip-clock-flow .hero-art { height: 430px; margin: 28px auto 0; max-width: 760px; }
+    .app-flip-clock-flow .hero-art img { width: 92%; }
   }
   @media (max-width: 800px) {
     .sales-nav { padding: 18px 20px; }
@@ -263,6 +273,8 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
     h1 { font-size: clamp(3.2rem, 13vw, 4.5rem); }
     .hero-art { height: 640px; margin-top: 4px; }
     .hero-art img { bottom: auto; top: 24px; width: 80%; }
+    .app-flip-clock-flow .hero-art { height: 360px; margin-top: 30px; overflow: visible; }
+    .app-flip-clock-flow .hero-art img { border-width: 7px; top: 50%; transform: translate(-50%, -50%); width: 100%; }
     .orb-one { height: 440px; width: 440px; }
     .promise-strip { font-size: .72rem; gap: 12px; padding: 22px 16px; }
     .live-tools { display: block; padding: 80px 22px 10px; }
@@ -281,6 +293,8 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
     .nav-cta { font-size: .8rem; }
     .hero-art { height: 600px; }
     .hero-art img { width: 92%; }
+    .app-flip-clock-flow .hero-art { height: 300px; }
+    .app-flip-clock-flow .hero-art img { border-radius: 24px; width: 108%; }
     .promise-strip { grid-template-columns: 1fr; }
     .promise-strip span + span { border-left: 0; }
     .screen-card { height: 480px; }

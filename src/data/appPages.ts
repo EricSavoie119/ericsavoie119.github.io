@@ -350,8 +350,8 @@ export const appPages: AppPage[] = [
     metaDescription:
       'Flip Clock Flow combines an elegant flip clock, focus timer, Live Activities, widgets, themes and optional Screen Time distraction blocking.',
     appStoreUrl: 'https://apps.apple.com/gb/app/flip-clock-flow/id6752408901',
-    heroScreenshot: '/assets/images/apps/Flip Clock Flow/product/dashboard.webp',
-    heroScreenshotAlt: 'Flip Clock Flow portrait dashboard with a large flip clock and focus controls',
+    heroScreenshot: '/assets/images/apps/Flip Clock Flow/product/landscape-clock.webp',
+    heroScreenshotAlt: 'Flip Clock Flow immersive landscape clock showing hours, minutes and seconds',
     benefits: ['A clock worth leaving open', 'Focus sessions in one tap', 'Optional distraction blocking'],
     sections: [
       {
@@ -359,8 +359,8 @@ export const appPages: AppPage[] = [
         title: 'Let the clock take the room.',
         body:
           'Keep the full dashboard close in portrait, or use the immersive landscape clock when you want the interface to fall away. Choose whether seconds are shown and pick the theme that fits your space.',
-        screenshot: '/assets/images/apps/Flip Clock Flow/product/themes.webp',
-        screenshotAlt: 'Flip Clock Flow showing multiple clock themes and display options',
+        screenshot: '/assets/images/apps/Flip Clock Flow/product/dashboard.webp',
+        screenshotAlt: 'Flip Clock Flow portrait dashboard with the clock, focus controls and display options',
       },
       {
         eyebrow: 'Focus without friction',
