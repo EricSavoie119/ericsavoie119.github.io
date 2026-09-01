@@ -465,6 +465,178 @@ export const guides: SearchGuide[] = [
     ],
     relatedGuideSlugs: ['plan-bread-baking-schedule'],
   },
+  {
+    slug: 'measure-longer-than-iphone-screen',
+    appSlug: 'infinite-ruler',
+    appName: 'Infinite Ruler',
+    appIcon: '/assets/images/icons/infiniteruler.png',
+    appStoreUrl: 'https://apps.apple.com/gb/app/infinite-ruler/id6746876762',
+    socialImage: '/assets/images/apps/infiniteruler/product/infinite.webp',
+    accent: '#0a84ff',
+    eyebrow: 'Long measurement guide',
+    title: 'How to measure something longer than your iPhone screen',
+    description:
+      'Continue an iPhone ruler measurement beyond one screen by moving the phone carefully, preserving each endpoint and advancing the scale.',
+    introduction:
+      'A ruler drawn on a phone normally stops where the display stops. To measure a longer object, you need a continuous scale and a repeatable way to move the phone without losing the point where the previous section ended.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '5 min read',
+    sections: [
+      {
+        title: 'Calibrate before measuring a long distance',
+        body: [
+          'A small scale difference becomes more noticeable each time you move the phone. Before measuring, compare the on-screen scale with a trusted physical ruler and calibrate the app if the marks do not align.',
+          'Use a flat, straight object and keep the phone case in place if you intend to measure with it fitted. Changing the way the phone sits against the object can change the result.',
+        ],
+      },
+      {
+        title: 'Create a clear starting point',
+        body: [
+          'Place the zero mark at the beginning of the object. Infinite Ruler lets you move zero away from the end of the display, which is useful when a case, rounded corner or awkward object prevents the phone itself from sitting at the true starting point.',
+          'Choose the left or right ruler edge so the scale can sit directly beside the object and remain easy to see while you move the phone.',
+        ],
+      },
+      {
+        title: 'Carry the endpoint into the next ruler page',
+        body: [
+          'Measure the first screen length, then identify the exact physical point reached by the end of that section. Use a finger, a removable mark or a fixed feature on the object so that point does not drift while the phone moves.',
+        ],
+        steps: [
+          'Align zero with the beginning of the object.',
+          'Note the exact point reached at the far end of the current ruler page.',
+          'Move the phone without changing its angle or distance from the object.',
+          'Align the beginning of the phone’s measuring edge with the point you preserved.',
+          'Tap Next page so the displayed numbers continue from the preceding section.',
+          'Repeat until the end of the object falls within the current ruler page.',
+        ],
+        note: 'Do not restart the scale at zero after each move. Infinite Ruler’s page controls preserve the accumulated scale for you.',
+      },
+      {
+        title: 'Reduce movement error at every handoff',
+        body: [
+          'Keep the phone parallel to the object and make each handoff at one precise point. A diagonal phone, a thick case lip or a guessed transition can add more error than the on-screen markings themselves.',
+          'For a flexible or curved object, measure along a straight reference beside it or use a flexible tape instead. A phone ruler is best when the measuring edge can remain flat and aligned.',
+        ],
+      },
+      {
+        title: 'Know when to use another tool',
+        body: [
+          'An iPhone ruler is convenient for everyday estimates when a physical ruler or tape is unavailable. Use a calibrated measuring tool for construction, manufacturing, safety-critical work or anything with a tight tolerance.',
+          'Infinite Ruler is designed to make the multi-screen process clearer, but the final accuracy still depends on calibration, alignment and how carefully the phone is repositioned.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'How does Infinite Ruler measure past one screen?',
+        answer:
+          'Its Next and Previous page controls continue the numbered scale instead of resetting it, allowing you to reposition the phone and measure successive sections of the same object.',
+      },
+      {
+        question: 'Should I add the screen lengths myself?',
+        answer:
+          'No. Advance to the next ruler page and the scale continues from the previous section. Your job is to preserve and align the physical handoff point accurately.',
+      },
+      {
+        question: 'Can I measure from either side of the iPhone?',
+        answer:
+          'Yes. Infinite Ruler can place the scale on the left or right edge so you can use the side that fits the object and your working position.',
+      },
+      {
+        question: 'Is a multi-screen iPhone measurement exact?',
+        answer:
+          'No measurement is automatically exact. Calibrate first and reposition the phone carefully; use a suitable physical tool when accuracy or safety matters.',
+      },
+    ],
+    relatedGuideSlugs: ['calibrate-iphone-ruler-accurate-measurements'],
+  },
+  {
+    slug: 'calibrate-iphone-ruler-accurate-measurements',
+    appSlug: 'infinite-ruler',
+    appName: 'Infinite Ruler',
+    appIcon: '/assets/images/icons/infiniteruler.png',
+    appStoreUrl: 'https://apps.apple.com/gb/app/infinite-ruler/id6746876762',
+    socialImage: '/assets/images/apps/infiniteruler/product/calibration.webp',
+    accent: '#0a84ff',
+    eyebrow: 'iPhone ruler guide',
+    title: 'How to calibrate an iPhone ruler for more accurate measurements',
+    description:
+      'Compare an on-screen iPhone ruler with a trusted physical ruler, correct its scale and improve everyday measurements with careful alignment.',
+    introduction:
+      'An on-screen ruler can use the expected dimensions of an iPhone as a starting point, but a quick comparison with a real ruler is the best way to check the scale you actually see. Calibration corrects the spacing before you rely on it for everyday measurements.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '5 min read',
+    sections: [
+      {
+        title: 'Use a trustworthy reference ruler',
+        body: [
+          'Choose an undamaged physical ruler with clear millimetre marks. Place it on a flat, well-lit surface, then put the iPhone beside it so the two scales run parallel rather than meeting at an angle.',
+          'Compare several centimetres instead of judging a single mark. A scale that looks right over a short distance can reveal a small spacing difference farther along.',
+        ],
+      },
+      {
+        title: 'Match the on-screen scale in Infinite Ruler',
+        body: [
+          'Open Calibrate from the ruler controls, place the reference ruler against the phone’s measuring edge and choose Start Calibration. Use Smaller or Larger until the on-screen marks align with the physical marks, then tap Done.',
+          'Infinite Ruler saves the calibration for that phone. You can return to calibration later or reset the adjustment if you want to begin again.',
+        ],
+        steps: [
+          'Place a physical ruler against the phone’s measuring edge.',
+          'Open Calibrate and tap Start Calibration.',
+          'Check that the zero points and several later marks line up.',
+          'Tap Smaller or Larger in small increments.',
+          'Tap Done only when the two scales remain aligned across the comparison distance.',
+        ],
+      },
+      {
+        title: 'Measure from the object, not the phone body',
+        body: [
+          'The end of the glass, the phone frame and the edge of a case may not share exactly the same position. Use the movable zero when the physical starting point cannot sit directly beside the default zero mark.',
+          'For the distance between two visible points, show the A and B markers and place one on each point. The app displays the live distance between them in your selected unit.',
+        ],
+      },
+      {
+        title: 'Choose useful units and precision',
+        body: [
+          'Use centimetres for decimal metric measurements. In inches, Infinite Ruler can display fractional precision at 1/8, 1/16 or 1/32 of an inch.',
+          'More displayed subdivisions do not guarantee a more accurate physical result. Choose a precision you can place and read reliably, then keep the phone flat and parallel to the object.',
+        ],
+      },
+      {
+        title: 'Recheck when the measuring setup changes',
+        body: [
+          'Repeat the comparison if the scale appears wrong after changing phones, reinstalling the app or significantly changing how the phone sits beside an object. A quick check is also sensible before any measurement where a few millimetres matter.',
+          'Infinite Ruler is intended for convenient everyday measurements. Calibration improves the scale, but it does not turn an iPhone into a certified measuring instrument.',
+        ],
+        note: 'For precision, safety-critical or regulated work, use an appropriate calibrated physical instrument.',
+      },
+    ],
+    faq: [
+      {
+        question: 'Why should I calibrate an iPhone ruler?',
+        answer:
+          'Calibration checks the on-screen spacing against a known physical reference and lets you correct a scale that does not align on your particular phone and setup.',
+      },
+      {
+        question: 'Does Infinite Ruler remember calibration?',
+        answer:
+          'Yes. The app saves a calibration adjustment for the phone so it remains available for future measurements.',
+      },
+      {
+        question: 'Can Infinite Ruler show fractional inches?',
+        answer:
+          'Yes. You can select 1/8, 1/16 or 1/32-inch precision, or measure in centimetres.',
+      },
+      {
+        question: 'Do my measurements leave the phone?',
+        answer:
+          'No. Infinite Ruler does not require an account, and measurements and calibration values remain on your device.',
+      },
+    ],
+    relatedGuideSlugs: ['measure-longer-than-iphone-screen'],
+  },
 ];
 
 export function getGuide(slug: string) {
