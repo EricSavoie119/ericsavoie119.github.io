@@ -506,6 +506,89 @@ export const appPages: AppPage[] = [
     ],
   },
   {
+    slug: 'fast-simple-invoice-maker',
+    name: 'Fast Simple Invoice Maker',
+    category: 'Business',
+    icon: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png',
+    accent: '#4f7ed8',
+    accentDark: '#244c94',
+    eyebrow: 'Invoice clearly from your iPhone',
+    headline: 'Create a professional invoice in minutes.',
+    subhead:
+      'Build a clear invoice, generate a polished PDF and send it from your iPhone—without creating an account or carrying a laptop.',
+    metaDescription:
+      'Create professional PDF invoices on iPhone, save clients and business details, track payment status and share each invoice from one focused app.',
+    appStoreUrl: 'https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476',
+    privacyUrl: '/legal/privacy-policy/',
+    supportUrl: 'mailto:eric@savoie.app',
+    heroScreenshot: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/hero-invoice-pdf.png',
+    heroScreenshotAlt: 'A professional invoice PDF created with Fast Simple Invoice Maker on iPhone',
+    benefits: ['Create invoices quickly', 'Export polished PDFs', 'Keep clients and payments organised'],
+    sections: [
+      {
+        eyebrow: 'From details to invoice',
+        title: 'Build the invoice without rebuilding your business profile.',
+        body:
+          'Save your business and client details, then add line items, quantities, units, tax, discounts and payment terms. The important information stays together and is ready for the next invoice.',
+        screenshot: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/add-invoice-form.png',
+        screenshotAlt: 'Invoice form with client details, line items, tax, discount and payment terms',
+      },
+      {
+        eyebrow: 'Ready to send',
+        title: 'Turn the finished invoice into a professional PDF.',
+        body:
+          'Preview the document, choose a PDF theme and share the result using the app your client prefers. Ordinary PDF invoices work without an account and can be created offline.',
+        screenshot: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/pdf-themes.png',
+        screenshotAlt: 'A gallery of professional invoice PDF themes',
+      },
+      {
+        eyebrow: 'Optional online payment',
+        title: 'Add a payment link when the invoice needs one.',
+        body:
+          'The optional online-invoice flow can include a Stripe payment link so a client can pay from the shared invoice. Stripe is separate and is not required to create or send a normal PDF.',
+        screenshot: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/stripe-get-paid.png',
+        screenshotAlt: 'An invoice with an optional Stripe payment link',
+      },
+      {
+        eyebrow: 'A clearer record',
+        title: 'See what is paid, unpaid or overdue.',
+        body:
+          'Keep invoices and clients in one searchable history, update payment status and create a receipt PDF after an invoice has been paid.',
+        screenshot: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/invoice-list-search.png',
+        screenshotAlt: 'Searchable invoice history with paid and unpaid status',
+      },
+    ],
+    trustEyebrow: 'Your invoicing data stays useful',
+    trustTitle: 'Create ordinary PDF invoices without an account.',
+    trustBody:
+      'Your business profile, clients and invoice records are kept for the invoicing workflow. Optional online invoices and Stripe payment links require their own online setup; they are not required for normal PDF creation and sharing.',
+    footnote:
+      'You remain responsible for the invoice details, tax treatment, payment terms and record-keeping requirements that apply to your business and region.',
+    finalEyebrow: 'Send the invoice and get back to the work',
+    faq: [
+      {
+        question: 'Can I create and send an invoice entirely from my iPhone?',
+        answer:
+          'Yes. Add the client and line items, preview the finished invoice, generate a PDF and share it from your iPhone.',
+      },
+      {
+        question: 'Do I need an account or Stripe?',
+        answer:
+          'No. Ordinary PDF invoices can be created, saved and shared without an account. Stripe is only needed if you choose the optional online-payment workflow.',
+      },
+      {
+        question: 'Does it support VAT and GST?',
+        answer:
+          'The app provides tax labels, rates, seller and client tax identifiers, discounts, currencies and payment terms. You choose the details required for your invoice.',
+      },
+      {
+        question: 'Can I create a receipt after an invoice is paid?',
+        answer:
+          'Yes. After recording an invoice as paid, you can generate and share a receipt PDF for the payment record.',
+      },
+    ],
+  },
+  {
     slug: 'infinite-ruler',
     name: 'Infinite Ruler',
     category: 'Utilities',

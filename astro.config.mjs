@@ -8,7 +8,6 @@ export default defineConfig({
   integrations: [
     sitemap({
       customPages: [
-        'https://savoie.app/apps/fast-simple-invoice-maker/',
         'https://savoie.app/poker-timer/',
       ],
       filter: (page) => !page.includes('/demo/') && !page.includes('/gridmetrics-today/'),
