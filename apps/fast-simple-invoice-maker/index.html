@@ -23,6 +23,17 @@
   <link rel="stylesheet" href="/assets/css/shared-colors.css">
   <link rel="stylesheet" href="/assets/css/shared-navbar.css?v=4">
   <link rel="stylesheet" href="/assets/css/pages/fast-simple-invoice-maker.css?v=1">
+  <style>
+    .useful-guides { background: #172a58; padding: 3.5rem 0; }
+    .useful-guides__intro { max-width: 700px; }
+    .useful-guides__intro p { color: rgba(245, 246, 250, .84); }
+    .useful-guides__grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1.5rem; }
+    .useful-guides__grid a { background: #33589b; border: 1px solid rgba(255, 255, 255, .14); border-radius: 14px; color: #fff; display: flex; flex-direction: column; min-height: 190px; padding: 1.25rem; text-decoration: none; }
+    .useful-guides__grid small { color: #8ed2ff; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .useful-guides__grid strong { font-size: 1.25rem; line-height: 1.35; margin: .7rem 0 auto; }
+    .useful-guides__grid span { color: #8ed2ff; font-weight: 700; padding-top: 1.2rem; }
+    @media (max-width: 700px) { .useful-guides__grid { grid-template-columns: 1fr; } }
+  </style>
 
   <script type="application/ld+json">
     {
@@ -195,6 +206,28 @@
           <p>Maintain a client database with saved contact and tax details to create repeat invoices faster.</p>
           <img src="/assets/images/apps/Fast%20Simple%20Invoice%20Maker/client-management.png" alt="Client management screen with saved customer details and tax ID fields" loading="lazy" width="521" height="1499">
         </article>
+      </div>
+    </section>
+
+    <section class="useful-guides" aria-labelledby="useful-guides-title">
+      <div class="container">
+        <div class="useful-guides__intro">
+          <p class="eyebrow">Useful guides</p>
+          <h2 id="useful-guides-title">Invoice clearly from your iPhone.</h2>
+          <p>Practical guidance for preparing the information, creating the PDF and sending a professional invoice.</p>
+        </div>
+        <div class="useful-guides__grid">
+          <a href="/guides/create-send-pdf-invoice-iphone/">
+            <small>iPhone invoice guide</small>
+            <strong>How to create and send a PDF invoice from an iPhone</strong>
+            <span>Read the guide →</span>
+          </a>
+          <a href="/guides/professional-invoice-information-checklist/">
+            <small>Invoice checklist</small>
+            <strong>What information should a professional invoice include?</strong>
+            <span>Read the guide →</span>
+          </a>
+        </div>
       </div>
     </section>
 

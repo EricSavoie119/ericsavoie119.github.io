@@ -21,6 +21,7 @@ export interface SearchGuide {
   updatedAt: string;
   readingTime: string;
   sections: GuideSection[];
+  sources?: Array<{ label: string; url: string }>;
   faq: Array<{ question: string; answer: string }>;
   relatedGuideSlugs: string[];
 }
@@ -636,6 +637,190 @@ export const guides: SearchGuide[] = [
       },
     ],
     relatedGuideSlugs: ['measure-longer-than-iphone-screen'],
+  },
+  {
+    slug: 'create-send-pdf-invoice-iphone',
+    appSlug: 'fast-simple-invoice-maker',
+    appName: 'Fast Simple Invoice Maker',
+    appIcon: '/assets/images/thumbs/fast-simple-invoice-maker.webp',
+    appStoreUrl: 'https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476',
+    socialImage: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/hero-invoice-pdf.png',
+    accent: '#2876ff',
+    eyebrow: 'iPhone invoice guide',
+    title: 'How to create and send a PDF invoice from an iPhone',
+    description:
+      'Create a clear client invoice on your iPhone, check the important details, export a professional PDF and share it using the app your client prefers.',
+    introduction:
+      'You do not need to wait until you are back at a computer to invoice finished work. With the business and client details prepared, an iPhone can take you from line items to a polished PDF that is ready to email, message or save to Files.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '6 min read',
+    sections: [
+      {
+        title: 'Prepare your reusable business details once',
+        body: [
+          'Before creating the invoice, gather the business name, contact details, address, tax registration information and payment instructions that should appear on your documents. Add a logo and signature only if they help the client recognise and process the invoice.',
+          'Fast Simple Invoice Maker stores these details in a business profile so they can be reused. You can also choose default payment terms, preferred currencies, invoice numbering and a PDF theme instead of entering them again for every client.',
+        ],
+      },
+      {
+        title: 'Create the invoice and identify the client',
+        body: [
+          'Start a new invoice and select or add the client. Confirm the client’s name, billing address, email and tax identifier where applicable, rather than relying on an old contact record without checking it.',
+          'Use a unique invoice number and verify the issue date, supply details and due date. A consistent number sequence makes an invoice easier for both sides to reference later.',
+        ],
+      },
+      {
+        title: 'Describe the work clearly',
+        body: [
+          'Add one line item for each product, service or meaningful part of the job. Use a description the client can connect to the work, then enter the quantity, unit and price. Fast Simple Invoice Maker supports units such as hours, days and pieces.',
+          'Choose the correct currency, apply a discount only when agreed, and add the appropriate tax label and rate only when they apply to your business and transaction. Check the subtotal, tax and final total before continuing.',
+        ],
+        steps: [
+          'Add a short, recognisable description for each item.',
+          'Confirm its quantity or time, unit and price.',
+          'Select the invoice currency.',
+          'Apply any agreed discount and applicable tax.',
+          'Check that the calculated total matches the work agreed with the client.',
+        ],
+      },
+      {
+        title: 'Preview the PDF before sharing it',
+        body: [
+          'Generate the PDF and read it as the client will see it. Check names, dates, invoice number, line items, currency, totals, payment terms and payment details. Look at every page if the invoice has enough items or notes to span more than one.',
+          'A professional theme helps readability, but accuracy matters more than decoration. Fix unclear descriptions, accidental blank fields and totals before the document leaves your phone.',
+        ],
+      },
+      {
+        title: 'Send the PDF and keep your own record',
+        body: [
+          'Use the iPhone share sheet to send the PDF through email, Messages, WhatsApp or another app, or save it to Files. Include the invoice number and due date in the message so the client can understand the request before opening the attachment.',
+          'Fast Simple Invoice Maker can create, edit, save and export ordinary PDF invoices without an account and while offline. Its optional online-invoice and Stripe payment features are separate: they require an online setup, and Stripe is not needed to share a normal PDF.',
+          'Keep the sent PDF and update the invoice status when payment arrives. The app can also generate a receipt PDF for a paid invoice.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'Can I make a PDF invoice entirely on an iPhone?',
+        answer:
+          'Yes. Fast Simple Invoice Maker lets you add the client and line items, preview the finished invoice, generate a PDF and share it from the iPhone.',
+      },
+      {
+        question: 'Do I need an account to create and share a PDF invoice?',
+        answer:
+          'No. The local invoice, PDF export and ordinary sharing workflow works without an account. Optional published web invoices and card payments use separate online services.',
+      },
+      {
+        question: 'How can I send an invoice PDF from my iPhone?',
+        answer:
+          'Open the generated PDF and use the iOS share sheet to choose email, Messages, WhatsApp, Files or another compatible destination.',
+      },
+      {
+        question: 'Can a client pay an invoice online?',
+        answer:
+          'Optionally. You can publish a selected invoice as a private web link and connect your own Stripe account for supported card payments. Neither is required for creating a PDF invoice.',
+      },
+    ],
+    relatedGuideSlugs: ['professional-invoice-information-checklist'],
+  },
+  {
+    slug: 'professional-invoice-information-checklist',
+    appSlug: 'fast-simple-invoice-maker',
+    appName: 'Fast Simple Invoice Maker',
+    appIcon: '/assets/images/thumbs/fast-simple-invoice-maker.webp',
+    appStoreUrl: 'https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476',
+    socialImage: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/business-profile.png',
+    accent: '#2876ff',
+    eyebrow: 'Invoice checklist',
+    title: 'What information should a professional invoice include?',
+    description:
+      'Use a practical invoice checklist covering seller and client details, dates, numbering, line items, totals, tax information and payment terms.',
+    introduction:
+      'A useful invoice tells the client who is charging them, what they are paying for, how much is due and how to pay it. It also needs to satisfy the rules that apply to your business, tax registration and jurisdiction.',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '6 min read',
+    sections: [
+      {
+        title: 'Identify the seller and the customer',
+        body: [
+          'Include the legal or trading name and a usable business address and contact method. Identify the customer using the name and billing address they expect to see, especially when the person commissioning the work and the organisation paying for it are different.',
+          'Your business type may require additional identification. For example, a sole trader, limited company or tax-registered business can have different name, address, registration-number and tax-number requirements.',
+        ],
+      },
+      {
+        title: 'Give the invoice a unique number and clear dates',
+        body: [
+          'Use a unique invoice number from a consistent sequence. Include the invoice date and the date the goods were supplied or the service was completed when that date is different.',
+          'State a due date or unambiguous payment term such as payment on receipt, Net 14 or Net 30. Make sure the written term and calculated due date agree.',
+        ],
+      },
+      {
+        title: 'Explain exactly what is being charged',
+        body: [
+          'Each line should describe the supplied product or service clearly enough for the client to approve it. Add the quantity or extent of the work, the unit price and the line total. Include a purchase-order or project reference when the client requires one.',
+          'Show the currency and separate the subtotal, agreed discounts, applicable tax and final amount owed. Do not add a tax label or registration number simply to make the invoice look formal—use the treatment that actually applies.',
+        ],
+      },
+      {
+        title: 'Check the rules for your location and tax status',
+        body: [
+          'The exact legal requirements are not universal. In the UK, the government’s basic invoice checklist includes a unique number, seller and customer details, a clear description, supply and invoice dates, amounts charged, applicable VAT and the total owed. VAT invoices require additional information.',
+          'EU VAT rules similarly require additional fields for full VAT invoices and can vary in specific cases and by member state. Check the current official guidance or ask a qualified accountant when the transaction is cross-border, tax-exempt, reverse charged or otherwise unusual.',
+          'Fast Simple Invoice Maker provides fields for tax labels, tax rates, seller and client tax identifiers, discounts, currency and payment terms. You remain responsible for choosing the details and tax treatment required for your invoice.',
+        ],
+      },
+      {
+        title: 'Make payment and record-keeping straightforward',
+        body: [
+          'Tell the client how to pay and include any reference they should use. Keep payment instructions separate from the description of the work, and never expose private account information that the client does not need.',
+          'Before sending, check the invoice number, recipient, dates, currency, arithmetic and payment destination. Keep a copy of the exact document sent and record when it was paid; a receipt can then acknowledge the completed payment.',
+        ],
+        steps: [
+          'Seller and customer details are correct.',
+          'Invoice number, issue date and supply date are present where required.',
+          'Line items describe the work and use the agreed prices.',
+          'Currency, discount, tax and total are correct.',
+          'Due date, payment terms and payment instructions agree.',
+          'Any required company, tax or purchase-order references are included.',
+          'The final PDF has been reviewed and saved.',
+        ],
+      },
+    ],
+    sources: [
+      {
+        label: 'GOV.UK — Invoices: what they must include',
+        url: 'https://www.gov.uk/invoicing-and-taking-payment-from-customers/invoices-what-they-must-include',
+      },
+      {
+        label: 'European Commission — VAT invoicing',
+        url: 'https://taxation-customs.ec.europa.eu/taxation/vat/vat-businesses/invoicing_en',
+      },
+    ],
+    faq: [
+      {
+        question: 'Does every invoice need a unique number?',
+        answer:
+          'A unique, consistent invoice number is a standard requirement in many jurisdictions, including the UK and for full EU VAT invoices. Check the rules that apply to your business.',
+      },
+      {
+        question: 'Should an invoice include a due date?',
+        answer:
+          'A clear due date or payment term helps the client know when payment is expected. Local law and your agreement with the client can affect the applicable payment deadline.',
+      },
+      {
+        question: 'Do I put VAT or another tax on every invoice?',
+        answer:
+          'No. Tax treatment depends on your registration, location, customer and transaction. Use the correct tax label, rate and identifiers only when they apply.',
+      },
+      {
+        question: 'Is an invoice the same as a receipt?',
+        answer:
+          'No. An invoice requests payment; a receipt records that payment has been received. Fast Simple Invoice Maker can generate a receipt PDF after an invoice is paid.',
+      },
+    ],
+    relatedGuideSlugs: ['create-send-pdf-invoice-iphone'],
   },
 ];
 

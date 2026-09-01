@@ -28,6 +28,7 @@ const schema = {
       publisher: { '@id': 'https://savoie.app/#savoie-apps' },
       image: `https://savoie.app${guide.socialImage}`,
       about: { '@id': `https://savoie.app/apps/${guide.appSlug}/#app` },
+      ...(guide.sources && { citation: guide.sources.map((source) => source.url) }),
     },
     {
       '@type': 'WebPage',

@@ -52,6 +52,18 @@ const { guide, relatedGuides } = Astro.props;
         ))}
       </div>
 
+      {guide.sources && guide.sources.length > 0 && (
+        <section class="sources" aria-labelledby="sources-title">
+          <p class="eyebrow">Check the current rules</p>
+          <h2 id="sources-title">Official sources</h2>
+          <ul>
+            {guide.sources.map((source) => (
+              <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span aria-hidden="true">↗</span></a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <section class="app-bridge" aria-labelledby="app-bridge-title">
         <img src={guide.appIcon} alt={`${guide.appName} app icon`} width="76" height="76" />
         <div>
@@ -133,6 +145,11 @@ const { guide, relatedGuides } = Astro.props;
   .note { background: color-mix(in srgb, var(--guide-accent) 8%, white); border-left: 3px solid var(--guide-accent); border-radius: 0 14px 14px 0; margin-top: 34px; padding: 20px 24px; }
   .note strong { color: var(--guide-accent); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
   .note p { color: #53627a; font-family: Inter, ui-sans-serif, -apple-system, sans-serif; line-height: 1.65; margin: 8px 0 0; }
+  .sources { border-top: 1px solid #dce3ee; margin: 70px auto 0; max-width: 760px; padding-top: 56px; }
+  .sources h2 { font-size: clamp(2rem, 4vw, 3rem); }
+  .sources ul { display: grid; gap: 12px; list-style: none; margin: 30px 0 0; padding: 0; }
+  .sources a { align-items: center; background: white; border: 1px solid #dce3ee; border-radius: 14px; color: #34445d; display: flex; font-family: Inter, ui-sans-serif, -apple-system, sans-serif; font-weight: 700; justify-content: space-between; padding: 16px 18px; }
+  .sources a span { color: var(--guide-accent); }
   .app-bridge { align-items: start; background: #0b1d38; border-radius: 32px; color: white; display: grid; gap: 28px; grid-template-columns: auto 1fr; margin: 90px 0 120px; padding: 44px; }
   .app-bridge img { border-radius: 22%; box-shadow: 0 16px 34px rgba(0,0,0,.25); }
   .app-bridge h2 { color: white; font-size: clamp(2rem, 4vw, 3.2rem); }
