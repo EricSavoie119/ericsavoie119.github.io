@@ -1,12 +1,42 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {
+  appleCampaignToken,
   appStoreCampaignUrl,
+  attributedAppStoreUrl,
   BLUESKY_APP_CAMPAIGNS,
   GRIDMETRICS_FIELD_TEST_CAMPAIGN,
   GRIDMETRICS_FIELD_TEST_LANDING_URL,
   gridMetricsFieldTestAppStoreUrl,
 } from '../src/scripts/analyticsCampaign.mjs';
+
+test('landing-page campaigns continue into App Store attribution', () => {
+  const destination = new URL(attributedAppStoreUrl(
+    'https://apps.apple.com/gb/app/beloved/id6752829410',
+    'Indie App Catalog / BeLoved current',
+  ));
+  assert.equal(destination.searchParams.get('pt'), '126347138');
+  assert.equal(destination.searchParams.get('ct'), 'indie_app_catalog_beloved_current');
+  assert.equal(destination.searchParams.get('mt'), '8');
+});
+
+test('campaign attribution leaves unrelated destinations and existing campaign tokens alone', () => {
+  const website = 'https://savoie.app/apps/beloved/?utm_campaign=directory';
+  assert.equal(attributedAppStoreUrl(website, 'directory'), website);
+
+  const existing = new URL(attributedAppStoreUrl(
+    'https://apps.apple.com/app/id6752829410?ct=approved_exact_token',
+    'different inbound campaign',
+  ));
+  assert.equal(existing.searchParams.get('ct'), 'approved_exact_token');
+  assert.equal(existing.searchParams.get('pt'), '126347138');
+});
+
+test('Apple campaign tokens are deterministic and bounded', () => {
+  assert.equal(appleCampaignToken('  Threads: Bread Engineer launch!  '), 'threads_bread_engineer_launch');
+  assert.equal(appleCampaignToken('x'.repeat(80))?.length, 40);
+  assert.equal(appleCampaignToken(' -- '), undefined);
+});
 
 test('Bluesky app campaigns use isolated Apple campaign tokens', () => {
   const fsim = new URL(appStoreCampaignUrl(BLUESKY_APP_CAMPAIGNS.fsim));

@@ -19,6 +19,7 @@ export interface AppPage {
   headline: string;
   subhead: string;
   metaDescription?: string;
+  marketingMaterialVersion?: string;
   appStoreUrl?: string;
   availability?: 'app-store' | 'coming-soon' | 'pilot';
   privacyUrl?: string;
@@ -116,6 +117,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'bread-engineer',
     name: 'Bread Engineer',
+    marketingMaterialVersion: 'bread-engineer-1.0.2-live-2026-08-25',
     category: 'Food & Drink',
     icon: '/assets/images/icons/BreadEngineer.png',
     accent: '#c96d52',
@@ -194,6 +196,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'beloved',
     name: 'BeLoved',
+    marketingMaterialVersion: 'beloved-1.3-live-2026-08-25',
     category: 'Lifestyle',
     icon: '/assets/images/apps/BeLoved/appstore.png',
     accent: '#f02d55',
@@ -268,6 +271,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'gridmetrics',
     name: 'GridMetrics',
+    marketingMaterialVersion: 'gridmetrics-1.1-live-2026-08-25',
     category: 'Utilities',
     icon: '/assets/images/apps/GridMetrics/1024.png',
     accent: '#2876ff',
@@ -343,6 +347,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'flip-clock-flow',
     name: 'Flip Clock Flow',
+    marketingMaterialVersion: 'flip-clock-flow-2026-rerelease-rc3',
     category: 'Productivity',
     icon: '/assets/images/apps/Flip Clock Flow/appstore.png',
     accent: '#ef455f',
@@ -425,6 +430,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'look-at-yourself',
     name: 'LookAtYourself',
+    marketingMaterialVersion: 'look-at-yourself-2026-launch-rc3',
     category: 'Productivity',
     icon: '/assets/images/apps/LookAtYourself/icon.webp',
     accent: '#e17a47',
@@ -508,6 +514,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'fast-simple-invoice-maker',
     name: 'Fast Simple Invoice Maker',
+    marketingMaterialVersion: 'fast-simple-invoice-maker-2.1-testflight-2026-09-01',
     category: 'Business',
     icon: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png',
     accent: '#4f7ed8',
@@ -591,6 +598,7 @@ export const appPages: AppPage[] = [
   {
     slug: 'infinite-ruler',
     name: 'Infinite Ruler',
+    marketingMaterialVersion: 'infinite-ruler-1.3-live-2026-08-25',
     category: 'Utilities',
     icon: '/assets/images/icons/infiniteruler.png',
     accent: '#0a84ff',

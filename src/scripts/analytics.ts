@@ -1,7 +1,6 @@
 import posthog from 'posthog-js';
 import {
-  GRIDMETRICS_FIELD_TEST_CAMPAIGN,
-  gridMetricsFieldTestAppStoreUrl,
+  attributedAppStoreUrl,
 } from './analyticsCampaign.mjs';
 
 const projectToken = 'phc_AEHHm2KQ8upioFfjV9BoVVYFkCFcSKkfNmNpAijPSUHE';
@@ -50,10 +49,11 @@ posthog.capture('$pageview', {
   ...acquisitionProperties,
 });
 
-if (query.get('utm_campaign') === GRIDMETRICS_FIELD_TEST_CAMPAIGN) {
+const inboundCampaign = query.get('utm_campaign');
+if (inboundCampaign) {
   document.querySelectorAll<HTMLAnchorElement>('[data-app-store-cta]').forEach((link) => {
-    link.href = gridMetricsFieldTestAppStoreUrl(link.href, GRIDMETRICS_FIELD_TEST_CAMPAIGN);
-    link.dataset.analyticsCampaignToken = GRIDMETRICS_FIELD_TEST_CAMPAIGN;
+    link.href = attributedAppStoreUrl(link.href, inboundCampaign);
+    link.dataset.analyticsCampaignToken = new URL(link.href).searchParams.get('ct') ?? inboundCampaign;
   });
 }
 

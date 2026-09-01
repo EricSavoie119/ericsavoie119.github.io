@@ -32,7 +32,11 @@ const supportHref = app.supportUrl ?? (app.slug === 'bread-engineer'
 const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacyHref;
 ---
 
-<div class:list={['sales-page', `app-${app.slug}`]} style={`--app-accent:${app.accent};--app-accent-dark:${app.accentDark}`}>
+<div
+  class:list={['sales-page', `app-${app.slug}`]}
+  style={`--app-accent:${app.accent};--app-accent-dark:${app.accentDark}`}
+  data-marketing-material-version={app.marketingMaterialVersion}
+>
   <header class="sales-nav">
     <a class="brand" href="/" aria-label="Savoie Apps home">
       <img src={app.icon} alt="" width="42" height="42" />

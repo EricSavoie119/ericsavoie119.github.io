@@ -10,7 +10,33 @@ export function gridMetricsFieldTestAppStoreUrl(href, utmCampaign) {
   return destination.toString();
 }
 
-const APP_STORE_PROVIDER_TOKEN = '126347138';
+export const APP_STORE_PROVIDER_TOKEN = '126347138';
+const APPLE_CAMPAIGN_TOKEN_LIMIT = 40;
+
+export function appleCampaignToken(value) {
+  if (typeof value !== 'string') return undefined;
+  const token = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^[_-]+|[_-]+$/g, '')
+    .slice(0, APPLE_CAMPAIGN_TOKEN_LIMIT);
+  return token || undefined;
+}
+
+export function attributedAppStoreUrl(href, utmCampaign) {
+  const token = appleCampaignToken(utmCampaign);
+  if (!token) return href;
+
+  const url = new URL(href);
+  if (url.hostname !== 'apps.apple.com') return href;
+
+  url.searchParams.set('pt', APP_STORE_PROVIDER_TOKEN);
+  if (!url.searchParams.has('ct')) url.searchParams.set('ct', token);
+  url.searchParams.set('mt', '8');
+  return url.toString();
+}
 
 export const BLUESKY_APP_CAMPAIGNS = {
   fsim: {
@@ -26,8 +52,10 @@ export const BLUESKY_APP_CAMPAIGNS = {
 export function appStoreCampaignUrl({destination, token}) {
   const url = new URL(destination);
   if (url.hostname !== 'apps.apple.com') throw new Error('Campaign destination must be an App Store URL');
+  const campaignToken = appleCampaignToken(token);
+  if (!campaignToken) throw new Error('Campaign token must contain letters or numbers');
   url.searchParams.set('pt', APP_STORE_PROVIDER_TOKEN);
-  url.searchParams.set('ct', token);
+  url.searchParams.set('ct', campaignToken);
   url.searchParams.set('mt', '8');
   return url.toString();
 }
