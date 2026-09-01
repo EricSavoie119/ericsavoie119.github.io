@@ -22,6 +22,7 @@ export interface AppPage {
   appStoreUrl?: string;
   heroScreenshot: string;
   heroScreenshotAlt: string;
+  heroFormat?: 'phone' | 'landscape';
   heroFocusY?: string;
   benefits: [string, string, string];
   sections: AppPageSection[];
@@ -352,6 +353,7 @@ export const appPages: AppPage[] = [
     appStoreUrl: 'https://apps.apple.com/gb/app/flip-clock-flow/id6752408901',
     heroScreenshot: '/assets/images/apps/Flip Clock Flow/product/landscape-clock.webp',
     heroScreenshotAlt: 'Flip Clock Flow immersive landscape clock showing hours, minutes and seconds',
+    heroFormat: 'landscape',
     benefits: ['A clock worth leaving open', 'Focus sessions in one tap', 'Optional distraction blocking'],
     sections: [
       {

@@ -78,7 +78,13 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
       <div class="hero-art" style={`--hero-focus-y:${app.heroFocusY ?? '0px'}`}>
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
-        <img src={app.heroScreenshot} alt={app.heroScreenshotAlt} width="660" height="1434" fetchpriority="high" />
+        <img
+          src={app.heroScreenshot}
+          alt={app.heroScreenshotAlt}
+          width={app.heroFormat === 'landscape' ? 1200 : 660}
+          height={app.heroFormat === 'landscape' ? 552 : 1434}
+          fetchpriority="high"
+        />
       </div>
     </section>
 
