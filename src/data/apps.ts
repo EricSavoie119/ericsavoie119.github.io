@@ -77,6 +77,16 @@ export const apps: App[] = [
       features: '/apps/flip-clock-flow/',
     },
   },
+  {
+    name: 'LookAtYourself',
+    image: '/assets/images/apps/LookAtYourself/icon.webp',
+    category: 'Screen Time with a mirror pause',
+    description: 'Choose what steals your time, set a daily limit, and face a private mirror pause before deciding whether to keep scrolling.',
+    tech: ['SwiftUI', 'FamilyControls', 'DeviceActivity', 'StoreKit'],
+    links: {
+      features: '/apps/look-at-yourself/',
+    },
+  },
 ];
 
 export const retiredApps: App[] = [

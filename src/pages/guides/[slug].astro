@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SearchGuidePage from '../../components/SearchGuidePage.astro';
+import { guides, type SearchGuide } from '../../data/guides';
+
+export function getStaticPaths() {
+  return guides.map((guide) => ({ params: { slug: guide.slug }, props: { guide } }));
+}
+
+interface Props { guide: SearchGuide }
+const { guide } = Astro.props;
+const canonicalUrl = `https://savoie.app/guides/${guide.slug}/`;
+const relatedGuides = guide.relatedGuideSlugs
+  .map((slug) => guides.find((candidate) => candidate.slug === slug))
+  .filter((candidate): candidate is SearchGuide => Boolean(candidate));
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${canonicalUrl}#article`,
+      headline: guide.title,
+      description: guide.description,
+      datePublished: guide.publishedAt,
+      dateModified: guide.updatedAt,
+      mainEntityOfPage: { '@id': `${canonicalUrl}#webpage` },
+      author: { '@id': 'https://savoie.app/#savoie-apps' },
+      publisher: { '@id': 'https://savoie.app/#savoie-apps' },
+      image: `https://savoie.app${guide.socialImage}`,
+      about: { '@id': `https://savoie.app/apps/${guide.appSlug}/#app` },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: guide.title,
+      description: guide.description,
+      isPartOf: { '@id': 'https://savoie.app/#website' },
+      breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonicalUrl}#faq`,
+      mainEntity: guide.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Savoie Apps', item: 'https://savoie.app/' },
+        { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://savoie.app/guides/' },
+        { '@type': 'ListItem', position: 3, name: guide.title, item: canonicalUrl },
+      ],
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${guide.title} | Savoie Apps`}
+  description={guide.description}
+  canonicalUrl={canonicalUrl}
+  ogImage={`https://savoie.app${guide.socialImage}`}
+  ogImageAlt={`${guide.appName} — ${guide.title}`}
+  analyticsPageType="search_guide"
+  analyticsApp={guide.appName}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <SearchGuidePage guide={guide} relatedGuides={relatedGuides} />
+</Layout>

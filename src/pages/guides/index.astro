@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { guides } from '../../data/guides';
+
+const canonicalUrl = 'https://savoie.app/guides/';
+---
+
+<Layout
+  title="Practical iPhone Guides | Savoie Apps"
+  description="Plain-language guides for focus, Screen Time, useful iPhone tools and the everyday problems Savoie Apps are built to solve."
+  canonicalUrl={canonicalUrl}
+  analyticsPageType="guide_index"
+>
+  <header>
+    <a href="/" aria-label="Savoie Apps home"><span>S</span>Savoie Apps</a>
+  </header>
+  <main>
+    <p class="eyebrow">Useful guides</p>
+    <h1>Start with the problem.</h1>
+    <p class="lede">Plain-language walkthroughs that are useful before you download anything—and point to an app only when it genuinely helps.</p>
+    <div class="guide-grid">
+      {guides.map((guide) => (
+        <a href={`/guides/${guide.slug}/`} style={`--accent:${guide.accent}`} data-analytics-event="guide_opened" data-analytics-app={guide.appName} data-analytics-placement="guide_index" data-analytics-destination={guide.slug}>
+          <div class="app">
+            <img src={guide.appIcon} alt="" width="40" height="40" />
+            <span>{guide.appName}</span>
+          </div>
+          <span class="type">{guide.eyebrow}</span>
+          <strong>{guide.title}</strong>
+          <p>{guide.description}</p>
+          <span class="read">Read the guide →</span>
+        </a>
+      ))}
+    </div>
+  </main>
+  <footer>© {new Date().getFullYear()} Savoie Apps · <a href="/">All apps</a></footer>
+</Layout>
+
+<style>
+  :global(body) { background: #f7f9fc; color: #13213a; }
+  header { margin: 0 auto; max-width: 1120px; padding: 24px; }
+  header a { align-items: center; display: flex; font-size: .82rem; font-weight: 800; gap: 10px; }
+  header span { align-items: center; background: #0b1d38; border-radius: 10px; color: white; display: inline-flex; height: 34px; justify-content: center; width: 34px; }
+  main { margin: 0 auto; max-width: 1120px; padding: 100px 24px 130px; }
+  .eyebrow { color: #2876ff; font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { color: #0b1d38; font-size: clamp(3.6rem, 8vw, 7rem); letter-spacing: -.06em; line-height: .95; margin: 18px 0 30px; max-width: 800px; }
+  .lede { color: #586a83; font-family: Inter, ui-sans-serif, -apple-system, sans-serif; font-size: 1.2rem; line-height: 1.7; max-width: 700px; }
+  .guide-grid { display: grid; gap: 18px; grid-template-columns: repeat(2, 1fr); margin-top: 80px; }
+  .guide-grid > a { background: white; border: 1px solid #dce3ee; border-radius: 24px; display: flex; flex-direction: column; min-height: 360px; padding: 28px; }
+  .app { align-items: center; display: flex; font-size: .74rem; font-weight: 800; gap: 10px; margin-bottom: 46px; }
+  .app img { border-radius: 22%; }
+  .type { color: var(--accent); font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  strong { font-size: 1.45rem; letter-spacing: -.025em; line-height: 1.35; margin: 12px 0 16px; }
+  .guide-grid p { color: #617189; font-family: Inter, ui-sans-serif, -apple-system, sans-serif; font-size: .92rem; line-height: 1.6; margin: 0; }
+  .read { color: var(--accent); font-size: .72rem; font-weight: 800; margin-top: auto; padding-top: 30px; }
+  footer { background: #071426; color: #9aabc2; font-size: .72rem; padding: 30px max(24px, calc((100vw - 1072px) / 2)); }
+  @media (max-width: 720px) { main { padding-top: 70px; } .guide-grid { grid-template-columns: 1fr; } }
+</style>

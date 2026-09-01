@@ -20,6 +20,9 @@ export interface AppPage {
   subhead: string;
   metaDescription?: string;
   appStoreUrl?: string;
+  availability?: 'app-store' | 'coming-soon' | 'pilot';
+  privacyUrl?: string;
+  supportUrl?: string;
   heroScreenshot: string;
   heroScreenshotAlt: string;
   heroFormat?: 'phone' | 'landscape';
@@ -416,6 +419,89 @@ export const appPages: AppPage[] = [
         question: 'How often do the widgets update?',
         answer:
           'The widgets use Apple WidgetKit timelines. iOS controls the exact refresh schedule, so the clock is designed for glanceable minute-level updates rather than continuous animation.',
+      },
+    ],
+  },
+  {
+    slug: 'look-at-yourself',
+    name: 'LookAtYourself',
+    category: 'Productivity',
+    icon: '/assets/images/apps/LookAtYourself/icon.webp',
+    accent: '#e17a47',
+    accentDark: '#9f3016',
+    eyebrow: 'Face your scrolling habit',
+    headline: 'Make your Screen Time limit harder to ignore.',
+    subhead:
+      'Choose the app or website taking your time, set a daily limit, and meet a private mirror pause before deciding whether to stop or keep going.',
+    metaDescription:
+      'LookAtYourself adds a private mirror pause to Screen Time limits, helping you make a deliberate choice when your time is up.',
+    availability: 'coming-soon',
+    privacyUrl: '/legal/privacy-policy/',
+    supportUrl: 'mailto:eric@savoie.app',
+    heroScreenshot: '/assets/images/apps/LookAtYourself/product/active-plan.webp',
+    heroScreenshotAlt: 'LookAtYourself showing that Instagram is protected by a five-minute daily limit',
+    benefits: ['Choose what to protect', 'Set a daily limit', 'Pause before five more minutes'],
+    sections: [
+      {
+        eyebrow: 'A clear boundary',
+        title: 'Pick an app. Set a limit.',
+        body:
+          'Connect Apple Screen Time, choose one app or website in the free version, and set a daily allowance from five minutes to two hours. Setup takes less than a minute.',
+        screenshot: '/assets/images/apps/LookAtYourself/product/setup.webp',
+        screenshotAlt: 'LookAtYourself setup with Screen Time access, a protected app and a daily limit control',
+      },
+      {
+        eyebrow: 'When time is up',
+        title: 'Turn the reflex into a decision.',
+        body:
+          'Instead of tapping straight through another familiar warning, LookAtYourself opens a short front-camera mirror pause. When the countdown ends, choose to stop scrolling or grant five more minutes.',
+        screenshot: '/assets/images/apps/LookAtYourself/product/mirror.webp',
+        screenshotAlt: 'The private LookAtYourself mirror pause with a five-second countdown',
+      },
+      {
+        eyebrow: 'Easy to check',
+        title: 'See what is protected.',
+        body:
+          'The active plan keeps the protected selection and its daily limit visible. Test the mirror at any time or change the plan when your habits change.',
+        screenshot: '/assets/images/apps/LookAtYourself/product/active-plan.webp',
+        screenshotAlt: 'An active LookAtYourself plan protecting Instagram with a five-minute daily limit',
+      },
+      {
+        eyebrow: 'More control with Pro',
+        title: 'Protect more. Remove the easy out.',
+        body:
+          'LookAtYourself Pro supports multiple apps, websites and categories. Strict Mode removes the five-more-minutes choice, and the reflection pause can be set to three, five or ten seconds.',
+        screenshot: '/assets/images/apps/LookAtYourself/product/pro-settings.webp',
+        screenshotAlt: 'LookAtYourself Pro settings for Strict Mode and reflection pause duration',
+      },
+    ],
+    trustEyebrow: 'A mirror, not a recording',
+    trustTitle: 'The camera view stays private.',
+    trustBody:
+      'The front camera is used only as a live mirror. LookAtYourself does not record, save, collect or transmit photos or video, and Apple keeps the identities of your Screen Time selections private.',
+    footnote:
+      'Screen Time controls require Apple authorization. LookAtYourself Pro adds multiple selections, Strict Mode and adjustable pause lengths.',
+    finalEyebrow: 'A pause with nowhere else to look',
+    faq: [
+      {
+        question: 'Does LookAtYourself record me?',
+        answer:
+          'No. The camera is used only as a live, private mirror. The app does not record, save, collect or transmit photos or video.',
+      },
+      {
+        question: 'What can I protect for free?',
+        answer:
+          'The free version protects one app or website, applies a daily limit and includes a five-second mirror pause with the choice to stop or grant five more minutes.',
+      },
+      {
+        question: 'What does LookAtYourself Pro add?',
+        answer:
+          'Pro supports multiple apps, websites and categories, adds Strict Mode, and lets you choose a three, five or ten-second reflection pause.',
+      },
+      {
+        question: 'Can I make the limit impossible to extend?',
+        answer:
+          'Yes. Strict Mode, available with Pro, removes LookAtYourself’s five-more-minutes option. Apple still controls the underlying Screen Time system.',
       },
     ],
   },
