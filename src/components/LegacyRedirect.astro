@@ -1,0 +1,51 @@
+---
+interface Props {
+  destination: string;
+  label: string;
+}
+
+const { destination, label } = Astro.props;
+const canonicalUrl = new URL(destination, 'https://savoie.app').toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{label} — Savoie Apps</title>
+  </head>
+  <body>
+    <main>
+      <p>That page has moved.</p>
+      <a href={destination}>Continue to {label}</a>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(html) {
+    color-scheme: light;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    background: #f7f7f5;
+    color: #23252b;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  main {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  a {
+    color: #d71920;
+  }
+</style>

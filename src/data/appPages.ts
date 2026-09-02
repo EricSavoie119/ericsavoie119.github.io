@@ -441,7 +441,8 @@ export const appPages: AppPage[] = [
       'Choose the app or website taking your time, set a daily limit, and meet a private mirror pause before deciding whether to stop or keep going.',
     metaDescription:
       'LookAtYourself adds a private mirror pause to Screen Time limits, helping you make a deliberate choice when your time is up.',
-    availability: 'coming-soon',
+    appStoreUrl: 'https://apps.apple.com/app/id6804757024',
+    availability: 'app-store',
     privacyUrl: '/legal/privacy-policy/',
     supportUrl: 'mailto:eric@savoie.app',
     heroScreenshot: '/assets/images/apps/LookAtYourself/product/active-plan.webp',

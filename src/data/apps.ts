@@ -84,6 +84,7 @@ export const apps: App[] = [
     description: 'Choose what steals your time, set a daily limit, and face a private mirror pause before deciding whether to keep scrolling.',
     tech: ['SwiftUI', 'FamilyControls', 'DeviceActivity', 'StoreKit'],
     links: {
+      appStore: 'https://apps.apple.com/app/id6804757024',
       features: '/apps/look-at-yourself/',
     },
   },
