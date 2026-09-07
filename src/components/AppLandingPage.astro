@@ -54,6 +54,7 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
         <h1>{app.headline}</h1>
         <p class="lede">{app.subhead}</p>
         <div class="hero-actions">
+          {app.websiteUrl && <a class="primary-button" href={app.websiteUrl}>Create an invoice online</a>}
           {!app.appStoreUrl ? (
             <a class="primary-button" href="#how-it-works">{isPilot ? 'See how Easymode helps' : 'See how it works'}</a>
           ) : (
@@ -62,7 +63,7 @@ const privacyUrl = app.slug === 'easymode' ? '/apps/easymode/privacy/' : privacy
               <span><small>Download on the</small>App Store</span>
             </a>
           )}
-          <span class="no-account">{isPilot ? 'Less to remember. More room to think.' : 'No account required'}</span>
+          <span class="no-account">{app.websiteUrl ? 'Web workspace requires sign-in · Local iPhone use needs no account' : isPilot ? 'Less to remember. More room to think.' : 'No account required'}</span>
         </div>
         <div class="android-interest">
           <button

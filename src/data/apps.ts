@@ -7,6 +7,7 @@ export interface App {
   links: {
     appStore?: string;
     features?: string;
+    website?: string;
   };
 }
 
@@ -48,10 +49,11 @@ export const apps: App[] = [
     name: 'Fast Simple Invoice Maker',
     image: '/assets/images/thumbs/fast-simple-invoice-maker.webp',
     category: 'Create professional invoices fast',
-    description: 'Invoice apps that create PDFs had log ins and lots of friction when creating PDFs is quite simple so I made a Fast Simple version.',
+    description: 'Create professional invoices in your browser or on iPhone. Download PDFs, save clients and share private invoice links.',
     tech: ['PDFKit'],
     links: {
       appStore: 'https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476',
+      website: 'https://fastsimpleinvoice.com/',
       features: '/apps/fast-simple-invoice-maker/',
     },
   },

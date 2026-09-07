@@ -21,6 +21,7 @@ export interface AppPage {
   metaDescription?: string;
   marketingMaterialVersion?: string;
   appStoreUrl?: string;
+  websiteUrl?: string;
   availability?: 'app-store' | 'coming-soon' | 'pilot';
   privacyUrl?: string;
   supportUrl?: string;
@@ -520,13 +521,14 @@ export const appPages: AppPage[] = [
     icon: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/appstore.png',
     accent: '#4f7ed8',
     accentDark: '#244c94',
-    eyebrow: 'Invoice clearly from your iPhone',
+    eyebrow: 'Invoice online or on iPhone',
     headline: 'Create a professional invoice in minutes.',
     subhead:
-      'Build a clear invoice, generate a polished PDF and send it from your iPhone—without creating an account or carrying a laptop.',
+      'Create invoices in your browser or on iPhone, download polished PDFs and share private invoice links. Use the standalone website without installing an app.',
     metaDescription:
       'Create professional PDF invoices on iPhone, save clients and business details, track payment status and share each invoice from one focused app.',
     appStoreUrl: 'https://apps.apple.com/gb/app/fast-simple-invoice-maker/id6752559476',
+    websiteUrl: 'https://fastsimpleinvoice.com/',
     privacyUrl: '/legal/privacy-policy/',
     supportUrl: 'mailto:eric@savoie.app',
     heroScreenshot: '/assets/images/apps/Fast%20Simple%20Invoice%20Maker/hero-invoice-pdf.png',

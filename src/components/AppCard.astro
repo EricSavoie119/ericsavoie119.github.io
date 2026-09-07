@@ -26,6 +26,7 @@ const { app, retired = false } = Astro.props;
       </div>
     )}
     <div class="app-links">
+      {app.links.website && <a href={app.links.website} class="btn-features">Use online ↗</a>}
       {app.links.appStore && (
         <a href={app.links.appStore} class="btn-store" target="_blank" rel="noopener noreferrer" data-analytics-event="app_store_clicked" data-analytics-app={app.name} data-analytics-placement="portfolio_card">
           App Store ↗
