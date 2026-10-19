@@ -1,5 +1,6 @@
 export interface App {
   name: string;
+  comingSoon?: boolean;
   image: string;
   category: string;
   description: string;
@@ -12,6 +13,15 @@ export interface App {
 }
 
 export const apps: App[] = [
+  {
+    name: 'Easymode',
+    comingSoon: true,
+    image: '/assets/images/apps/EasyMode/icon.webp',
+    category: 'A calmer way to manage life admin',
+    description: 'Turn loose ends into useful next steps. Review suggested reminders, calendar events and email drafts before anything changes.',
+    tech: [],
+    links: { features: '/apps/easymode/' },
+  },
   {
     name: 'Bread Engineer',
     image: '/assets/images/thumbs/bread-engineer.webp',

@@ -1,0 +1,14 @@
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px!important;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#stage{position:absolute;inset:0;pointer-events:none}
+.figure-anchor{position:absolute;width:0;height:0}
+.annotation{position:absolute;bottom:9px;left:14px;width:160px;height:119px;color:#fff;filter:drop-shadow(0 1px 3px #0005)}
+.annotation p{margin:0 0 0 40px;font:italic 25px Georgia,serif;transform:rotate(-7deg)}
+.annotation svg{position:absolute;width:110px;height:88px;left:0;bottom:0;overflow:visible}
+.annotation p{clip-path:inset(0 100% 0 0);opacity:0}
+.annotation svg{clip-path:inset(-4px -4px 100% -4px);opacity:0}
+/* Retarget from the current visual state between coarse mouse-wheel updates.
+   Identical photo/anchor timing preserves the pointer's alignment. Native scroll is untouched. */
+:root{--scroll-follow-duration:200ms;--scroll-follow-ease:cubic-bezier(.23,1,.32,1)}
+.landscape,.figure-anchor,.annotation p,.annotation svg{transition:none}
+@media(prefers-reduced-motion:reduce){.landscape,.figure-anchor{transition:none}}
+@media(prefers-reduced-motion:reduce){.annotation p,.annotation svg{clip-path:none!important;transition:opacity 150ms ease}}

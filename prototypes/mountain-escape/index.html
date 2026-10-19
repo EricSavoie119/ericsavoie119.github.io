@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- Local, throwaway Mountain Escape concept. Not the production homepage. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Savoie — Mountain Escape concept</title>
+  <style>
+    :root{--ink:#151916;--red:#d32b25;--paper:#f7f6f2;--line:#d8d9d2}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}a:focus-visible{outline:3px solid var(--red);outline-offset:6px}button,a{-webkit-tap-highlight-color:transparent}::selection{background:var(--red);color:white}
+    .hero{min-height:760px;height:96svh;max-height:1200px;position:relative;isolation:isolate;background:#aebccc;overflow:hidden}.landscape{position:absolute;width:100%;height:100%;object-fit:cover;object-position:50% 69%;z-index:-2}.hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(237,240,240,.18),transparent 65%,rgba(0,0,0,.35))}
+    nav{display:flex;justify-content:space-between;align-items:center;margin:0 4.5%;padding:28px 0;border-bottom:1px solid #17211d40}.brand{font-size:26px;font-weight:800;letter-spacing:-1.4px}.brand span{color:var(--red);font-size:23px;margin-left:5px}.links{display:flex;align-items:center;gap:35px;font-size:13px}.contact{border-bottom:1px solid;padding-bottom:4px}.hero-content{margin:66px 0 0 8%;max-width:950px}.eyebrow{font:11px/1.5 monospace;letter-spacing:1.6px;text-transform:uppercase}.hero h1{font-size:clamp(64px,7.5vw,116px);font-weight:500;letter-spacing:-.075em;line-height:.99;margin:26px 0 27px}.hero h1 em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.065em}.intro{font-size:16px;line-height:1.55;max-width:330px;margin:0 0 26px}.cta{display:inline-flex;align-items:center;gap:45px;background:var(--red);color:white;padding:17px 22px;border-radius:2px;font-size:13px}.cta:hover{background:#ae211c}.hero-bottom{position:absolute;bottom:31px;left:4.5%;right:4.5%;display:flex;justify-content:space-between;align-items:end;color:white;font-size:11px;line-height:1.6}.hero-bottom p{margin:0}.hero-bottom a{font-size:26px}
+    main{max-width:1340px;margin:auto;padding:95px 6% 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}.section-head h2{font-size:clamp(36px,4vw,58px);font-weight:500;letter-spacing:-2.5px;margin:15px 0 0}.section-head>p{font-size:15px;line-height:1.65;max-width:310px;color:#60645e}.showcase{display:grid;grid-template-columns:1fr 1fr;gap:35px}.stage{height:420px;overflow:hidden;display:flex;justify-content:center;align-items:start;padding-top:45px;position:relative}.bread{background:#e5dfd1}.clock{background:#202624;align-items:center;padding:45px}.stage img{width:210px;border-radius:26px;box-shadow:0 22px 48px #0002}.clock img{width:100%;border-radius:10px}.number{position:absolute;left:22px;top:20px;font:11px monospace;opacity:.65}.clock .number{color:white}.project-meta{display:flex;justify-content:space-between;gap:20px;margin:22px 0 11px;align-items:center}.project-meta h3{font-size:24px;font-weight:500;letter-spacing:-.8px;margin:0}.project-meta span{font-size:24px}.project p{color:#62665f;font-size:14px;line-height:1.6;margin:0;max-width:390px}.catalogue{margin:65px 0 90px}.app-row{display:flex;gap:18px;align-items:center;padding:23px 0;border-top:1px solid var(--line)}.app-row:last-child{border-bottom:1px solid var(--line)}.app-row img{width:42px;height:42px;border-radius:10px;object-fit:cover}.app-row h3{font-size:19px;font-weight:500;margin:0;letter-spacing:-.5px}.app-row p{margin:5px 0 0;color:#656a61;font-size:13px}.app-row .arrow{margin-left:auto;font-size:22px}.soon{font:10px monospace;letter-spacing:1px;color:var(--red);margin-left:12px}.work{background:var(--ink);color:var(--paper);padding:70px 7%;display:flex;align-items:center;justify-content:space-between;gap:35px}.work h2{font-size:clamp(35px,4vw,57px);font-weight:400;letter-spacing:-2px;line-height:1.1;margin:16px 0 20px}.work p{max-width:410px;font-size:14px;color:#bdc2b9;line-height:1.7}.work a{white-space:nowrap;border-bottom:1px solid #ddd;padding-bottom:9px;font-size:19px}footer{display:flex;justify-content:space-between;gap:20px;padding:35px 6%;font-size:11px;color:#686d65}.demo{position:fixed;right:15px;bottom:12px;background:#f7f6f2eb;color:#333;border:1px solid #d4d6cf;border-radius:5px;padding:7px 10px;font:10px monospace;z-index:5}
+    @media(min-width:1600px){.hero-content{margin-top:85px}}@media(max-width:700px){.hero{min-height:770px;height:94svh;max-height:950px}.landscape{object-position:43% 65%}nav{padding:23px 0;margin:0 6%}.brand{font-size:23px}.links{gap:20px;font-size:12px}.links .about-link{display:none}.hero-content{margin:67px 7% 0}.hero h1{font-size:clamp(58px,12vw,83px);letter-spacing:-.07em}.intro{font-size:14px;max-width:270px}.hero-bottom{left:7%;right:7%;bottom:25px}.hero-bottom .quiet{display:none}main{padding:65px 7% 0}.section-head{display:block}.section-head>p{max-width:100%}.showcase{grid-template-columns:1fr;gap:40px}.stage{height:360px}.clock{height:300px}.catalogue{margin:45px 0 60px}.app-row h3{font-size:17px}.soon{display:block;margin:7px 0 0}.work{padding:55px 7%;display:block}.work a{display:inline-block;margin-top:20px}footer{padding-bottom:55px}.demo{font-size:9px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+  <link rel="stylesheet" href="introductions.css">
+  <link rel="stylesheet" href="showcases.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <img class="landscape" src="mountain.webp" alt="A small figure standing on a rocky ridge beneath a vast cloudy mountain sky" fetchpriority="high">
+    <nav aria-label="Main navigation"><a class="brand" href="#top">savoie<span>✳</span></a><div class="links"><a href="#apps">Apps & tools</a><a class="about-link" href="#about">The person behind them</a><a class="contact" href="mailto:eric@savoie.app">Say hello<svg viewBox="0 0 30 26" aria-hidden="true" focusable="false"><path d="M3 22 C14 23 11 8 25 5 M18 3 Q23 4 25 5 Q25 10 23 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></nav>
+    <h1 class="sr-only">Eric Savoie — apps & tools</h1>
+    <div class="hero-content"><a class="cta trail-link" href="#apps"><span>View my apps</span><svg viewBox="0 0 230 250" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path class="unwind-line" d="M8 97 C-55 28 100 -2 173 18 C260 37 255 105 150 113 C100 119 35 120 8 97"/><path class="unwind-tip" d="M180 218 Q190 225 192 228 Q197 217 204 212" opacity="0"/></svg></a></div>
+    <div id="stage" aria-label="Introduction concept"></div>
+  </header>
+  <main id="apps">
+    <h2 class="sr-only">Apps & tools</h2>
+    <section class="chapter beloved-chapter">
+      <div class="scene">
+        <div class="chapter-label"><span>01 / BELOVED</span><span>YOUR SHARED MILESTONES</span></div>
+        <div class="scene-copy"><h2>Be<em>Loved.</em></h2><p>Keep your shared<br>milestones close.</p><a href="https://savoie.app/apps/beloved/">Explore the app <span>↗</span></a></div>
+        <div class="beloved-film">
+          <video muted playsinline loop controls preload="none" poster="beloved-poster.jpg" aria-label="BeLoved captioned app video" data-src="beloved-demo.mp4"></video>
+        </div>
+        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>iPHONE & iPAD</span></div><div class="chapter-progress" aria-hidden="true"></div>
+      </div>
+    </section>
+    <section class="chapter clock-chapter">
+      <div class="scene">
+        <div class="chapter-label"><span>02 / FLIP CLOCK FLOW</span><span>CLOCK & FOCUS TIMER</span></div>
+        <div class="scene-copy"><h2>Flip Clock<br><em>Flow.</em></h2><p>A clock. A focus timer.<br>Fewer distractions.</p><a href="https://savoie.app/apps/flip-clock-flow/">Explore the app <span>↗</span></a></div>
+        <div class="screens clock-screens">
+          <img class="prop wide-clock" data-shift="220" data-turn="16" data-final-turn="-8" src="../../public/assets/images/apps/Flip Clock Flow/product/landscape-clock.webp" alt="Flip Clock Flow landscape clock" loading="lazy">
+          <img class="prop focus-phone" data-shift="-170" data-turn="-20" data-final-turn="9" src="../../public/assets/images/apps/Flip Clock Flow/product/focus.webp" alt="Flip Clock Flow focus timer" loading="lazy">
+        </div>
+        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>MAKE TIME FOR IT</span></div><div class="chapter-progress" aria-hidden="true"></div>
+      </div>
+    </section>
+    <section class="chapter ruler-chapter">
+      <div class="scene">
+        <div class="chapter-label"><span>03 / INFINITE RULER</span><span>MEASUREMENT</span></div>
+        <div class="scene-copy"><h2>Infinite<br><em>Ruler.</em></h2><p>A ruler that keeps going<br>beyond your screen.</p><a href="https://savoie.app/apps/infinite-ruler/">Explore the app <span>↗</span></a></div>
+        <div class="screens ruler-screens"><div class="ruler-marks" aria-hidden="true"></div>
+          <img class="prop ruler-phone" data-shift="240" data-turn="35" data-final-turn="18" src="../../public/assets/images/apps/InfiniteRuler/product/infinite.webp" alt="Infinite Ruler measurement screen" loading="lazy">
+        </div>
+        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>BEYOND THE EDGE</span></div><div class="chapter-progress" aria-hidden="true"></div>
+      </div>
+    </section>
+    <section class="more-apps"><h2>Also made<br><em>by me.</em></h2>
+    <div class="catalogue">
+      <a class="app-row" href="https://savoie.app/apps/look-at-yourself/"><img src="../../public/assets/images/apps/LookAtYourself/icon.webp" alt="" loading="lazy"><div><h3>LookAtYourself</h3><p>A moment to pause before you keep scrolling.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="https://savoie.app/apps/gridmetrics/"><img src="../../public/assets/images/thumbs/gridmetrics.webp" alt="" loading="lazy"><div><h3>GridMetrics</h3><p>Find a cleaner time to use electricity.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="https://savoie.app/apps/bread-engineer/"><img src="../../public/assets/images/apps/BreadEngineer/product/recipe-plan.webp" alt="" loading="lazy"><div><h3>Bread Engineer</h3><p>Bread recipes, dough timing and step alarms.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="https://savoie.app/apps/fast-simple-invoice-maker/"><img src="../../public/assets/images/thumbs/fast-simple-invoice-maker.webp" alt="" loading="lazy"><div><h3>Fast Simple Invoice Maker</h3><p>Professional invoices, without the busywork.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="https://savoie.app/apps/easymode/"><img src="../../public/assets/images/apps/EasyMode/icon.webp" alt="" loading="lazy"><div><h3>Easymode <span class="soon">COMING SOON</span></h3><p>A calmer way to manage life admin.</p></div><span class="arrow">↗</span></a>
+    </div>
+    </section>
+  </main>
+  <section class="work" id="about"><div><h2>Work with me</h2><p>For projects, roles or collaborations, get in touch.</p></div><a href="mailto:eric@savoie.app?subject=Let%E2%80%99s%20work%20together">eric@savoie.app ↗</a></section>
+  <footer><a href="#top">SAVOIE</a></footer>
+  <script src="scroll-motion.js"></script>
+  <script src="introductions.js"></script>
+  <script src="app-entrances.js"></script>
+  <script src="water-interaction.js"></script>
+  <script src="unwind-link.js"></script>
+  <script src="portrait-dock.js"></script>
+  <script src="cta-swerve.js"></script>
+  <script src="featured-video.js"></script>
+</body>
+</html>

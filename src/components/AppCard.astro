@@ -14,26 +14,22 @@ const { app, retired = false } = Astro.props;
       <div class="app-title-row">
         <h3 class="app-name">{app.name}</h3>
         {retired && <span class="retired-badge">Retired</span>}
+        {app.comingSoon && <span class="retired-badge">Coming soon</span>}
       </div>
       <span class="app-category">{app.category}</span>
     </div>
   </div>
   <div class="app-card-body">
     <p class="app-description">{app.description}</p>
-    {app.tech.length > 0 && (
-      <div class="tech-tags">
-        {app.tech.map(t => <span class="tech-tag">{t}</span>)}
-      </div>
-    )}
     <div class="app-links">
       {app.links.website && <a href={app.links.website} class="btn-features">Use online ↗</a>}
-      {app.links.appStore && (
+      {app.links.appStore && !app.comingSoon && (
         <a href={app.links.appStore} class="btn-store" target="_blank" rel="noopener noreferrer" data-analytics-event="app_store_clicked" data-analytics-app={app.name} data-analytics-placement="portfolio_card">
           App Store ↗
         </a>
       )}
       {app.links.features && (
-        <a href={app.links.features} class="btn-features" data-analytics-event="product_page_opened" data-analytics-app={app.name} data-analytics-placement="portfolio_card">Features</a>
+        <a href={app.links.features} class="btn-features" data-analytics-event="product_page_opened" data-analytics-app={app.name} data-analytics-placement="portfolio_card">{app.comingSoon ? 'Meet Easymode' : 'Features'}</a>
       )}
     </div>
   </div>
@@ -120,24 +116,10 @@ const { app, retired = false } = Astro.props;
     line-height: 1.5;
   }
 
-  .tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-
-  .tech-tag {
-    background: var(--color-bg);
-    color: var(--color-accent);
-    font-size: 0.7rem;
-    padding: 3px 8px;
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--color-border);
-  }
-
   .app-links {
     margin-top: auto;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     padding-top: 4px;
   }
