@@ -14,7 +14,7 @@
   line.style.strokeDasharray = `${loopLength} ${loopLength}`;
   trail.style.strokeDasharray = `${trailLength} ${trailLength}`;
   tip.setAttribute('d','M-12 -10 Q-2 -3 0 0 Q5 -11 12 -16');
-  let position=0, velocity=0, target=0, frame=0, previous=0, hovering=false;
+  let position=0, velocity=0, target=0, frame=0, previous=0, hovering=false, armed=false;
   function paint() {
     const progress = Math.max(0, Math.min(1,position));
     line.style.strokeDashoffset = String(loopLength * progress);
@@ -40,7 +40,7 @@
     if(!settled) frame=requestAnimationFrame(tick);
   }
   function update() {
-    target=hovering || link.matches(':focus-visible') ? 1 : 0;
+    target=armed || hovering || link.matches(':focus-visible') ? 1 : 0;
     if(reduced.matches || link.matches(':focus-visible')) {
       cancelAnimationFrame(frame);frame=0;position=target;velocity=0;paint();
     } else if(!frame){previous=performance.now();frame=requestAnimationFrame(tick);}
@@ -48,6 +48,26 @@
   link.addEventListener('pointerenter',e=>{if(fine.matches && e.pointerType!=='touch'){hovering=true;update();}});
   link.addEventListener('pointerleave',()=>{hovering=false;update();});
   link.addEventListener('pointercancel',()=>{hovering=false;update();});
+  link.addEventListener('click',e=>{
+    // Keyboard/screen-reader activation stays a normal one-step link.
+    const touch=e.pointerType==='touch' || (e.detail>0 && !fine.matches);
+    if(!touch || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)return;
+    if(!armed){e.preventDefault();armed=true;update();}
+    // Once revealed, subsequent taps navigate without rewinding the arrow.
+  });
+  document.addEventListener('click',e=>{
+    if(armed && !link.contains(e.target)){armed=false;update();}
+  });
+  let scrollPeak=window.scrollY;
+  window.addEventListener('scroll',()=>{
+    const y=Math.max(0,window.scrollY);
+    if(!armed){scrollPeak=y;return;}
+    scrollPeak=Math.max(scrollPeak,y);
+    const rect=link.getBoundingClientRect();
+    if(scrollPeak-y>8 && rect.bottom>0 && rect.top<innerHeight){
+      armed=false;hovering=false;scrollPeak=y;update();
+    }
+  },{passive:true});
   link.addEventListener('focus',update);
   link.addEventListener('blur',update);
   reduced.addEventListener('change',update);
