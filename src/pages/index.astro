@@ -1,11 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import AppCard from '../components/AppCard.astro';
-import Footer from '../components/Footer.astro';
-import { apps, retiredApps } from '../data/apps';
-
+import homeStyles from '../styles/mountain-home.css?url';
+import { retiredApps } from '../data/apps';
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -27,105 +23,71 @@ const schema = {
   ],
 };
 ---
-<Layout
-  title="Savoie Apps | Small iPhone Apps"
-  description="Small iPhone apps across productivity, finance, and utilities. Explore the apps available from Savoie Apps."
-  canonicalUrl="https://savoie.app/"
-  ogImageAlt="Savoie Apps — Small iPhone apps, thoughtfully made."
-  analyticsPageType="portfolio_home"
->
+<Layout title="Savoie Apps | Apps & Tools" description="Independent iPhone apps and useful tools from Savoie Apps. Explore BeLoved, Flip Clock Flow, Infinite Ruler and more, or get in touch about working together." canonicalUrl="https://savoie.app/" ogImageAlt="Savoie Apps — Small iPhone apps, thoughtfully made." analyticsPageType="portfolio_home" customStyles>
+  <link slot="head" rel="stylesheet" href={homeStyles} />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <Navbar />
-  <Hero />
-  <main>
-    <section id="apps" class="apps-section">
-      <div class="container">
-        <h2 class="section-title">Live on the App Store</h2>
-        <p class="section-subtitle">Apps currently available for download</p>
-        <div class="apps-grid">
-          {apps.map(app => <AppCard app={app} />)}
+
+  <a class="skip-link" href="#apps">Skip to apps</a>
+  <header class="hero" id="top">
+    <img class="landscape" src="/assets/home/mountain.webp" alt="A small figure standing on a rocky ridge beneath a vast cloudy mountain sky" fetchpriority="high">
+    <nav aria-label="Main navigation"><a class="brand" href="#top">savoie<span>✳</span></a><div class="links"><a href="#apps">Apps & tools</a><a class="about-link" href="#about">The person behind them</a><a class="contact" href="mailto:eric@savoie.app" data-analytics-event="developer_contact_opened" data-analytics-destination="email" data-analytics-placement="portfolio_home">Say hello<svg viewBox="0 0 30 26" aria-hidden="true" focusable="false"><path d="M3 22 C14 23 11 8 25 5 M18 3 Q23 4 25 5 Q25 10 23 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></nav>
+    <h1 class="sr-only">Eric Savoie — apps & tools</h1>
+    <div class="hero-content"><a class="cta trail-link" href="#apps"><span>View my apps</span><svg viewBox="0 0 230 250" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path class="unwind-line" d="M8 97 C-55 28 100 -2 173 18 C260 37 255 105 150 113 C100 119 35 120 8 97"/><path class="unwind-tip" d="M180 218 Q190 225 192 228 Q197 217 204 212" opacity="0"/></svg></a></div>
+    <div id="stage" aria-label="Introduction concept"></div>
+  </header>
+  <main id="apps" tabindex="-1">
+    <h2 class="sr-only">Apps & tools</h2>
+    <section class="chapter beloved-chapter">
+      <div class="scene">
+        <div class="chapter-label"><span>01 / BELOVED</span><span>YOUR SHARED MILESTONES</span></div>
+        <div class="scene-copy"><h2>Be<em>Loved.</em></h2><p>Keep your shared<br>milestones close.</p><a href="/apps/beloved/" data-analytics-event="product_page_opened" data-analytics-app="BeLoved" data-analytics-placement="portfolio_home">Explore the app <span>↗</span></a></div>
+        <div class="beloved-film">
+          <video muted playsinline loop controls preload="none" poster="/assets/home/beloved-poster.jpg" aria-label="BeLoved captioned app video" data-src="/assets/home/beloved-demo.mp4"></video>
         </div>
+        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>iPHONE & iPAD</span></div><div class="chapter-progress" aria-hidden="true"></div>
       </div>
     </section>
-    <section id="retired" class="retired-section" aria-labelledby="retired-title">
-      <div class="container">
-        <h2 id="retired-title" class="section-title">Retired apps</h2>
-        <p class="section-subtitle">Past projects that are no longer maintained.</p>
-        <div class="apps-grid retired-grid">
-          {retiredApps.map(app => <AppCard app={app} retired />)}
+    <section class="chapter clock-chapter">
+      <div class="scene">
+        <div class="chapter-label"><span>02 / FLIP CLOCK FLOW</span><span>CLOCK & FOCUS TIMER</span></div>
+        <div class="scene-copy"><h2>Flip Clock<br><em>Flow.</em></h2><p>A clock. A focus timer.<br>Fewer distractions.</p><a href="/apps/flip-clock-flow/" data-analytics-event="product_page_opened" data-analytics-app="Flip Clock Flow" data-analytics-placement="portfolio_home">Explore the app <span>↗</span></a></div>
+        <div class="screens clock-screens">
+          <img class="prop wide-clock" data-shift="220" data-turn="16" data-final-turn="-8" src="/assets/images/apps/Flip Clock Flow/product/landscape-clock.webp" alt="Flip Clock Flow landscape clock" loading="lazy">
+          <img class="prop focus-phone" data-shift="-170" data-turn="-20" data-final-turn="9" src="/assets/images/apps/Flip Clock Flow/product/focus.webp" alt="Flip Clock Flow focus timer" loading="lazy">
         </div>
+        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>MAKE TIME FOR IT</span></div><div class="chapter-progress" aria-hidden="true"></div>
       </div>
+    </section>
+    <section class="chapter ruler-chapter">
+      <div class="scene">
+        <div class="chapter-label"><span>03 / INFINITE RULER</span><span>MEASUREMENT</span></div>
+        <div class="scene-copy"><h2>Infinite<br><em>Ruler.</em></h2><p>A ruler that keeps going<br>beyond your screen.</p><a href="/apps/infinite-ruler/" data-analytics-event="product_page_opened" data-analytics-app="Infinite Ruler" data-analytics-placement="portfolio_home">Explore the app <span>↗</span></a></div>
+        <div class="screens ruler-screens"><div class="ruler-marks" aria-hidden="true"></div>
+          <img class="prop ruler-phone" data-shift="240" data-turn="35" data-final-turn="18" src="/assets/images/apps/infiniteruler/product/infinite.webp" alt="Infinite Ruler measurement screen" loading="lazy">
+        </div>
+        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>BEYOND THE EDGE</span></div><div class="chapter-progress" aria-hidden="true"></div>
+      </div>
+    </section>
+    <section class="more-apps"><h2>Also made<br><em>by me.</em></h2>
+    <div class="catalogue">
+      <a class="app-row" href="/apps/look-at-yourself/" data-analytics-event="product_page_opened" data-analytics-app="LookAtYourself" data-analytics-placement="portfolio_home"><img src="/assets/images/apps/LookAtYourself/icon.webp" alt="" loading="lazy"><div><h3>LookAtYourself</h3><p>A moment to pause before you keep scrolling.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="/apps/gridmetrics/" data-analytics-event="product_page_opened" data-analytics-app="GridMetrics" data-analytics-placement="portfolio_home"><img src="/assets/images/thumbs/gridmetrics.webp" alt="" loading="lazy"><div><h3>GridMetrics</h3><p>Find a cleaner time to use electricity.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="/apps/bread-engineer/" data-analytics-event="product_page_opened" data-analytics-app="Bread Engineer" data-analytics-placement="portfolio_home"><img src="/assets/images/thumbs/bread-engineer.webp" alt="" loading="lazy"><div><h3>Bread Engineer</h3><p>Bread recipes, dough timing and step alarms.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="/apps/fast-simple-invoice-maker/" data-analytics-event="product_page_opened" data-analytics-app="Fast Simple Invoice Maker" data-analytics-placement="portfolio_home"><img src="/assets/images/thumbs/fast-simple-invoice-maker.webp" alt="" loading="lazy"><div><h3>Fast Simple Invoice Maker</h3><p>Professional invoices, without the busywork.</p></div><span class="arrow">↗</span></a>
+      <a class="app-row" href="/apps/easymode/" data-analytics-event="product_page_opened" data-analytics-app="Easymode" data-analytics-placement="portfolio_home"><img src="/assets/images/apps/EasyMode/icon.webp" alt="" loading="lazy"><div><h3>Easymode <span class="soon">COMING SOON</span></h3><p>A calmer way to manage life admin.</p></div><span class="arrow">↗</span></a>
+    </div>
     </section>
   </main>
-  <Footer />
+  <section class="work" id="about"><div><h2>Work with me</h2><p>For projects, roles or collaborations, get in touch.</p></div><a href="mailto:eric@savoie.app?subject=Let%E2%80%99s%20work%20together" data-analytics-event="developer_contact_opened" data-analytics-destination="email" data-analytics-placement="portfolio_home">eric@savoie.app ↗</a></section>
+  <section class="past-projects" id="retired"><details><summary>Past projects</summary><p>Earlier experiments, now retired and no longer maintained.</p><ul>{retiredApps.map(app => <li><h3>{app.name}</h3><p>{app.description}</p></li>)}</ul></details></section>
+  <footer><a href="#top">SAVOIE</a><div class="footer-links"><a href="/guides/">Guides</a><a href="https://github.com/EricSavoie119">GitHub</a><a href="/legal/privacy-policy/">Privacy</a><a href="/legal/terms/">Terms</a></div></footer>
+  <script is:inline src="/assets/home/scroll-motion.js"></script>
+  <script is:inline src="/assets/home/introductions.js"></script>
+  <script is:inline src="/assets/home/app-entrances.js"></script>
+  <script is:inline src="/assets/home/water-interaction.js"></script>
+  <script is:inline src="/assets/home/unwind-link.js"></script>
+  <script is:inline src="/assets/home/portrait-dock.js"></script>
+  <script is:inline src="/assets/home/cta-swerve.js"></script>
+  <script is:inline src="/assets/home/featured-video.js"></script>
+
 </Layout>
-
-<style>
-  .apps-section {
-    padding: 4rem 0;
-  }
-
-  .retired-section {
-    border-top: 1px solid var(--color-border);
-    padding: 4rem 0;
-  }
-
-  .origin-strip {
-    padding: 1.25rem 0;
-  }
-
-  .origin-line {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.75rem;
-    color: var(--color-text-secondary);
-    margin: 0;
-  }
-
-  .flag {
-    width: 18px;
-    height: auto;
-    border-radius: 2px;
-  }
-
-  .sep {
-    color: var(--color-border);
-    margin: 0 0.15rem;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.5px;
-  }
-
-  .section-subtitle {
-    color: var(--color-text-secondary);
-    font-size: 0.95rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .apps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: auto 1fr;
-    column-gap: 1.25rem;
-    row-gap: 0;
-  }
-
-  .retired-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 820px;
-  }
-
-  @media (max-width: 900px) {
-    .apps-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 560px) {
-    .apps-grid { grid-template-columns: 1fr; }
-  }
-</style>
