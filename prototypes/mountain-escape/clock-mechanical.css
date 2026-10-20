@@ -1,0 +1,39 @@
+/* Prototype: tactile monochrome, using the actual app screenshot. */
+.clock-photo-hinge{position:relative;z-index:2;width:76%;flex-shrink:0;transform-origin:50% 50%;backface-visibility:hidden}
+.clock-photo-hinge .clock-instrument{width:100%}
+.app-clock-photo{display:block;width:100%;height:auto;border-radius:5px;background:#000}
+.app-clock-face{position:relative;isolation:isolate}
+.photo-digit{position:absolute;background:#000;perspective:600px}
+.photo-leaf{position:absolute;inset:0;background-repeat:no-repeat;background-size:923.076923% 287.5%;transform-origin:50% 50%;backface-visibility:hidden;pointer-events:none}
+.photo-upper{clip-path:inset(0 0 50% 0)}
+.photo-lower{clip-path:inset(50% 0 0 0)}
+.mechanical-clock{--vista-ground:#101112;background:#101112;color:#f3f3ee;isolation:isolate}
+.mechanical-clock .machine-scene{height:auto;min-height:1050px;padding:55px 6% 120px;overflow:hidden;background:radial-gradient(ellipse at 40% 54%,#292b2c66,transparent 60%)}
+.mechanical-clock .vista-light{display:none}
+.machine-meta{display:flex;justify-content:flex-end;gap:42px;font:10px/1.5 monospace;letter-spacing:2px;color:#9d9f9f;position:relative;z-index:3}
+.machine-heading{display:flex;justify-content:space-between;align-items:end;margin:62px 0 25px;position:relative;z-index:3}
+.machine-heading h2{font:700 clamp(68px,9vw,132px)/.87 Arial,Helvetica,sans-serif;letter-spacing:-.075em;margin:0}
+.machine-heading h2 span{color:transparent;-webkit-text-stroke:1px #f3f3ee;font-weight:400;letter-spacing:-.07em}
+.machine-intro{padding:0 3% 10px 24px}.machine-intro p{font:19px/1.45 Arial,sans-serif;letter-spacing:-.3px;margin:0 0 25px;color:#c5c7c7}.machine-intro a{display:flex;align-items:center;gap:34px;font:14px Arial,sans-serif;min-height:44px}.machine-intro a>span{display:grid;place-items:center;width:37px;height:37px;border:1px solid #747777;border-radius:50%;font-size:24px}
+.machine-stage{position:relative;min-height:420px;margin-top:55px;display:flex;align-items:center;gap:6%;padding-bottom:60px}
+.clock-instrument{position:relative;z-index:2;width:76%;padding:25px 22px 24px;border:1px solid #626363;border-radius:17px;background:linear-gradient(150deg,#303233,#151617 20%,#0b0c0d 75%,#353637);box-shadow:inset 0 1px 1px #ffffff30,inset 0 -3px 0 #0009,0 35px 35px #0009;transform:perspective(1300px) rotateY(5deg) rotateZ(-3deg)}
+.instrument-top,.instrument-bottom{display:flex;justify-content:space-between;font:8px/1.3 monospace;letter-spacing:1.6px;color:#afb1b0}.instrument-top{margin:0 6px 21px}.instrument-bottom{margin:23px 6px 0}.instrument-status{display:flex;align-items:center;gap:7px}.instrument-status i{width:5px;height:5px;border-radius:50%;background:#f5f5ee;box-shadow:0 0 7px #fff5}
+.flip-display{display:flex;align-items:center;gap:1.5%;padding:15px 13px 32px;border-radius:7px;background:#050606;box-shadow:inset 0 4px 9px #000;border:1px solid #ffffff12;perspective:900px}
+.flip-pair{display:flex;gap:5px;flex:1;position:relative;min-width:0}.pair-caption{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font:7px/1 monospace;letter-spacing:2px;color:#949795}.flip-colon{font:50px/.8 Arial,sans-serif;color:#d3d4ce;margin-top:-7px}
+.flip-digit{position:relative;flex:1;aspect-ratio:.64;perspective:600px;min-width:0;filter:drop-shadow(0 3px 1px #0008)}
+.digit-upper,.digit-lower{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:#f0f0ea;color:#111213;backface-visibility:hidden;border-radius:5px 5px 0 0}.digit-lower{top:50%;border-radius:0 0 5px 5px;background:#e3e3dd}.digit-upper{top:0;background:linear-gradient(#fcfcf6,#e3e3dd);transform-origin:center bottom}.digit-lower{transform-origin:center top}
+.flip-digit b{position:absolute;left:0;right:0;top:0;height:200%;font:700 clamp(40px,7.5vw,105px)/1 Arial,Helvetica,sans-serif;display:flex;justify-content:center;align-items:center;letter-spacing:-.07em;padding-right:5px}.digit-lower b{top:-100%}.digit-hinge{position:absolute;z-index:5;top:calc(50% - 1px);height:2px;left:-2px;right:-2px;background:#141515;box-shadow:0 1px 0 #fff4}.digit-hinge:before,.digit-hinge:after{content:'';position:absolute;top:-3px;left:0;width:4px;height:8px;border-radius:1px;background:linear-gradient(90deg,#252626,#777,#252626)}.digit-hinge:after{left:auto;right:0}.digit-flap{z-index:4}
+.case-screw{position:absolute;bottom:10px;width:5px;height:5px;border-radius:50%;background:linear-gradient(45deg,#888 42%,#222 43% 57%,#888 58%);box-shadow:0 0 1px #fff7}.screw-one{left:10px}.screw-two{right:10px}
+.machine-dial{position:absolute;right:-14%;top:-245px;width:510px;height:510px;fill:none;stroke:#e8ebe822;stroke-width:1;pointer-events:none}.machine-dial line{stroke:#e8ebe855}.machine-dial path{stroke-width:2}.machine-dial circle:last-child{fill:#c9ccc9;stroke:none}
+.machine-phone{position:relative;z-index:2;width:16%;margin:0 0 0 auto;transform:rotate(5deg)}.machine-phone img{display:block;width:100%;height:auto;border-radius:15px;filter:grayscale(1);box-shadow:0 20px 30px #0007}.machine-phone figcaption{font:8px monospace;letter-spacing:1.5px;color:#9c9f9c;margin-top:18px;text-align:center;white-space:nowrap}
+.machine-scale{position:absolute;left:0;right:0;bottom:0;display:flex;gap:15px;align-items:center;color:#777b79;font:8px monospace;letter-spacing:1px}.machine-scale i{flex:1;height:17px;background:repeating-linear-gradient(90deg,#a5aaa870 0 1px,transparent 1px 11px);mask-image:linear-gradient(transparent 30%,#000 31%)}
+.machine-features{display:flex;justify-content:space-between;gap:15px;margin-top:42px;font:10px monospace;letter-spacing:1.5px;color:#c1c4c1}.machine-features b{font-weight:400;color:#737873;margin-right:12px}
+.machine-reference{margin-top:34px;font:10px/1.5 Arial,sans-serif;color:#949994}.machine-reference summary{cursor:pointer;width:fit-content}.machine-reference a{display:block;margin-top:10px;text-decoration:underline;text-underline-offset:3px}.machine-reference p{font-size:10px;color:#777e77}
+.viewing-clock .option-picker{opacity:0;pointer-events:none}
+@media(max-width:700px){
+ .clock-photo-hinge{width:100%}
+ .mechanical-clock .machine-scene{min-height:1000px;padding:45px 7% 110px}.machine-meta{font-size:8px;gap:18px;letter-spacing:1px}.machine-meta span:first-child{display:none}.machine-heading{display:block;margin:65px 0 0}.machine-heading h2{font-size:77px}.machine-intro{padding:0;margin-top:30px;display:flex;justify-content:space-between;align-items:center;gap:15px}.machine-intro p{font-size:14px;margin:0}.machine-intro a{font-size:12px;gap:10px}.machine-intro a>span{width:30px;height:30px;font-size:20px}
+ .machine-stage{display:block;margin-top:70px;min-height:435px;padding-bottom:35px}.clock-instrument{width:100%;padding:18px 10px 17px;border-radius:13px;transform:rotate(-3deg)}.instrument-top,.instrument-bottom{font-size:6px;letter-spacing:.7px}.instrument-top{margin:0 4px 12px}.instrument-bottom{margin:16px 4px 0}.flip-display{padding:10px 6px 25px;gap:1%}.flip-digit b{font-size:clamp(32px,10vw,60px);padding-right:2px}.flip-pair{gap:3px}.flip-colon{font-size:25px}.pair-caption{font-size:5px;letter-spacing:1px;bottom:-16px}.digit-upper,.digit-lower{border-radius:3px 3px 0 0}.digit-lower{border-radius:0 0 3px 3px}
+ .machine-phone{width:95px;margin:32px 15px 0 auto;transform:rotate(6deg)}.machine-phone img{border-radius:8px}.machine-phone figcaption{font-size:6px;letter-spacing:.7px;margin-top:10px}.machine-dial{width:320px;height:320px;right:auto;left:-45%;top:110px;opacity:.75}.machine-scale{right:42%;bottom:38px}.machine-scale span:nth-last-child(-n+2){display:none}.machine-features{font-size:8px;gap:10px;letter-spacing:.4px;margin-top:40px}.machine-features b{display:block;margin:0 0 7px}.machine-reference{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.clock-instrument,.machine-phone{transform:none}.photo-leaf{transform:none!important}}
