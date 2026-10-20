@@ -1,0 +1,38 @@
+---
+const dialMarks = Array.from({ length: 60 }, (_, i) => ({ angle: i * 6, outer: i % 5 ? 18 : 9, inner: i % 5 ? 24 : 29 }));
+const rulerUnits = Array.from({ length: 100 }, (_, i) => String(i).padStart(2, '0'));
+---
+<section class="chapter beloved-chapter beloved-options" data-variant="A" id="beloved">
+  <div class="scene options-scene">
+    <div class="option-label"><span>01 / BELOVED</span><span>iPHONE &amp; iPAD</span></div>
+    <div class="river-layout">
+      <div class="option-copy"><p class="option-kicker">THE DAYS THAT MATTER</p><h2>Be<em>Loved.</em></h2><p class="option-description">Keep your shared<br />milestones close.</p><a class="option-cta" href="/apps/beloved/" data-analytics-event="product_page_opened" data-analytics-app="BeLoved" data-analytics-placement="portfolio_home">Explore BeLoved <svg viewBox="0 0 70 40" aria-hidden="true" focusable="false"><path d="M3 31 C35 37 32 8 64 9 M52 4 Q60 7 64 9 Q64 16 59 23" /></svg></a></div>
+      <div class="river-media"><div class="option-film"><video muted playsinline loop controls preload="none" poster="/assets/home/beloved-poster.jpg" aria-label="BeLoved captioned app video" data-src="/assets/home/beloved-demo.mp4"></video></div></div>
+    </div>
+    <span class="option-footnote">Made for the two of you.</span>
+  </div>
+</section>
+<section class="chapter clock-chapter mechanical-clock" id="clock">
+  <div class="scene machine-scene">
+    <div class="machine-meta"><span>02 / FLIP CLOCK FLOW</span><span>iPHONE &amp; iPAD</span></div>
+    <div class="machine-heading"><h2>Flip Clock<br /><span>Flow.</span></h2><div class="machine-intro"><p>A clock. A focus timer.<br />Fewer distractions.</p><a href="/apps/flip-clock-flow/" data-analytics-event="product_page_opened" data-analytics-app="Flip Clock Flow" data-analytics-placement="portfolio_home">Explore the app <span aria-hidden="true">↗</span></a></div></div>
+    <div class="machine-stage">
+      <svg class="machine-dial" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="190" /><circle cx="200" cy="200" r="164" />{dialMarks.map(mark => <line x1="200" y1={mark.outer} x2="200" y2={mark.inner} transform={`rotate(${mark.angle} 200 200)`} />)}<path d="M200 200 L105 105 M200 200 L200 62" /><circle cx="200" cy="200" r="8" /></svg>
+      <div class="clock-photo-hinge"><div class="clock-instrument"><div class="instrument-top"><span>FLIP CLOCK FLOW</span><span class="instrument-status"><i></i> CLOCK &amp; FOCUS</span></div><div class="app-clock-face"><img class="app-clock-photo" src="/assets/images/apps/Flip Clock Flow/product/landscape-clock.webp" width="1200" height="552" alt="Flip Clock Flow app in landscape, showing its black and white flip clock" loading="lazy" /></div><div class="instrument-bottom"><span>LANDSCAPE CLOCK</span><span>24 HOUR / DIGITAL</span></div><span class="case-screw screw-one" aria-hidden="true"></span><span class="case-screw screw-two" aria-hidden="true"></span></div></div>
+      <figure class="machine-phone"><img src="/assets/images/apps/Flip Clock Flow/product/focus.webp" alt="Flip Clock Flow app showing a focus session" loading="lazy" /><figcaption>FOCUS, IN ONE TAP.</figcaption></figure>
+      <div class="machine-scale" aria-hidden="true"><span>00</span><i></i><span>30</span><i></i><span>60</span></div>
+    </div>
+    <div class="machine-features"><span><b>01</b> FLIP CLOCK</span><span><b>02</b> FOCUS TIMER</span><span><b>03</b> LIVE ACTIVITIES</span></div>
+  </div>
+</section>
+<section class="chapter ruler-chapter survey-ruler" id="ruler">
+  <div class="scene survey-scene">
+    <div class="survey-meta"><span>03 / INFINITE RULER</span><span>MEASUREMENT / iPHONE</span></div>
+    <div class="survey-layout">
+      <div class="survey-copy"><p class="survey-kicker">BEYOND THE EDGE</p><h2>Infinite<br /><em>Ruler.</em></h2><p class="survey-description">A ruler that keeps going<br />beyond your screen.</p><a class="survey-cta" href="/apps/infinite-ruler/" data-analytics-event="product_page_opened" data-analytics-app="Infinite Ruler" data-analytics-placement="portfolio_home">Explore the app <svg viewBox="0 0 70 40" aria-hidden="true" focusable="false"><path d="M3 31 C35 37 32 8 64 9 M52 4 Q60 7 64 9 Q64 16 59 23" /></svg></a></div>
+      <figure class="survey-product"><div class="survey-image"><img src="/assets/images/apps/infiniteruler/product/infinite.webp" width="900" height="1955" alt="Infinite Ruler app showing its continuous ruler, A and B measurement markers, and calibration controls" loading="lazy" /></div><figcaption>CM / FRACTIONAL INCHES</figcaption></figure>
+      <div class="survey-tape-angle" aria-hidden="true"><div class="survey-tape">{rulerUnits.map(unit => <span class="survey-unit"><b>{unit}</b><i></i></span>)}</div></div>
+    </div>
+    <div class="survey-footer"><div class="survey-capabilities"><span>Calibrated for your screen</span><span>A–B markers</span><span>Movable zero</span></div></div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+/* Featured app showcases, promoted from the approved design studies. */
+.beloved-options{--vista-ground:#eee5e1;color:#241c1c;isolation:isolate}
+.beloved-options .options-scene{height:auto;min-height:940px;padding:45px 6% 140px;overflow:hidden}
+.beloved-options .vista-light{display:none}
+.option-label{display:flex;justify-content:flex-end;gap:35px;font:10px/1.4 monospace;letter-spacing:2px;position:relative;z-index:3}
+.beloved-options h2{font:400 clamp(80px,10vw,158px)/.9 Arial,sans-serif;letter-spacing:-.08em;margin:0}
+.beloved-options h2 em{font:italic 1.05em/.9 Georgia,serif;letter-spacing:-.08em}
+.option-kicker{font:10px/1.5 monospace;letter-spacing:2px;margin:0 0 35px}
+.option-description{font:clamp(19px,2vw,28px)/1.45 Arial,sans-serif;letter-spacing:-.5px;margin:34px 0}
+.option-cta{display:inline-flex;align-items:center;gap:18px;font:15px Arial,sans-serif;position:relative;z-index:3;min-height:44px}
+.option-cta svg{width:64px;height:38px;fill:none;stroke:#b12823;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.option-film{position:relative;z-index:2;width:min(100%,320px);aspect-ratio:9/16;flex-shrink:0}
+.option-film video{display:block;width:100%;height:100%;object-fit:contain;border-radius:5px;background:#211b20;box-shadow:0 28px 65px #50313722}
+.option-footnote{font:11px monospace;letter-spacing:1px;position:absolute;bottom:70px;left:6%}
+/* A — the film sits at the bend of a broad, soft bank. */
+.beloved-options[data-variant=A]{background:radial-gradient(ellipse at 80% 64%,#ddc4c4,transparent 53%),#eee5e1}
+.river-layout{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:4%;min-height:700px;position:relative}
+.river-media{position:relative;min-height:720px;display:flex;align-items:center;justify-content:center}
+.river-media:before{content:'';position:absolute;inset:5% -35% 0 -20%;background:#c8aaad55;border-radius:62% 38% 69% 31% / 38% 51% 49% 62%;transform:rotate(-19deg);filter:blur(24px)}
+.river-media .option-film{transform:rotate(4deg);width:290px}
+
+@media(max-width:700px){
+ .option-label span:first-child{display:none}
+ .beloved-options .options-scene{min-height:1050px;padding:38px 7% 170px}
+ .option-label{font-size:9px;letter-spacing:1px}.beloved-options h2{font-size:78px}.option-kicker{font-size:9px;margin-bottom:22px}.option-description{font-size:20px;margin:22px 0}.river-layout{display:block;min-height:0}.option-copy{padding-top:62px}.river-media{min-height:510px;justify-content:flex-end;padding-right:10px;margin-top:12px}.river-media .option-film{width:215px;transform:rotate(3deg)}.river-media:before{inset:5% -20% 0 0}.option-footnote{bottom:145px;font-size:9px;left:7%}
+
+}
+/* Tactile monochrome, using the actual app screenshot. */
+.clock-photo-hinge{position:relative;z-index:2;width:76%;flex-shrink:0;transform-origin:50% 50%;backface-visibility:hidden}
+.clock-photo-hinge .clock-instrument{width:100%}
+.app-clock-photo{display:block;width:100%;height:auto;border-radius:5px;background:#000}
+.app-clock-face{position:relative;isolation:isolate}
+.photo-digit{position:absolute;background:#000;perspective:600px}
+.photo-leaf{position:absolute;inset:0;background-repeat:no-repeat;background-size:923.076923% 287.5%;transform-origin:50% 50%;backface-visibility:hidden;pointer-events:none}
+.photo-upper{clip-path:inset(0 0 50% 0)}
+.photo-lower{clip-path:inset(50% 0 0 0)}
+.mechanical-clock{--vista-ground:#101112;background:#101112;color:#f3f3ee;isolation:isolate}
+.mechanical-clock .machine-scene{height:auto;min-height:1050px;padding:55px 6% 120px;overflow:hidden;background:radial-gradient(ellipse at 40% 54%,#292b2c66,transparent 60%)}
+.mechanical-clock .vista-light{display:none}
+.machine-meta{display:flex;justify-content:flex-end;gap:42px;font:10px/1.5 monospace;letter-spacing:2px;color:#9d9f9f;position:relative;z-index:3}
+.machine-heading{display:flex;justify-content:space-between;align-items:end;margin:62px 0 25px;position:relative;z-index:3}
+.machine-heading h2{font:700 clamp(68px,9vw,132px)/.87 Arial,Helvetica,sans-serif;letter-spacing:-.075em;margin:0}
+.machine-heading h2 span{color:transparent;-webkit-text-stroke:1px #f3f3ee;font-weight:400;letter-spacing:-.07em}
+.machine-intro{padding:0 3% 10px 24px}.machine-intro p{font:19px/1.45 Arial,sans-serif;letter-spacing:-.3px;margin:0 0 25px;color:#c5c7c7}.machine-intro a{display:flex;align-items:center;gap:34px;font:14px Arial,sans-serif;min-height:44px}.machine-intro a>span{display:grid;place-items:center;width:37px;height:37px;border:1px solid #747777;border-radius:50%;font-size:24px}
+.machine-stage{position:relative;min-height:420px;margin-top:55px;display:flex;align-items:center;gap:6%;padding-bottom:60px}
+.clock-instrument{position:relative;z-index:2;width:76%;padding:25px 22px 24px;border:1px solid #626363;border-radius:17px;background:linear-gradient(150deg,#303233,#151617 20%,#0b0c0d 75%,#353637);box-shadow:inset 0 1px 1px #ffffff30,inset 0 -3px 0 #0009,0 35px 35px #0009;transform:perspective(1300px) rotateY(5deg) rotateZ(-3deg)}
+.instrument-top,.instrument-bottom{display:flex;justify-content:space-between;font:8px/1.3 monospace;letter-spacing:1.6px;color:#afb1b0}.instrument-top{margin:0 6px 21px}.instrument-bottom{margin:23px 6px 0}.instrument-status{display:flex;align-items:center;gap:7px}.instrument-status i{width:5px;height:5px;border-radius:50%;background:#f5f5ee;box-shadow:0 0 7px #fff5}
+.case-screw{position:absolute;bottom:10px;width:5px;height:5px;border-radius:50%;background:linear-gradient(45deg,#888 42%,#222 43% 57%,#888 58%);box-shadow:0 0 1px #fff7}.screw-one{left:10px}.screw-two{right:10px}
+.machine-dial{position:absolute;right:-14%;top:-245px;width:510px;height:510px;fill:none;stroke:#e8ebe822;stroke-width:1;pointer-events:none}.machine-dial line{stroke:#e8ebe855}.machine-dial path{stroke-width:2}.machine-dial circle:last-child{fill:#c9ccc9;stroke:none}
+.machine-phone{position:relative;z-index:2;width:16%;margin:0 0 0 auto;transform:rotate(5deg)}.machine-phone img{display:block;width:100%;height:auto;border-radius:15px;filter:grayscale(1);box-shadow:0 20px 30px #0007}.machine-phone figcaption{font:8px monospace;letter-spacing:1.5px;color:#9c9f9c;margin-top:18px;text-align:center;white-space:nowrap}
+.machine-scale{position:absolute;left:0;right:0;bottom:0;display:flex;gap:15px;align-items:center;color:#777b79;font:8px monospace;letter-spacing:1px}.machine-scale i{flex:1;height:17px;background:repeating-linear-gradient(90deg,#a5aaa870 0 1px,transparent 1px 11px);mask-image:linear-gradient(transparent 30%,#000 31%)}
+.machine-features{display:flex;justify-content:space-between;gap:15px;margin-top:42px;font:10px monospace;letter-spacing:1.5px;color:#c1c4c1}.machine-features b{font-weight:400;color:#737873;margin-right:12px}
+@media(max-width:700px){
+ .clock-photo-hinge{width:100%}
+ .mechanical-clock .machine-scene{min-height:1000px;padding:45px 7% 110px}.machine-meta{font-size:8px;gap:18px;letter-spacing:1px}.machine-meta span:first-child{display:none}.machine-heading{display:block;margin:65px 0 0}.machine-heading h2{font-size:77px}.machine-intro{padding:0;margin-top:30px;display:flex;justify-content:space-between;align-items:center;gap:15px}.machine-intro p{font-size:14px;margin:0}.machine-intro a{font-size:12px;gap:10px}.machine-intro a>span{width:30px;height:30px;font-size:20px}
+ .machine-stage{display:block;margin-top:70px;min-height:435px;padding-bottom:35px}.clock-instrument{width:100%;padding:18px 10px 17px;border-radius:13px;transform:rotate(-3deg)}.instrument-top,.instrument-bottom{font-size:6px;letter-spacing:.7px}.instrument-top{margin:0 4px 12px}.instrument-bottom{margin:16px 4px 0}
+ .machine-phone{width:95px;margin:32px 15px 0 auto;transform:rotate(6deg)}.machine-phone img{border-radius:8px}.machine-phone figcaption{font-size:6px;letter-spacing:.7px;margin-top:10px}.machine-dial{width:320px;height:320px;right:auto;left:-45%;top:110px;opacity:.75}.machine-scale{right:42%;bottom:38px}.machine-scale span:nth-last-child(-n+2){display:none}.machine-features{font-size:8px;gap:10px;letter-spacing:.4px;margin-top:40px}.machine-features b{display:block;margin:0 0 7px}
+}
+@media(prefers-reduced-motion:reduce){.clock-instrument,.machine-phone{transform:none}.photo-leaf{transform:none!important}}
+
+/* Canada red and warm white, with a continuous measuring strip. */
+.survey-ruler{--vista-ground:#ba2822;background:#ba2822;color:#fff5e7;isolation:isolate}
+.survey-ruler .survey-scene{height:auto;min-height:1040px;padding:55px 6% 95px;overflow:hidden;background:radial-gradient(ellipse at 77% 42%,#dd5c4045,transparent 58%),radial-gradient(ellipse at 12% 90%,#761c272b,transparent 60%)}
+.survey-ruler .vista-light{display:none}
+.survey-meta{display:flex;justify-content:flex-end;gap:42px;font:10px/1.5 monospace;letter-spacing:1.8px;color:#ffe6d5b3;position:relative;z-index:5}
+.survey-layout{display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;min-height:790px;gap:7%}
+.survey-copy{position:relative;z-index:3;align-self:start;padding-top:118px}
+.survey-kicker{font:10px/1.4 monospace;letter-spacing:2px;margin:0 0 32px;color:#ffe9d7c9}
+.survey-copy h2{font:400 clamp(90px,11vw,163px)/.87 Arial,sans-serif;letter-spacing:-.075em;margin:0;position:relative}
+.survey-copy h2 em{font:italic 1.05em/.9 Georgia,serif;letter-spacing:-.075em}
+.survey-description{font:clamp(18px,2vw,24px)/1.45 Arial,sans-serif;letter-spacing:-.4px;margin:36px 0 26px}
+.survey-cta{display:inline-flex;align-items:center;gap:23px;font:14px/1.3 Arial,sans-serif;min-height:44px}
+.survey-cta svg{width:64px;height:38px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.survey-product{position:relative;z-index:3;justify-self:center;width:290px;max-width:85%;margin:60px 0 0;transform:rotate(4deg)}
+.survey-image{position:relative;border-radius:18px;box-shadow:0 35px 48px #4d0e1a52,0 2px 3px #5b121538;overflow:hidden;outline:1px solid #fff5e733;background:#f4f3f8}
+.survey-image img{width:100%;height:auto;display:block}
+.survey-product figcaption{font:8px monospace;letter-spacing:1.8px;text-align:center;margin-top:20px;color:#ffe8d4c9}
+.survey-tape-angle{position:absolute;left:-22%;right:-27%;top:66%;height:113px;transform:rotate(-11deg);z-index:1;pointer-events:none;filter:drop-shadow(0 12px 14px #66181b26)}
+.survey-tape{height:100%;width:max-content;display:flex;background:#f6ecdb;color:#912721;box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #9f3d291f}
+.survey-unit{position:relative;display:block;flex:0 0 100px;height:100%;border-left:1px solid #912721}.survey-unit b{font:400 25px/1 monospace;position:absolute;top:52px;left:11px;letter-spacing:-1px}.survey-unit:before{content:'';position:absolute;top:0;left:0;right:0;height:27px;background:repeating-linear-gradient(90deg,#912721 0 1px,transparent 1px 10px)}.survey-unit:after{content:'';position:absolute;top:0;left:50%;width:1px;height:40px;background:#912721}.survey-unit i{position:absolute;bottom:0;left:0;width:100%;height:10px;background:repeating-linear-gradient(90deg,#91272199 0 1px,transparent 1px 10px)}
+.survey-footer{position:relative;z-index:3;display:flex;justify-content:flex-end;align-items:center;gap:35px;margin-top:25px}
+.survey-capabilities{font:9px/1.5 monospace;letter-spacing:.8px;display:flex;gap:28px;color:#ffe8d4c9}.survey-capabilities span{max-width:130px}
+@media(max-width:700px){
+ .survey-ruler .survey-scene{min-height:1140px;padding:45px 7% 95px}.survey-meta{font-size:8px;letter-spacing:1px}.survey-meta span:first-child{display:none}.survey-layout{display:block;min-height:0}.survey-copy{padding-top:64px}.survey-kicker{font-size:9px;margin-bottom:23px}.survey-copy h2{font-size:96px}.survey-description{font-size:19px;margin:25px 0 16px}.survey-cta{font-size:13px;gap:16px}.survey-cta svg{width:54px}
+ .survey-product{width:215px;max-width:72%;margin:58px 0 0 auto;transform:rotate(3deg)}.survey-image{border-radius:13px}.survey-product figcaption{font-size:7px;letter-spacing:1px;margin-top:17px}.survey-tape-angle{top:72%;left:-50%;right:-50%;height:84px;transform:rotate(-15deg)}.survey-unit{flex-basis:75px}.survey-unit b{font-size:20px;top:38px;left:9px}.survey-unit:before{height:21px;background-size:auto}.survey-unit:after{height:30px}
+ .survey-footer{display:block;margin-top:55px}.survey-capabilities{margin-top:30px;font-size:8px;gap:19px;letter-spacing:.3px}
+}
+@media(prefers-reduced-motion:reduce){.survey-product{transform:none}.survey-tape{transform:none!important}}

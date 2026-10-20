@@ -1,5 +1,6 @@
 (() => {
-  const video = document.querySelector('.beloved-film video');
+  const video = document.querySelector('.option-film video');
+  if (!video) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false;
   let manuallyPaused = false;

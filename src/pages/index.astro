@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FeaturedApps from '../components/FeaturedApps.astro';
+import featuredStyles from '../styles/featured-apps.css?url';
 import homeStyles from '../styles/mountain-home.css?url';
 import { retiredApps } from '../data/apps';
 const schema = {
@@ -25,6 +27,7 @@ const schema = {
 ---
 <Layout title="Savoie Apps | Apps & Tools" description="Independent iPhone apps and useful tools from Savoie Apps. Explore BeLoved, Flip Clock Flow, Infinite Ruler and more, or get in touch about working together." canonicalUrl="https://savoie.app/" ogImageAlt="Savoie Apps — Small iPhone apps, thoughtfully made." analyticsPageType="portfolio_home" customStyles>
   <link slot="head" rel="stylesheet" href={homeStyles} />
+  <link slot="head" rel="stylesheet" href={featuredStyles} />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <a class="skip-link" href="#apps">Skip to apps</a>
@@ -37,37 +40,7 @@ const schema = {
   </header>
   <main id="apps" tabindex="-1">
     <h2 class="sr-only">Apps & tools</h2>
-    <section class="chapter beloved-chapter">
-      <div class="scene">
-        <div class="chapter-label"><span>01 / BELOVED</span><span>YOUR SHARED MILESTONES</span></div>
-        <div class="scene-copy"><h2>Be<em>Loved.</em></h2><p>Keep your shared<br>milestones close.</p><a href="/apps/beloved/" data-analytics-event="product_page_opened" data-analytics-app="BeLoved" data-analytics-placement="portfolio_home">Explore the app <span>↗</span></a></div>
-        <div class="beloved-film">
-          <video muted playsinline loop controls preload="none" poster="/assets/home/beloved-poster.jpg" aria-label="BeLoved captioned app video" data-src="/assets/home/beloved-demo.mp4"></video>
-        </div>
-        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>iPHONE & iPAD</span></div><div class="chapter-progress" aria-hidden="true"></div>
-      </div>
-    </section>
-    <section class="chapter clock-chapter">
-      <div class="scene">
-        <div class="chapter-label"><span>02 / FLIP CLOCK FLOW</span><span>CLOCK & FOCUS TIMER</span></div>
-        <div class="scene-copy"><h2>Flip Clock<br><em>Flow.</em></h2><p>A clock. A focus timer.<br>Fewer distractions.</p><a href="/apps/flip-clock-flow/" data-analytics-event="product_page_opened" data-analytics-app="Flip Clock Flow" data-analytics-placement="portfolio_home">Explore the app <span>↗</span></a></div>
-        <div class="screens clock-screens">
-          <img class="prop wide-clock" data-shift="220" data-turn="16" data-final-turn="-8" src="/assets/images/apps/Flip Clock Flow/product/landscape-clock.webp" alt="Flip Clock Flow landscape clock" loading="lazy">
-          <img class="prop focus-phone" data-shift="-170" data-turn="-20" data-final-turn="9" src="/assets/images/apps/Flip Clock Flow/product/focus.webp" alt="Flip Clock Flow focus timer" loading="lazy">
-        </div>
-        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>MAKE TIME FOR IT</span></div><div class="chapter-progress" aria-hidden="true"></div>
-      </div>
-    </section>
-    <section class="chapter ruler-chapter">
-      <div class="scene">
-        <div class="chapter-label"><span>03 / INFINITE RULER</span><span>MEASUREMENT</span></div>
-        <div class="scene-copy"><h2>Infinite<br><em>Ruler.</em></h2><p>A ruler that keeps going<br>beyond your screen.</p><a href="/apps/infinite-ruler/" data-analytics-event="product_page_opened" data-analytics-app="Infinite Ruler" data-analytics-placement="portfolio_home">Explore the app <span>↗</span></a></div>
-        <div class="screens ruler-screens"><div class="ruler-marks" aria-hidden="true"></div>
-          <img class="prop ruler-phone" data-shift="240" data-turn="35" data-final-turn="18" src="/assets/images/apps/infiniteruler/product/infinite.webp" alt="Infinite Ruler measurement screen" loading="lazy">
-        </div>
-        <div class="scene-bottom"><span>Scroll to explore ↓</span><span>BEYOND THE EDGE</span></div><div class="chapter-progress" aria-hidden="true"></div>
-      </div>
-    </section>
+    <FeaturedApps />
     <section class="more-apps"><h2>Also made<br><em>by me.</em></h2>
     <div class="catalogue">
       <a class="app-row" href="/apps/look-at-yourself/" data-analytics-event="product_page_opened" data-analytics-app="LookAtYourself" data-analytics-placement="portfolio_home"><img src="/assets/images/apps/LookAtYourself/icon.webp" alt="" loading="lazy"><div><h3>LookAtYourself</h3><p>A moment to pause before you keep scrolling.</p></div><span class="arrow">↗</span></a>
@@ -83,11 +56,10 @@ const schema = {
   <footer><a href="#top">SAVOIE</a><div class="footer-links"><a href="/guides/">Guides</a><a href="https://github.com/EricSavoie119">GitHub</a><a href="/legal/privacy-policy/">Privacy</a><a href="/legal/terms/">Terms</a></div></footer>
   <script is:inline src="/assets/home/scroll-motion.js"></script>
   <script is:inline src="/assets/home/introductions.js"></script>
-  <script is:inline src="/assets/home/app-entrances.js"></script>
-  <script is:inline src="/assets/home/water-interaction.js"></script>
   <script is:inline src="/assets/home/unwind-link.js"></script>
   <script is:inline src="/assets/home/portrait-dock.js"></script>
   <script is:inline src="/assets/home/cta-swerve.js"></script>
   <script is:inline src="/assets/home/featured-video.js"></script>
+  <script is:inline src="/assets/home/featured-apps.js"></script>
 
 </Layout>
